@@ -1,0 +1,74 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{color}
+
+% Einstellungen für Seitenränder, Schriftgröße, etc.
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=3cm, bottom=3cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% Einstellungen für Code-Listings
+\lstset{
+    basicstyle=\ttfamily,
+    breaklines=true,
+    numbers=left,
+    numberstyle=\tiny,
+    frame=single,
+    backgroundcolor=\color{lightgray},
+    captionpos=b,
+    language=Java % Ändere dies entsprechend deiner Programmiersprache
+}
+
+\title{Softwaredokumentation für [Dein Projekt]}
+\author{[Dein Name]}
+\date{\today}
+
+\begin{document}
+
+    \maketitle
+    \tableofcontents
+    \newpage
+
+    \section{Einleitung}
+    Hier kannst du eine kurze Einleitung zu deinem Projekt und der Softwaredokumentation geben.
+
+    \section{Systemanforderungen}
+    Definiere die Hardware- und Softwareanforderungen für die Ausführung deiner Software.
+
+    \section{Installation}
+    Beschreibe den Installationsprozess deiner Software.
+
+    \section{Benutzerhandbuch}
+    Erkläre, wie Benutzer deine Software verwenden können. Dies kann Schritt-für-Schritt-Anleitungen, Screenshots usw. beinhalten.
+
+    \section{Architektur}
+    Gib einen Überblick über die Architektur deiner Software. Verwende Diagramme, um die verschiedenen Komponenten zu zeigen.
+
+    \section{Datenmodell}
+    Beschreibe die Datenstrukturen und ihre Beziehungen in deiner Software.
+
+    \section{Programmier- und Designentscheidungen}
+    Erkläre wichtige Entscheidungen, die du während des Entwicklungsprozesses getroffen hast, und warum.
+
+    \section{API-Dokumentation (optional)}
+    Wenn deine Software eine API hat, dokumentiere sie hier.
+
+    \section{Fehlerbehebung}
+    Liste häufige Probleme auf und gib Lösungen an.
+
+    \section{Änderungsprotokoll}
+    Halte alle Änderungen an deiner Software in einem Protokoll fest.
+
+    \section{Quellcode-Dokumentation}
+    Dokumentiere wichtige Teile des Quellcodes. Verwende Code-Listings, um Beispiele zu zeigen.
+
+    \section{Schlusswort}
+    Fasse die wichtigsten Punkte zusammen und gehe auf zukünftige Entwicklungspläne ein.
+
+\end{document}
