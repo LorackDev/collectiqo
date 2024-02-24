@@ -9,9 +9,10 @@
 \usepackage{helvet}
 \usepackage{titlesec}
 \usepackage{setspace}
+\usepackage{graphicx}
 
 \geometry{a4paper, left=1.5cm, right=1.5cm, top=2cm, bottom=2cm}
-
+\graphicspath{ {./images/} }
 % Einstellungen für Code-Listings
 \lstset{
     basicstyle=\ttfamily,
@@ -135,11 +136,30 @@
     
     \subsection{Ausblick}
 
+    \newpage
+
     \appendix
 
     \section{Anhang}
     
     \subsection{Mockups}
-   
+
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.6\textwidth]{add_collection_pop_up}
+        \caption{'Add Collection' Pop-up}
+    \end{figure}    
+        
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.6\textwidth]{loggedIn_starting_site}
+        \caption{'Logged in' page}
+    \end{figure}
+
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.6\textwidth]{Starting_site}
+        \caption{Starting page}
+    \end{figure}
 
 \end{document}
