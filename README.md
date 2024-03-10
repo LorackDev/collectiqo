@@ -18,7 +18,6 @@ Das Collectiqo-Projekt umfasst die Entwicklung einer Webanwendung, die es Benutz
 
 - Benutzer können Objektinformationen speichern und verwalten.
 - Benutzer können Bilder hochladen und verwalten.
-- Benutzer können Freunde hinzufügen und deren Profile einsehen.
 - Benutzer können ihre Sammlung nach verschiedenen Kategorien organisieren.
 
 ## Technologien
