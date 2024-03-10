@@ -9,7 +9,6 @@ Collectiqo ist eine Webanwendung, mit der Benutzer ihre private Sammlung digital
 - [Technologien](#technologien)
 - [Verwendung](#verwendung)
 - [Autoren](#autoren)
-- [Lizenz](#lizenz)
 
 ## Projektbeschreibung
 
@@ -38,7 +37,3 @@ Zukünftig sollen neue Features dazu kommen wie Freunde hinzuzufügen und deren 
 
 - Max Mustermann
 - Anna Beispiel
-
-## Lizenz
-
-Dieses Projekt ist unter der MIT-Lizenz lizenziert. Weitere Informationen finden Sie in der [Lizenzdatei](LICENSE).
