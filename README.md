@@ -35,5 +35,7 @@ Zukünftig sollen neue Features dazu kommen wie Freunde hinzuzufügen und deren 
 
 ## Autoren
 
-- Max Mustermann
-- Anna Beispiel
+- Lorenz Bindernagel
+- Robin Schäfer
+- Darko Simic
+- Anika Struve
