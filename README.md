@@ -23,10 +23,10 @@ Das Collectiqo-Projekt umfasst die Entwicklung einer Webanwendung, die es Benutz
 
 ## Technologien
 
-- Frontend: Bootstrap, HTML, CSS, JavaScript
-- Backend: Node.js, Express.js
-- Datenbanksystem: MongoDB
-- Sonstiges: Docker, GitHub
+- Frontend: Bootstrap, Bootstrap Studio, HTML, CSS, JavaScript
+- Backend: Node.js, Express.js,
+- Datenbanksystem: MongoDB, SQL
+- Sonstiges: Docker, GitHub, WebStorm, YouTrack
 
 ## Verwendung
 
