@@ -1,0 +1,25 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+.body-image {
+    width: 500px;
+    height: 5%;
+  }
+
+.content {
+    text-align: center;
+}
+
+h1 {
+    font-size: 5em;
+}
+
+p {
+    font-size: 2.2em;
+}
