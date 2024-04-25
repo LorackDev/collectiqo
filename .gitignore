@@ -1,3 +1,7 @@
+# folder containing all container data
+
+/data
+
 # latex
 
 /out/.aux
