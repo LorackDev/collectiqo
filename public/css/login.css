@@ -71,4 +71,5 @@ body {
   
   .container .switch-option a:hover {
     text-decoration: underline;
+    cursor: pointer;
   }

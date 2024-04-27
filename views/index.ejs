@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="./css/style.css"/>
   <link rel="stylesheet" href="./css/templates/header.css" />
   <link rel="stylesheet" href="./css/templates/footer.css" />
+  <script src="./js/redirecting.js"></script>
 </head>
 
 <body>
@@ -37,15 +38,6 @@
   <footer>
     <%- include('./templates/footer.html') %>
   </footer>
-
-<script>
-  function redirectToLoginPage() {
-    window.location.href = "/login"; // Redirect to the login route
-  }
-  function redirectToSignUpPage() {
-    window.location.href = "/signup"; // Redirect to the login route
-  }
-</script>
 
 </body>
 
