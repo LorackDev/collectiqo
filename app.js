@@ -20,7 +20,6 @@ app.use("/img", express.static(__dirname + "public/assets/img"));
 
 // Set the view engine to use EJS
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
 
 const server = http.createServer(app);
 
@@ -29,8 +28,14 @@ app.get("/", async function(req, res) {
     res.render("index.ejs");
 });
 
+// Route for login
 app.get('/login', (req, res) => {
-    res.render('pages/01-01-login/login');
+    res.render('pages/login');
+});
+
+// Route for Sign-Up
+app.get('/signup', (req, res) => {
+    res.render('pages/signup');
 });
 
 // Route to create user

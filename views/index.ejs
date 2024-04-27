@@ -26,7 +26,7 @@
       </p>
       <div class="auth-buttons">
         <button onclick="redirectToLoginPage()">Login </button>
-        <a href="/Praxismodul/root/pages/00-00-signup/signup.html"><button>Sign Up</button></a>
+        <button onclick="redirectToSignUpPage()">Sign Up </button>
       </div>
     </div>
     <div class="lower-third">
@@ -41,6 +41,9 @@
 <script>
   function redirectToLoginPage() {
     window.location.href = "/login"; // Redirect to the login route
+  }
+  function redirectToSignUpPage() {
+    window.location.href = "/signup"; // Redirect to the login route
   }
 </script>
 
