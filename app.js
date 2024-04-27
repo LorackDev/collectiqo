@@ -3,6 +3,7 @@ const express = require("express");
 const mysql = require("mysql2");
 const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
+const path = require("path");
 const port = process.env.PORT || 8000;
 const app = express();
 
@@ -12,12 +13,14 @@ dotenv.config({ path: './.env' });
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(express.static("public"));
+app.use("/page", express.static(__dirname + "views/pages"));
 app.use("/css", express.static(__dirname + "public/css"));
 app.use("/js", express.static(__dirname + "public/js"));
 app.use("/img", express.static(__dirname + "public/assets/img"));
 
 // Set the view engine to use EJS
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 const server = http.createServer(app);
 
@@ -25,6 +28,11 @@ const server = http.createServer(app);
 app.get("/", async function(req, res) {
     res.render("index.ejs");
 });
+
+app.get('/login', (req, res) => {
+    res.render('pages/01-01-login/login');
+});
+
 
 // MySQL database connection
 // const db = mysql.createConnection({

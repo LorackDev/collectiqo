@@ -25,7 +25,7 @@
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis lectus nibh.
       </p>
       <div class="auth-buttons">
-        <a href="/Praxismodul/root/pages/00-01-login/login.html"><button>Login</button></a>
+        <button onclick="redirectToLoginPage()">Login </button>
         <a href="/Praxismodul/root/pages/00-00-signup/signup.html"><button>Sign Up</button></a>
       </div>
     </div>
@@ -37,6 +37,12 @@
   <footer>
     <%- include('./templates/footer.html') %>
   </footer>
+
+<script>
+  function redirectToLoginPage() {
+    window.location.href = "/login"; // Redirect to the login route
+  }
+</script>
 
 </body>
 
