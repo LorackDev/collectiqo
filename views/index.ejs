@@ -5,14 +5,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Landing Page</title>
-  <link rel="stylesheet" href="resources/style.css" />
+  <link rel="stylesheet" href="./css/style.css" />
 </head>
 
 <body>
 
-  <header>
-    <% include header.html %>
-  </header>
+<header>
+  <%- include('./templating/header.html') %>
+</header>
 
   <main>
     <div class="upper-third">
@@ -33,7 +33,7 @@
   </main>
 
   <footer>
-    <% include footer.html %>
+    <%- include('./templating/footer.html') %>
   </footer>
 
 </body>
