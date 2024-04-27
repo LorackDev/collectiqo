@@ -33,25 +33,6 @@ app.get('/login', (req, res) => {
     res.render('pages/01-01-login/login');
 });
 
-
-// MySQL database connection
-// const db = mysql.createConnection({
-//     host: process.env.DATABASE_HOST,
-//     port: process.env.DATABASE_PORT,
-//     user: process.env.DATABASE_USER,
-//     password: process.env.DATABASE_PASSWORD,
-//     database: process.env.DATABASE
-// });
-
-// Connect to the database
-// db.connect((error) => {
-//     if(error) {
-//         console.log(error)
-//     } else {
-//         console.log("MySQL connected!")
-//     }
-// })
-
 // Route to create user
 app.post("/createUser", async (req, res) => {
     const user = req.body.name;
