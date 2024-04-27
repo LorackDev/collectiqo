@@ -1,0 +1,43 @@
+/* footer.css */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    margin-top: auto;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .contact-details {
+    flex-grow: 1;
+    text-align: left;
+}
+
+footer .essential-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer .essential-links a:hover {
+    text-decoration: underline;
+}
+
+footer .copyright {
+    text-align: right;
+}
+
+@media screen and (max-width: 500px) {
+    footer .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    footer .container > * {
+        margin: 10px 0;
+    }
+}
