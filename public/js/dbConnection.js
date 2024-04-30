@@ -1,5 +1,5 @@
-// MySQL database connection
-import * as mysql from "node/net";
+require('dotenv').config( { path: '../../.env' });
+const mysql = require('mysql2');
 
 const db = mysql.createConnection({
     host: process.env.DATABASE_HOST,
@@ -9,7 +9,6 @@ const db = mysql.createConnection({
     database: process.env.DATABASE
 })
 
-// Connect to the database
 db.connect((error) => {
     if (error) {
         console.log(error)
@@ -18,4 +17,4 @@ db.connect((error) => {
     }
 })
 
-module.exports="dbConnection"
+module.exports = db;
