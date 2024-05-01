@@ -1,0 +1,89 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{helvet}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{fancyhdr}
+
+
+% Einstellungen für Seitenränder, Schriftgröße, etc.
+\geometry{a4paper, left=1.5cm, right=1.5cm, top=2cm, bottom=2cm}
+\graphicspath{ {./images/} }
+
+% Folgende 5 Zeilen sind im BPM-Dokument zu finden
+ %\pagestyle{fancy} % Add this line
+ %\fancyhf{} % Add this line
+ %\fancyfoot[C]{\thepage} % Add this line
+ %setlength{\parindent}{0pt}
+ %\setlength{\parskip}{6pt}
+
+
+% Einstellungen für Code-Listings
+\lstset{
+    basicstyle=\ttfamily,
+    breaklines=true,
+    numbers=left,
+    numberstyle=\tiny,
+    frame=single,
+    backgroundcolor=\color{lightgray},
+    captionpos=b,
+    language=Java % Ändere dies entsprechend deiner Programmiersprache
+}
+
+\title{
+    Projektdokumentation\\
+    Hochschule Mainz - Wi Dual - Praxismodul I
+}
+
+\author{
+    Bindernagel, Lorenz\\
+    Schäfer, Robin\\
+    Simic, Darko\\
+    Struve, Anika
+}
+
+\date{\today}
+
+% Document
+\begin{document}
+
+    \maketitle
+    \newpage
+    \tableofcontents
+    \newpage
+
+
+    \section{Projektidee und Konzept}\label{sec:idee-konzept}
+    \input{sections/idee-konzept}
+    \newpage
+
+
+    \section{Projektplanung und Projektmanagement}\label{sec:planung-management}
+    \input{sections/planung-management}
+    \newpage
+
+
+    \section{Projektbericht}\label{sec:projektberichts}
+    \input{sections/projektbericht}
+    \newpage
+
+
+    \section{Ergebnis und Fazit}\label{sec:ergebnis-fazit}
+    \input{sections/ergebnis-fazit}
+    \newpage
+
+    \appendix
+
+
+    \section{Anhang}\label{sec:anhang}
+    \input{sections/anhang}
+
+\end{document}
