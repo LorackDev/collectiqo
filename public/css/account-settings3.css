@@ -1,0 +1,116 @@
+/* setting.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+   
+    background-image: linear-gradient(
+    320deg,
+    hsl(207deg 70% 61%) 0%,
+    hsl(208deg 69% 66%) 10%,
+    hsl(209deg 68% 71%) 20%,
+    hsl(210deg 68% 75%) 30%,
+    hsl(211deg 68% 79%) 40%,
+    hsl(211deg 68% 82%) 50%,
+    hsl(212deg 68% 86%) 60%,
+    hsl(212deg 68% 90%) 70%,
+    hsl(213deg 68% 93%) 80%,
+    hsl(213deg 68% 97%) 90%,
+    hsl(0deg 0% 100%) 100%
+    );
+  }
+
+main {
+    background: #f0f0f3;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 10px 10px 15px #a3a3a3;
+    width: 100%;
+    max-width: 600px;
+}
+
+section {
+    background: #f0f0f3;
+    border-radius: 15px;
+    padding: 1rem;
+    margin-bottom: .2rem;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #6B7B8C;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    
+    outline: none;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background: #ffffff;               
+    width: calc(100% - 1.5rem); /* Account for padding and borders */
+}
+
+button {
+    display: block; 
+    margin: auto; 
+    outline: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.75rem 2rem;
+    border-radius: 10px;
+    color: #fff;
+    background-color: #6EB6FF;
+    box-shadow: 4px 4px 6px #bebebe;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: #58a4e1;
+}
+
+button:active {
+    box-shadow: inset 1px 1px 3px #bebebe,
+                inset -1px -1px 3px #ffffff;
+}
+
+/* Delete-Section */
+
+.delete-account button {
+    background-color: #ff5555; /* Red color */
+    margin: auto; /* Auto margins keep the button centered */
+    margin-top: 1rem; /* Space from the form elements above */
+}
+
+.delete-account button:hover {
+    background-color: #e64444; /* Slightly darker red for hover state */
+}
+
+.delete-account button:active {
+    box-shadow: inset 1px 1px 3px #bebebe,
+                inset -1px -1px 3px #ffffff;
+}
