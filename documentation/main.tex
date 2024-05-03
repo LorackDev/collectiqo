@@ -12,6 +12,9 @@
 \usepackage{graphicx}
 \usepackage{pdfpages}
 \usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{tikz}
 
 
 % Einstellungen für Seitenränder, Schriftgröße, etc.
@@ -39,8 +42,12 @@
 }
 
 \title{
-    Projektdokumentation\\
-    Hochschule Mainz - Wi Dual - Praxismodul I
+        {\LARGE Projektdokumentation - Praxismodul I}\\
+        {\LARGE collectiqo}\\
+        {\small Hochschule Mainz}\\
+        {\vspace{-0.5em}\small University of Applied Sciences}\\
+        {\vspace{-0.5em}\small Fachbereich Wirtschaft}\\
+        {\small Wirtschaftsinformatik B.Sc. dual}
 }
 
 \author{
@@ -50,12 +57,27 @@
     Struve, Anika
 }
 
-\date{\today}
+% \date{\today}
+ \date{16.06.2024}
+
+% ToDo's TitlePage
+% HS-Mainz Logo
+% Keine Nummerierung TitlePage
+
 
 % Document
 \begin{document}
 
+    %Robin Versuch ein Logo in die obere-rechte Ecke auf der Titelseite zu bekommen - aktuell noch nicht erfolgreich
+\begin{titlepage} %Robin Verwendung Package "tikz"
+    \begin{tikzpicture}[remember picture, overlay]
+        \node[anchor=north east, inner sep=0pt] at (current page.north east) {\includegraphics[width=8cm]{hsm_logo_orange}};
+    \end{tikzpicture}
+
     \maketitle
+\end{titlepage}
+
+    % \maketitle
     \newpage
     \tableofcontents
     \newpage
