@@ -1,116 +1,193 @@
-/* setting.css */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
-    font-family: Arial, sans-serif;
-   
-    background-image: linear-gradient(
-    320deg,
-    hsl(207deg 70% 61%) 0%,
-    hsl(208deg 69% 66%) 10%,
-    hsl(209deg 68% 71%) 20%,
-    hsl(210deg 68% 75%) 30%,
-    hsl(211deg 68% 79%) 40%,
-    hsl(211deg 68% 82%) 50%,
-    hsl(212deg 68% 86%) 60%,
-    hsl(212deg 68% 90%) 70%,
-    hsl(213deg 68% 93%) 80%,
-    hsl(213deg 68% 97%) 90%,
-    hsl(0deg 0% 100%) 100%
-    );
-  }
-
-main {
-    background: #f0f0f3;
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: 10px 10px 15px #a3a3a3;
-    width: 100%;
-    max-width: 600px;
-}
-
-section {
-    background: #f0f0f3;
-    border-radius: 15px;
-    padding: 1rem;
-    margin-bottom: .2rem;
-}
-
-h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
     color: #333;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
 }
 
-.form-group {
-    margin-bottom: 1.5rem;
+.div-block {
+    grid-column-gap: 16px;
+    grid-row-gap: 16px;
+    object-fit: contain;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-columns: 1fr;
+    display: flex;
 }
 
-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #6B7B8C;
+.container {
+    float: left;
+
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    
-    outline: none;
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    background: #ffffff;               
-    width: calc(100% - 1.5rem); /* Account for padding and borders */
+.container-2 {
+    float: right;
+    display: flex;
 }
 
-button {
-    display: block; 
-    margin: auto; 
-    outline: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.75rem 2rem;
+.wrapper {
+    background-color: #e2f1f8;
+    border-bottom: 1px solid #e4ebf3;
+    padding: 80px 30px;
+    position: relative;
+}
+
+.container-3 {
+    width: 100%;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.centered-heading {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.grid {
+    grid-column-gap: 24px;
+    grid-row-gap: 24px;
+    grid-template-rows: auto;
+    grid-template-columns: 2.25fr 1fr 1fr;
+    grid-auto-columns: 1fr;
+}
+
+.profile {
+    grid-column-gap: 12px;
+    grid-row-gap: 12px;
+    color: #6b6b6b;
+    background-color: #ddedf4;
+    border-radius: 16px;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-columns: 1fr;
+    justify-content: space-between;
+    margin-right: 0;
+    padding: 32px 24px;
+    display: flex;
+    box-shadow: inset -6px -6px 8px rgba(233, 250, 255, .71);
+}
+
+.profile.div-block {
+    aspect-ratio: auto;
+    width: auto;
+    margin-right: 59px;
+    padding-right: 22px;
+    position: static;
+}
+
+.testimonial-main-image {
+    object-fit: cover;
     border-radius: 10px;
-    color: #fff;
-    background-color: #6EB6FF;
-    box-shadow: 4px 4px 6px #bebebe;
-    transition: 0.2s;
+    width: 200px;
+    height: 200px;
+    margin-right: 24px;
 }
 
-button:hover {
-    background-color: #58a4e1;
+.testimonial-main-content {
+    flex-direction: column;
+    justify-content: space-between;
+    display: flex;
 }
 
-button:active {
-    box-shadow: inset 1px 1px 3px #bebebe,
-                inset -1px -1px 3px #ffffff;
+.margin-bottom-24px {
+    margin-bottom: 24px;
 }
 
-/* Delete-Section */
-
-.delete-account button {
-    background-color: #ff5555; /* Red color */
-    margin: auto; /* Auto margins keep the button centered */
-    margin-top: 1rem; /* Space from the form elements above */
+.testimonial-main-heading {
+    margin-bottom: 2px;
+    font-weight: 600;
 }
 
-.delete-account button:hover {
-    background-color: #e64444; /* Slightly darker red for hover state */
+.block {
+    background-color: #ddedf4;
+    border-radius: 20px;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 32px 24px;
+    display: flex;
+    box-shadow: inset -5px -5px 9px rgba(237, 245, 255, .31);
 }
 
-.delete-account button:active {
-    box-shadow: inset 1px 1px 3px #bebebe,
-                inset -1px -1px 3px #ffffff;
+.block.platforms {
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    margin-right: 0;
+
 }
+
+.testimonial-info-two {
+    align-items: center;
+    display: flex;
+}
+
+.header-labels {
+    margin-right: 0;
+    padding-bottom: 7px;
+    padding-right: 0;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.link {
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    margin-top: 7px;
+    margin-right: 14px;
+    padding-bottom: 0;
+    padding-right: 99px;
+    font-size: 10px;
+    font-style: normal;
+    text-decoration: none;
+    display: flex;
+}
+
+.link.profile {
+    color: #262626;
+    margin-top: -2px;
+    margin-left: -219px;
+    margin-right: 24px;
+    padding-left: 0;
+    padding-right: 53px;
+    transition: opacity .2s;
+}
+
+.container-4 {
+    flex: 0 auto;
+    align-self: flex-start;
+}
+
+.submit-button {
+    color: #545050;
+    background-color: #d1e3f3;
+    border-radius: 16px;
+    box-shadow: 3px 3px 5px rgba(255, 255, 255, .38), -2px -1px 5px rgba(0, 0, 0, .2);
+}
+
+form {
+    object-fit: contain;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.textarea {
+    line-height: 110px;
+}
+
+@media screen and (max-width: 991px) {
+    .container-3 {
+        max-width: 728px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .testimonial-main-image {
+        width: 300px;
+        height: 350px;
+
+    }
+}
+

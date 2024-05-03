@@ -3,78 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <!-- Comments -->
-    <link rel="stylesheet" href="../../public/css/neumorphism-test.css" />
+    <link rel="stylesheet" href="../../public/css/account-settings3.css" />
     <title>Account Settings | Collectiqo </title>
 
 
 </head>
 
 
-
 <body>
-
-<div class="header">
-    <iframe src="../templates/header.html"></iframe>
-</div>
-
-
-<h1> My Settings </h1>
-<p>Choose the following settings to customize your account</p>
-<br>
-<p>Set your Profil Picture</p>
-<img src="../../public/assets/img/avatar-male.png" height="128" width="128" alt="This is a picture of a male person" title ="Male Avatar">
-<img src="../../public/assets/img/avatar-female.png" height="128" width="128" alt="This is a picture of a female person" title ="Female Avatar">
-<p>Set your <b>Nickname</b></p>
-
-<form>
-    <div>
-        <label for="nname">nickname:</label>
-        <input type="text" id="nname" name="nname" class="neumo" placeholder="MadMax">
-    </div>
-
-    <br>
-
-    <div>
-        <label for="fname">first name:</label>
-        <input type="text" id="fname" name="fname" placeholder="Max">
-    </div>
-
-    <br>
-
-    <div>
-        <label for="lname">last name:</label>
-        <input type="text" id="lname" name="lname" placeholder="Mustermen">
-    </div>
-
-    <br>
-
-    <div>
-        <label for="pass">password:</label>
-        <input type="password" id="pass" name="pass" maxlength="16">
-    </div>
-
-    <br>
-
-    <div>
-        <input type="reset" class="neumo">
-    </div>
-
-</form>
-
-<p>Change your e-mail address</p>
-<p>Change your password</p>
-<p>Delete your account</p>
-<p>Set your Birthday</p>
-<p>Instagram Account</p>
-<p>Other Social media shit account</p>
-
-<button style="background-color: lightskyblue;border-radius:5px">Save profile settings</button>
-<!-- Insert onclick-javascript-statements for saving information to Database? -->
+<section class="wrapper">
+    <div class="container-3">
+        <h2 class="centered-heading">My Settings</h2>
+        <div class="grid wf-grid">
+            <div class="profile div-block">
+                <img src="" loading="eager" width="100" height="100" alt="" class="testimonial-main-image">
+                <div class="testimonial-main-content">
+                    <div class="w-form">
+                        <form method="get" name="email-form" data-name="Email Form" id="email-form" class="form">
+                            <label for="name">Name</label>
+                            <input class="w-input" maxlength="256" name="name" data-name="Name" placeholder="" type="text" id="name">
+                            <label for="username">Username</label>
+                            <input class="w-input" maxlength="256" name="username" data-name="username" placeholder="" type="text" id="username" required="">
+                            <label for="email">Email Address</label>
+                            <input class="w-input" maxlength="256" name="email" data-name="email" placeholder="Mail" type="email" id="email" required="">
+                            <input type="submit" data-wait="Please wait..." class="submit-button w-button" value="Submit">
+                        </form>
+                        </div></div></div></div>
+        <div class="block personals">
+                <div class="header-labels">Personals</div><div class="w-form"><form method="get" name="email-form-2" data-name="Email Form 2" id="email-form-2">
+                <textarea class="textarea w-input" maxlength="5000" name="field-2" data-name="Field 2" placeholder="About myself..." id="field-2"></textarea>
+            </form>
 
 
+            </div>
+            </div>
+                <div class="block platforms">
+                    <div class="header-labels">Social Media</div>
+            <div class="w-form">
+                <form method="get" name="email-form-3" data-name="Email Form 3" id="email-form-3">
+                    <label for="instagram">Instagram</label>
+                    <input class="w-input" maxlength="256" name="instagram" placeholder="" type="text" id="instagram">
+                    <label for="twitter">X (Twitter)</label>
+                    <input class="w-input" maxlength="256" name="twitter"  placeholder="" type="text" id="twitter">
+                    <label for="facebook">Facebook</label>
+                    <input class="w-input" maxlength="256" name="facebook" placeholder="" type="text" id="facebook">
+                    <input type="submit" class="submit-button w-button" value="Submit">
+                </form>
 
-<div class="footer">
-    <iframe src="../templates/footer.html"></iframe>
-</div>
+            </div>
+                </div>
+            </div>
+        </div>
+
+
+</section>
 </body>
 </html>
