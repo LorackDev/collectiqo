@@ -12,7 +12,7 @@ dotenv.config({ path: './.env' });
 
 // Middleware to parse JSON bodies
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 app.use("/page", express.static(__dirname + "views/pages"));
 app.use("/css", express.static(__dirname + "public/css"));
 app.use("/js", express.static(__dirname + "public/js"));
@@ -35,7 +35,16 @@ app.get('/login', (req, res) => {
 
 // Route for Sign-Up
 app.get('/signup', (req, res) => {
-    res.render('pages/signup');
+    res.render('views/pages/signup');
+});
+
+// Route for Sign-Up
+app.get('/home', (req, res) => {
+    res.render('views/pages/home-user');
+});
+
+app.get('/test', (req, res) => {
+    res.render('pages/test.ejs');
 });
 
 // Route to create user
