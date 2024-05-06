@@ -12,3 +12,4 @@ function redirectToHome() {
 
 module.exports = redirectToLoginPage();
 module.exports = redirectToSignUpPage();
+module.exports = redirectToHome();
