@@ -1,3 +1,5 @@
+// noinspection SqlDialectInspection
+
 const http = require("http");
 const express = require("express");
 const mysql = require("mysql2");
@@ -43,14 +45,16 @@ app.get('/home', (req, res) => {
     res.render('pages/home');
 });
 
-app.get('/test', (req, res) => {
+app.get('/settings', (req, res) => {
     res.render('pages/account-settings');
 });
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(500).send('Something went wrong!\n' + err.stack);
+    const errorMessage = 'Something went wrong!<br>Check if the page is set to EJS!<br><br>' + err.stack.replace(/\n/g, '<br>');
+    res.status(500).send(errorMessage);
 });
+
 
 // Route to create user
 app.post("/createUser", async (req, res) => {
