@@ -1,0 +1,64 @@
+/* Style the modal */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal content */
+  .modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: 10% auto; /* 10% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%; /* Adjusted width */
+    display: flex; /* Added to make the left and right sections aligned */
+  }
+  
+  /* Existing modal styles */
+  .modal-left {
+    width: 50%;
+    text-align: center;
+    padding: 10px;
+    z-index: 100;
+  }
+  
+  .modal-right {
+    width: 50%;
+    text-align: center;
+    padding: 10px;
+    z-index: 100;
+  }
+  
+  .vertical-divider {
+    width: 1px;
+    background-color: #ccc;
+    height: 70%; /* Adjusted height to cover the entire height of the modal-content container */
+    position: absolute; /* Added to position the vertical divider */
+    top: 2rem; /* Position the vertical divider at the top */
+    left: 50%; /* Center the vertical divider horizontally */
+    transform: translateX(-30%); /* Adjusted to center the vertical divider properly */
+  }
+  
+  /* Adjustments for input fields and buttons */
+  .modal-right input {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .modal-right button {
+    display: block;
+    margin-top: 10px;
+  }
+
+  .cancel-button {
+    margin-top: 20rem; /* Push the cancel button to the bottom */
+    width: auto; /* Set width to auto to prevent stretching */
+  }
