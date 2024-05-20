@@ -1,4 +1,12 @@
-require('dotenv').config( { path: '../../.env' });
+const dotenv = require('dotenv');
+
+if (process.env.NODE_ENV === 'test') {
+    dotenv.config({ path: '../.env.test' });
+} else {
+    dotenv.config({ path: '../.env' });
+}
+
+console.log(process.env)
 const mysql = require('mysql2');
 
 const db = mysql.createConnection({

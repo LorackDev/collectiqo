@@ -3,7 +3,7 @@
  */
 const bcrypt = require('bcrypt');
 const mysql = require('mysql2');
-const db = require('./dbConnection');
+const db = require('./dbConnector');
 
 /**
  * The loginHandler function is an Express middleware function that handles user login.
