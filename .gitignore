@@ -2,6 +2,10 @@
 
 /data
 
+# idea
+
+.idea
+
 # latex
 
 /out/.aux
