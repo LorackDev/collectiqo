@@ -22,28 +22,28 @@ const db = require('./dbConnector');
  * @param {Object} res - Express response object.
  * @throws Will throw an error if the SQL query fails.
  */
-const loginHandler = (req, res) => {
+const loginHandler = async (req, res) => {
     const { username, password } = req.body;
-    const sqlSearch = "SELECT * FROM clq_users WHERE username = ? OR email = ?";
-    const search_query = mysql.format(sqlSearch, [username, username]);
-    db.query(search_query, async (err, result) => {
-        if (err) {
-            throw err;
+
+    try {
+        const results = await db.query('SELECT * FROM clq_users WHERE username = ? OR email = ?', [username, username]);
+        if (results.length === 0) {
+            res.status(401).json({ message: 'User not found' });
+            return;
         }
-        if (result.length === 0) {
-            res.status(401).json({ message: "User not found" });
-        } else {
-            const user = result[0];
-            const match = await bcrypt.compare(password, user.password); // bcrypt will extract the salt from the hashed password and use it to hash the input password for comparison
-            if (match) {
-                // Passwords match
-                res.status(200).json({ message: "Login successful" });
-            } else {
-                // Passwords don't match
-                res.status(401).json({ message: "Incorrect password" });
-            }
+
+        const user = results[0];
+        const passwordMatches = await bcrypt.compare(password, user.password);
+        if (!passwordMatches) {
+            res.status(401).json({ message: 'Incorrect password' });
+            return;
         }
-    });
+
+        // Include the user's ID in the response
+        res.status(200).json({ message: 'Login successful', userId: user.id });
+    } catch (error) {
+        res.status(500).json({ message: 'An error occurred' });
+    }
 };
 
 /**
