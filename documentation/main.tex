@@ -18,70 +18,44 @@
 
 
 % Einstellungen für Seitenränder, Schriftgröße, etc.
-\geometry{a4paper, left=1.5cm, right=1.5cm, top=2cm, bottom=2cm}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=3cm, bottom=3cm, headsep=1.5cm}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
 \graphicspath{ {./images/} }
 
-% Folgende 5 Zeilen sind im BPM-Dokument zu finden
- %\pagestyle{fancy} % Add this line
- %\fancyhf{} % Add this line
- %\fancyfoot[C]{\thepage} % Add this line
- %setlength{\parindent}{0pt}
- %\setlength{\parskip}{6pt}
-
-
-% Einstellungen für Code-Listings
-\lstset{
-    basicstyle=\ttfamily,
-    breaklines=true,
-    numbers=left,
-    numberstyle=\tiny,
-    frame=single,
-    backgroundcolor=\color{lightgray},
-    captionpos=b,
-    language=Java % Ändere dies entsprechend deiner Programmiersprache
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\vspace{0.2cm}\includegraphics[width=4cm]{hs_mainz_logo}}
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \rhead{\vspace{0.2cm}\includegraphics[width=4cm]{hs_mainz_logo}}
 }
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
 
-\title{
-        {\LARGE Projektdokumentation - Praxismodul I}\\
-        {\LARGE collectiqo}\\
-        {\small Hochschule Mainz}\\
-        {\vspace{-0.5em}\small University of Applied Sciences}\\
-        {\vspace{-0.5em}\small Fachbereich Wirtschaft}\\
-        {\small Wirtschaftsinformatik B.Sc. dual}
+\newcounter{lastroman}
+\newrobustcmd{\switchtopage}[1]{
+    \clearpage
+    \setcounter{lastroman}{\value{page}}
+    \pagenumbering{#1}
 }
-
-\author{
-    Bindernagel, Lorenz\\
-    Schäfer, Robin\\
-    Simic, Darko\\
-    Struve, Anika
+\newrobustcmd{\switchback}{
+    \clearpage
+    \pagenumbering{Roman}
+    \setcounter{page}{\value{lastroman}}
 }
-
-% \date{\today}
- \date{16.06.2024}
-
-% ToDo's TitlePage
-% HS-Mainz Logo
-% Keine Nummerierung TitlePage
-
 
 % Document
 \begin{document}
 
-    %Robin Versuch ein Logo in die obere-rechte Ecke auf der Titelseite zu bekommen - aktuell noch nicht erfolgreich
-\begin{titlepage} %Robin Verwendung Package "tikz"
-    \begin{tikzpicture}[remember picture, overlay]
-        \node[anchor=north east, inner sep=0pt] at (current page.north east) {\includegraphics[width=8cm]{hsm_logo_orange}};
-    \end{tikzpicture}
-
-    \maketitle
-\end{titlepage}
+    \input{sections/titelseite}
 
     % \maketitle
     \newpage
     \tableofcontents
     \newpage
-
 
     \section{Projektidee und Konzept}\label{sec:idee-konzept}
     \input{sections/idee-konzept}
