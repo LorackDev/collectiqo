@@ -6,5 +6,54 @@ Design Science: Rigor-Cycle
 Datenmodell / Frontend / Backend
 Design Science: Design-Cycle
 
+\subsubsection{Backend}
+Der erste Schritt bei der Backend entwicklung war es, einen geeigneten Startpunkt zu finden.
+Hierbei wurde entschieden, dass zuerst eine Implementierung der Datenbankverbindung erfolgen sollte, da diese als Grundlage für die weitere Entwicklung dient.
+Dies wurde mit der Bibliothek mysql2 realisiert, welche eine erweiterte Funktionalität gegenüber der Standardbibliothek bietet und diverse Probleme behebt.
+Diese implementierung war erst möglich, nachdem die Grundstruktur der Datenbank aufgesetzt wurde.
+Einen Einblick in den Code gibt Listing\ref{lst:dbconnector}.
+
+\lstinputlisting[language=JavaScript,label={lst:dbconnector}]{../server/dbConnector.js}
+
+Als Nächstes wurde sich dazu entschieden, ein einfaches Sign Up und Login System zu programmieren.
+Hierbei wurde auf die Bibliothek bcrypt zurückgegriffen, welche das Hashen von Passwörtern erleichtert.
+Die SQL queries, die hier genutzt werden, wurden ebenfalls mit der mysql2 Bibliothek realisiert.
+Die einzigen Nutzerdaten, die hierbei gespeichert werden, sind der Username, die E-Mail und das Passwort.
+Beim Login wurde darauf geachtet, das Nutzer Username und E-Mail benutzen können, um sich einzuloggen.
+
+Nun stellte sich die Frage, wie es möglich ist, dass Nutzer nur auf ihre eigenen Sammlungen zugreifen können.
+Beim Recherchieren sind wir auf das Konzept von Sessions gestoßen und wollten diese ausprobieren.
+
+Parallel wurde eine Funktion entwickelt, die Daten aus der Datenbank anhand des Tabellennamens ausliest.
+Diese werden dann in eine Form gebracht, welche das Frontend nutzen kann, um Beispieldaten in einer Tabelle einzupflegen.
+
+
+
+\subsubsection{Datenbank}
+
+Bei der Einrichtung der Datenbank stellt sich als erste Hürde der Umgang mit Docker Container heraus.
+Zwar waren grundlegende Kentnisse über Docker vorhanden, doch eine Datenbank praktisch in einem Container hochzufahren und diese dann mit dem Code und der Programmierumgebung zu verknüpfen, war eine neue Herausforderung.
+Hierzu mehr in Kapitel~\ref{subsec:Herausforderungen}.
+Wie in der Planung entschieden, sollen zwei Datenbanken genutzt werden - eine MySQL Datenbank für strukturierte Daten und eine MongoDB Datenbank für unstrukturierte Daten.
+Im ersten Schritt wurde die MySQL Datenbank aufgesetzt und mit Tabellen für Nutzerdaten und den drei Pre-Sets für Sammlungen befüllt.
+Die Nutzerdaten beinhalten Username, E-Mail und Passwort.
+Für die Themenbereiche Video Spiele und Parfum wurden jeweils eine Tabelle erstellt, die für das Thema passende Spalten beinhalten.
+
+\subsection{Herausforderungen}\label{subsec:Herausforderungen}
+
+Bei der Programmierung des Projekts gab es einige Stellen, an denen das Team auf Probleme, und vor allem auf steile Lernkurven stieß.
+Eine dieser Stellen war der Umgang mit Docker Containern.
+Ein gewisses Grundverständnis war vorhanden, doch praktische Erfahrung war im gesamten Team nicht vorhanden.
+Zwar was das Hochfahren einer Datenbank in einem Container schnell erreicht, doch ein Verständnis für Datenpersistenz und Volumes zu entwickeln, benötigte seine Zeit.
+Auch im späteren Verlauf des Projekts, als es darum ging alle Applikationskomponenten in einer Docker-Compose Datei zusammenzuführen, stellte sich als Herausforderung heraus.
+Wie sich Dockerfiles in dem ganzen System einordnen und wo sie genutzt werden, war ebenfalls neu für das Team.
+Allgemein hat das Einfinden in Docker dem Team mehr Zeit als erwartet abverlangt.
+
+Eine weitere Herausforderung war das Einfinden in die verschiedenen Bibliotheken, die bei Webentwicklung mit JavaScript genutzt werden.
+Zwar wurde in der Planung bereits einige Bibliotheken festgelegt, die genutzt werden sollten, doch während der Entwicklung kamen einige neue hinzu.
+Ein Beispiel hierfür ist die Bibliothek express-session, die für das Session-Management genutzt wird.
+Da zur Planung noch kein detailliertes Verständnis darüber vorhanden war, welche Komponenten bei der Entwicklung einer solchen Anwendung benötigt werden, wurden Thematiken wie Session Management erst während der Entwicklung entdeckt.
+Hierdurch kam es an einigen Stellen zu steilen, jedoch unvermeidbaren Lernkurven.
+
 \subsection{Prototypvorstellung}\label{subsec:Prototyp}
 Design Science: Artefakt
