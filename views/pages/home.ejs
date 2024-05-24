@@ -2,199 +2,198 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://kit.fontawesome.com/433b24fc29.js" crossorigin="anonymous"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/433b24fc29.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="./css/home.css">
-    <script src="./js/home-navigation.js"></script>
-    <script src="./js/sidebar.js"></script>
-    <script src="./js/calcTH.js"></script>
+  <link rel="stylesheet" href="./css/home.css">
+  <link rel="stylesheet" href="./css/modal.css">
+  <script src="./js/home-navigation.js"></script>
+  <script src="./js/sidebar.js"></script>
+  <script src="./js/calcTH.js"></script>
+  <script src="./js/modal.js"></script>
 
-
+  <title>Game Collection</title>
 </head>
-  
-  <body>
-    <div class="sidebar">
-      <div class="sidebar_header">
-        <i class="fa-solid fa-record-vinyl fa-2x"></i>
+
+<body>
+<div class="sidebar">
+  <div class="sidebar_header">
+    <i class="fa-solid fa-record-vinyl fa-2x"></i>
+  </div>
+
+  <hr class="sidebar_separator"> <!-- Separator -->
+
+  <div class="sidebar_menu">
+    <a href="#" class="sidebar_item">
+      <div class="sidebar_icon">
+        <i class="fa-solid fa-house"></i>
       </div>
-  
-      <hr class="sidebar_separator"> <!-- Separator -->
+      <h4>HOME</h4>
+    </a>
 
-      <div class="sidebar_menu">
-        <a href="#" class="sidebar_item">
-          <div class="sidebar_icon">
-            <i class="fa-solid fa-house"></i>
-          </div>
-          <h4>HOME</h4>
-        </a>
-
-        <a href="#" class="sidebar_item" id="settings_link">
-          <div class="sidebar_icon">
-            <i class="fa-solid fa-sliders"></i>
-          </div>
-          <h4>Settings</h4>
-        </a>
-
-        <hr class="sidebar_separator"> <!-- Separator -->
-
-        <a href="#" class="sidebar_item">
-          <div class="sidebar_icon">
-            <i class="fa-solid fa-user"></i>
-          </div>
-          <h4>Profile</h4>
-        </a>
-
-        <a href="#" class="sidebar_item">
-          <div class="sidebar_icon">
-            <i class="fa-solid fa-envelope"></i>
-          </div>
-          <h4>Messages</h4>
-          </a>
-
-        <a href="#" class="sidebar_item">
-          <div class="sidebar_icon">
-            <i class="fa-solid fa-plus"></i>
-          </div>
-          <h4>New Collection</h4>
-        </a>
+    <a href="#" class="sidebar_item" id="settings_link">
+      <div class="sidebar_icon">
+        <i class="fa-solid fa-sliders"></i>
       </div>
-    </div>
-  
-    <div class="container">
-      <header class="header">
-        <button class="btn-toggle"><i class="fa-solid fa-bars"></i></button>
-      </header>
-  
-      <div class="content">
-          <table class="mainTable">
-            <tr>
-              <th>Game Title</th>
-              <th>Genre</th>
-              <th>Platform</th>
-              <th>Release Year</th>
-              <th>Publisher</th>
-              <th>Rating</th>
-            </tr>
-            <tr>
-              <td>The Legend of Zelda: Breath of the Wild</td>
-              <td>Action-Adventure</td>
-              <td>Nintendo Switch</td>
-              <td>2017</td>
-              <td>Nintendo</td>
-              <td>10/10</td>
-            </tr>
-            <tr>
-              <td>Super Mario Odyssey</td>
-              <td>Action-Adventure/Platformer</td>
-              <td>Nintendo Switch</td>
-              <td>2017</td>
-              <td>Nintendo</td>
-              <td>9/10</td>
-            </tr>
-            <tr>
-              <td>God of War</td>
-              <td>Action-Adventure</td>
-              <td>PlayStation 4</td>
-              <td>2018</td>
-              <td>Sony Interactive Entertainment</td>
-              <td>9.5/10</td>
-            </tr>
-            <tr>
-              <td>Red Dead Redemption 2</td>
-              <td>Action-Adventure</td>
-              <td>PlayStation 4, Xbox One</td>
-              <td>2018</td>
-              <td>Rockstar Games</td>
-              <td>9.5/10</td>
-            </tr>
-            <tr>
-              <td>Assassin's Creed Valhalla</td>
-              <td>Action-Adventure, RPG</td>
-              <td>PlayStation 4, PlayStation 5, Xbox One, Xbox Series X/S</td>
-              <td>2020</td>
-              <td>Ubisoft</td>
-              <td>8/10</td>
-            </tr>
-            <tr>
-              <td>The Last of Us Part II</td>
-              <td>Action-Adventure, Survival</td>
-              <td>PlayStation 4</td>
-              <td>2020</td>
-              <td>Sony Interactive Entertainment</td>
-              <td>9.5/10</td>
-            </tr>
-            <tr>
-              <td>Cyberpunk 2077</td>
-              <td>Action, RPG</td>
-              <td>PlayStation 4, PlayStation 5, Xbox One, Xbox Series X/S, PC</td>
-              <td>2020</td>
-              <td>CD Projekt</td>
-              <td>7/10</td>
-            </tr>
-            <tr>
-              <td>The Witcher 3: Wild Hunt</td>
-              <td>Action, RPG</td>
-              <td>PlayStation 4, Xbox One, Nintendo Switch, PC</td>
-              <td>2015</td>
-              <td>CD Projekt</td>
-              <td>9.5/10</td>
-            </tr>
-            <tr>
-              <td>Animal Crossing: New Horizons</td>
-              <td>Social Simulation</td>
-              <td>Nintendo Switch</td>
-              <td>2020</td>
-              <td>Nintendo</td>
-              <td>9/10</td>
-            </tr>
-            <tr>
-              <td>Uncharted 4: A Thief's End</td>
-              <td>Action-Adventure</td>
-              <td>PlayStation 4</td>
-              <td>2016</td>
-              <td>Sony Interactive Entertainment</td>
-              <td>9.5/10</td>
-            </tr>
-          </table>
+      <h4>Settings</h4>
+    </a>
 
-        <div id="myModal" class="modal">
-          <div class="modal-content">
-            
-            <div class="modal-left">
-              <h2>Preset</h2>
-              <button>Button 1</button>
-              <button>Button 2</button>
-              <button>Button 3</button>
-            </div>
-            
-            <div class="vertical-divider"></div>
-            <div class="cancel-button">
-              <button onclick="closeModal()">Cancel</button>
-            </div>
-            
-            
-            <div class="modal-right">
-              <h2>Custom Preset</h2>
-              <input type="text" placeholder="Text 1">
-              <input type="text" placeholder="Text 2">
-              <input type="text" placeholder="Text 3">
-              <input type="text" placeholder="Text 4">
-              <input type="text" placeholder="Text 5">
-              <input type="color">
-            </div>
+    <hr class="sidebar_separator"> <!-- Separator -->
 
-          </div>
+    <a href="#" class="sidebar_item">
+      <div class="sidebar_icon">
+        <i class="fa-solid fa-user"></i>
+      </div>
+      <h4>Profile</h4>
+    </a>
+
+    <a href="#" class="sidebar_item">
+      <div class="sidebar_icon">
+        <i class="fa-solid fa-envelope"></i>
+      </div>
+      <h4>Messages</h4>
+    </a>
+
+    <a href="#" class="sidebar_item" id="openModalBtn">
+      <div class="sidebar_icon">
+        <i class="fa-solid fa-plus"></i>
+      </div>
+      <h4>New Collection</h4>
+    </a>
+  </div>
+</div>
+
+<div class="container">
+  <header class="header">
+    <button class="btn-toggle"><i class="fa-solid fa-bars"></i></button>
+  </header>
+
+  <div class="content">
+    <table class="mainTable">
+      <tr>
+        <th>Game Title</th>
+        <th>Genre</th>
+        <th>Platform</th>
+        <th>Release Year</th>
+        <th>Publisher</th>
+        <th>Rating</th>
+      </tr>
+      <tr>
+        <td>The Legend of Zelda: Breath of the Wild</td>
+        <td>Action-Adventure</td>
+        <td>Nintendo Switch</td>
+        <td>2017</td>
+        <td>Nintendo</td>
+        <td>10/10</td>
+      </tr>
+      <tr>
+        <td>Super Mario Odyssey</td>
+        <td>Action-Adventure/Platformer</td>
+        <td>Nintendo Switch</td>
+        <td>2017</td>
+        <td>Nintendo</td>
+        <td>9/10</td>
+      </tr>
+      <tr>
+        <td>God of War</td>
+        <td>Action-Adventure</td>
+        <td>PlayStation 4</td>
+        <td>2018</td>
+        <td>Sony Interactive Entertainment</td>
+        <td>9.5/10</td>
+      </tr>
+      <tr>
+        <td>Red Dead Redemption 2</td>
+        <td>Action-Adventure</td>
+        <td>PlayStation 4, Xbox One</td>
+        <td>2018</td>
+        <td>Rockstar Games</td>
+        <td>9.5/10</td>
+      </tr>
+      <tr>
+        <td>Assassin's Creed Valhalla</td>
+        <td>Action-Adventure, RPG</td>
+        <td>PlayStation 4, PlayStation 5, Xbox One, Xbox Series X/S</td>
+        <td>2020</td>
+        <td>Ubisoft</td>
+        <td>8/10</td>
+      </tr>
+      <tr>
+        <td>The Last of Us Part II</td>
+        <td>Action-Adventure, Survival</td>
+        <td>PlayStation 4</td>
+        <td>2020</td>
+        <td>Sony Interactive Entertainment</td>
+        <td>9.5/10</td>
+      </tr>
+      <tr>
+        <td>Cyberpunk 2077</td>
+        <td>Action, RPG</td>
+        <td>PlayStation 4, PlayStation 5, Xbox One, Xbox Series X/S, PC</td>
+        <td>2020</td>
+        <td>CD Projekt</td>
+        <td>7/10</td>
+      </tr>
+      <tr>
+        <td>The Witcher 3: Wild Hunt</td>
+        <td>Action, RPG</td>
+        <td>PlayStation 4, Xbox One, Nintendo Switch, PC</td>
+        <td>2015</td>
+        <td>CD Projekt</td>
+        <td>9.5/10</td>
+      </tr>
+      <tr>
+        <td>Animal Crossing: New Horizons</td>
+        <td>Social Simulation</td>
+        <td>Nintendo Switch</td>
+        <td>2020</td>
+        <td>Nintendo</td>
+        <td>9/10</td>
+      </tr>
+      <tr>
+        <td>Uncharted 4: A Thief's End</td>
+        <td>Action-Adventure</td>
+        <td>PlayStation 4</td>
+        <td>2016</td>
+        <td>Sony Interactive Entertainment</td>
+        <td>9.5/10</td>
+      </tr>
+    </table>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-left">
+          <h2>Preset</h2>
+          <button>Button 1</button>
+          <button>Button 2</button>
+          <button>Button 3</button>
+        </div>
+
+        <div class="vertical-divider"></div>
+        <div class="cancel-button">
+          <button onclick="closeModal()">Cancel</button>
+        </div>
+
+        <div class="modal-right">
+          <h2>Custom Preset</h2>
+          <input type="text" placeholder="Text 1">
+          <input type="text" placeholder="Text 2">
+          <input type="text" placeholder="Text 3">
+          <input type="text" placeholder="Text 4">
+          <input type="text" placeholder="Text 5">
         </div>
       </div>
     </div>
+  </div>
+</div>
 
-  </body>
-  
-  </html>
+
+</body>
+
+</html>

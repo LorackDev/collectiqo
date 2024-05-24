@@ -6,7 +6,7 @@ const mysql = require("mysql2");
 const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
 const path = require("path");
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 const app = express();
 
 // Load environment variables from .env file
