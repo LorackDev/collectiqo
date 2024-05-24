@@ -10,11 +10,11 @@ console.log(process.env)
 const mysql = require('mysql2');
 
 const db = mysql.createConnection({
-    host: process.env.DATABASE_HOST,
-    port: process.env.DATABASE_PORT,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE
+    host: process.env.MYSQL_DATABASE_HOST,
+    port: process.env.MYSQL_DATABASE_PORT,
+    user: process.env.MYSQL_DATABASE_USER,
+    password: process.env.MYSQL_DATABASE_PASSWORD,
+    database: process.env.MYSQL_DATABASE
 })
 
 db.connect((error) => {

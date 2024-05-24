@@ -1,5 +1,5 @@
 services:
-  db:
+  mysql:
     image: lorackdev/collectiqo-db:1.0
     command: --default-authentication-plugin=mysql_native_password
     restart: always
@@ -9,6 +9,16 @@ services:
       - mysql:/var/lib/mysql
     ports:
       - "3307:3306"
-
+  mongodb:
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongodb:/data/db
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
 volumes:
   mysql:
+  mongodb:
