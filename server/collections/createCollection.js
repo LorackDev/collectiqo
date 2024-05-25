@@ -1,4 +1,4 @@
-const { connectToDb, closeConnection } = require('./connectToMongoDB');
+const { connectToDb, closeConnection } = require('../dbConnections/connectToMongoDB');
 
 async function createCollection(collectionName, columns, username) {
     if (columns.length > 10) {

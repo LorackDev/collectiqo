@@ -1,13 +1,16 @@
-// noinspection SqlDialectInspection
-
 const http = require("http");
 const express = require("express");
+const session = require('express-session');
 const mysql = require("mysql2");
 const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
 const path = require("path");
 const port = process.env.PORT || 3000;
 const app = express();
+const loginHandler = require('./server/authentication/loginHandler');
+const signUpHandler = require('./server/authentication/signUpHandler');
+const getCollectionData = require('./server/collections/getCollectionData');
+
 
 // Load environment variables from .env file
 dotenv.config({ path: './.env' });
@@ -35,10 +38,19 @@ app.get('/login', (req, res) => {
     res.render('pages/login');
 });
 
+app.post('/login', loginHandler, function(req, res) {
+    req.session.username = req.body.username;
+    res.redirect('/')
+})
+
 // Route for Sign-Up
 app.get('/signup', (req, res) => {
     res.render('pages/signup');
 });
+
+app.post('/signup', signUpHandler, function(req, res) {
+    res.redirect('/')
+})
 
 // Route for Sign-Up
 app.get('/home', (req, res) => {
@@ -49,47 +61,17 @@ app.get('/settings', (req, res) => {
     res.render('pages/account-settings');
 });
 
+app.get('/collection-data/:collectionName', async (req, res) => {
+    const username = req.session.username;
+    const tableName = req.params.collectionName;
+    const tableData = await getCollectionData(username, tableName);
+    res.json(tableData);
+});
+
 app.use((err, req, res, next) => {
     console.error(err.stack);
     const errorMessage = 'Something went wrong!<br>Check if the page is set to EJS!<br><br>' + err.stack.replace(/\n/g, '<br>');
     res.status(500).send(errorMessage);
-});
-
-
-// Route to create user
-app.post("/createUser", async (req, res) => {
-    const user = req.body.name;
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    db.getConnection((err, connection) => {
-        if (err) {
-            throw err;
-        }
-        const sqlSearch = "SELECT * FROM userTable WHERE user = ?";
-        const search_query = mysql.format(sqlSearch, [user]);
-        const sqlInsert = "INSERT INTO userTable VALUES (0, ?, ?)";
-        const insert_query = mysql.format(sqlInsert, [user, hashedPassword]);
-        connection.query(search_query, async (err, result) => {
-            if (err) {
-                connection.release();
-                throw err;
-            }
-            if (result.length !== 0) {
-                connection.release();
-                console.log("User already exists");
-                res.sendStatus(409);
-            } else {
-                connection.query(insert_query, (err, result) => {
-                    connection.release();
-                    if (err) {
-                        throw err;
-                    }
-                    console.log("Created new User");
-                    console.log(result.insertId);
-                    res.sendStatus(201);
-                });
-            }
-        });
-    });
 });
 
 // Start the server

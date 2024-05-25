@@ -1,4 +1,4 @@
-const { connectToDb, closeConnection } = require('./connectToMongoDB');
+const { connectToDb, closeConnection } = require('../dbConnections/connectToMongoDB');
 const createCollection = require('./createCollection');
 
 async function createCollectionFromTemplate(templateName, username) {

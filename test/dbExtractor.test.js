@@ -1,9 +1,9 @@
 /* global jest */
 const { describe, it, expect } = require('@jest/globals');
 const extractData = require('../server/dbExtractor');
-const connection = require('../server/dbConnector');
+const connection = require('../server/dbConnections/connectToMYSQL');
 
-jest.mock('../server/dbConnector', () => {
+jest.mock('../server/dbConnections/connectToMYSQL', () => {
     return {
         query: jest.fn()
     };
