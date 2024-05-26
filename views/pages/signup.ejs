@@ -12,14 +12,50 @@
 <body>
   <div class="container">
     <h1>Sign Up</h1>
-    <form>
-      <input type="text" placeholder="Username" required>
-      <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Password" required>
+    <form id="signup-form">
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Password" required>
       <button type="submit">Sign Up</button>
     </form>
     <p class="switch-option">Already have an account? <a onclick="redirectToLoginPage()">Login</a></p>
   </div>
 </body>
+
+<script>
+  document.getElementById('signup-form').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    try {
+      const response = await fetch('/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, email, password })
+      });
+
+      const data = await response.json();
+      if (response.status === 201) {
+        alert('User created successfully');
+        //Redirect to page after user creation
+        window.location.href = '/login';
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      alert('An error occurred');
+    }
+  });
+
+  function redirectToLoginPage() {
+    window.location.href = '/login';
+  }
+</script>
+
 
 </html>

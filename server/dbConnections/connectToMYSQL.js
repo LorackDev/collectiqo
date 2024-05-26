@@ -1,13 +1,8 @@
 // connectToMYSQL.js
 
 const mysql = require('mysql2');
-const dotenv = require('dotenv');
 
-if (process.env.NODE_ENV === 'test') {
-    dotenv.config({ path: '../../.env.test' });
-} else {
-    dotenv.config({ path: '../../.env' });
-}
+
 
 const db = mysql.createConnection({
     host: process.env.MYSQL_DATABASE_HOST,
@@ -39,12 +34,10 @@ async function queryDatabase(query, params) {
 
 function handleResults(results, res) {
     if (results.length === 0) {
-        res.status(401).json({ message: 'User not found' });
         return false;
     }
 
-    const user = results[0];
-    return user;
+    return results[0];
 }
 
 module.exports = { db, queryDatabase, handleResults };

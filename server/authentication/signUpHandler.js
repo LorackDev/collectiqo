@@ -1,3 +1,5 @@
+// signUpHandler.js
+
 const bcrypt = require('bcrypt');
 const { queryDatabase, handleResults } = require('../dbConnections/connectToMYSQL');
 
@@ -7,25 +9,23 @@ const signupHandler = async (req, res) => {
 
     try {
         let results = await queryDatabase('SELECT * FROM clq_users WHERE username = ?', [username]);
-        let user = handleResults(results, res);
+        let user = handleResults(results);
 
         if (user) {
-            res.status(409).json({ message: "User already exists" });
-            return;
+            return res.status(409).json({ message: "User already exists" });
         }
 
         results = await queryDatabase('SELECT * FROM clq_users WHERE email = ?', [email]);
-        user = handleResults(results, res);
+        user = handleResults(results);
 
         if (user) {
-            res.status(409).json({ message: "Email already in use" });
-            return;
+            return res.status(409).json({ message: "Email already in use" });
         }
 
         await queryDatabase('INSERT INTO clq_users (username, email, password) VALUES (?, ?, ?)', [username, email, hashedPassword]);
-        res.status(201).json({ message: "User created successfully" });
+        return res.status(201).json({ message: "User created successfully" });
     } catch (error) {
-        res.status(500).json({ message: 'An error occurred' });
+        return res.status(500).json({ message: 'An error occurred' });
     }
 };
 

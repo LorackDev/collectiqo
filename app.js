@@ -5,16 +5,15 @@ const mysql = require("mysql2");
 const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
 const path = require("path");
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 const app = express();
+
+// Load environment variables from .env file
+dotenv.config({ path: path.resolve(__dirname, '.env') });
+
 const loginHandler = require('./server/authentication/loginHandler');
 const signUpHandler = require('./server/authentication/signUpHandler');
 const getCollectionData = require('./server/collections/getCollectionData');
-
-
-// Load environment variables from .env file
-dotenv.config({ path: '../../.env' });
-
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -41,7 +40,7 @@ app.get('/login', (req, res) => {
 
 app.post('/login', loginHandler, function(req, res) {
     req.session.username = req.body.username;
-    res.redirect('/')
+    res.redirect('pages/login')
 })
 
 // Route for Sign-Up
@@ -50,7 +49,7 @@ app.get('/signup', (req, res) => {
 });
 
 app.post('/signup', signUpHandler, function(req, res) {
-    res.redirect('/')
+    res.render('/pages/home')
 })
 
 // Route for Sign-Up
