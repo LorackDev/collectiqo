@@ -1,6 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
 const dotenv = require('dotenv');
-dotenv.config({ path: '../.env' });
+dotenv.config({ path: '../../.env' });
 
 const url = 'mongodb://' +
     process.env.MONGO_DATABASE_USER + ':' +         // USER

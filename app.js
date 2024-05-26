@@ -13,7 +13,8 @@ const getCollectionData = require('./server/collections/getCollectionData');
 
 
 // Load environment variables from .env file
-dotenv.config({ path: './.env' });
+dotenv.config({ path: '../../.env' });
+
 
 // Middleware to parse JSON bodies
 app.use(express.json());
