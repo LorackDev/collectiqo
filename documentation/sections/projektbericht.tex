@@ -55,5 +55,11 @@ Ein Beispiel hierfür ist die Bibliothek express-session, die für das Session-M
 Da zur Planung noch kein detailliertes Verständnis darüber vorhanden war, welche Komponenten bei der Entwicklung einer solchen Anwendung benötigt werden, wurden Thematiken wie Session Management erst während der Entwicklung entdeckt.
 Hierdurch kam es an einigen Stellen zu steilen, jedoch unvermeidbaren Lernkurven.
 
+Im nächsten Schritt wurde die MongoDB implementiert.
+Dies ist das erste Mal, dass das Team mit einer Dokumenten orientierten Datenbank arbeitet, daher musste erstmal ein Verständnis über den Aufbau einer solchen Datenbank geschaffen werden.
+Zunächst wurde versucht vergleiche mit einer SQL Datenbank herzustellen, wobei schnell auffiel, dass Konzepte wie Schemata hier Collections sind.
+Das integrieren der Datenbank in der Programmierumgebung war schnell erledigt, da dies analog zu der MySQL Datenbankverbindung erfolgt ist.
+Das auslesen und schreiben von Daten in die Datenbank war dank der MongoDB Bibliothek einfach erledigt.
+Funktionen für die Verbindung mit der Datenbank wurden in einer separaten Datei ausgelagert.
 \subsection{Prototypvorstellung}\label{subsec:Prototyp}
 Design Science: Artefakt
