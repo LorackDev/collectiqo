@@ -32,15 +32,18 @@ Der erste Schritt bei der Backend entwicklung war es, einen geeigneten Startpunk
 Hierbei wurde entschieden, dass zuerst eine Implementierung der Datenbankverbindung erfolgen sollte, da diese als Grundlage für die weitere Entwicklung dient.
 Dies wurde mit der Bibliothek mysql2 realisiert, welche eine erweiterte Funktionalität gegenüber der Standardbibliothek bietet und diverse Probleme behebt.
 Diese implementierung war erst möglich, nachdem die Grundstruktur der Datenbank aufgesetzt wurde.
-Einen Einblick in den Code gibt Listing\ref{lst:dbconnector}.
+Einen Einblick in den Code gibt Listing\ref{lst:connecttomysql}.
 
-% \lstinputlisting[language=JavaScript,label={lst:dbconnector}]{../../server/dbConnections/connectToMYSQL.js}
+\lstinputlisting[language=JavaScript,label={lst:connecttomysql}]{../server/dbConnections/connectToMYSQL.js}
 
 Als Nächstes wurde sich dazu entschieden, ein einfaches Sign Up und Login System zu programmieren.
 Hierbei wurde auf die Bibliothek bcrypt zurückgegriffen, welche das Hashen von Passwörtern erleichtert.
 Die SQL queries, die hier genutzt werden, wurden ebenfalls mit der mysql2 Bibliothek realisiert.
 Die einzigen Nutzerdaten, die hierbei gespeichert werden, sind der Username, die E-Mail und das Passwort.
 Beim Login wurde darauf geachtet, das Nutzer Username und E-Mail benutzen können, um sich einzuloggen.
+Ein Einblick in den Code gibt Listing\ref{lst:login}.
+
+\lstinputlisting[languange=JavaScript,label={lst:login}]{../server/authentication/loginHandler.js}
 
 Nun stellte sich die Frage, wie es möglich ist, dass Nutzer nur auf ihre eigenen Sammlungen zugreifen können.
 Beim Recherchieren sind wir auf das Konzept von Sessions gestoßen und wollten diese ausprobieren.
@@ -48,8 +51,14 @@ Die erste Anwendung fanden Sessions im Speichern des Usernamens in einer Session
 Der nächste Schritt war es, die Sammlungen eines Nutzers basierend auf dem Usernamen aus der Datenbank zu laden.
 Zuvor muss jedoch erstmal eine Funktion implementiert werden, mit der Sammlungen angelegt werden können.
 Hierzu muss zuerst die Datenbank implementiert werden, in welcher die Sammlungen gespeichert werden.
-Als Datenbank für die Sammlungen wurde sich für MongoDB entschieden, welches im Kapitel~\ref{subsec:Datenbanken} genauer erläutert wird.
+Als Datenbank für die Sammlungen wurde sich für MongoDB entschieden, welches im Kapitel~\ref{subsec:entwicklung-der-datenbank-und-datenstruktur} genauer erläutert wird.
 
+Nur das Anlegen von Sammlungen reicht natürlich nicht, weshalb weitere Funktionen im Backend implementiert wurden, die diverse grundlegende Funktionen ermöglichen.
+Hierzu zählen das Löschen von Sammlungen, das Hinzufügen von Items zu Sammlungen und das Löschen von Items aus Sammlungen.
+Außerdem wurde eine separate Funktion implementiert, die das Erstellen einer Sammlung direkt von einem Template aus ermöglicht.
+
+
+Während der Entwicklung des Backends kam es jedoch auch des Öfteren zu Herausforderungen.
 Eine dieser Stellen war der Umgang mit Docker Containern.
 Ein gewisses Grundverständnis war vorhanden, doch praktische Erfahrung war im gesamten Team nicht vorhanden.
 Zwar was das Hochfahren einer Datenbank in einem Container schnell erreicht, doch ein Verständnis für Datenpersistenz und Volumes zu entwickeln, benötigte seine Zeit.
@@ -94,4 +103,21 @@ Darüber hinaus musste recherchiert werden, wie man solche Images hosten kann, s
 
 \subsection{Verbinden des Frontends und Backends}\label{subsec:verbinden-des-frontends-und-backends}
 
-\subsection{Tests}\label{subsec:tests}
+\subsection{Implementieren von Tests}\label{subsec:implementieren-von-tests}
+
+Um Teile des Backends zu testen, bevor diese mit dem Frontend verbunden werden konnten, wurde versucht Unit-Tests zu schreiben.
+Dieser Prozess stellte sich als komplizierter heraus als gedacht, da das Team zuvor noch nie mit Tests für JavaScript gearbeitet hat.
+So konnten zwar einfache Unit-Tests für das Login System geschrieben werden, jedoch Integrationstests, in welchen die Datenbank angesprochen wird, stellten sich als schwierig heraus.
+Ein exemplarischer Test für das Login System ist in Listing~\ref{lst:loginTest} zu sehen.
+
+
+\lstinputlisting[language=JavaScript, firstline=15, lastline=32, label={lst:loginTest}]{../test/loginHandler.test.js}
+
+
+Auch gab es Probleme damit, eine Datei für Umgebungsvariablen für Testdatenbanken korrekt in die Tests mit einzubinden.
+Erst nach längerer Recherche stellte sich heraus, dass Umgebungsvariablen für jest Tests in einer separaten Config Datei definiert werden müssen und nicht wie die normale .env Datei in den Code eingebunden werden konnte.
+Auch mit den Mock Funktionen von jest musste sich erst eingearbeitet werden.
+An dieser Stelle wurde sich dazu entschieden, die implementierung von Tests für alle Backend Funktionen abzubrechen, da der Aufwand zu groß war und die Zeit zu knapp.
+Der zeitliche Aufwand für das Einrichten der automatisierten Tests war zu hoch, vor allem im Vergleich zu dem zeitlichen Aufwand den ein manueller Test benötigt hätte.
+Manuelle Tests wurden durchgeführt, als das Backend mit dem Frontend verbunden war.
+Ein Nachteil, der dadurch entstanden ist, ist dass Funktionen öfters nachträglich angepasst werden mussten, was die Verbindung zum Frontend zeitaufwendiger machte.
