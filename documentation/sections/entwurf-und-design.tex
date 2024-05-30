@@ -1,5 +1,83 @@
 \section{Entwurf und Design}\label{sec:entwurf-und-design}
+In der Entwurfsphase wurden die wesentlichen Strukturen der Lösung entworfen, um einen Überblick für die Entwicklungsphase zu erstellen.
+Ein Mockup des Webfrontends wurde erstellt, welches als Interaktionsmöglichkeit für den Benutzer dienen sollte.
+Zudem wurde der Aufbau der Systemarchitektur anhand eines Diagramms dargestellt, in dem die nötigen Komponenten und Strukturen des gesamten Systems erfasst wurden, um daraufhin die gewünschten Funktionalitäten nach den vorher festgelegten Anforderungen implementieren zu können.
 
 \subsection{Zielplattform}\label{subsec:zielplattform}
+Die Lösung ist eine Webanwendung, welche auf einem dedizierten Webserver betrieben wird.
+Bei Benutzerinteraktionen initiiert die Anwendung im Hintergrund Skripte auf den VMs, welche die Partitionsvergrößerung erledigen.
+Als Programmiersprache für die Webanwendung wurde JavaScript verwendet.
+JavaScript bot sich an, da diese Sprache weitverbreitet und plattformunabhängig für die Webentwicklung ist.
+JavaScript ermöglichte eine Integration des Webfrontends in verschiedenen Browsern und erleichterte die Implementierung von interaktiven Funktionen.
+Zudem bot es die Möglichkeit, verschiedene Bibliotheken und Frameworks zu nutzen, um die Lösung effizient und ressourcenschonend zu gestalten.
+Im Entwurfsprozess entschied sich der Auszubildende für die Verwendung von Node.js, da eine Anbindung an das Monitoring-System notwendig war und Node.js Frameworks und Bibliotheken nützlich waren, um die Daten effektiv zu verarbeiten.
+
 
 \subsection{Design Systemarchitektur und Frontend}\label{subsec:design-systemarchitektur-und-frontend}
+Das System wird in einzelne Hauptbestandteile strukturiert, um später eine klare Übersicht über den geschriebenen Code zu erlangen, die einzelnen Abhängigkeiten zu erkennen und den Code zukünftig besser warten zu können.
+Die Systemarchitektur basiert auf einer Client-Server-Architektur.
+Die Anwendung wurde mittels Node.js und Express entwickelt.
+Die Anwendung selbst dient als Client, wohingegen die Datenbanken in unserem Docker-Container die Serverseite abdecken.
+Das Webfrontend kommuniziert mit dem Backend, um die Anfragen dynamisch darzustellen und Änderungen im Backend zu speichern.
+
+Client-Seite:
+Die Client-Seite unserer Anwendung nutzt HTML, CSS und JavaScript, um eine interaktive und benutzerfreundliche Oberfläche bereitzustellen.
+
+Abhängigkeiten:
+
+node: Als Laufzeitumgebung sorgt Node.js dafür, dass JavaScript-Code außerhalb des Browsers ausgeführt werden kann, was besonders für die Entwicklung und das Testen der Anwendung nützlich ist.
+
+axios: Diese Bibliothek wird für HTTP-Anfragen verwendet, um Daten zwischen Client und Server auszutauschen.
+
+ejs: Embedded JavaScript (EJS) dient als Template-Engine, die HTML mit dynamischen Inhalten aus JavaScript-Datenquellen rendert.
+
+ejs-lint: Ein Tool zur Überprüfung und Validierung von EJS-Templates, um Fehler frühzeitig zu erkennen und zu beheben.
+
+Funktionalitäten:
+Die Client-Seite umfasst die Benutzeroberfläche (UI) und enthält Eingabeformulare zur Erfassung und Bearbeitung der Sammlung.
+Sie ermöglicht eine dynamische Aktualisierung der Inhalte basierend auf Benutzerinteraktionen, was eine reaktive und intuitive Nutzung der Anwendung gewährleistet.
+
+Serverseite:
+Die Serverseite unserer Anwendung verwendet Node.js und Express.js, um eine robuste und skalierbare Backend-Umgebung zu schaffen.
+
+Abhängigkeiten:
+
+node: Als Laufzeitumgebung sorgt Node.js für die Ausführung von JavaScript auf dem Server.
+
+express: Dieses Web-Framework wird verwendet, um Webanwendungen und APIs zu erstellen, die HTTP-Anfragen und -Antworten verarbeiten.
+
+express-session: Diese Middleware verwaltet Benutzersitzungen und stellt sicher, dass die Sitzungsdaten sicher und effizient gespeichert werden.
+
+jsonwebtoken: Diese Bibliothek implementiert JSON Web Tokens (JWT) für die Authentifizierung und Autorisierung von Benutzern.
+
+dotenv: Diese Bibliothek hilft bei der Verwaltung von Umgebungsvariablen, was die Konfiguration der Anwendung vereinfacht und sicherer macht.
+
+mysql2: Diese Bibliothek ermöglicht die Anbindung an eine MySQL-Datenbank.
+
+mongodb: Diese Bibliothek ermöglicht die Anbindung an eine MongoDB-Datenbank.
+
+bcrypt: Diese Bibliothek wird verwendet, um Passwörter zu hashen und somit die Sicherheit der Benutzerdaten zu erhöhen.
+
+Routen:
+Auf der Client-Seite sind definierte Endpunkte für CRUD-Operationen (Create, Read, Update, Delete) auf den gesammelten Objekten implementiert.
+Diese Routen sorgen für eine strukturierte und nachvollziehbare Datenverwaltung und -darstellung.
+
+Auf der Server-Seite sind ebenfalls definierte Endpunkte für CRUD-Operationen (Create, Read, Update, Delete) auf den gesammelten Objekten implementiert.
+Diese Endpunkte ermöglichen die Datenverwaltung und -verarbeitung und stellen sicher, dass die Anwendung auf Anfragen der Client-Seite effizient reagiert.
+
+Docker und Containerisierung
+Für die Konfiguration der Container werden Dockerfiles verwendet, die die Umgebung und Abhängigkeiten jeder Komponente definieren.
+Docker-Compose wird zur Orchestrierung mehrerer Container eingesetzt, um eine konsistente und leicht zu verwaltende Infrastruktur zu gewährleisten.
+Die Nutzung von Docker sorgt für konsistente Umgebungen zwischen Entwicklung und Produktion, was die Fehleranfälligkeit reduziert.
+Darüber hinaus ermöglicht Docker eine einfache Verteilung und Skalierbarkeit der Anwendung, da Container schnell gestartet, gestoppt und vervielfältigt werden können.
+
+Kommunikation zwischen Client und Server:
+Die Anwendung nutzt eine RESTful API, um klar strukturierte API-Endpunkte zu definieren, die über HTTP-Methoden (GET, POST, PUT, DELETE) zugänglich sind.
+Diese Endpunkte ermöglichen eine standardisierte und effiziente Kommunikation zwischen Client und Server.
+
+JSON wird als Datenformat für den Datenaustausch zwischen Client und Server verwendet.
+JSON ist leichtgewichtig und einfach zu parsen, was die Effizienz und Leistung der Anwendung erhöht.
+
+Die Kombination aus Client-Server-Architektur, Node.js/Express für die Backend-Logik, und der Containerisierung mit Docker ermöglicht eine skalierbare, flexible und leicht wartbare Anwendung.
+Diese Architektur unterstützt eine klare Trennung der Verantwortlichkeiten zwischen Client und Server und sorgt für eine konsistente und isolierte Umgebung für die verschiedenen Komponenten der Anwendung.
+Die detaillierte Auflistung der Abhängigkeiten gewährleistet Transparenz und erleichtert die Wartung sowie Weiterentwicklung der Anwendung.
