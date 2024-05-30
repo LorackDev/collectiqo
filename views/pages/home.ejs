@@ -13,6 +13,8 @@
 
   <link rel="stylesheet" href="./css/home.css">
   <link rel="stylesheet" href="./css/modal.css">
+  <link rel="stylesheet" href="./css/templates/sidebar.css">
+
   <script src="./js/home-navigation.js"></script>
   <script src="./js/sidebar.js"></script>
   <script src="./js/calcTH.js"></script>
@@ -22,52 +24,8 @@
 </head>
 
 <body>
-<div class="sidebar">
-  <div class="sidebar_header">
-    <i class="fa-solid fa-record-vinyl fa-2x"></i>
-  </div>
 
-  <hr class="sidebar_separator"> <!-- Separator -->
-
-  <div class="sidebar_menu">
-    <a href="#" class="sidebar_item">
-      <div class="sidebar_icon">
-        <i class="fa-solid fa-house"></i>
-      </div>
-      <h4>HOME</h4>
-    </a>
-
-    <a href="#" class="sidebar_item" id="settings_link">
-      <div class="sidebar_icon">
-        <i class="fa-solid fa-sliders"></i>
-      </div>
-      <h4>Settings</h4>
-    </a>
-
-    <hr class="sidebar_separator"> <!-- Separator -->
-
-    <a href="#" class="sidebar_item">
-      <div class="sidebar_icon">
-        <i class="fa-solid fa-user"></i>
-      </div>
-      <h4>Profile</h4>
-    </a>
-
-    <a href="#" class="sidebar_item">
-      <div class="sidebar_icon">
-        <i class="fa-solid fa-envelope"></i>
-      </div>
-      <h4>Messages</h4>
-    </a>
-
-    <a href="#" class="sidebar_item" id="openModalBtn">
-      <div class="sidebar_icon">
-        <i class="fa-solid fa-plus"></i>
-      </div>
-      <h4>New Collection</h4>
-    </a>
-  </div>
-</div>
+<%- include('../templates/sidebar.ejs') %>
 
 <div class="container">
   <header class="header">
