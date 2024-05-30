@@ -13,7 +13,18 @@ Mussten Abschnitte aus einzelnen Bereichen zusammengeführt werden, wurde dies i
 Die Aufgaben wurden mit YouTrack verwaltet, wodurch immer ein klares Verständnis über die Aufgabenverteilung herrschte.
 
 \subsection{Frontend}\label{subsec:Frontend}
-Lass dich aus Darko
+Die Entwicklung des Webfrontends konzentrierte sich auf die Erstellung einer benutzerfreundlichen Oberfläche und alle nötigen Grundfunktionen und Strukturen.
+Mithilfe von HTML, CSS und EJS wurde eine schlichte Webseite gestaltet.
+
+Das Herzstück der Webseite ist das Anlegen eigener Collections, welche dynamisch mit Daten aus der hinterlegten MongoDB Datenbank befüllt wird.
+Die Datenbank wird dabei durch JavaScript und dessen Frameworks und Bibliotheken angesprochen, welche wiederum durch das Frontend angestoßen werden.
+Für das Webfrontend wurde eine Express-Anwendung in Node.js erstellt, welche auf statische Dateien (CSS, JS, Bilder) aus dem Ordnerverzeichnis zugreift.
+Die Verwendung von Node.js ermöglicht das Definieren von HTTP Routen mit JavaScript, um so durch die verschiedenen Seiten der Webseite navigieren zu können und serverseitige Funktionen aufzurufen.
+
+EJS wurde als Template-Engine verwendet, um die Integration von JavaScript innerhalb von HTMLDokumenten zu ermöglichen und somit auch seine Sammlungen abrufen zu können.
+Dies erlaubte eine flexible und dynamische Gestaltung der Webseite, insbesondere durch die Verwendung von EJS-Tags wie \grqq\textless{}\%=\%\textgreater{}\grqq{}, die es ermöglichte, serverseitige Variablen oder Ausdrücke direkt in die HTML-Struktur einzufügen.
+In diesem Fall wurden die Collections aus der Datenbank abgerufen und über eine Schleife in der EJS-Vorlage gerendert und werden einmal in einer Übersicht angezeigt.
+In dieser Übersicht hat man die Möglichkeit eine beliebig angelegte Collection anzuklicken um so diese anzuschauen oder auch zu bearbeiten.
 
 \subsection{Backend}\label{subsec:backend}
 Der erste Schritt bei der Backend entwicklung war es, einen geeigneten Startpunkt zu finden.
