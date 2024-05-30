@@ -15,6 +15,8 @@
 \usepackage{float}
 \usepackage{enumitem}
 \usepackage{tikz}
+\usepackage{etoolbox}
+
 
 \input{config/code-colors}
 \geometry{a4paper, left=2.5cm, right=2.5cm, top=3cm, bottom=3cm, headsep=1.5cm}
@@ -49,12 +51,18 @@
 % Document
 \begin{document}
 
+    \pagenumbering{Roman}
+
     \input{sections/titelseite}
 
-    % \maketitle
     \newpage
+
+    \setcounter{page}{2}
     \tableofcontents
     \newpage
+
+    \switchtopage{arabic}
+
 
     \section{Projektidee und Konzept}\label{sec:idee-konzept}
     \input{sections/idee-konzept}
@@ -77,6 +85,7 @@
 
     \appendix
 
+    \switchback
 
     \section{Anhang}\label{sec:anhang}
     \input{sections/anhang}
