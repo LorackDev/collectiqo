@@ -49,6 +49,23 @@ Zuvor muss jedoch erstmal eine Funktion implementiert werden, mit der Sammlungen
 Hierzu muss zuerst die Datenbank implementiert werden, in welcher die Sammlungen gespeichert werden.
 Als Datenbank für die Sammlungen wurde sich für MongoDB entschieden, welches im Kapitel~\ref{subsec:Datenbanken} genauer erläutert wird.
 
+Eine dieser Stellen war der Umgang mit Docker Containern.
+Ein gewisses Grundverständnis war vorhanden, doch praktische Erfahrung war im gesamten Team nicht vorhanden.
+Zwar was das Hochfahren einer Datenbank in einem Container schnell erreicht, doch ein Verständnis für Datenpersistenz und Volumes zu entwickeln, benötigte seine Zeit.
+Auch im späteren Verlauf des Projekts, als es darum ging alle Applikationskomponenten in einer Docker-Compose Datei zusammenzuführen, stellte sich als Herausforderung heraus.
+Wie sich Dockerfiles in dem ganzen System einordnen und wo sie genutzt werden, war ebenfalls neu für das Team.
+Allgemein hat das Einfinden in Docker dem Team mehr Zeit als erwartet abverlangt.
+
+Eine weitere Herausforderung war das Einfinden in die verschiedenen Bibliotheken, die bei Webentwicklung mit JavaScript genutzt werden.
+Zwar wurde in der Planung bereits einige Bibliotheken festgelegt, die genutzt werden sollten, doch während der Entwicklung kamen einige neue hinzu.
+Ein Beispiel hierfür ist die Bibliothek express-session, die für das Session-Management genutzt wird.
+Da zur Planung noch kein detailliertes Verständnis darüber vorhanden war, welche Komponenten bei der Entwicklung einer solchen Anwendung benötigt werden, wurden Thematiken wie Session Management erst während der Entwicklung entdeckt.
+Hierdurch kam es an einigen Stellen zu steilen, jedoch unvermeidbaren Lernkurven, die jedoch auch entsprechenden zeitlichen Aufwand mit sich gebracht haben.
+
+Da das Team zuvor noch nie eine Webanwendung entwickelt hat, fehlte es an Verständnis, wie viel Komponenten Teil einer solchen Anwendung sind.
+So kam es, dass während der Entwicklung immer wieder neue Komponenten entdeckt wurden, die in der Planung nicht berücksichtigt wurden.
+Ein konkretes Beispiel hierfür ist das Session-Management.
+
 \subsection{Datenbanken}\label{subsec:Datenbanken}
 
 Bei der Einrichtung der Datenbank stellt sich als erste Hürde der Umgang mit Docker Container heraus.
@@ -67,3 +84,9 @@ Zunächst wurde versucht vergleiche mit einer SQL Datenbank herzustellen, wobei 
 Das Integrieren der Datenbank in der Programmierumgebung war schnell erledigt, da dies analog zu der MySQL Datenbankverbindung erfolgt ist.
 Das Auslesen und schreiben von Daten in die Datenbank war dank der MongoDB Bibliothek einfach erledigt.
 Funktionen für die Verbindung mit der Datenbank wurden in einer separaten Datei ausgelagert.
+
+Die Herausforderungen, die beim Einrichten des Datenbanksystems entstanden sind, teilen sich in zwei Punkte auf.
+Der erste Punkt hängt damit zusammen, dass das Einrichten der Datenbanken gleichzeitig die erste praktische Nutzung von Docker Containern war.
+Somit musste erstmal ein Verständnis dafür entwickelt werden, wie vom Hostsystem auf die Container zugegriffen werden kann und wie Daten persistiert werden.
+Da die Datenbanken vorgefertigten Inhalt benötigten, wie bspw.\ die Templates für die Sammlungen in der MongoDB oder das Datenbankschema für User in der MySQL Datenbank, musste sich angeeignet werden, wie Docker Images erstellt werden können.
+Darüber hinaus musste recherchiert werden, wie man solche Images hosten kann, sodass jeder beim Starten der Docker Compose Datei die Datenbanken mit den nötigen Inhalten erhält.
