@@ -1,4 +1,5 @@
-\section{Durchführungsphase}\label{sec:Durchfuehrungsphase}
+\section{Durchführung / Implementierung}\label{sec:durchfuehrung-implementierung}
+
 Die Entwicklung des Projekts lässt sich grob ich zwei Phasen aufteilen.
 Die erste Phase ist die Planungsphase, in welcher die Anforderungen an das Projekt definiert und die Architektur der Anwendung festgelegt wurde.
 Hierbei sind die Visualisierungen entstanden, die im vorherigen Kapitel genauer beschrieben wurden.
@@ -12,7 +13,7 @@ Hierbei wurde abgesprochen, welche Aufgaben bis zum nächsten Treffen erledigt w
 Mussten Abschnitte aus einzelnen Bereichen zusammengeführt werden, wurde dies in einem separaten Meeting besprochen, woran nur die verantwortlichen Teammitglieder teilgenommen haben.
 Die Aufgaben wurden mit YouTrack verwaltet, wodurch immer ein klares Verständnis über die Aufgabenverteilung herrschte.
 
-\subsection{Frontend}\label{subsec:Frontend}
+\subsection{Entwicklung des Webfrontends}\label{subsec:entwicklung-des-webfrontends}
 Die Entwicklung des Webfrontends konzentrierte sich auf die Erstellung einer benutzerfreundlichen Oberfläche und alle nötigen Grundfunktionen und Strukturen.
 Mithilfe von HTML, CSS und EJS wurde eine schlichte Webseite gestaltet.
 
@@ -26,7 +27,7 @@ Dies erlaubte eine flexible und dynamische Gestaltung der Webseite, insbesondere
 In diesem Fall wurden die Collections aus der Datenbank abgerufen und über eine Schleife in der EJS-Vorlage gerendert und werden einmal in einer Übersicht angezeigt.
 In dieser Übersicht hat man die Möglichkeit eine beliebig angelegte Collection anzuklicken um so diese anzuschauen oder auch zu bearbeiten.
 
-\subsection{Backend}\label{subsec:backend}
+\subsection{Entwicklung des Backends}\label{subsec:EntwicklungDesBackends}
 Der erste Schritt bei der Backend entwicklung war es, einen geeigneten Startpunkt zu finden.
 Hierbei wurde entschieden, dass zuerst eine Implementierung der Datenbankverbindung erfolgen sollte, da diese als Grundlage für die weitere Entwicklung dient.
 Dies wurde mit der Bibliothek mysql2 realisiert, welche eine erweiterte Funktionalität gegenüber der Standardbibliothek bietet und diverse Probleme behebt.
@@ -66,7 +67,7 @@ Da das Team zuvor noch nie eine Webanwendung entwickelt hat, fehlte es an Verst�
 So kam es, dass während der Entwicklung immer wieder neue Komponenten entdeckt wurden, die in der Planung nicht berücksichtigt wurden.
 Ein konkretes Beispiel hierfür ist das Session-Management.
 
-\subsection{Datenbanken}\label{subsec:Datenbanken}
+\subsection{Entwicklung der Datenbank und Datenstruktur}\label{subsec:entwicklung-der-datenbank-und-datenstruktur}
 
 Bei der Einrichtung der Datenbank stellt sich als erste Hürde der Umgang mit Docker Container heraus.
 Zwar waren grundlegende Kentnisse über Docker vorhanden, doch eine Datenbank praktisch in einem Container hochzufahren und diese dann mit dem Code und der Programmierumgebung zu verknüpfen, war eine neue Herausforderung.
@@ -90,3 +91,7 @@ Der erste Punkt hängt damit zusammen, dass das Einrichten der Datenbanken gleic
 Somit musste erstmal ein Verständnis dafür entwickelt werden, wie vom Hostsystem auf die Container zugegriffen werden kann und wie Daten persistiert werden.
 Da die Datenbanken vorgefertigten Inhalt benötigten, wie bspw.\ die Templates für die Sammlungen in der MongoDB oder das Datenbankschema für User in der MySQL Datenbank, musste sich angeeignet werden, wie Docker Images erstellt werden können.
 Darüber hinaus musste recherchiert werden, wie man solche Images hosten kann, sodass jeder beim Starten der Docker Compose Datei die Datenbanken mit den nötigen Inhalten erhält.
+
+\subsection{Verbinden des Frontends und Backends}\label{subsec:verbinden-des-frontends-und-backends}
+
+\subsection{Tests}\label{subsec:tests}
