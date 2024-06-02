@@ -1,5 +1,5 @@
 const { connectToDb, closeConnection } = require('../dbConnections/connectToMongoDB');
-const createCollection = require('./createCollection');
+const { createCollection } = require('./createCollection');
 
 async function createCollectionFromTemplate(templateName, username) {
     try {
@@ -22,4 +22,4 @@ async function createCollectionFromTemplate(templateName, username) {
     }
 }
 
-module.exports = createCollectionFromTemplate;
+module.exports = { createCollectionFromTemplate };

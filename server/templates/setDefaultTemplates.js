@@ -1,4 +1,4 @@
-const storeTemplate = require('./storeTemplate');
+const {storeTemplate} = require('./storeTemplate');
 
 const perfumeTemplate = {
     name: 'perfume',
@@ -7,7 +7,7 @@ const perfumeTemplate = {
 
 const videoGamesTemplate = {
     name: 'video games',
-    columns: ['title', 'publisher', 'release', 'console', 'value']
+    columns: ['title', 'platform', 'releaseYear', 'price']
 };
 
 const moviesTemplate = {
@@ -15,12 +15,16 @@ const moviesTemplate = {
     columns: ['title', 'director', 'genre', 'releaseYear']
 };
 
-Promise.all([
-    storeTemplate(perfumeTemplate),
-    storeTemplate(videoGamesTemplate),
-    storeTemplate(moviesTemplate)
-]).then(() => {
-    console.log('All templates stored successfully');
-}).catch((err) => {
-    console.error('An error occurred:', err);
-});
+function setDefaultTemplates() {
+    Promise.all([
+        storeTemplate(perfumeTemplate),
+        storeTemplate(videoGamesTemplate),
+        storeTemplate(moviesTemplate)
+    ]).then(() => {
+        console.log('All templates stored successfully');
+    }).catch((err) => {
+        console.error('An error occurred:', err);
+    });
+}
+
+setDefaultTemplates();

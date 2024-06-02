@@ -27,4 +27,4 @@ async function createCollection(collectionName, columns, username) {
     }
 }
 
-module.exports = createCollection;
+module.exports = { createCollection };

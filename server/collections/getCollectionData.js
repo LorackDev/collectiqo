@@ -24,4 +24,4 @@ async function getCollectionData(username, tableName) {
     }
 }
 
-module.exports = getCollectionData;
+module.exports = { getCollectionData };

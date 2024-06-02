@@ -1,10 +1,10 @@
-const MongoClient = require('mongodb').MongoClient;
+const { MongoClient } = require('mongodb');
 
 const url = 'mongodb://root:password@localhost:27017';
 const dbName = 'clq_collections';
 const client = new MongoClient(url);
 
-async function storeTemplate(template) {
+async function getAllTemplates() {
     try {
         await client.connect();
         console.log("Connected correctly to server");
@@ -12,8 +12,7 @@ async function storeTemplate(template) {
 
         const templatesCollection = db.collection('templates');
 
-        const result = await templatesCollection.insertOne(template);
-        console.log("Template stored successfully:", result);
+        return await templatesCollection.find().toArray();
     } catch (err) {
         console.error(err);
     } finally {
@@ -21,4 +20,4 @@ async function storeTemplate(template) {
     }
 }
 
-module.exports = { storeTemplate };
+module.exports = { getAllTemplates };

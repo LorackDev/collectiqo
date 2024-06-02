@@ -3,7 +3,7 @@ const { connectToDb, closeConnection } = require('../dbConnections/connectToMong
 async function addCollectionEntry(collectionName, entry, username) {
     try {
         const db = await connectToDb();
-        const collection = db.collection(collectionName);
+        const collection = db.collection('collections');
 
         const doc = await collection.findOne({ name: collectionName, username: username });
 
@@ -23,4 +23,4 @@ async function addCollectionEntry(collectionName, entry, username) {
     }
 }
 
-module.exports = addCollectionEntry;
+module.exports = { addCollectionEntry };
