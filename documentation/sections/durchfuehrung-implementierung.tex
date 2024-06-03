@@ -10,7 +10,7 @@ Hierbei wurden die Aufgaben basierend auf dem Organigramm verteilt.
 Während die Verantwortlichen für die Datenbank und das Backend sich des Öfteren Abstimmen mussten, konnte das Frontend-Team weitestgehend unabhängig arbeiten.
 Jedes Teammitglied hat sich selbstständig in die Thematiken eingearbeitet, die für die Umsetzung ihres Verantwortungsbereichs nötig waren.
 
-Der übliche Ablauf während der Durchführungsphase war es, dass sich das Team einmal in der Woche zusammengesetzt hat um den aktuellen Stand der Projektbausteine zu besprechen.
+Der übliche Ablauf während der Durchführungsphase war es, dass sich das Team einmal in der Woche zusammengesetzt hat, um den aktuellen Stand der Projektbausteine zu besprechen.
 Hierbei wurde abgesprochen, welche Aufgaben bis zum nächsten Treffen erledigt werden sollten.
 Mussten Abschnitte aus einzelnen Bereichen zusammengeführt werden, wurde dies in einem separaten Meeting besprochen, woran nur die verantwortlichen Teammitglieder teilgenommen haben.
 Die Aufgaben wurden mit YouTrack verwaltet, wodurch immer ein klares Verständnis über die Aufgabenverteilung herrschte.
@@ -68,15 +68,22 @@ Als Datenbank für die Sammlungen wurde sich für MongoDB entschieden, welches i
 Nur das Anlegen von Sammlungen reicht natürlich nicht, weshalb weitere Funktionen im Backend implementiert wurden, die diverse grundlegende Funktionen ermöglichen.
 Hierzu zählen das Löschen von Sammlungen, das Hinzufügen von Items zu Sammlungen und das Löschen von Items aus Sammlungen.
 Außerdem wurde eine separate Funktion implementiert, die das Erstellen einer Sammlung direkt von einem Template aus ermöglicht.
+Das Hinzufügen von Daten in eine existierende Sammlung wird mit dem folgenden Code ermöglicht:
 
+\lstinputlisting[language=JavaScript, label={lst:addCollectionEntry}]{../server/collections/addCollectionEntry.js}
 
 Während der Entwicklung des Backends kam es jedoch auch des Öfteren zu Herausforderungen.
 Eine dieser Stellen war der Umgang mit Docker Containern.
-Ein gewisses Grundverständnis war vorhanden, doch praktische Erfahrung war im gesamten Team nicht vorhanden.
+Ein gewisses Grundverständnis war vorhanden, doch an praktischer Erfahrung fehlte es dem Team.
 Zwar was das Hochfahren einer Datenbank in einem Container schnell erreicht, doch ein Verständnis für Datenpersistenz und Volumes zu entwickeln, benötigte seine Zeit.
 Auch im späteren Verlauf des Projekts, als es darum ging alle Applikationskomponenten in einer Docker-Compose Datei zusammenzuführen, stellte sich als Herausforderung heraus.
 Wie sich Dockerfiles in dem ganzen System einordnen und wo sie genutzt werden, war ebenfalls neu für das Team.
 Allgemein hat das Einfinden in Docker dem Team mehr Zeit als erwartet abverlangt.
+Am Ende sah die Docker-Compose Datei wie in Listing~\ref{lst:docker-compose} aus.
+Die Images für die beiden Datenbanken sind selbst erstellt, auf der Grundlage von den offiziellen MongoDB und MySQL Images.
+Diese beinhalten beispieleinträge für diverse Sammlungen verschiedener Nutzer, bereits angelegte Testnutzer und die Datenbankstruktur inklusive der Templates für die Sammlungen.
+
+\lstinputlisting[language=docker-compose, label={lst:docker-compose}]{../docker-compose.yaml}
 
 Eine weitere Herausforderung war das Einfinden in die verschiedenen Bibliotheken, die bei Webentwicklung mit JavaScript genutzt werden.
 Zwar wurde in der Planung bereits einige Bibliotheken festgelegt, die genutzt werden sollten, doch während der Entwicklung kamen einige neue hinzu.
@@ -91,18 +98,68 @@ Ein konkretes Beispiel hierfür ist das Session-Management.
 \subsection{Entwicklung der Datenbank und Datenstruktur}\label{subsec:entwicklung-der-datenbank-und-datenstruktur}
 
 Bei der Einrichtung der Datenbank stellt sich als erste Hürde der Umgang mit Docker Container heraus.
-Zwar waren grundlegende Kentnisse über Docker vorhanden, doch eine Datenbank praktisch in einem Container hochzufahren und diese dann mit dem Code und der Programmierumgebung zu verknüpfen, war eine neue Herausforderung.
-Hierzu mehr in Kapitel~\ref{sec:Herausforderungen}.
+Zwar waren grundlegende Kenntnisse über Docker vorhanden, doch eine Datenbank praktisch in einem Container hochzufahren und diese dann mit dem Code und der Programmierumgebung zu verknüpfen, war eine neue Herausforderung.
 Wie in der Planung entschieden, sollen zwei Datenbanken genutzt werden - eine MySQL Datenbank für strukturierte Daten und eine MongoDB Datenbank für unstrukturierte Daten.
 Im ersten Schritt wurde die MySQL Datenbank aufgesetzt und mit Tabellen für Nutzerdaten und den drei Pre-Sets für Sammlungen befüllt.
 Die Nutzerdaten beinhalten Username, E-Mail und Passwort.
-Für die Themenbereiche Video Spiele und Parfum wurden jeweils eine Tabelle erstellt, die für das Thema passende Spalten beinhalten.
+Da diese Tabelle eine feste Form besitzt, wurde sich für eine relationale Datenbank entschieden.
+Die Struktur der MySQL Datenbank ist in Abbildung~\ref{fig:mysql_structure} zu sehen.
 
-Als Datenbank für die Sammlungen wurde sich für eine MongoDB Datenbank entschieden.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{mysql_structure}
+    \caption{Struktur der MySQL Datenbank}
+    \label{fig:mysql_structure}
+\end{figure}
+
+Als Datenbank für die Sammlungen und die Vorlagen wurde sich für eine MongoDB Datenbank entschieden.
 Dies liegt daran, dass MongoDB eine dokumentenorientierte Datenbank ist, die sich gut für die Speicherung von unstrukturierten Daten eignet.
-Die Daten der Sammlungen sind unstrukturiert, da sie sich je nach Thema unterscheiden.
+Die Daten der Sammlungen sind unstrukturiert, da sie sich je nach Thema unterscheiden, da jede Sammlung andere Spalten besitzt.
+Dasselbe gilt für die Vorlagen, die zum Erstellen von Sammlungen genutzt werden können.
 Dies ist das erste Mal, dass das Team mit einer dokumentenorientierten Datenbank arbeitet, daher musste erstmal ein Verständnis über den Aufbau einer solchen Datenbank geschaffen werden.
 Zunächst wurde versucht vergleiche mit einer SQL Datenbank herzustellen, wobei schnell auffiel, dass Konzepte wie Schemata hier Collections sind.
+Für dieses Projekt wurden zwei verschiedene Collections angelegt, eine für die Vorlagen, die zum Erstellen eigener Sammlungen genutzt werden können und eine für die Sammlungen selbst.
+Die Struktur der MongoDB Datenbank ist in Abbildung~\ref{fig:mongodb_structure} zu sehen.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{mongodb_structure}
+    \caption{Struktur der MongoDB Datenbank}
+    \label{fig:mongodb_structure}
+\end{figure}
+
+Die Daten innerhalb der Collection für die Sammlungen sieht wie in Abbildung~\ref{fig:mongodb_collections} aus.
+Die Sammlung für Videospiele wurde hierbei anhand einer Vorlage aus dem Vorlagenkatalog erstellt.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{mongodb_collections}
+    \caption{Daten innerhalb der MongoDB Collection}
+    \label{fig:mongodb_collections}
+\end{figure}
+
+Einzelne Einträge innerhalb der Collections werden wie in Abbildung~\ref(fig:mongodb_collections_entries) strukturiert.
+Die Spalten sind exemplarisch für eine Autosammlung und ändern sich je nach Thematik.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{mongodb_collections_entries}
+    \caption{Einträge innerhalb einer Sammlung}
+    \label{fig:mongodb_collections_entries}
+\end{figure}
+
+Die Vorlagen für die Sammlungen sind in Abbildung~\ref{fig:mongodb_templates} zu sehen.
+Aktuell sind diese festgelegt, ohne Option diese zu verändern oder neue hinzuzufügen und sie sind gültig für alle User der Website.
+In späteren Versionen soll jedoch das Anlegen von eigenen Vorlagen möglich sein, welche dann auch einzelnen Nutzern zugewiesen werden.
+Bringt man einen Community-Aspekt mit ein, so könnte es in zukunft möglich sein, diese Vorlagen untereinander zu teilen.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{mongodb_templates}
+    \caption{Daten innerhalb der MongoDB Collection für die Vorlagen}
+    \label{fig:mongodb_templates}
+\end{figure}
+
 Das Integrieren der Datenbank in der Programmierumgebung war schnell erledigt, da dies analog zu der MySQL Datenbankverbindung erfolgt ist.
 Das Auslesen und schreiben von Daten in die Datenbank war dank der MongoDB Bibliothek einfach erledigt.
 Funktionen für die Verbindung mit der Datenbank wurden in einer separaten Datei ausgelagert.
@@ -112,8 +169,14 @@ Der erste Punkt hängt damit zusammen, dass das Einrichten der Datenbanken gleic
 Somit musste erstmal ein Verständnis dafür entwickelt werden, wie vom Hostsystem auf die Container zugegriffen werden kann und wie Daten persistiert werden.
 Da die Datenbanken vorgefertigten Inhalt benötigten, wie bspw.\ die Templates für die Sammlungen in der MongoDB oder das Datenbankschema für User in der MySQL Datenbank, musste sich angeeignet werden, wie Docker Images erstellt werden können.
 Darüber hinaus musste recherchiert werden, wie man solche Images hosten kann, sodass jeder beim Starten der Docker Compose Datei die Datenbanken mit den nötigen Inhalten erhält.
+Die Herausforderungen ähneln somit denen, die bereits bei der Entwicklung des Backends aufgetreten sind.
 
 \subsection{Verbinden des Frontends und Backends}\label{subsec:verbinden-des-frontends-und-backends}
+
+Der erste Schritt beim Verbinden von Front- und Backend war es, das Login und Sign Up System zu verbinden.
+Nach anfänglichen Problemen mit Umgebungsvariablen, die nicht korrekt geladen wurden aufgrund einer Umstrukturierung der Projektdokumentation, war der Prozess relativ einfach.
+Es musste recherchiert werden, wie die Backendfunktionen seitens des Frontends aufgerufen werden, welches durch HTTP Requests realisiert wurde, die die Routen in der app.js ansprechen.
+Da sich die Entwickler des Front- und Backends während der getrennten Entwicklung regelmäßig abgesprochen haben, konnten die Funktionen schnell miteinander verbunden werden.
 
 \subsection{Implementieren von Tests}\label{subsec:implementieren-von-tests}
 
