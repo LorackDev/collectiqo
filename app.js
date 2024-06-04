@@ -13,6 +13,7 @@ dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 const loginHandler = require('./server/authentication/loginHandler');
 const signUpHandler = require('./server/authentication/signUpHandler');
+const createCollectionFromTemplate = require('./server/collections/createCollectionFromTemplate');
 const getCollectionData = require('./server/collections/getCollectionData');
 
 // Middleware to parse JSON bodies
