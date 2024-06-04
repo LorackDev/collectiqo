@@ -5,7 +5,7 @@ const mysql = require("mysql2");
 const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
 const path = require("path");
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 const app = express();
 
 // Load environment variables from .env file
@@ -13,9 +13,19 @@ dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 const loginHandler = require('./server/authentication/loginHandler');
 const signUpHandler = require('./server/authentication/signUpHandler');
+const addCollectionEntry = require('./server/collections/addCollectionEntry');
+const createCollection = require('./server/collections/createCollection');
+const createCollectionFromTemplate = require('./server/collections/createCollectionFromTemplate');
 const getCollectionData = require('./server/collections/getCollectionData');
 
+
 // Middleware to parse JSON bodies
+app.use(session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+}));
 app.use(express.json());
 app.use(express.static("public"));
 app.use("/page", express.static(__dirname + "/views/pages"));
@@ -41,6 +51,7 @@ app.get('/login', (req, res) => {
 
 app.post('/login', loginHandler, function(req, res) {
     req.session.username = req.body.username;
+    console.log(req.session.username);
     res.redirect('pages/login')
 })
 
@@ -68,6 +79,10 @@ app.get('/collection-data/:collectionName', async (req, res) => {
     const tableData = await getCollectionData(username, tableName);
     res.json(tableData);
 });
+
+app.post('/create-collection-from-template', createCollectionFromTemplate, function(req, res) {
+    res.render('/pages/home')
+})
 
 app.use((err, req, res, next) => {
     console.error(err.stack);

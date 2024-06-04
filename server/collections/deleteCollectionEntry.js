@@ -1,10 +1,8 @@
 const { connectToDb, closeConnection } = require('../dbConnections/connectToMongoDB');
 
-const addCollectionEntry = async (req, res) => {
+const deleteCollectionEntry = async (req, res) => {
 
-    const {collectionName, entry} = req.body;
-
-    const username = req.session.username;
+    const {collectionName, entryId, username} = req.body;
 
     try {
         const db = await connectToDb();
@@ -17,17 +15,17 @@ const addCollectionEntry = async (req, res) => {
             return;
         }
 
-        doc.entries.push(entry);
+        doc.entries = doc.entries.filter(entry => entry.id !== entryId);
 
         const result = await collection.updateOne({ name: collectionName, username: username }, { $set: doc });
 
-        res.status(200).json({ message: 'Entry added successfully', result: result });
+        res.status(200).json({ message: 'Entry deleted successfully', result: result });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ error: 'An error occurred while adding the entry' });
+        res.status(500).json({ error: 'An error occurred while deleting the entry' });
     } finally {
         await closeConnection();
     }
 }
 
-module.exports = addCollectionEntry;
+module.exports = deleteCollectionEntry;
