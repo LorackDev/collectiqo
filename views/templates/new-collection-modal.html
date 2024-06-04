@@ -1,13 +1,13 @@
 
 <div id="myModal" class="modal">
     <div class="modal-content">
-        <form id="myForm">
+        <form id="selectionForm">
             <div class="input-group">
                 <label for="preset">Preset:</label>
                 <select id="preset" name="preset">
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
+                    <option value="option1">video games</option>
+                    <option value="option2">perfume</option>
+                    <option value="option3">movies</option>
                     <option value="custom">Custom</option>
                 </select>
             </div>
@@ -23,14 +23,6 @@
                 <div class="input-group">
                     <label for="custom1">Custom 1:</label>
                     <input type="text" id="custom1" name="custom1" disabled>
-                </div>
-                <div class="input-group">
-                    <label for="custom2">Custom 2:</label>
-                    <input type="text" id="custom2" name="custom2" disabled>
-                </div>
-                <div class="input-group">
-                    <label for="custom3">Custom 3:</label>
-                    <input type="text" id="custom3" name="custom3" disabled>
                 </div>
             </div>
             <div class="input-group">
@@ -70,14 +62,6 @@
               <label for="custom1">Custom 1:</label>
               <input type="text" id="custom1" name="custom1">
             </div>
-            <div class="input-group">
-              <label for="custom2">Custom 2:</label>
-              <input type="text" id="custom2" name="custom2">
-            </div>
-            <div class="input-group">
-              <label for="custom3">Custom 3:</label>
-              <input type="text" id="custom3" name="custom3">
-            </div>
           `;
             } else {
                 customOptions[i].innerHTML = "";
@@ -89,7 +73,7 @@
         var customOptions = document.getElementsByClassName("custom-options")[0];
         var inputCount = customOptions.getElementsByClassName("input-group").length + 1;
 
-        if (inputCount > 3 && inputCount <= 10) {
+        if (inputCount > 1 && inputCount <= 10) {
             var inputGroup = document.createElement('div');
             inputGroup.className = "input-group";
 
@@ -127,4 +111,49 @@
             }
         }
     });
+
+    document.getElementById('selectionForm').addEventListener('submit', async function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        const formData = {
+            templateName: document.getElementById('preset'),
+            color: document.getElementById('color'),
+            collectionName: document.getElementById('collectionName'),
+            customFields: []
+        };
+
+        var customOptions = document.getElementsByClassName("custom-options")[0];
+        var customInputs = customOptions.getElementsByClassName("input-group");
+
+        for (let i = 0; i < customOptions.length; i++) {
+            const input = customInputs[i].querySelector('input');
+            formData.customFields.push({
+                name: input.name
+            });
+        }
+
+        console.log(formData);
+
+        try {
+            const response = await fetch('/create-collection-from-template', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({formData})
+            });
+            if (response.ok) {
+                alert('Collection saved successfully');
+                closeModal();
+            } else {
+                const errorData = await response.json();
+                alert('Failed to save collection: ' + errorData.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Failed to save collection');
+        }
+    });
+
+
 </script>

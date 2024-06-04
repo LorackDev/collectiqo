@@ -5,7 +5,7 @@ const mysql = require("mysql2");
 const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
 const path = require("path");
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 const app = express();
 
 // Load environment variables from .env file
@@ -17,6 +17,7 @@ const addCollectionEntry = require('./server/collections/addCollectionEntry');
 const createCollection = require('./server/collections/createCollection');
 const createCollectionFromTemplate = require('./server/collections/createCollectionFromTemplate');
 const getCollectionData = require('./server/collections/getCollectionData');
+
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -71,6 +72,10 @@ app.get('/collection-data/:collectionName', async (req, res) => {
     const tableData = await getCollectionData(username, tableName);
     res.json(tableData);
 });
+
+app.post('/create-collection-from-template', createCollectionFromTemplate, function(req, res) {
+    res.render('/pages/home')
+})
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
