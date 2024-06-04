@@ -2,7 +2,9 @@ const { connectToDb, closeConnection } = require('../dbConnections/connectToMong
 
 const getCollectionData = async (req, res) => {
 
-    const {username, tableName} = req.body;
+    const {tableName} = req.body;
+
+    const username = req.session.username;
 
     let db;
     try {

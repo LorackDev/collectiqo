@@ -2,7 +2,9 @@ const { connectToDb, closeConnection } = require('../dbConnections/connectToMong
 
 const createCollection = async (req, res) => {
 
-    const { collectionName, columns, username } = req.body;
+    const { collectionName, columns } = req.body;
+
+    const username = req.session.username;
 
     if (columns.length > 10) {
         res.status(400).json({ error: 'Cannot add more than 10 columns' });

@@ -3,7 +3,9 @@ const { createCollection } = require('./createCollection');
 
 const createCollectionFromTemplate = async (req, res) => {
 
-    const { collectionName, templateName, username } = req.body;
+    const { collectionName, templateName } = req.body;
+
+    const username = req.session.username;
 
     try {
 
