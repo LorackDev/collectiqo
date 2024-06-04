@@ -1,11 +1,9 @@
 const { connectToDb, closeConnection } = require('../dbConnections/connectToMongoDB');
-const { createCollection } = require('./createCollection');
+const createCollection = require('./createCollection');
 
 const createCollectionFromTemplate = async (req, res) => {
 
     const { collectionName, templateName } = req.body;
-
-    const username = req.session.username;
 
     try {
 
@@ -20,7 +18,7 @@ const createCollectionFromTemplate = async (req, res) => {
             return;
         }
 
-        await createCollection(collectionName, template.columns, username);
+        await createCollection(collectionName, template.columns);
 
         res.status(200).json({ message: 'Collection created successfully from template' });
     } catch (err) {

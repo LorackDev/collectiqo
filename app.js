@@ -20,6 +20,12 @@ const getCollectionData = require('./server/collections/getCollectionData');
 
 
 // Middleware to parse JSON bodies
+app.use(session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+}));
 app.use(express.json());
 app.use(express.static("public"));
 app.use("/page", express.static(__dirname + "/views/pages"));
@@ -45,6 +51,7 @@ app.get('/login', (req, res) => {
 
 app.post('/login', loginHandler, function(req, res) {
     req.session.username = req.body.username;
+    console.log(req.session.username);
     res.redirect('pages/login')
 })
 

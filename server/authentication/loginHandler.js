@@ -17,7 +17,6 @@ const loginHandler = async (req, res) => {
             res.status(401).json({ message: 'Incorrect password' });
             return;
         }
-
         res.status(200).json({ message: 'Login successful', userId: user.id });
     } catch (error) {
         res.status(500).json({ message: 'An error occurred' });

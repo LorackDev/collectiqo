@@ -5,9 +5,9 @@
             <div class="input-group">
                 <label for="preset">Preset:</label>
                 <select id="preset" name="preset">
-                    <option value="option1">video games</option>
-                    <option value="option2">perfume</option>
-                    <option value="option3">movies</option>
+                    <option value="video games">video games</option>
+                    <option value="perfume">perfume</option>
+                    <option value="movies">movies</option>
                     <option value="custom">Custom</option>
                 </select>
             </div>
@@ -116,9 +116,9 @@
         event.preventDefault(); // Prevent the default form submission
 
         const formData = {
-            templateName: document.getElementById('preset'),
-            color: document.getElementById('color'),
-            collectionName: document.getElementById('collectionName'),
+            templateName: document.getElementById('preset').value,
+            color: document.getElementById('color').value,
+            collectionName: document.getElementById('collection').value,
             customFields: []
         };
 
@@ -140,7 +140,7 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({formData})
+                body: JSON.stringify(formData)
             });
             if (response.ok) {
                 alert('Collection saved successfully');
