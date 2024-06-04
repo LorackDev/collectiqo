@@ -15,11 +15,13 @@ const getCollectionData = async (req, res) => {
             throw new Error(`Collection ${tableName} does not exist for user ${username}`);
         }
 
-        // Fetch and return the data
-        return await collection.find({username: username}).toArray();
+        const data = await collection.find({username: username}).toArray();
+
+        res.json(data);
     } catch (error) {
         console.error(`Failed to get collection data: ${error}`);
-        throw error; // re-throw the error to be handled by the calling function
+
+        res.status(500).json({ error: error.toString() });
     } finally {
         if (db) {
             await closeConnection();
