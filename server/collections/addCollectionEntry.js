@@ -11,16 +11,18 @@ const addCollectionEntry = async (req, res) => {
         const doc = await collection.findOne({ name: collectionName, username: username });
 
         if (!doc) {
-            console.error('Error: Collection does not exist');
+            res.status(400).json({ error: 'Collection does not exist' });
             return;
         }
 
         doc.entries.push(entry);
 
         const result = await collection.updateOne({ name: collectionName, username: username }, { $set: doc });
-        console.log("Entry added successfully:", result);
+
+        res.status(200).json({ message: 'Entry added successfully', result: result });
     } catch (err) {
         console.error(err);
+        res.status(500).json({ error: 'An error occurred while adding the entry' });
     } finally {
         await closeConnection();
     }

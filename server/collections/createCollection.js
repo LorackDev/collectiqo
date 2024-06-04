@@ -5,7 +5,7 @@ const createCollection = async (req, res) => {
     const { collectionName, columns, username } = req.body;
 
     if (columns.length > 10) {
-        console.error('Error: Cannot add more than 10 columns');
+        res.status(400).json({ error: 'Cannot add more than 10 columns' });
         return;
     }
 
@@ -22,9 +22,11 @@ const createCollection = async (req, res) => {
         };
 
         const result = await collection.insertOne(doc);
-        console.log("Collection created successfully:", result);
+
+        res.status(200).json({ message: 'Collection created successfully', result: result });
     } catch (err) {
         console.error(err);
+        res.status(500).json({ error: 'An error occurred while creating the collection' });
     } finally {
         await closeConnection();
     }
