@@ -1,6 +1,9 @@
 const { connectToDb, closeConnection } = require('../dbConnections/connectToMongoDB');
 
-async function getCollectionData(username, tableName) {
+const getCollectionData = async (req, res) => {
+
+    const {username, tableName} = req.body;
+
     let db;
     try {
         db = await connectToDb();
@@ -24,4 +27,4 @@ async function getCollectionData(username, tableName) {
     }
 }
 
-module.exports = { getCollectionData };
+module.exports = getCollectionData;

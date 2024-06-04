@@ -1,6 +1,9 @@
 const { connectToDb, closeConnection } = require('../dbConnections/connectToMongoDB');
 
-async function createCollection(collectionName, columns, username) {
+const createCollection = async (req, res) => {
+
+    const { collectionName, columns, username } = req.body;
+
     if (columns.length > 10) {
         console.error('Error: Cannot add more than 10 columns');
         return;
@@ -27,4 +30,4 @@ async function createCollection(collectionName, columns, username) {
     }
 }
 
-module.exports = { createCollection };
+module.exports = createCollection;

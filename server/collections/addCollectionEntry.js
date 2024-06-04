@@ -1,6 +1,9 @@
 const { connectToDb, closeConnection } = require('../dbConnections/connectToMongoDB');
 
-async function addCollectionEntry(collectionName, entry, username) {
+const addCollectionEntry = async (req, res) => {
+
+    const {collectionName, entry, username} = req.body;
+
     try {
         const db = await connectToDb();
         const collection = db.collection('collections');
@@ -23,4 +26,4 @@ async function addCollectionEntry(collectionName, entry, username) {
     }
 }
 
-module.exports = { addCollectionEntry };
+module.exports = addCollectionEntry;
