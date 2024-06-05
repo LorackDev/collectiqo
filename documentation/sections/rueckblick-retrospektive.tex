@@ -12,37 +12,41 @@ Ziele wie die erfolgreiche Abgabe des Projekts wurden somit ausenvorgelassen.
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{|p{0.4\textwidth}|p{0.3\textwidth}|p{0.3\textwidth}|}
+    \begin{tabular}{|p{0.2\textwidth}|p{0.2\textwidth}|p{0.6\textwidth}|}
         \hline
-        \textbf{Definition of done} & \textbf{Status} & \textbf{Kommentar} \\
+        \textbf{Definition of Done} & \textbf{Status} & \textbf{Kommentar} \\
         \hline
         Die Idee des Projektes ist erstellt &  Abgeschlossen & In der Planungsphase konnte das Team sich auf eine gemeinsame Vision für das Projekt einigen. \\
         \hline
         Auswahl der genutzten Software- bzw. Projektwerkzeuge ist erfolgt & Abgeschlossen & In der Planungsphase wurde eine übersicht über alle Tools erstellt, die während der Programmierung genutzt werden sollen. \\
         \hline
-        Projektplanung ist angelegt & Abgeschlossen & Die Planung des Projekts wurde vollumfänglich angelegt in diesem Semester. \\
+        Projektplanung ist angelegt & Abgeschlossen & Die Planung des Projekts wurde vollumfänglich angelegt in diesem Semester, wobei ergänzende Planungsschritte für künftige Semester möglich sind. \\
         \hline
-        Anlegen der Projektumgebung mithilfe der Software- bzw. Projektwerkzeuge erfolgte & Erreicht  &  \\
+        Anlegen der Projektumgebung mithilfe der Software- bzw. Projektwerkzeuge erfolgte & Erreicht  &  Bei allen Teammitgliedern wurde eine Entwicklungsumgebung eingerichtet, auf der alle Tools, die in der Planungphase festgelegt wurden, installiert bzw. lauffähig sind. \\
         \hline
-        Backend-System ist implementiert & Grundlagen abgeschlossen / In Bearbeitung & Viele Funktionen für die Authetifizierung, das Erstellen und Bearbeiten von Sammlungen sowie die Datenbankverbinden wurden bereits implementiert.
-        Die Grundfunktionen wurden somit erfolgreich implementiert.
-        Im folgenden Semester sollen die Backendfunktionen weiter ausgebaut werden. \\
+        Backend-System ist implementiert & Grundlagen abgeschlossen & Viele Funktionen für die Authentifizierung, das Erstellen und Bearbeiten von Sammlungen sowie das Datenbankverbinden wurden bereits implementiert.
+        Die Grundfunktionen wurden somit erfolgreich implementiert. \\
         \hline
-        Frontend-System ist implementiert & Grundlagen abgeschlossen / In Bearbeitung &  \\
+        Frontend-System ist implementiert & Grundlagen abgeschlossen &  Grundlegende Frontend Seiten wurden implementiert, die zum Großteil den bestehenden Funktionsumfang des Backends abdecken.\\
         \hline
-        Datenbanksystem ist implementiert & In Bearbeitung &  \\
+        Datenbanksystem ist implementiert & Abgeschlossen & Die Datenbanken wurden passend für den aktuellen Stand des Front- und Backends implementiert und decken alle aktuellen Anforderungen ab. \\
         \hline
-        Verknüpfung der drei Systeme erfolgte & In Bearbeitung &  \\
+        Verknüpfung der drei Systeme erfolgte & In Bearbeitung & Während die Datenbanken vollumfänglich mit dem Backend interagieren war es noch nicht möglich, alle Backend Funktionen mit dem Frontend zu verbinden.
+        Auf beiden Seiten gibt es ein Overhead an Funktionen, die von der jeweils anderen Seite noch nicht abgedeckt werden. \\
         \hline
-        Account-Erstellung und Benutzer-Login ist möglich & Abgeschlossen &  \\
+        Account-Erstellung und Benutzer-Login ist möglich & Abgeschlossen &  Über die Sign-Up Seite werden Nutzer erfolgreich in der MySQL Datenbank hinterlegt.
+        Beim Anmelden über die Loginseite wird gegen kontrolliert, ob Nutzername und Passwort mit dem Eintrag in der Datenbank übereinstimmen.
+        \\
         \hline
-        Vorhandene „Sammlungen“-Templates können genutzt werden & Abgeschlossen &  \\
+        Vorhandene „Sammlungen“-Templates können genutzt werden & Abgeschlossen & Das Frontend erlaubt die Auswahl eines Templates zum Erstellen einer Sammlung.
+        Beim Speichern der Sammlung wird das Template aus der MongoDB extrahiert und genutzt um darauf basierend eine Sammlung in passende MongoDB Collection zu schreiben.
+        \\
         \hline
-        Benutzer kann erfolgreich eigene Templates anlegen & In Bearbeitung & Die Backend Funktion wurde bereits implementiert, im Frontend fehlt jedoch ein Interface zum Erstellen eigener Vorlagen. \\
+        Benutzer kann erfolgreich eigene Templates anlegen & In Bearbeitung & Die Backend Funktion inklusive Datenbankverbindung wurde bereits implementiert, im Frontend fehlt jedoch ein Interface zum Erstellen eigener Vorlagen. \\
         \hline
         Benutzerrechte-Einstellungen sind passend & Verschoben & Erste Drafts von Nutzereinstellungen wurden bereits erstellt, die Umsetzung wurde jedoch zeitbedingt auf das nächste Semester verschoben. \\
         \hline
-        Alle notwendigen Tests erfolgreich & Gescheitert / Verschoben & Das Erstellen von Integrationstests hat sich als zeitlich zu aufwendig erwiesen.
+        Alle notwendigen Tests erfolgreich & Gescheitert / Verschoben & Das Erstellen von einfachen Unit-Tests war zwar erfolgreich, doch das Erstellen von Integrationstests hat sich als zeitlich zu aufwendig erwiesen.
         Die Implementierung von komplexeren Tests wurde auf das nächste Semester verschoben. \\
         \hline
     \end{tabular}
@@ -51,5 +55,17 @@ Ziele wie die erfolgreiche Abgabe des Projekts wurden somit ausenvorgelassen.
 \end{table}
 
 \subsection{Retrospektive}\label{subsec:Retrospektive}
+
+Während der Durchführungsphase wurde schnell klar, dass die Lernkurve mit den gewählten Technologien steiler war als gedacht.
+Dies lag vor allem daran, dass mehr Komponenten in die Entwicklung einer Website fielen als gedacht.
+Hierbei hätte sich das Team während der Planungsphase intensiver damit auseinandersetzen sollen, welche Bausteine für eine Webanwendung benötigt werden.
+Die Toolauswahl fiel hierbei im Programmierbereich oberflächlich statt, weshalb nur Komponenten wie die gewählte Programmiersprache angegeben wurden, jedoch keine spezifischen Bibliotheken.
+An dieser Stelle hätte man kleinteiliger planen sollen, um die Ziele für dieses Semester realistischer setzen zu können.
+
+Gleichzeitig stellte diese Herausforderung einen hohen Lerneffekt dar.
+Dadruch, das fast ausschließlich Tools genutzt wurden, mit denen das Team noch keine Erfahrung hatte, konnten sich so viele Kenntnisse angeeignet werden.
+Besonders sticht hierbei der Umgang mit Docker heraus.
+Die Docker Kenntnisse, die sich durch dieses Projekt angeeignet wurden, konnten bei einigen Teammitgliedern bereits sinnvoll in ihren Unternehmen genutzt werden.
+
 
 \subsection{Ausblick / Zukünftige Ziele und Funktionen}\label{subsec:ausblick-zukuenftige-ziele-und-funktionen}
