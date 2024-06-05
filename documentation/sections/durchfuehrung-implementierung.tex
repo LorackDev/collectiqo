@@ -34,10 +34,28 @@ Die Datenbank wird dabei durch JavaScript und dessen Frameworks und Bibliotheken
 Für das Webfrontend wurde eine Express-Anwendung in Node.js erstellt, welche auf statische Dateien (CSS, JS, Bilder) aus dem Ordnerverzeichnis zugreift.
 Die Verwendung von Node.js ermöglicht das Definieren von HTTP Routen mit JavaScript, um so durch die verschiedenen Seiten der Webseite navigieren zu können und serverseitige Funktionen aufzurufen.
 
-EJS wurde als Template-Engine verwendet, um die Integration von JavaScript innerhalb von HTMLDokumenten zu ermöglichen und somit auch seine Sammlungen abrufen zu können.
+EJS wurde als Template-Engine verwendet, um die Integration von JavaScript innerhalb von HTMLDokumenten zu ermöglichen und somit auch Sammlungenen abrufen zu können.
 Dies erlaubte eine flexible und dynamische Gestaltung der Webseite, insbesondere durch die Verwendung von EJS-Tags wie \grqq\textless{}\%=\%\textgreater{}\grqq{}, die es ermöglichte, serverseitige Variablen oder Ausdrücke direkt in die HTML-Struktur einzufügen.
-In diesem Fall wurden die Collections aus der Datenbank abgerufen und über eine Schleife in der EJS-Vorlage gerendert und werden einmal in einer Übersicht angezeigt.
-In dieser Übersicht hat man die Möglichkeit eine beliebig angelegte Collection anzuklicken um so diese anzuschauen oder auch zu bearbeiten.
+
+Wenn der Nutzer zu Collectiqo navigiert, gelangt er zunächst auf eine Landing-Page.
+Diese ist recht simpel gestaltet und bietet nur wenige Interaktionsmöglichkeiten.
+Der Nutzer sieht sofort, dass er sich zuerst anmelden muss, bevor er seine Sammlung anlegen kann.
+Im Header befindet sich eine Schaltfläche “Login or Sign-Up”, und in der Mitte der Landing-Page befinden sich zwei Schaltflächen Login und Sign-Up.
+Dadurch wird der Nutzer aufgefordert, entweder einen neuen Account zu erstellen, falls er zum ersten Mal auf dieser Seite ist, oder sich mit seinem bestehenden Account einzuloggen.
+
+(Screenshot)
+
+Auf der Sign-Up-Seite befinden sich drei erforderliche Eingabefelder: Username, E-Mail und Passwort, die zur Erstellung eines Accounts benötigt werden.
+Unter den Eingabefeldern befindet sich eine Schaltfläche, die das Formular validiert und im Backend den Account erstellt.
+Darunter gibt es eine Weiterleitung zur Login-Seite für Benutzer, die bereits über einen Account verfügen und sich einloggen möchten.
+
+(Screenshot)
+
+Ähnliche Funktionen sind auch auf der Login-Seite verfügbar.
+Hier werden nur der Username und das Passwort abgefragt, die dann bei Betätigung der “Login”-Schaltfläche im Backend validiert werden, um den Nutzer erfolgreich oder erfolglos einzuloggen.
+Auch hier gibt es eine Weiterleitung zur Sign-Up-Seite für Benutzer, die noch keinen Account haben und sich auf die Sign-Up-Seite begeben möchten.
+
+(Screenshot)
 
 \subsection{Entwicklung des Backends}\label{subsec:EntwicklungDesBackends}
 Der erste Schritt bei der Backend entwicklung war es, einen geeigneten Startpunkt zu finden.
