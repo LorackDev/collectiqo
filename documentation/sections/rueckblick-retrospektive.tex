@@ -1,14 +1,14 @@
 \section{Rückblick / Retrospektive}\label{sec:rueckblick-retrospektive}
 
 Dieser Abschnitt gibt einen Vergleich zwischen den geplanten Zielen und den tatsächlich erreichten Zielen.
-Daraufhin wird geschaut, welche Verbesserungen in der Durchführung nächstes Semester umgesetzt werden könnten.
+Daraufhin wird geschaut, welche Verbesserungen in der Durchführung nächstes Semester umgesetzt werden könnten, sowie welche neuen Kenntnisse .
 Schlussendlich wird ein Ausblick auf zukünftige Ziele und Funktionen gegeben, wovon einige aus den geplanten Zielen für dieses Semester übernommen werden und einige neue hinzukommen, die dem Team bei der Umsetzung eingefallen sind.
 
 \subsection{Abweichungen der geplanten Ziele}\label{subsec:abweichungen-der-geplanten-ziele}
 Während der Umsetzung wurden immer wieder die Definitions of done in Betracht gezogen.
 Dieses Kapitel betrachtet die einzelnen Ziele und schaut, ob diese erreicht wurden und was der aktuelle Stand in der Umsetzung ist.
 Hierbei wurden die Ziele auf die beschränkt, die direkt etwas mit der Umsetzung des Projekts zu tun haben.
-Ziele wie die erfolgreiche Abgabe des Projekts wurden somit ausenvorgelassen.
+Ziele wie die erfolgreiche Abgabe des Projekts wurden somit außen vor gelassen.
 
 \begin{table}[h]
     \centering
@@ -16,56 +16,73 @@ Ziele wie die erfolgreiche Abgabe des Projekts wurden somit ausenvorgelassen.
         \hline
         \textbf{Definition of Done} & \textbf{Status} & \textbf{Kommentar} \\
         \hline
-        Die Idee des Projektes ist erstellt &  Abgeschlossen & In der Planungsphase konnte das Team sich auf eine gemeinsame Vision für das Projekt einigen. \\
+        Die Idee des Projektes ist erstellt &  \cellcolor{green}abgeschlossen & In der Planungsphase konnte das Team sich auf eine gemeinsame Vision für das Projekt einigen. \\
         \hline
-        Auswahl der genutzten Software- bzw. Projektwerkzeuge ist erfolgt & Abgeschlossen & In der Planungsphase wurde eine übersicht über alle Tools erstellt, die während der Programmierung genutzt werden sollen. \\
+        Auswahl der genutzten Software- bzw. Projektwerkzeuge ist erfolgt & \cellcolor{green}abgeschlossen & In der Planungsphase wurde eine übersicht über alle Tools erstellt, die während der Programmierung genutzt werden sollen. \\
         \hline
-        Projektplanung ist angelegt & Abgeschlossen & Die Planung des Projekts wurde vollumfänglich angelegt in diesem Semester, wobei ergänzende Planungsschritte für künftige Semester möglich sind. \\
+        Projektplanung ist angelegt & \cellcolor{green}abgeschlossen & Die Planung des Projekts wurde vollumfänglich angelegt in diesem Semester, wobei ergänzende Planungsschritte für künftige Semester möglich sind. \\
         \hline
-        Anlegen der Projektumgebung mithilfe der Software- bzw. Projektwerkzeuge erfolgte & Erreicht  &  Bei allen Teammitgliedern wurde eine Entwicklungsumgebung eingerichtet, auf der alle Tools, die in der Planungphase festgelegt wurden, installiert bzw. lauffähig sind. \\
+        Anlegen der Projektumgebung mithilfe der Software- bzw. Projektwerkzeuge erfolgte & \cellcolor{green}abgeschlossen & Bei allen Teammitgliedern wurde eine Entwicklungsumgebung eingerichtet, auf der alle Tools, die in der Planungsphase festgelegt wurden, installiert bzw. lauffähig sind.
+        Die reibungslose Zusammenarbeit wurde hierdurch sichergestellt. \\
         \hline
-        Backend-System ist implementiert & Grundlagen abgeschlossen & Viele Funktionen für die Authentifizierung, das Erstellen und Bearbeiten von Sammlungen sowie das Datenbankverbinden wurden bereits implementiert.
+        Backend-System ist implementiert & \cellcolor{green}Grundlagen abgeschlossen & Viele Funktionen für die Authentifizierung, das Erstellen und Bearbeiten von Sammlungen sowie das Datenbankverbinden wurden bereits implementiert.
         Die Grundfunktionen wurden somit erfolgreich implementiert. \\
         \hline
-        Frontend-System ist implementiert & Grundlagen abgeschlossen &  Grundlegende Frontend Seiten wurden implementiert, die zum Großteil den bestehenden Funktionsumfang des Backends abdecken.\\
+        Frontend-System ist implementiert & \cellcolor{green}Grundlagen abgeschlossen &  Grundlegende Frontend Seiten wurden implementiert, die zum Großteil den bestehenden Funktionsumfang des Backends abdecken.\\
         \hline
-        Datenbanksystem ist implementiert & Abgeschlossen & Die Datenbanken wurden passend für den aktuellen Stand des Front- und Backends implementiert und decken alle aktuellen Anforderungen ab. \\
+        Datenbanksystem ist implementiert & \cellcolor{green}abgeschlossen & Die Datenbanken wurden passend für den aktuellen Stand des Front- und Backends implementiert und decken alle aktuellen Anforderungen ab. \\
         \hline
-        Verknüpfung der drei Systeme erfolgte & In Bearbeitung & Während die Datenbanken vollumfänglich mit dem Backend interagieren war es noch nicht möglich, alle Backend Funktionen mit dem Frontend zu verbinden.
+        Verknüpfung der drei Systeme erfolgte & \cellcolor{orange}in Bearbeitung & Während die Datenbanken vollumfänglich mit dem Backend interagieren war es noch nicht möglich, alle Backend Funktionen mit dem Frontend zu verbinden.
         Auf beiden Seiten gibt es ein Overhead an Funktionen, die von der jeweils anderen Seite noch nicht abgedeckt werden. \\
         \hline
-        Account-Erstellung und Benutzer-Login ist möglich & Abgeschlossen &  Über die Sign-Up Seite werden Nutzer erfolgreich in der MySQL Datenbank hinterlegt.
+        Account-Erstellung und Benutzer-Login ist möglich & \cellcolor{green}abgeschlossen &  Über die Sign-Up Seite werden Nutzer erfolgreich in der MySQL Datenbank hinterlegt.
         Beim Anmelden über die Loginseite wird gegen kontrolliert, ob Nutzername und Passwort mit dem Eintrag in der Datenbank übereinstimmen.
         \\
         \hline
-        Vorhandene „Sammlungen“-Templates können genutzt werden & Abgeschlossen & Das Frontend erlaubt die Auswahl eines Templates zum Erstellen einer Sammlung.
+        Vorhandene „Sammlungen“-Templates können genutzt werden & \cellcolor{green}abgeschlossen & Das Frontend erlaubt die Auswahl eines Templates zum Erstellen einer Sammlung.
         Beim Speichern der Sammlung wird das Template aus der MongoDB extrahiert und genutzt um darauf basierend eine Sammlung in passende MongoDB Collection zu schreiben.
         \\
         \hline
-        Benutzer kann erfolgreich eigene Templates anlegen & In Bearbeitung & Die Backend Funktion inklusive Datenbankverbindung wurde bereits implementiert, im Frontend fehlt jedoch ein Interface zum Erstellen eigener Vorlagen. \\
+        Benutzer kann erfolgreich eigene Templates anlegen & \cellcolor{orange}in Bearbeitung & Die Backend Funktion inklusive Datenbankverbindung wurde bereits implementiert, im Frontend fehlt jedoch ein Interface zum Erstellen eigener Vorlagen. \\
         \hline
-        Benutzerrechte-Einstellungen sind passend & Verschoben & Erste Drafts von Nutzereinstellungen wurden bereits erstellt, die Umsetzung wurde jedoch zeitbedingt auf das nächste Semester verschoben. \\
+        Benutzerrechte-Einstellungen sind passend & \cellcolor{red}verschoben & Erste Drafts von Nutzereinstellungen wurden bereits erstellt, die Umsetzung wurde jedoch zeitbedingt auf das nächste Semester verschoben. \\
         \hline
-        Alle notwendigen Tests erfolgreich & Gescheitert / Verschoben & Das Erstellen von einfachen Unit-Tests war zwar erfolgreich, doch das Erstellen von Integrationstests hat sich als zeitlich zu aufwendig erwiesen.
+        Alle notwendigen Tests erfolgreich & \cellcolor{red}verschoben & Das Erstellen von einfachen Unit-Tests war zwar erfolgreich, doch das Erstellen von Integrationstests hat sich als zeitlich zu aufwendig erwiesen.
         Die Implementierung von komplexeren Tests wurde auf das nächste Semester verschoben. \\
         \hline
     \end{tabular}
-    \caption{Your caption}
-    \label{your-label}
+    \label{tab:definition-of-done-vergleich}
 \end{table}
 
-\subsection{Retrospektive}\label{subsec:Retrospektive}
+\subsection{Retrospektive}\label{subsec:retrospektive}
+
+Im Rahmen des Projektes konnten sich viele neue Kentnisse zu diversen Tools angeeignet werden.
+Hierbei geht das erlangte wissen über die eigentliche Programmierung hinaus und umfasst den Umgang mit der Programmierumgebung, Docker und praktische Arbeit mit MongoDB und MySQL.
+Diese Retrospektive umfasst einen kurzen Rückblick auf das Gelernte, aber auch Kritik an uns selbst, an welchen Stellen wir hätten ander agieren sollen.
 
 Während der Durchführungsphase wurde schnell klar, dass die Lernkurve mit den gewählten Technologien steiler war als gedacht.
 Dies lag vor allem daran, dass mehr Komponenten in die Entwicklung einer Website fielen als gedacht.
 Hierbei hätte sich das Team während der Planungsphase intensiver damit auseinandersetzen sollen, welche Bausteine für eine Webanwendung benötigt werden.
-Die Toolauswahl fiel hierbei im Programmierbereich oberflächlich statt, weshalb nur Komponenten wie die gewählte Programmiersprache angegeben wurden, jedoch keine spezifischen Bibliotheken.
+Die Auswahl an Tools fiel hierbei im Programmierbereich oberflächlich statt, weshalb nur Komponenten wie die gewählte Programmiersprache angegeben wurden, jedoch keine spezifischen Bibliotheken.
 An dieser Stelle hätte man kleinteiliger planen sollen, um die Ziele für dieses Semester realistischer setzen zu können.
+Außerdem hätte sich das Team öfters das Gespräch mit dem Dozenten suchen sollen, um in diesem Weg empfehlungen zu erhalten.
 
 Gleichzeitig stellte diese Herausforderung einen hohen Lerneffekt dar.
-Dadruch, das fast ausschließlich Tools genutzt wurden, mit denen das Team noch keine Erfahrung hatte, konnten sich so viele Kenntnisse angeeignet werden.
+Dadurch, dass fast ausschließlich Tools genutzt wurden, mit denen das Team noch keine Erfahrung hatte, konnten sich so viele neue Kenntnisse angeeignet werden.
 Besonders sticht hierbei der Umgang mit Docker heraus.
 Die Docker Kenntnisse, die sich durch dieses Projekt angeeignet wurden, konnten bei einigen Teammitgliedern bereits sinnvoll in ihren Unternehmen genutzt werden.
 
+Die Nutzung von MySQL und besonders MongoDB war eine weitere Neuheit für das Team.
+Während bereits praktische Erfahrung in SQL bestand, war die Arbeit mit einer Dokumenten-orientierten Datenbank neu.
+Bei der Implementierung des Backends fiel besonders der Unterschied im Umgang mit den beiden Datenbankarten auf und es konnte ein Verständnis dafür entwickelt werden, für welche Anwendungsfälle die jeweilige Art geeignet ist.
+
+Auch das Erstellen einer node.js Applikation stellte sich als lehrreich heraus.
+Die Programmierung einer Webanwendung unterscheidet sich stärker als erwartet von der Programmierung, die das Team bis dahin gewohnt war.
+Das Nutzen von HTTP Requests, der Aufbau einzelner Backend Funktionen, sowie die Aufteilung in server- und clientseitigen Code und das Zusammenführen aller Komponenten in der app.js sind alles Beispiele für Stellen, die sich für das Team lehrreich erwiesen.
+
+Im Allgemeinen konnte sich das Team im Rahmen dieses Projekts die Grundkenntnisse der Webentwicklung aneignen.
+Mit Docker und den Datenbanken konnte darüber hinaus Wissen erlangt werden, welches auch auf andere Projekte außerhalb einer node.js Anwendung projiziert werden kann.
+Hierbei wurde das Interesse geweckt, diese Kenntnisse, im Rahmen der Praxismodule der kommenden Semester, weiter auszubauen .
+Welche Ideen für Funktionen hierbei aufgekommen sind, wird im Kapitel~\ref{subsec:ausblick-zukuenftige-ziele-und-funktionen} beschrieben.
 
 \subsection{Ausblick / Zukünftige Ziele und Funktionen}\label{subsec:ausblick-zukuenftige-ziele-und-funktionen}
