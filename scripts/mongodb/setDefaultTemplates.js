@@ -1,4 +1,4 @@
-const {storeTemplate} = require('./storeTemplate');
+const {storeTemplate} = require('../server/templates/storeTemplate.js');
 
 const perfumeTemplate = {
     name: 'perfume',
