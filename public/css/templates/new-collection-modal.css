@@ -19,6 +19,14 @@
     max-width: 600px;
 }
 
+.custom-options .input-group {
+    display: none;
+}
+
+.custom-options.show-custom-options .input-group {
+    display: flex;
+}
+
 .input-group {
     margin-bottom: 10px;
 }

@@ -66,7 +66,7 @@ app.post('/signup', signUpHandler, function(req, res) {
 
 // Route for Sign-Up
 app.get('/home', (req, res) => {
-    res.render('pages/home');
+    res.render('pages/home', { collection: null });
 });
 
 app.post('/create-collection', createCollection, function(req, res) {

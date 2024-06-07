@@ -5,10 +5,11 @@
             <div class="input-group">
                 <label for="preset">Preset:</label>
                 <select id="preset" name="preset">
-                    <option value="video games">video games</option>
-                    <option value="perfume">perfume</option>
-                    <option value="movies">movies</option>
-                    <option value="custom">Custom</option>
+                        <option value="x" disabled selected>Select preset...</option>
+                        <option value="video games">video games</option>
+                        <option value="perfume">perfume</option>
+                        <option value="movies">movies</option>
+                        <option value="custom">Custom</option>
                 </select>
             </div>
             <div class="input-group">
@@ -21,15 +22,15 @@
             </div>
             <div class="custom-options">
                 <div class="input-group">
-                    <label for="custom1">Custom 1:</label>
-                    <input type="text" id="custom1" name="custom1" disabled>
+                    <label for="custom1">Custom 1: </label>
+                    <input type="text" id="custom1" name="custom1">
                 </div>
             </div>
             <div class="input-group">
                 <button type="button" id="addCustomField">+</button>
             </div>
             <div class="input-group">
-                <button type="button" id="cancelBtn" onclick="closeModal()">Cancel</button>
+                <button type="button" id="cancelBtn">Cancel</button>
                 <button type="submit" id="saveBtn">Save</button>
             </div>
         </form>
@@ -37,81 +38,101 @@
 </div>
 
 <script>
-    // Get the modal
     var modal = document.getElementById("myModal");
 
-    // Get the button that opens the modal
-    var btn = document.getElementsByTagName("button")[0];
+    function resetModal() {
+        var presetSelect = document.getElementById("preset");
+        var colorInput = document.getElementById("color");
+        var collectionInput = document.getElementById("collection");
+        var customOptions = document.querySelector(".custom-options");
+        var customInputGroups = customOptions.querySelectorAll(".input-group");
+        presetSelect.value = "x";
+        colorInput.value = "#000000";
+        collectionInput.value = "";
 
-    // When the user clicks the button, open the modal
-    function openModal() {
-        modal.style.display = "block";
+        // Hide additional custom fields, starting from the second one
+        for (var i = 1; i < customInputGroups.length; i++) {
+            customInputGroups[i].style.display = "none";
+        }
+
+        // Reset the value of additional custom fields (starting from the second one)
+        for (var j = 1; j < customInputGroups.length; j++) {
+            var input = customInputGroups[j].querySelector("input");
+            input.value = "";
+            input.id = "custom" + (j);
+            input.name = "custom" + (j);
+        }
+
+        customOptions.classList.remove("show-custom-options");
     }
 
-    // When the user clicks on the button (Cancel), close the modal
     function closeModal() {
         modal.style.display = "none";
     }
 
+    document.getElementById("cancelBtn").addEventListener("click", function() {
+        resetModal();
+        closeModal();
+    });
+
+    window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            resetModal();
+            modal.style.display = "none";
+        }
+    });
+
     document.getElementById("preset").addEventListener("change", function () {
-        var customOptions = document.getElementsByClassName("custom-options");
-        for (var i = 0; i < customOptions.length; i++) {
-            if (this.value === "custom") {
-                customOptions[i].innerHTML = `
-            <div class="input-group">
-              <label for="custom1">Custom 1:</label>
-              <input type="text" id="custom1" name="custom1">
-            </div>
-          `;
-            } else {
-                customOptions[i].innerHTML = "";
+        var customOptions = document.getElementsByClassName("custom-options")[0];
+        if (this.value === "custom") {
+            customOptions.classList.add("show-custom-options");
+            // Check if there are no existing custom fields before adding a new one
+            if (customOptions.querySelectorAll(".input-group").length === 0) {
+                document.getElementById("addCustomField").click();
             }
+        } else {
+            customOptions.classList.remove("show-custom-options");
         }
     });
 
     document.getElementById("addCustomField").addEventListener("click", function () {
         var customOptions = document.getElementsByClassName("custom-options")[0];
-        var inputCount = customOptions.getElementsByClassName("input-group").length + 1;
+        var customInputGroups = customOptions.getElementsByClassName("input-group");
+        var inputCount = customInputGroups.length;
 
-        if (inputCount > 1 && inputCount <= 10) {
-            var inputGroup = document.createElement('div');
-            inputGroup.className = "input-group";
+        var newInputGroup = document.createElement("div");
+        newInputGroup.className = "input-group";
 
-            var label = document.createElement('label');
-            label.setAttribute("for", "custom" + inputCount);
-            label.textContent = "Custom " + inputCount + ": ";
+        var label = document.createElement("label");
+        label.setAttribute("for", "custom" + (inputCount + 1));
+        label.textContent = "Custom " + (inputCount + 1) + ": ";
 
-            var input = document.createElement('input');
-            input.type = "text";
-            input.id = "custom" + inputCount;
-            input.name = "custom" + inputCount;
+        var input = document.createElement("input");
+        input.type = "text";
+        input.id = "custom" + (inputCount + 1);
+        input.name = "custom" + (inputCount + 1);
 
-            var removeBtn = document.createElement('span');
-            removeBtn.className = "remove-btn";
-            removeBtn.textContent = "🗑️";
-            removeBtn.onclick = function () {
-                this.parentNode.remove();
-                var customOptions = document.getElementsByClassName("custom-options")[0];
-                var customInputs = customOptions.getElementsByClassName("input-group");
-                for (var i = 3; i < customInputs.length; i++) {
-                    customInputs[i].getElementsByTagName("label")[0].textContent = "Custom " + (i + 1) + ":";
-                }
-                // Re-display the "+" button
-                document.getElementById("addCustomField").style.display = "inline-block";
-            };
+        var removeBtn = document.createElement("span");
+        removeBtn.className = "remove-btn";
+        removeBtn.textContent = "🗑️";
+        removeBtn.onclick = function () {
+            this.parentNode.remove();
+        };
 
-            inputGroup.appendChild(label);
-            inputGroup.appendChild(input);
-            inputGroup.appendChild(removeBtn);
-            customOptions.appendChild(inputGroup);
+        newInputGroup.appendChild(label);
+        newInputGroup.appendChild(input);
+        newInputGroup.appendChild(removeBtn);
 
-            // Hide the "+" button if inputCount reached 10
-            if (inputCount >= 10) {
-                document.getElementById("addCustomField").style.display = "none";
-            }
+        customOptions.appendChild(newInputGroup);
+
+        if (inputCount >= 9) {
+            document.getElementById("addCustomField").style.display = "none";
         }
-    });
 
+    });
+    ////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////
     document.getElementById('selectionForm').addEventListener('submit', async function (event) {
         event.preventDefault(); // Prevent the default form submission
 

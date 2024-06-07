@@ -93,10 +93,24 @@
   display: flex; gap: 10px; margin-right: 3vh; }
 
 .edit-button {
-  padding: 10px 20px; margin-right: 10px; border: none; border-radius: 10px; background-color: #fffc58; color: black; font-weight: bold; cursor: pointer; }
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: #fffc58;
+  color: black;
+  font-weight: bold;
+  cursor: pointer; }
 
 .delete-button {
-  padding: 10px 20px; margin-right: 10px; border: none; border-radius: 10px; background-color: #f85656; font-weight: bold; color: black; cursor: pointer;}
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: #f85656;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;}
 
   th, td {
     padding: 10px;

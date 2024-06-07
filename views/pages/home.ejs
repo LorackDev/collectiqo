@@ -21,6 +21,17 @@
   <script src="/js/modal.js"></script>
 
   <title>Game Collection</title>
+
+  <style>
+    .centered-message {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 65vh;
+      font-size: 24px;
+      color: #666;
+    }
+  </style>
 </head>
 
 <body>
@@ -34,105 +45,45 @@
   </header>
 
   <div class="content">
-
-    <div class="table-options">
-      <h1 class="title">Example Collection</h1>
-      <div class="button-group">
-        <button class="edit-button">Edit</button>
-        <button class="delete-button">Delete</button>
+    <% if (collection && collection.headers && collection.headers.length > 0) { %>
+      <div class="table-options">
+        <h1 class="title">Example Collection</h1>
+        <div class="button-group">
+          <button class="delete-button">Delete</button>
+        </div>
       </div>
-    </div>
 
-    <table class="mainTable">
-      <tr>
-        <th>Game Title</th>
-        <th>Genre</th>
-        <th>Platform</th>
-        <th>Release Year</th>
-        <th>Publisher</th>
-        <th>Rating</th>
-      </tr>
-      <tr>
-        <td>The Legend of Zelda: Breath of the Wild</td>
-        <td>Action-Adventure</td>
-        <td>Nintendo Switch</td>
-        <td>2017</td>
-        <td>Nintendo</td>
-        <td>10/10</td>
-      </tr>
-      <tr>
-        <td>Super Mario Odyssey</td>
-        <td>Action-Adventure/Platformer</td>
-        <td>Nintendo Switch</td>
-        <td>2017</td>
-        <td>Nintendo</td>
-        <td>9/10</td>
-      </tr>
-      <tr>
-        <td>God of War</td>
-        <td>Action-Adventure</td>
-        <td>PlayStation 4</td>
-        <td>2018</td>
-        <td>Sony Interactive Entertainment</td>
-        <td>9.5/10</td>
-      </tr>
-      <tr>
-        <td>Red Dead Redemption 2</td>
-        <td>Action-Adventure</td>
-        <td>PlayStation 4, Xbox One</td>
-        <td>2018</td>
-        <td>Rockstar Games</td>
-        <td>9.5/10</td>
-      </tr>
-      <tr>
-        <td>Assassin's Creed Valhalla</td>
-        <td>Action-Adventure, RPG</td>
-        <td>PlayStation 4, PlayStation 5, Xbox One, Xbox Series X/S</td>
-        <td>2020</td>
-        <td>Ubisoft</td>
-        <td>8/10</td>
-      </tr>
-      <tr>
-        <td>The Last of Us Part II</td>
-        <td>Action-Adventure, Survival</td>
-        <td>PlayStation 4</td>
-        <td>2020</td>
-        <td>Sony Interactive Entertainment</td>
-        <td>9.5/10</td>
-      </tr>
-      <tr>
-        <td>Cyberpunk 2077</td>
-        <td>Action, RPG</td>
-        <td>PlayStation 4, PlayStation 5, Xbox One, Xbox Series X/S, PC</td>
-        <td>2020</td>
-        <td>CD Projekt</td>
-        <td>7/10</td>
-      </tr>
-      <tr>
-        <td>The Witcher 3: Wild Hunt</td>
-        <td>Action, RPG</td>
-        <td>PlayStation 4, Xbox One, Nintendo Switch, PC</td>
-        <td>2015</td>
-        <td>CD Projekt</td>
-        <td>9.5/10</td>
-      </tr>
-      <tr>
-        <td>Animal Crossing: New Horizons</td>
-        <td>Social Simulation</td>
-        <td>Nintendo Switch</td>
-        <td>2020</td>
-        <td>Nintendo</td>
-        <td>9/10</td>
-      </tr>
-      <tr>
-        <td>Uncharted 4: A Thief's End</td>
-        <td>Action-Adventure</td>
-        <td>PlayStation 4</td>
-        <td>2016</td>
-        <td>Sony Interactive Entertainment</td>
-        <td>9.5/10</td>
-      </tr>
-    </table>
+      <table class="mainTable">
+        <thead>
+        <tr>
+          <% collection.headers.forEach(header => { %>
+            <th><%= header %></th>
+          <% }) %>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% collection.data.forEach(row => { %>
+          <tr>
+            <% collection.headers.forEach(header => { %>
+              <td data-label="<%= header %>">
+                <span><%= row[header.toLowerCase().replace(/ /g, '')] %></span>
+                <input type="text" style="display:none;" value="<%= row[header.toLowerCase().replace(/ /g, '')] %>">
+              </td>
+            <% }) %>
+            <td>
+              <button class="edit-button" onclick="editRow(this)">Edit</button>
+              <button class="save-button" onclick="saveRow(this)" style="display:none;">Save</button>
+            </td>
+          </tr>
+        <% }) %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <div class="centered-message">
+        Collection not available
+      </div>
+    <% } %>
 
     <!--Include new collection modal-->
     <%- include('../templates/new-collection-modal.html') %>
