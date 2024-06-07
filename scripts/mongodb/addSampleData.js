@@ -2,10 +2,10 @@ const dotenv = require("dotenv");
 dotenv.config({ path: '../../.env' });
 
 
-const {createCollection} = require('./createCollection');
-const {createCollectionFromTemplate} = require('./createCollectionFromTemplate');
-const {addCollectionEntry} = require('./addCollectionEntry');
-const {connectToDb, closeConnection} = require("../dbConnections/connectToMongoDB");
+const createCollection = require('../../server/collections/createCollection');
+const createCollectionFromTemplate = require('../../server/collections/createCollectionFromTemplate');
+const addCollectionEntry = require('../../server/collections/addCollectionEntry');
+const {connectToDb, closeConnection} = require("../../server/dbConnections/connectToMongoDB");
 
 
 const wineData = [
