@@ -4,7 +4,7 @@ const addCollectionEntry = async (req, res) => {
 
     const {collectionName, entry} = req.body;
 
-    const username = req.session.username;
+    const username = 'Lorack2';
 
     try {
         const db = await connectToDb();

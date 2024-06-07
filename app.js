@@ -69,6 +69,14 @@ app.get('/home', (req, res) => {
     res.render('pages/home');
 });
 
+app.post('/create-collection', createCollection, function(req, res) {
+
+});
+
+app.post('/add-collection-entry', addCollectionEntry, function(req, res) {
+
+});
+
 app.get('/settings', (req, res) => {
     res.render('pages/account-settings');
 });

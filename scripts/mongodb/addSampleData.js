@@ -1,13 +1,6 @@
 const dotenv = require("dotenv");
 dotenv.config({ path: '../../.env' });
 
-
-const createCollection = require('../../server/collections/createCollection');
-const createCollectionFromTemplate = require('../../server/collections/createCollectionFromTemplate');
-const addCollectionEntry = require('../../server/collections/addCollectionEntry');
-const {connectToDb, closeConnection} = require("../../server/dbConnections/connectToMongoDB");
-
-
 const wineData = [
     { name: 'Chardonnay', origin: 'France', year: 2018, price: 20 },
     { name: 'Merlot', origin: 'Italy', year: 2017, price: 25 },
@@ -49,31 +42,88 @@ const videoGameData = [
 
 async function addSampleData() {
     try {
+        const wineCollectionData = {
+            collectionName: 'wine',
+            columns: ['name', 'origin', 'year', 'price']
+        };
 
-        const db = await connectToDb();
+        let response = await fetch('http://localhost:8000/create-collection', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(wineCollectionData)
+        });
 
-        await createCollection('wine', ['name', 'origin', 'year', 'price'], 'User1');
-        await createCollection('cars', ['brand', 'model', 'year', 'price'], 'User2');
+        if (!response.ok) throw new Error('Failed to create wine collection');
+
+        const carCollectionData = {
+            collectionName: 'cars',
+            columns: ['brand', 'model', 'year', 'price']
+        };
+
+        response = await fetch('http://localhost:8000/create-collection', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(carCollectionData)
+        });
+
+        if (!response.ok) throw new Error('Failed to create cars collection');
 
         for (const entry of wineData) {
-            await addCollectionEntry('wine', entry, 'User1');
+            const response = await fetch('http://localhost:8000/add-collection-entry', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    collectionName: 'wine',
+                    entry: entry
+                })
+            });
+
+            if (!response.ok) {
+                const responseBody = await response.text();
+                throw new Error(`Failed to add wine data entry. Status: ${response.status}, Body: ${responseBody}`);
+            }
         }
 
         for (const entry of carData) {
-            await addCollectionEntry('cars', entry, 'User2');
+            response = await fetch('http://localhost:8000/add-collection-entry', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    collectionName: 'cars',
+                    entry: entry
+                })
+            });
+
+            if (!response.ok) throw new Error('Failed to add car data entry');
         }
 
-        await createCollectionFromTemplate('video games', 'User3');
+        response = await fetch('http://localhost:8000/create-collection-from-template', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                collectionName: 'video games',
+                templateName: 'video games'
+            })
+        });
+
+        if (!response.ok) throw new Error('Failed to create video games collection from template');
 
         for (const entry of videoGameData) {
-            await addCollectionEntry('video games', entry, 'User3', );
+            response = await fetch('http://localhost:8000/add-collection-entry', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    collectionName: 'video games',
+                    entry: entry
+                })
+            });
+
+            if (!response.ok) throw new Error('Failed to add video game data entry');
         }
 
         console.log('Sample data added successfully');
     } catch (error) {
         console.error(`Failed to add sample data: ${error}`);
-    } finally {
-        await closeConnection();
     }
 }
 

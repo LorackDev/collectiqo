@@ -18,7 +18,20 @@ const createCollectionFromTemplate = async (req, res) => {
             return;
         }
 
-        await createCollection(collectionName, template.columns);
+        const templateCollectionData = {
+            collectionName: template.name,
+            columns: template.columns
+        };
+
+        let body = JSON.stringify(templateCollectionData)
+
+        let response = await fetch('http://localhost:8000/create-collection', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: body
+        });
+
+        if (!response.ok) throw new Error('Failed to create template collection');
 
         res.status(200).json({ message: 'Collection created successfully from template' });
     } catch (err) {
