@@ -52,9 +52,8 @@
   ////////// Main content
   //////////////////// */
   .content {
-    height: calc(100vh - 50px);
-    padding: 0; /* Reset padding */
-    margin-top: 2.5vh;
+    height: 50px;
+    padding: 50px 0 0;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -66,14 +65,39 @@
   //////////////////// */
   table {
     width: 95%;
-    margin-top: 20px;
+    margin-top: 25px;
     background-color: #d7d7d7;
     overflow: hidden;
     border-spacing: 0;
     border-collapse: separate;
     border-radius: 10px;
   }
-  
+
+.table-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.title {
+  margin-left: 3vh;
+}
+
+.button-group {
+  display: flex; gap: 10px; margin-right: 3vh; }
+
+.edit-button {
+  padding: 10px 20px; margin-right: 10px; border: none; border-radius: 10px; background-color: #fffc58; color: black; font-weight: bold; cursor: pointer; }
+
+.delete-button {
+  padding: 10px 20px; margin-right: 10px; border: none; border-radius: 10px; background-color: #f85656; font-weight: bold; color: black; cursor: pointer;}
+
   th, td {
     padding: 10px;
     text-align: left;
