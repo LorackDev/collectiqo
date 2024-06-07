@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://kit.fontawesome.com/433b24fc29.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/home.css">
+  <link rel="stylesheet" href="/css/modal.css">
+  <link rel="stylesheet" href="/css/templates/sidebar.css">
+  <link rel="stylesheet" href="/css/templates/new-collection-modal.css">
+  <script src="/js/home-navigation.js"></script>
+  <script src="/js/sidebar.js"></script>
+  <script src="/js/calcTH.js"></script>
+  <script src="/js/modal.js"></script>
+
+  <title>Game Collection</title>
+
+  <style>
+    .centered-message {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 65vh;
+      font-size: 24px;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+
+<!--Include home sidebar-->
+<%- include('../templates/sidebar.ejs') %>
+
+<div class="container">
+  <header class="header">
+    <button class="btn-toggle"><i class="fa-solid fa-bars"></i></button>
+  </header>
+
+
+  <div class="content">
+
+
+    <% if (collections && collections.headers && collections.headers.length > 0) { %>
+      <div class="table-options">
+        <h1 class="title">Example Collection</h1>
+        <div class="button-group">
+          <button class="delete-button">Delete</button>
+        </div>
+      </div>
+
+      <table class="mainTable">
+        <thead>
+        <tr>
+          <% collections.headers.forEach(header => { %>
+            <th><%= header %></th>
+          <% }) %>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% collection.data.forEach(row => { %>
+          <tr>
+            <% collection.headers.forEach(header => { %>
+              <td data-label="<%= header %>">
+                <span><%= row[header.toLowerCase().replace(/ /g, '')] %></span>
+                <input type="text" style="display:none;" value="<%= row[header.toLowerCase().replace(/ /g, '')] %>">
+              </td>
+            <% }) %>
+            <td>
+              <button class="edit-button" onclick="editRow(this)">Edit</button>
+              <button class="save-button" onclick="saveRow(this)" style="display:none;">Save</button>
+            </td>
+          </tr>
+        <% }) %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <div class="centered-message">
+        Collection not available
+      </div>
+    <% } %>
+
+
+    <%- include('../templates/new-collection-modal.html') %>
+
+  </div>
+</div>
+
+
+</body>
+
+</html>

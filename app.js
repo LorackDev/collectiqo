@@ -49,11 +49,13 @@ app.get('/login', (req, res) => {
     res.render('pages/login');
 });
 
-app.post('/login', loginHandler, function(req, res) {
-    req.session.username = req.body.username;
-    console.log(req.session.username);
-    res.redirect('pages/login')
-})
+app.post('/login', loginHandler, (req, res) => {
+    if (req.session.username) {
+        res.redirect('/home'); // Redirect to home after successful login
+    } else {
+        res.redirect('/login'); // Redirect back to login if session is not set
+    }
+});
 
 // Route for Sign-Up
 app.get('/signup', (req, res) => {
@@ -64,10 +66,28 @@ app.post('/signup', signUpHandler, function(req, res) {
     res.render('/pages/home')
 })
 
-// Route for Sign-Up
 app.get('/home', (req, res) => {
-    res.render('pages/home', { collection: null });
+    if (!req.session.username) {
+        return res.redirect('/login'); // Redirect to login if no session username
+    }
+    res.render('pages/home', { username: req.session.username }); // Pass the session username to the template
 });
+
+/*
+app.get('/home/:username', async (req, res) => {
+    const username = req.params.username;
+    if (req.session.username !== username) {
+        return res.status(403).send('Unauthorized access');
+    }
+    try {
+        const collectionNames = await getCollectionNames(username);
+        res.render('pages/home', { username: username, collections: collectionNames });
+    } catch (err) {
+        console.error(err);
+        res.render('pages/home', { username: username });
+    }
+});
+*/
 
 app.post('/create-collection', createCollection, function(req, res) {
 

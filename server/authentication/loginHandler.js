@@ -9,6 +9,7 @@ const loginHandler = async (req, res) => {
         const user = handleResults(results, res);
 
         if (!user) {
+            res.status(401).json({ message: 'User not found' });
             return;
         }
 
@@ -17,6 +18,8 @@ const loginHandler = async (req, res) => {
             res.status(401).json({ message: 'Incorrect password' });
             return;
         }
+
+        req.session.username = user.username;
         res.status(200).json({ message: 'Login successful', userId: user.id });
     } catch (error) {
         res.status(500).json({ message: 'An error occurred' });
