@@ -6,12 +6,12 @@ Diese Plattform soll benutzerfreundlich, flexibel und skalierbar sein, um eine b
 
 % Wir könnten hier sicherlich auch das Wording Meilensteine nutzen, finde ich besser als Teilergebnisse
 \subsection{Teilergebnisse}\label{subsec:teilergebnisses}
-Die Teilergebnisse lassen sich aus dem Konzept in ~\ref{subsec:Designphase} ableiten.
+Die Teilergebnisse lassen sich aus dem Konzept in Kapitel~\ref{sec:entwurf-und-design} ableiten.
 Grundlegende Teilergebnisse sind die Erstellung des Frontends, die Erstellung des Backends und die Einrichtung einer Datenbank.
 Neben diesen Zielen, die sich aus der verwendeten Architektur ergeben, ist ein weiteres Teilergebnis das Hosting der Website und der Datenbank.
 Für jedes Teilergebnis sind Voranalysen notwendig, da die Programmierung einer Webanwendung für das gesamte Team neu ist.
 Als Ausgangspunkt für die Analyse diente GitHub Eduction, das mit dem Kurs Intro to Web Development einige Tools für die Entwicklung von Websites zur Verfügung stellt.
-Die in der Analyse ausgewählten Tools sind in ~\ref{subsec:Tools} aufgelistet.
+Die in der Analyse ausgewählten Tools sind in Abschnitt~\ref{subsec:Tools} aufgelistet.
 
 Die Teilergebnisse sind eng miteinander verknüpft.
 Das Hosting der Website und der Datenbank sind von entscheidender Bedeutung.
@@ -23,7 +23,7 @@ Während die drei Bereiche einzelne Teilergebnisse darstellen, erfolgt der Groß
 
 Das Frontend ist alles, womit der Benutzer letztendlich auf der Website interagieren kann.
 Beispiele hierfür sind die Login-Seite, die Ansicht der verschiedenen Sammlungen und die Seite zur Erstellung von Vorlagen.
-Im Anhang finden sich Mockups, die während des anfänglichen Brainstormings der Projektidee entstanden sind.
+Im Anhang~\ref{subsec:Mockups} finden sich Mockups, die während des anfänglichen Brainstormings der Projektidee entstanden sind.
 Das Backend ist für die Kommunikation zwischen dem Frontend und der Datenbank verantwortlich.
 Es soll die Daten aus der Datenbank an das Frontend zur Anzeige weiterleiten.
 Außerdem soll es Änderungen an den Daten, die in der Benutzeroberfläche vorgenommen werden, an die Datenbank kommunizieren.
@@ -34,7 +34,18 @@ Die Datenbankform der Sammlungsvorlagen wird hier gespeichert.
 Es muss so konfiguriert sein, dass das dynamische Hinzufügen und Löschen ganzer Tabellen möglich ist.
 % Vllt mal ein Mockup für ein Template erstellen
 
-\subsection{Definitions of done}\label{subsec:definitions-of-done}
+\newpage
+\subsection{Projektsteckbrief}\label{subsec:projektsteckbrief}
+Der nachfolgend abgebildete Projektsteckbrief dient einer kurzen, übersichtlichen Veranschaulichung der wesentlichen Informationen dieses Projekts.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{projektsteckbrief}
+    \caption{Projektsteckbrief}\label{fig:projektsteckbrief}
+\end{figure}
+
+\newpage
+\subsection{Definitions of Done}\label{subsec:definitions-of-done}
 
 \setlist{nolistsep}
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
@@ -44,7 +55,7 @@ Es muss so konfiguriert sein, dass das dynamische Hinzufügen und Löschen ganze
 Im Rahmen des Projekts wurden die folgenden Definitions of Done festgelegt, um den erfolgreichen Abschluss der verschiedenen Projektaufgaben und -phasen sicherzustellen:
 
     \begin{tabularx}{\textwidth}{L R}
-        \begin{enumerate}[left=0pt,label=\arabic*.]
+        \begin{enumerate}[left=0pt,label=\arabic*.,itemsep=0.4cm]
             \small
             \item \textbf{Die Idee des Projektes ist erstellt:}
             \begin{itemize}[label=--]
@@ -74,23 +85,23 @@ Im Rahmen des Projekts wurden die folgenden Definitions of Done festgelegt, um d
                 \item Alle Teammitglieder haben Zugang und die notwendige Schulung für die genutzten Werkzeuge erhalten.
             \end{itemize}
 
+        \end{enumerate}
+        &
+        \begin{enumerate}[left=0pt,label=\arabic*.,itemsep=0.4cm]
+            \setcounter{enumi}{5}
+            \small
+
             \item \textbf{Backend-System ist implementiert:}
             \begin{itemize}[label=--]
                 \item Das Backend-System ist vollständig entwickelt und funktionsfähig.
                 \item Alle geplanten Funktionen und Schnittstellen sind implementiert und getestet.
             \end{itemize}
 
-
-
-        \end{enumerate}
-        &
-        \begin{enumerate}[left=0pt,label=\arabic*.]
-            \setcounter{enumi}{6}
-            \small
             \item \textbf{Frontend-System ist implementiert:}
             \begin{itemize}[label=--]
                 \item Das Frontend-System ist vollständig entwickelt und funktionsfähig, als auch benutzerfreundlich.
             \end{itemize}
+
             \item \textbf{Datenbanksystem ist implementiert:}
             \begin{itemize}[label=--]
                 \item Die Datenbank ist eingerichtet, strukturiert und alle notwendigen Tabellen und Beziehungen sind vorhanden.
@@ -112,24 +123,26 @@ Im Rahmen des Projekts wurden die folgenden Definitions of Done festgelegt, um d
                 \item Diese Templates sind funktional und ansprechend gestaltet.
             \end{itemize}
 
+        \end{enumerate}
+    \end{tabularx}
+
+    \newpage
+    \vspace{0.5cm}
+%ToDo RS: Offset von Punkt 12 und 15 untersuchen, warum die Zahl jeweils vor dem Spiegelstrich steht
+    \begin{tabularx}{\textwidth}{L R}
+        \begin{enumerate}[left=0pt,label=\arabic*.,itemsep=0.4cm]]
+            \setcounter{enumi}{11}
+            \small
             \item \textbf{Benutzer kann erfolgreich eigene Templates anlegen:}
             \begin{itemize}[label=--]
                 \item Nutzer haben die Möglichkeit, eigene Templates für ihre Sammlungen zu erstellen und zu speichern.
             \end{itemize}
+
             \item \textbf{Benutzerrechte-Einstellungen sind passend:}
             \begin{itemize}[label=--]
                 \item Benutzerrechte und -rollen sind definiert und korrekt implementiert.
                 \item Die Plattform stellt sicher, dass Benutzer nur auf die ihnen zugewiesenen Bereiche und Funktionen zugreifen können.
             \end{itemize}
-        \end{enumerate}
-    \end{tabularx}
-
-
-    \vspace{0.5cm}
-    \begin{tabularx}{\textwidth}{L R}
-        \begin{enumerate}[left=0pt,label=\arabic*.]
-            \setcounter{enumi}{13}
-            \small
 
             \item \textbf{Alle notwendigen Tests erfolgreich:}
             \begin{itemize}[label=--]
@@ -137,16 +150,16 @@ Im Rahmen des Projekts wurden die folgenden Definitions of Done festgelegt, um d
                 \item Die Testergebnisse sind dokumentiert und alle kritischen Fehler sind behoben.
             \end{itemize}
 
+        \end{enumerate}
+        &
+        \begin{enumerate}[left=0pt,label=\arabic*.,itemsep=0.4cm]]
+            \setcounter{enumi}{14}
+            \small
             \item \textbf{Projektdokumentation ist erstellt:}
             \begin{itemize}[label=--]
                 \item Eine vollständige und detaillierte Dokumentation des Projekts ist vorhanden.
             \end{itemize}
 
-        \end{enumerate}
-        &
-        \begin{enumerate}[left=0pt,label=\arabic*.]
-            \setcounter{enumi}{16}
-            \small
             \item \textbf{Präsentation fertiggestellt:}
             \begin{itemize}[label=--]
                 \item Eine umfassende Präsentation ist vorbereitet, die alle wichtigen Funktionen und Vorteile der Plattform darstellt.
@@ -160,63 +173,68 @@ Im Rahmen des Projekts wurden die folgenden Definitions of Done festgelegt, um d
         \end{enumerate}
     \end{tabularx}
 
-\newpage
-
-
-\begin{tabularx}{\textwidth}{L R}
-    \begin{enumerate}[left=0pt,label=\arabic*.]
-        \setcounter{enumi}{11}
-        \small
-        \item \textbf{Benutzer kann erfolgreich eigene Templates anlegen:}
-        \begin{itemize}[label=--]
-            \item Nutzer haben die Möglichkeit, eigene Templates für ihre Sammlungen zu erstellen und zu speichern.
-        \end{itemize}
-
-        \item \textbf{Benutzerrechte-Einstellungen sind passend:}
-        \begin{itemize}[label=--]
-            \item Benutzerrechte und -rollen sind definiert und korrekt implementiert.
-            \item Die Plattform stellt sicher, dass Benutzer nur auf die ihnen zugewiesenen Bereiche und Funktionen zugreifen können.
-        \end{itemize}
-
-        \item \textbf{Alle notwendigen Tests erfolgreich:}
-        \begin{itemize}[label=--]
-            \item Alle geplanten Tests (Unit-Tests, Integrationstests, Systemtests, Usability-Tests) sind abgeschlossen.
-            \item Die Testergebnisse sind dokumentiert und alle kritischen Fehler sind behoben.
-        \end{itemize}
-
-        \item \textbf{Projektdokumentation ist erstellt:}
-        \begin{itemize}[label=--]
-            \item Eine vollständige und detaillierte Dokumentation des Projekts ist vorhanden.
-        \end{itemize}
-
-        \item \textbf{Produktpräsentation fertiggestellt:}
-        \begin{itemize}[label=--]
-            \item Eine umfassende Produktpräsentation ist vorbereitet, die alle wichtigen Funktionen und Vorteile der Plattform darstellt.
-        \end{itemize}
-
-        \item \textbf{Projektbericht + Präsentation (Abgabe 2):}
-        \begin{itemize}[label=--]
-            \item Der abschließende Projektbericht ist fertiggestellt und eingereicht.
-            \item Die Präsentation wurde erfolgreich fertiggestellt und durchgeführt.
-        \end{itemize}
-    \end{enumerate}
-    &
-\end{tabularx}
+%ToDo RS: Entfernung der nachfolgend auskommentieren Passage (Doppelungen des 2ten Drittel von Anikas Tabelle)
+%\newpage
+%\begin{tabularx}{\textwidth}{L R}
+%    \begin{enumerate}[left=0pt,label=\arabic*.]
+%        \setcounter{enumi}{11}
+%       \small
+%        \item \textbf{Benutzer kann erfolgreich eigene Templates anlegen:}
+%       \begin{itemize}[label=--]
+%           \item Nutzer haben die Möglichkeit, eigene Templates für ihre Sammlungen zu erstellen und zu speichern.
+%        \end{itemize}
+%
+%        \item \textbf{Benutzerrechte-Einstellungen sind passend:}
+%        \begin{itemize}[label=--]
+%            \item Benutzerrechte und -rollen sind definiert und korrekt implementiert.
+%            \item Die Plattform stellt sicher, dass Benutzer nur auf die ihnen zugewiesenen Bereiche und Funktionen zugreifen können.
+%        \end{itemize}
+%
+%        \item \textbf{Alle notwendigen Tests erfolgreich:}
+%        \begin{itemize}[label=--]
+%            \item Alle geplanten Tests (Unit-Tests, Integrationstests, Systemtests, Usability-Tests) sind abgeschlossen.
+%            \item Die Testergebnisse sind dokumentiert und alle kritischen Fehler sind behoben.
+%        \end{itemize}
+%
+%        \item \textbf{Projektdokumentation ist erstellt:}
+%        \begin{itemize}[label=--]
+%            \item Eine vollständige und detaillierte Dokumentation des Projekts ist vorhanden.
+%        \end{itemize}
+%
+%        \item \textbf{Produktpräsentation fertiggestellt:}
+%        \begin{itemize}[label=--]
+%            \item Eine umfassende Produktpräsentation ist vorbereitet, die alle wichtigen Funktionen und Vorteile der Plattform darstellt.
+%        \end{itemize}
+%
+%        \item \textbf{Projektbericht + Präsentation (Abgabe 2):}
+%        \begin{itemize}[label=--]
+%            \item Der abschließende Projektbericht ist fertiggestellt und eingereicht.
+%            \item Die Präsentation wurde erfolgreich fertiggestellt und durchgeführt.
+%        \end{itemize}
+%    \end{enumerate}
+%    &
+%\end{tabularx}
 
 
 \subsection{Projektstrukturplan}\label{subsec:projektstrukturplan}
-Lorenz ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum.
-Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-Lorenz ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum.
-Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-Lorenz ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum.
-Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1.0\textwidth]{psp}
     \caption{Projektstrukturplan}\label{fig:projektstrukturplan}
 \end{figure}
+
+Der abgebildete Projektstrukturplan unterteilt das Projekt in sechs Teilaufgaben und insgesamt 23 Arbeitspakete.
+Er dient als Grundlage zur Erstellung eines Gantt-Diagramms, welches in Abschnitt~\ref{subsec:ablaufplan} den zeitlichen Aspekt des Projekts aufzeigt.
+
+Als erste Teilaufgabe enthält die Projektplanung neben der Anforderungsanalyse inklusive Mockups, die Planung und das Management des Projekts.
+Die technischen Umsetzungsarbeiten sind in den darauffolgenden drei Teilaufgaben beschrieben.
+Interaktionen mit den Plattform-Benutzern erfolgen mittels grafischer Ein- und Ausgabe basierend auf der Frontend-Entwicklung.
+Hierzu wird mittels einheitlichem Design eine responsive Weboberfläche erstellt.
+In der Backend-Entwicklung findet die Authentifizierung und Autorisierung der Benutzer unter Verwendung von Verschlüsselungsmethoden Anwendung.
+Das Backend dient zudem als Schnittstelle zum Frontend und dem Datenbanksystem.
+Das Datenbanksystem umfasst das Aufstellen des Datenmodells, Auswahl des Datenbankmanagementsystems und Aufbau derer Struktur inklusive der bereits vordefinierten Sammlungskategorieren.
+Teilaufgabe 5, Integration und Deployment, bildet Testing, den Einsatz von Docker als Containerlösung und Continuous Integration \& Deployment ab.
+Schlussendlich wird im letzten Schritt die fertige Projektdokumentation sowie eine Präsentation erstellt.
+
+
