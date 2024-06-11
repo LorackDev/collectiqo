@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const { queryDatabase, handleResults } = require('../dbConnections/connectToMYSQL');
 
 const loginHandler = async (req, res) => {

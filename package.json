@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "NODE_ENV=test jest"
+    "test": "NODE_ENV=test jest",
+    "start": "node server.js",
+    "postinstall": "npm rebuild bcrypt --build-from-source"
   },
   "repository": {
     "type": "git",
@@ -14,7 +16,7 @@
   "dependencies": {
     "@jest/globals": "^29.7.0",
     "axios": "^1.6.8",
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "ejs-lint": "^2.0.0",

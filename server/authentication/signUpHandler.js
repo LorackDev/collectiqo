@@ -1,6 +1,6 @@
 // signUpHandler.js
 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const { queryDatabase, handleResults } = require('../dbConnections/connectToMYSQL');
 
 const signupHandler = async (req, res) => {

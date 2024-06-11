@@ -1,17 +1,39 @@
+version: '3'
 services:
   mysql:
-    image: lorackdev/collectiqo-db:1.0
+    image: lorackdev/clq-mysql:latest
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: password
     ports:
-      - "3307:3306"
+      - "3307:3307"
+    networks:
+      - app-network
   mongodb:
-    image: mongo:latest
+    image: lorackdev/clq-mongodb:latest
     restart: always
     ports:
       - "27017:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
+    networks:
+      - app-network
+  node:
+    image: lorackdev/clq-app:latest
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    depends_on:
+      - mysql
+      - mongodb
+    env_file:
+      - .env
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
