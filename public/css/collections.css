@@ -1,0 +1,129 @@
+/* ////////////////////
+////////// CSS Variables
+//////////////////// */
+:root {
+    --padding: 0.7rem;
+    --margin-left: 0.5rem;
+    --smoky-black: #12100e;
+    --pine-tree: #98a320;
+    --blue: #1672c8;
+    --white: #ffffff;
+    --font-size: 1.2rem;
+  }
+  
+  /* ////////////////////
+  ////////// General Styles
+  //////////////////// */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
+  
+  body {
+    font-family: "Roboto", sans-serif;
+  }
+  
+  /* ////////////////////
+  ////////// Main container
+  //////////////////// */
+  .container {
+    width: auto;
+    min-height: 100vh;
+    transition: margin-left 0.3s linear;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ////////////////////
+  ////////// HEADER
+  //////////////////// */
+  .header {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: var(--blue);
+  }
+  
+  /* ////////////////////
+  ////////// Main content
+  //////////////////// */
+  .content {
+    height: 50px;
+    padding: 50px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+  }
+
+  /* ////////////////////
+  ////////// Table
+  //////////////////// */
+  table {
+    width: 95%;
+    margin-top: 25px;
+    background-color: #d7d7d7;
+    overflow: hidden;
+    border-spacing: 0;
+    border-collapse: separate;
+    border-radius: 10px;
+  }
+
+.table-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.title {
+  margin-left: 3vh;
+}
+
+.button-group {
+  display: flex; gap: 10px; margin-right: 3vh; }
+
+.edit-button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: #fffc58;
+  color: black;
+  font-weight: bold;
+  cursor: pointer; }
+
+.delete-button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: #f85656;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;}
+
+  th, td {
+    padding: 10px;
+    text-align: left;
+    height: 50px;
+    overflow: hidden;
+  }
+
+  th {
+    background-color: #1672c8;
+    font-size: 20px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2; /* Set a light blue background color for even rows */
+  }

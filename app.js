@@ -16,8 +16,8 @@ const signUpHandler = require('./server/authentication/signUpHandler');
 const addCollectionEntry = require('./server/collections/addCollectionEntry');
 const createCollection = require('./server/collections/createCollection');
 const createCollectionFromTemplate = require('./server/collections/createCollectionFromTemplate');
+const getCollectionNames = require('./server/collections/getCollectionNames');
 const getCollectionData = require('./server/collections/getCollectionData');
-
 
 // Middleware to parse JSON bodies
 app.use(session({
@@ -26,6 +26,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: false }
 }));
+app.use(express.urlencoded({ extended: true })); // Added middleware to parse URL-encoded bodies
 app.use(express.json());
 app.use(express.static("public"));
 app.use("/page", express.static(__dirname + "/views/pages"));
@@ -66,12 +67,20 @@ app.post('/signup', signUpHandler, function(req, res) {
     res.render('/pages/home')
 })
 
-app.get('/home', (req, res) => {
+// Route for user's home page to show username and collection names
+app.get('/home', async (req, res) => {
     if (!req.session.username) {
-        return res.redirect('/login'); // Redirect to login if no session username
+        return res.redirect('/login');
     }
-    res.render('pages/home', { username: req.session.username }); // Pass the session username to the template
+    try {
+        const collectionNames = await getCollectionNames(req.session.username);
+        res.render('pages/home', { username: req.session.username, collections: collectionNames });
+    } catch (err) {
+        console.error(err);
+        res.render('pages/home', { username: req.session.username, collections: [] });
+    }
 });
+
 
 /*
 app.get('/home/:username', async (req, res) => {

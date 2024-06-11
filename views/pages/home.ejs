@@ -21,26 +21,38 @@
   <script src="/js/modal.js"></script>
 
   <title>Home</title>
-  </head>
+</head>
 
-  <body>
+<body>
 
-  <!--Include home sidebar-->
-  <%- include('../templates/sidebar.ejs') %>
+<!--Include home sidebar-->
+<%- include('../templates/sidebar.ejs') %>
 
-  <div class="container">
-    <header class="header">
-      <button class="btn-toggle"><i class="fa-solid fa-bars"></i></button>
-    </header>
+<header class="header">
+  <button class="btn-toggle"><i class="fa-solid fa-bars"></i></button>
+</header>
 
-    <h1>Welcome, <%=username%>!</h1>
-    <h2>Your Collections:</h2>
+<div class="content-container">
 
-      <%- include('../templates/new-collection-modal.html') %>
+  <div class="content">
+    <h1>Welcome, <%= username %></h1>
+    <% if (collections && collections.length > 0) { %>
+      <h2>Your Collections:</h2>
+      <ul>
+        <% collections.forEach(collection => { %>
+          <li><%= collection %></li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <div class="centered-message">
+        No collections found.
+      </div>
+    <% } %>
 
-    </div>
-
+    <!--Include new collection modal-->
+    <%- include('../templates/new-collection-modal.html') %>
+  </div>
+</div>
 
 </body>
-
 </html>
