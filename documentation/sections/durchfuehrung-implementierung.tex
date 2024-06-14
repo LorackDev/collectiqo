@@ -225,6 +225,25 @@ Nach anfänglichen Problemen mit Umgebungsvariablen, die nicht korrekt geladen w
 Es musste recherchiert werden, wie die Backendfunktionen seitens des Frontends aufgerufen werden, welches durch HTTP Requests realisiert wurde, die die Routen in der app.js ansprechen.
 Da sich die Entwickler des Front- und Backends während der getrennten Entwicklung regelmäßig abgesprochen haben, konnten die Funktionen schnell miteinander verbunden werden.
 
+Problematischer wurde die Verbindung bei Funktionen, die mit der MongoDB interagieren und für das Erstellen und Bearbeiten von Sammlungen verantwortlich sind.
+Eine Hürde war hierbei herauszufinden, wie Code in einer NodeJS Applikation gedebugt wird, dass Breakpoints auch genutzt werden, wenn die Funktion nur über eine Route in der app-js aufgerufen wird.
+Es war dem Team nicht sofort klar, das die gesamte app.js im Debug Modus gestartet werden muss, und nicht nur die zu testende Funktion.
+Mit Debugging konnten nun die Fehler herausgestellt werden, die die Verbindung verhinderten.
+Neben einer falschen Extraktion der Daten aus dem Frontend lag das Problem an einer fehlerhaften Implementierung der Username Session Variable.
+Nach der Lösung dieses Problems konnten nun die Sammlungen eines Users angezeigt werden.
+
+Als Nächstes wurde die Funktion implementiert, dass ein User eine Sammlung über die Benutzeroberfläche erstellen kann.
+Aktuell wird nur das Anlegen von Sammlungen über Vorlagen unterstützt, backendfunktionen für das Anlegen von komplett selbsterstellten Sammlungen existieren jedoch bereits.
+
+Da nun Sammlungen angelegt werden können und diese auch im Frontend angezeigt werden, wurde als Nächstes die Funktion implementiert, dass diese Sammlungen auch gelöscht werden können.
+Als letzte Verbindung zwischen Front- und Backend wurde implementiert, das User die Inhalte ihrer Sammlungen durch das Frontend einsehen können.
+
+Die Schnittstelle von Front- und Backend findet sich in der app.js, in welcher die Routen definiert sind.
+Einen Ausschnitt aus der app.js findet sich im folgenden Code:
+\vspace{1em}
+\lstinputlisting[language=JavaScript,firstline=39, lastline=83, label={lst:appjs}]{../app.js}
+\vspace{1em}
+\newpage
 \subsection{Implementieren von Tests}\label{subsec:implementieren-von-tests}
 
 Um Teile des Backends zu testen, bevor diese mit dem Frontend verbunden werden konnten, wurde versucht Unit-Tests zu schreiben.
