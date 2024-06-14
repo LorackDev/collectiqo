@@ -62,19 +62,20 @@ Der erste Schritt bei der Backend entwicklung war es, einen geeigneten Startpunk
 Hierbei wurde entschieden, dass zuerst eine Implementierung der Datenbankverbindung erfolgen sollte, da diese als Grundlage für die weitere Entwicklung dient.
 Dies wurde mit der Bibliothek mysql2 realisiert, welche eine erweiterte Funktionalität gegenüber der Standardbibliothek bietet und diverse Probleme behebt.
 Diese implementierung war erst möglich, nachdem die Grundstruktur der Datenbank aufgesetzt wurde.
-Einen Einblick in den Code gibt Listing\ref{lst:connecttomysql}.
-
-\lstinputlisting[language=JavaScript,label={lst:connecttomysql}]{../server/dbConnections/connectToMYSQL.js}
-
+Einen Einblick gibt der folgende Code:
+\vspace{1em}
+\lstinputlisting[language=JavaScript,label={lst:mysqlconnection}]{../server/dbConnections/connectToMYSQL.js}
+\vspace{1em}
+\newpage
 Als Nächstes wurde sich dazu entschieden, ein einfaches Sign Up und Login System zu programmieren.
 Hierbei wurde auf die Bibliothek bcrypt zurückgegriffen, welche das Hashen von Passwörtern erleichtert.
 Die SQL queries, die hier genutzt werden, wurden ebenfalls mit der mysql2 Bibliothek realisiert.
 Die einzigen Nutzerdaten, die hierbei gespeichert werden, sind der Username, die E-Mail und das Passwort.
 Beim Login wurde darauf geachtet, das Nutzer Username und E-Mail benutzen können, um sich einzuloggen.
-Ein Einblick in den Code gibt Listing\ref{lst:login}.
-
+Einen Einblick gibt der folgende Code:
+\vspace{1em}
 \lstinputlisting[languange=JavaScript,label={lst:login}]{../server/authentication/loginHandler.js}
-
+\vspace{1em}
 Nun stellte sich die Frage, wie es möglich ist, dass Nutzer nur auf ihre eigenen Sammlungen zugreifen können.
 Beim Recherchieren sind wir auf das Konzept von Sessions gestoßen und wollten diese ausprobieren.
 Die erste Anwendung fanden Sessions im Speichern des Usernamens in einer Session Variable, nachdem der User sich angemeldet hat.
@@ -87,9 +88,9 @@ Nur das Anlegen von Sammlungen reicht natürlich nicht, weshalb weitere Funktion
 Hierzu zählen das Löschen von Sammlungen, das Hinzufügen von Items zu Sammlungen und das Löschen von Items aus Sammlungen.
 Außerdem wurde eine separate Funktion implementiert, die das Erstellen einer Sammlung direkt von einem Template aus ermöglicht.
 Das Hinzufügen von Daten in eine existierende Sammlung wird mit dem folgenden Code ermöglicht:
-
+\vspace{1em}
 \lstinputlisting[language=JavaScript, label={lst:addCollectionEntry}]{../server/collections/addCollectionEntry.js}
-
+\vspace{1em}
 Während der Entwicklung des Backends kam es jedoch auch des Öfteren zu Herausforderungen.
 Eine dieser Stellen war der Umgang mit Docker Containern.
 Ein gewisses Grundverständnis war vorhanden, doch an praktischer Erfahrung fehlte es dem Team.
@@ -101,7 +102,16 @@ Am Ende sah die Docker-Compose Datei wie in Listing~\ref{lst:docker-compose} aus
 Die Images für die beiden Datenbanken sind selbst erstellt, auf der Grundlage von den offiziellen MongoDB und MySQL Images.
 Diese beinhalten beispieleinträge für diverse Sammlungen verschiedener Nutzer, bereits angelegte Testnutzer und die Datenbankstruktur inklusive der Templates für die Sammlungen.
 
+\vspace{1em}
 \lstinputlisting[language=docker-compose, label={lst:docker-compose}]{../docker-compose.yaml}
+\vspace{1em}
+
+Das Docker Image für die NodeJS Applikation wurde ebenfalls selbst erstellt, basierend auf dem offiziellen NodeJS Image.
+Die dazugehörige Dockerfile sieht wie folgt aus:
+
+\vspace{1em}
+\lstinputlisting[language=dockerfile, label={lst:dockerfile}]{../Dockerfile}
+\vspace{1em}
 
 Eine weitere Herausforderung war das Einfinden in die verschiedenen Bibliotheken, die bei Webentwicklung mit JavaScript genutzt werden.
 Zwar wurde in der Planung bereits einige Bibliotheken festgelegt, die genutzt werden sollten, doch während der Entwicklung kamen einige neue hinzu.
@@ -122,13 +132,26 @@ Im ersten Schritt wurde die MySQL Datenbank aufgesetzt und mit Tabellen für Nut
 Die Nutzerdaten beinhalten Username, E-Mail und Passwort.
 Da diese Tabelle eine feste Form besitzt, wurde sich für eine relationale Datenbank entschieden.
 Die Struktur der MySQL Datenbank ist in Abbildung~\ref{fig:mysql_structure} zu sehen.
-
+\newpage
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{mysql_structure}
     \caption{Struktur der MySQL Datenbank}
     \label{fig:mysql_structure}
 \end{figure}
+
+Die Datenbank wurde mit einigen Testnutzern befüllt, mithilfe zweier SQL Queries.
+Die erste Query erstellt die Tabelle für die Nutzerdaten:
+
+\vspace{1em}
+\lstinputlisting[language=SQL, label={lst:createDatabase}]{../scripts/mysql/create_database.sql}
+\vspace{1em}
+
+Die zweite Query fügt die Testnutzer hinzu:
+
+\vspace{1em}
+\lstinputlisting[language=SQL, label={lst:insertValues}]{../scripts/mysql/insert_values.sql}
+\vspace{1em}
 
 Als Datenbank für die Sammlungen und die Vorlagen wurde sich für eine MongoDB Datenbank entschieden.
 Dies liegt daran, dass MongoDB eine dokumentenorientierte Datenbank ist, die sich gut für die Speicherung von unstrukturierten Daten eignet.
@@ -149,23 +172,22 @@ Die Struktur der MongoDB Datenbank ist in Abbildung~\ref{fig:mongodb_structure} 
 Die Daten innerhalb der Collection für die Sammlungen sieht wie in Abbildung~\ref{fig:mongodb_collections} aus.
 Die Sammlung für Videospiele wurde hierbei anhand einer Vorlage aus dem Vorlagenkatalog erstellt.
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \includegraphics[width=1\textwidth]{mongodb_collections}
     \caption{Daten innerhalb der MongoDB Collection}
     \label{fig:mongodb_collections}
 \end{figure}
 
-Einzelne Einträge innerhalb der Collections werden wie in Abbildung~\ref(fig:mongodb_collections_entries) strukturiert.
+Einzelne Einträge innerhalb der Collections werden wie in Abbildung 19 strukturiert.
 Die Spalten sind exemplarisch für eine Autosammlung und ändern sich je nach Thematik.
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
-    \includegraphics[width=0.4\textwidth]{mongodb_collections_entries}
-    \caption{Einträge innerhalb einer Sammlung}
-    \label{fig:mongodb_collections_entries}
+    \includegraphics[width=0.35\textwidth]{mongodb_collections_entries}
+    \caption{Einträge innerhalb einer Sammlung}\label{fig:figure}
 \end{figure}
-
+\newpage
 Die Vorlagen für die Sammlungen sind in Abbildung~\ref{fig:mongodb_templates} zu sehen.
 Aktuell sind diese festgelegt, ohne Option diese zu verändern oder neue hinzuzufügen und sie sind gültig für alle User der Website.
 In späteren Versionen soll jedoch das Anlegen von eigenen Vorlagen möglich sein, welche dann auch einzelnen Nutzern zugewiesen werden.
@@ -177,6 +199,13 @@ Bringt man einen Community-Aspekt mit ein, so könnte es in zukunft möglich sei
     \caption{Daten innerhalb der MongoDB Collection für die Vorlagen}
     \label{fig:mongodb_templates}
 \end{figure}
+\newpage
+Befüllt wurde die MongoDB Datenbank mit einem Skript, welches die Vorlagen und Beispieldaten für die Sammlungen einfügt.
+Das Skript für die Vorlagen sieht so aus:
+
+\vspace{1em}
+\lstinputlisting[language=JavaScript, label={lst:insertTemplates}]{../scripts/mongodb/setDefaultTemplates.js}
+\vspace{1em}
 
 Das Integrieren der Datenbank in der Programmierumgebung war schnell erledigt, da dies analog zu der MySQL Datenbankverbindung erfolgt ist.
 Das Auslesen und schreiben von Daten in die Datenbank war dank der MongoDB Bibliothek einfach erledigt.
@@ -203,9 +232,9 @@ Dieser Prozess stellte sich als komplizierter heraus als gedacht, da das Team zu
 So konnten zwar einfache Unit-Tests für das Login System geschrieben werden, jedoch Integrationstests, in welchen die Datenbank angesprochen wird, stellten sich als schwierig heraus.
 Ein exemplarischer Test für das Login System ist in Listing~\ref{lst:loginTest} zu sehen.
 
-
+\vspace{1em}
 \lstinputlisting[language=JavaScript, firstline=15, lastline=32, label={lst:loginTest}]{../tests/loginHandler.test.js}
-
+\vspace{1em}
 
 Auch gab es Probleme damit, eine Datei für Umgebungsvariablen für Testdatenbanken korrekt in die Tests mit einzubinden.
 Erst nach längerer Recherche stellte sich heraus, dass Umgebungsvariablen für jest Tests in einer separaten Config Datei definiert werden müssen und nicht wie die normale .env Datei in den Code eingebunden werden konnte.
