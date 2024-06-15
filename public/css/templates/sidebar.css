@@ -138,7 +138,6 @@
     margin-left: var(--margin-left);
     cursor: pointer;
     transition: all 0.3s linear;
-    z-index: 2;
     position: relative;
 }
 .btn-toggle.active {

@@ -35,10 +35,10 @@
     <% if (collections && collections.length > 0) { %>
       <h2>Your Collections:</h2>
       <ul>
-        <% collections.forEach((collection, index) => { %>
+        <% collections.forEach((collection, id) => { %>
           <li class="collection-item">
-            <span class="collection-name" data-index="<%= index %>"><%= collection %></span>
-            <button type="button" class="deleteCltBtn" data-index="<%= index %>">Delete</button>
+            <span class="collection-name" data-index="<%= id %>"><%= collection %></span>
+            <button type="button" class="deleteCltBtn" data-index="<%= id %>">Delete</button>
           </li>
         <% }) %>
       </ul>
@@ -57,9 +57,24 @@
 </html>
 <script>
   document.querySelectorAll('.collection-name').forEach(span => {
-    span.addEventListener('click', function (event) {
-      const index = this.getAttribute('data-index');
-      window.location.href = `/collections/${index}`;
+    span.addEventListener('click', async function (event) {
+      const id = this.getAttribute('data-index');
+      const collectionName = this.getAttribute('data-collection');
+      const response = await fetch('/collection-data/:id', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ tableName: collectionName}),
+      });
+
+      if (response.ok) {
+        // Optionally, you can remove the item from the DOM or refresh the page
+        event.target.parentElement.remove();
+      } else {
+        console.error('Failed to load collection');
+      }
+
     });
   });
 
