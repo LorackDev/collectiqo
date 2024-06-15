@@ -43,19 +43,66 @@ Der Nutzer sieht sofort, dass er sich zuerst anmelden muss, bevor er seine Samml
 Im Header befindet sich eine Schaltfläche “Login or Sign-Up”, und in der Mitte der Landing-Page befinden sich zwei Schaltflächen Login und Sign-Up.
 Dadurch wird der Nutzer aufgefordert, entweder einen neuen Account zu erstellen, falls er zum ersten Mal auf dieser Seite ist, oder sich mit seinem bestehenden Account einzuloggen.
 
-(Screenshot)
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.86\textwidth]{landing-page}
+    \caption{Login/Sign-Up}
+    \label{fig:landing-page}
+\end{figure}
 
 Auf der Sign-Up-Seite befinden sich drei erforderliche Eingabefelder: Username, E-Mail und Passwort, die zur Erstellung eines Accounts benötigt werden.
 Unter den Eingabefeldern befindet sich eine Schaltfläche, die das Formular validiert und im Backend den Account erstellt.
 Darunter gibt es eine Weiterleitung zur Login-Seite für Benutzer, die bereits über einen Account verfügen und sich einloggen möchten.
 
-(Screenshot)
-
 Ähnliche Funktionen sind auch auf der Login-Seite verfügbar.
 Hier werden nur der Username und das Passwort abgefragt, die dann bei Betätigung der “Login”-Schaltfläche im Backend validiert werden, um den Nutzer erfolgreich oder erfolglos einzuloggen.
 Auch hier gibt es eine Weiterleitung zur Sign-Up-Seite für Benutzer, die noch keinen Account haben und sich auf die Sign-Up-Seite begeben möchten.
 
-(Screenshot)
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.86\textwidth]{login-sign-up-pages}
+    \caption{Login/Sign-Up}
+    \label{fig:login-sign-up-pages}
+\end{figure}
+
+Hat sich der Nutzer erfolgreich eingeloggt so wird er nun zuerst auf seine eigene Homepage weitergeleitet.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.86\textwidth]{collection-home-page}
+    \caption{Collection Home}
+    \label{fig:collection-home-page}
+\end{figure}
+
+Da der Nutzer bisher keine Sammlungen angelegt hat, muss er zuerst eine neue Sammlung anlegen.
+Das anlegen kann der Benutzer über einen Reiter in der Sidebar namens Add New Collection.
+In diesem Fenster kann der Benutzer jetzt eine Sammlung anlegen.
+Benötigt wird zuerst was für eine Sammlung man anlegen möchte.
+Die Presets Video Spiele, Parfüm und Filme sin vorgefertigte Templates, die der Benutzer auswählen kann, jedoch besteht auch die möglichkeit eine eigene Kategorie anzulegen.
+Ein Name für die Sammlung und eine Farbe soll der Nutzer auswählen können.
+Bei einer eigenen Sammlung gibt es die Möglichkeit die einzelnen Attribute anzugeben, die man braucht, wie beispielsweise das Erscheinungsjahr eines Comics.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.86\textwidth]{collection-add-modal}
+    \caption{Sammlung anlegen}
+    \label{fig:collection-add-modal}
+\end{figure}
+
+Hat der Nutzer jetzt eine Sammlung angelegt, wird er wieder auf seine Home-Seite geleitet.
+Auf dieser Seite erscheint eine Liste.
+In dieser Liste wird jetzt die neue Sammlung angezeigt, zukünftig werden alle Sammlungen zentral hier erreichbar sein.
+Hier gibt es die Möglichkeit entweder mit einem Klick auf den Sammlungsnamen die Sammlung aufzurufen oder seine Sammlung zu löschen.
+Angenommen der Nutzer möchte seine Sammlung pflegen, so klickt er auf gewünschte angelegte Sammlung.
+In einem neuen Fenster hat er die übersicht seiner Sammlung in einer Tabelle.
+Der Nutzer kann hier den Namen der Sammlung und die jeweiligen Einträge einsehen und bearbeiten.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.86\textwidth]{collection-home-page2}
+    \caption{Collection Home Liste}
+    \label{fig:collection-home-page2}
+\end{figure}
 
 \subsection{Entwicklung des Backends}\label{subsec:EntwicklungDesBackends}
 Der erste Schritt bei der Backend entwicklung war es, einen geeigneten Startpunkt zu finden.
