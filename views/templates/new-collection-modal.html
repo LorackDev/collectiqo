@@ -169,7 +169,8 @@
 
             if (response.ok) {
                 alert('Collection saved successfully');
-                closeModal();
+                window.location.reload();
+
             } else {
                 const errorData = await response.json();
                 alert('Failed to save collection: ' + errorData.message);

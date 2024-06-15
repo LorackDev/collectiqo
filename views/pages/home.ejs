@@ -28,10 +28,6 @@
 <!--Include home sidebar-->
 <%- include('../templates/sidebar.ejs') %>
 
-<header class="header">
-  <button class="btn-toggle"><i class="fa-solid fa-bars"></i></button>
-</header>
-
 <div class="content-container">
 
   <div class="content">
@@ -39,8 +35,11 @@
     <% if (collections && collections.length > 0) { %>
       <h2>Your Collections:</h2>
       <ul>
-        <% collections.forEach(collection => { %>
-          <li><%= collection %></li>
+        <% collections.forEach((collection, index) => { %>
+          <li class="collection-item">
+            <span><%= collection %></span>
+            <button type="button" class="deleteCltBtn" data-index="<%= index %>">Delete</button>
+          </li>
         <% }) %>
       </ul>
     <% } else { %>
@@ -56,3 +55,26 @@
 
 </body>
 </html>
+<script>
+  document.querySelectorAll('.deleteCltBtn').forEach(button => {
+    button.addEventListener('click', async function (event) {
+      const index = event.target.getAttribute('data-index');
+      const collectionName = '<%= collections %>'.split(',')[index]; // Assuming collections is an array of strings
+
+      const response = await fetch('/delete-collection', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ collection: collectionName }),
+      });
+
+      if (response.ok) {
+        // Optionally, you can remove the item from the DOM or refresh the page
+        event.target.parentElement.remove();
+      } else {
+        console.error('Failed to delete collection');
+      }
+    });
+  });
+</script>

@@ -19,7 +19,7 @@ const createCollectionFromTemplate = async (req, res) => {
         }
 
         const templateCollectionData = {
-            collectionName: template.name,
+            collectionName: collectionName,
             columns: template.columns
         };
 

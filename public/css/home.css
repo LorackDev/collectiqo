@@ -72,9 +72,10 @@ body {
 //////////////////// */
 .content {
     width: 80%;
-    max-width: 800px;
+    max-width: 900px;
     background-color: #ffffff;
-    padding: 20px;
+    padding: 30px;
+    margin-top: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center; /* Center text content */
@@ -107,6 +108,28 @@ li {
 
 li:hover {
     background-color: #f0f0f0;
+}
+
+/* Delete Button styling */
+.collection-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.collection-item button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.collection-item button:hover {
+    background-color: #ff1a1a;
 }
 
 /* Centered message styling */

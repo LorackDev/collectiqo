@@ -118,8 +118,17 @@ app.get('/collection-data/:collectionName', async (req, res) => {
 });
 
 app.post('/create-collection-from-template', createCollectionFromTemplate, function(req, res) {
-    res.render('/pages/home')
+    res.redirect('/pages/home');
 })
+
+app.post('/delete-collection', async (req, res) => {
+    try {
+        await deleteCollection(req, res);
+        res.status(200).send({ success: true });
+    } catch (error) {
+        res.status(500).send({ success: false, message: error.message });
+    }
+});
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
