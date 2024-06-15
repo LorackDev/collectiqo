@@ -2,16 +2,16 @@ version: '3'
 services:
   mysql:
     image: lorackdev/clq-mysql:latest
-    command: --default-authentication-plugin=mysql_native_password
+    command: --default-authentication-plugin=caching_sha2_password
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: password
     ports:
-      - "3307:3307"
+      - "3307:3306"
     networks:
       - app-network
   mongodb:
-    image: lorackdev/clq-mongodb:latest
+    image: mongo:latest
     restart: always
     ports:
       - "27017:27017"
@@ -24,7 +24,7 @@ services:
     image: lorackdev/clq-app:latest
     restart: always
     ports:
-      - "3000:3000"
+      - "3005:3005"
     volumes:
       - .:/app
     depends_on:

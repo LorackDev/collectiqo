@@ -4,7 +4,7 @@ const createCollection = async (req, res) => {
 
     const { collectionName, columns } = req.body;
 
-    // const username = req.session.username;
+    //const username2 = req.session.username;
 
     const username = 'Lorack2'
 
