@@ -121,6 +121,32 @@ app.post('/create-collection-from-template', createCollectionFromTemplate, funct
     res.redirect('/pages/home');
 })
 
+app.get('/collections/:index', async (req, res) => {
+    const username = req.session.username;
+    const index = req.params.index;
+
+    try {
+        const collectionNames = await getCollectionNames(username); // Assuming you have a function to get collection names
+        const collectionName = collectionNames[index]; // Get the collection name based on index
+
+        if (!collectionName) {
+            return res.status(404).send('Collection not found');
+        }
+
+        const collectionData = await getCollectionData(collectionName, username); // Fetch collection data
+
+        // Render the collection.ejs template with username and collection data
+        res.render('collection', {
+            username: username,
+            collectionName: collectionName,
+            collectionData: collectionData
+        });
+    } catch (error) {
+        console.error(`Error fetching collection data: ${error}`);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
 app.post('/delete-collection', async (req, res) => {
     try {
         await deleteCollection(req, res);

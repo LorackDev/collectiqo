@@ -37,7 +37,7 @@
       <ul>
         <% collections.forEach((collection, index) => { %>
           <li class="collection-item">
-            <span><%= collection %></span>
+            <span class="collection-name" data-index="<%= index %>"><%= collection %></span>
             <button type="button" class="deleteCltBtn" data-index="<%= index %>">Delete</button>
           </li>
         <% }) %>
@@ -56,6 +56,13 @@
 </body>
 </html>
 <script>
+  document.querySelectorAll('.collection-name').forEach(span => {
+    span.addEventListener('click', function (event) {
+      const index = this.getAttribute('data-index');
+      window.location.href = `/collections/${index}`;
+    });
+  });
+
   document.querySelectorAll('.deleteCltBtn').forEach(button => {
     button.addEventListener('click', async function (event) {
       const index = event.target.getAttribute('data-index');

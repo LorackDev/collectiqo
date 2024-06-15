@@ -66,9 +66,9 @@
         </tr>
         </thead>
         <tbody>
-        <% collection.data.forEach(row => { %>
+        <% collections.data.forEach(row => { %>
           <tr>
-            <% collection.headers.forEach(header => { %>
+            <% collections.headers.forEach(header => { %>
               <td data-label="<%= header %>">
                 <span><%= row[header.toLowerCase().replace(/ /g, '')] %></span>
                 <input type="text" style="display:none;" value="<%= row[header.toLowerCase().replace(/ /g, '')] %>">
