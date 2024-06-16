@@ -1,4 +1,12 @@
 /* header.css */
+:root {
+    --smoky-black: #12100e;
+    --pine-tree: #98a320;
+    --blue: #1672c8;
+    --white: #ffffff;
+    --font-size: 1.2rem;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -13,8 +21,8 @@ body {
 
 .header {
     overflow: hidden;
-    background-color: #f1f1f1;
-    padding: 10px 10px;
+    background-color: var(--blue);
+    padding: 20px 20px;
     display: flex;
     align-items: center;
 }
