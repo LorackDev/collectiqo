@@ -3,13 +3,14 @@ const express = require("express");
 const session = require('express-session');
 const mysql = require("mysql2");
 const dotenv = require("dotenv");
-const bcrypt = require("bcryptjs");
 const path = require("path");
-const port = process.env.PORT || 8000;
-const app = express();
-
 // Load environment variables from .env file
 dotenv.config({ path: path.resolve(__dirname, '.env') });
+
+const bcrypt = require("bcryptjs");
+
+const port = process.env.PORT;
+const app = express();
 
 const loginHandler = require('./server/authentication/loginHandler');
 const signUpHandler = require('./server/authentication/signUpHandler');

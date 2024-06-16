@@ -25,7 +25,7 @@ const createCollectionFromTemplate = async (req, res) => {
 
         let body = JSON.stringify(templateCollectionData)
 
-        let response = await fetch('http://localhost:8000/create-collection', {
+        let response = await fetch('http://localhost:3005/create-collection', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: body
