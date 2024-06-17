@@ -2,9 +2,7 @@ const { connectToDb, closeConnection } = require('../dbConnections/connectToMong
 
 const createCollection = async (req, res) => {
 
-    const { collectionName, columns } = req.body;
-
-    const username = req.session.username;
+    const { collectionName, columns, username} = req.body;
 
     // const username = 'Lorack2'
 
@@ -15,7 +13,6 @@ const createCollection = async (req, res) => {
 
     try {
         const db = await connectToDb();
-
         const collection = db.collection('collections');
 
         const doc = {

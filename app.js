@@ -104,7 +104,7 @@ app.get('/settings', (req, res) => {
     res.render('pages/account-settings');
 });
 
-app.get('/collection-data/:id', async (req, res) => {
+app.get('/collection-data/:collectionName', async (req, res) => {
     const username = req.session.username;
     const tableName = req.body.tableName;
     const tableData = await getCollectionData(username, tableName);

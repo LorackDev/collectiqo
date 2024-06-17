@@ -4,6 +4,8 @@ const createCollection = require('./createCollection');
 const createCollectionFromTemplate = async (req, res) => {
 
     const { collectionName, templateName } = req.body;
+    const username = req.session.username;
+    console.log("Session Username:", username);
 
     try {
 
@@ -20,7 +22,8 @@ const createCollectionFromTemplate = async (req, res) => {
 
         const templateCollectionData = {
             collectionName: collectionName,
-            columns: template.columns
+            columns: template.columns,
+            username: username
         };
 
         let body = JSON.stringify(templateCollectionData)
@@ -28,7 +31,7 @@ const createCollectionFromTemplate = async (req, res) => {
         let response = await fetch('http://localhost:3005/create-collection', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: body
+            body: JSON.stringify(templateCollectionData)
         });
 
         if (!response.ok) throw new Error('Failed to create template collection');
