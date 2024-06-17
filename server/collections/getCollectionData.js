@@ -7,7 +7,7 @@ const getCollectionData = async (req, res) => {
     let db;
     try {
         db = await connectToDb();
-        const collection = db.collection(collectionName);
+        const collection = db.collection('collections');
 
         const collectionExists = await collection.findOne({ name: collectionName, username: username });
         if (!collectionExists) {

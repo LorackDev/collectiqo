@@ -58,7 +58,7 @@
   //Load collection by clicking on the list item (WIP)
   document.querySelectorAll('.collection-name').forEach(span => {
     span.addEventListener('click', async function(event) {
-      const collectionName = this.getAttribute('data-collection');
+      const collectionName = this.textContent;
       if (!collectionName) {
         console.error('Collection name is null or undefined.');
         return;

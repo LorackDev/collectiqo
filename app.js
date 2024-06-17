@@ -105,12 +105,7 @@ app.post('/create-collection-from-template', createCollectionFromTemplate, funct
     res.redirect('/pages/home');
 });
 
-app.get('/collection-data/:collectionName', getCollectionData, async (req, res) => {
-    const username = req.session.username;
-    const collectionName = req.params.collectionName;
-    const tableData = await getCollectionData(username, collectionName);
-    res.json(tableData);
-});
+app.get('/collection-data/:collectionName', getCollectionData);
 
 app.post('/delete-collection', async (req, res) => {
     try {
