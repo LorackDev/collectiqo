@@ -91,29 +91,26 @@ app.get('/home/:username', async (req, res) => {
     }
 });
 */
-
-app.post('/create-collection', createCollection, function(req, res) {
-
-});
-
-app.post('/add-collection-entry', addCollectionEntry, function(req, res) {
-
-});
-
 app.get('/settings', (req, res) => {
     res.render('pages/account-settings');
 });
 
-app.get('/collection-data/:collectionName', async (req, res) => {
-    const username = req.session.username;
-    const tableName = req.body.tableName;
-    const tableData = await getCollectionData(username, tableName);
-    res.json(tableData);
+app.post('/create-collection', createCollection, function(req, res) {
+});
+
+app.post('/add-collection-entry', addCollectionEntry, function(req, res) {
 });
 
 app.post('/create-collection-from-template', createCollectionFromTemplate, function(req, res) {
     res.redirect('/pages/home');
-})
+});
+
+app.get('/collection-data/:collectionName', getCollectionData, async (req, res) => {
+    const username = req.session.username;
+    const collectionName = req.params.collectionName;
+    const tableData = await getCollectionData(username, collectionName);
+    res.json(tableData);
+});
 
 app.post('/delete-collection', async (req, res) => {
     try {

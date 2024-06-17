@@ -1,19 +1,17 @@
 const { connectToDb, closeConnection } = require('../dbConnections/connectToMongoDB');
 
 const getCollectionData = async (req, res) => {
-
-    const {tableName} = req.body;
-
+    const collectionName = req.params.collectionName;
     const username = req.session.username;
 
     let db;
     try {
         db = await connectToDb();
-        const collection = db.collection(tableName);
+        const collection = db.collection(collectionName);
 
-        const collectionExists = await collection.findOne({ name: tableName, username: username });
+        const collectionExists = await collection.findOne({ name: collectionName, username: username });
         if (!collectionExists) {
-            throw new Error(`Collection ${tableName} does not exist for user ${username}`);
+            throw new Error(`Collection ${collectionName} does not exist for user ${username}`);
         }
 
         const data = await collection.find({username: username}).toArray();
