@@ -22,7 +22,7 @@ Ein Einblick in die YouTrack Aufgabenverwaltung ist in Abbildung~\ref{fig:youtra
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1\textwidth]{youtrack_screenshot_agile_board}
+    \includegraphics[width=0.8\textwidth]{youtrack_screenshot_agile_board}
     \caption{Screenshot des Agile Dashboards in YouTrack}
     \label{fig:youtrack_screenshot_agile_board}
 \end{figure}
@@ -39,19 +39,20 @@ Die Verwendung von Node.js ermöglicht das Definieren von HTTP Routen mit JavaSc
 EJS wurde als Template-Engine verwendet, um die Integration von JavaScript innerhalb von HTMLDokumenten zu ermöglichen und somit auch Sammlungenen abrufen zu können.
 Dies erlaubte eine flexible und dynamische Gestaltung der Webseite, insbesondere durch die Verwendung von EJS-Tags wie \grqq\textless{}\%=\%\textgreater{}\grqq{}, die es ermöglichte, serverseitige Variablen oder Ausdrücke direkt in die HTML-Struktur einzufügen.
 
-Wenn der Nutzer zu Collectiqo navigiert, gelangt er zunächst auf eine Landing-Page.
-Diese ist recht simpel gestaltet und bietet nur wenige Interaktionsmöglichkeiten.
-Der Nutzer sieht sofort, dass er sich zuerst anmelden muss, bevor er seine Sammlung anlegen kann.
-Im Header befindet sich eine Schaltfläche “Login or Sign-Up”, und in der Mitte der Landing-Page befinden sich zwei Schaltflächen Login und Sign-Up.
-Dadurch wird der Nutzer aufgefordert, entweder einen neuen Account zu erstellen, falls er zum ersten Mal auf dieser Seite ist, oder sich mit seinem bestehenden Account einzuloggen.
+Wenn der Nutzer zu Collectiqo navigiert, gelangt er zunächst auf eine Landing-Page (siehe Abbildung~\ref{fig:landing-page}).
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.86\textwidth]{landing-page}
+    \includegraphics[width=0.95\textwidth]{landing-page}
     \caption{Login/Sign-Up}
     \label{fig:landing-page}
 \end{figure}
 
+Diese ist recht simpel gestaltet und bietet nur wenige Interaktionsmöglichkeiten.
+Der Nutzer sieht sofort, dass er sich zuerst anmelden muss, bevor er seine Sammlung anlegen kann.
+Im Header befindet sich eine Schaltfläche “Login or Sign-Up”, und in der Mitte der Landing-Page befinden sich zwei Schaltflächen Login und Sign-Up.
+Dadurch wird der Nutzer aufgefordert, entweder einen neuen Account zu erstellen, falls er zum ersten Mal auf dieser Seite ist, oder sich mit seinem bestehenden Account einzuloggen.
+\newpage
 Auf der Sign-Up-Seite befinden sich drei erforderliche Eingabefelder: Username, E-Mail und Passwort, die zur Erstellung eines Accounts benötigt werden.
 Unter den Eingabefeldern befindet sich eine Schaltfläche, die das Formular validiert und im Backend den Account erstellt.
 Darunter gibt es eine Weiterleitung zur Login-Seite für Benutzer, die bereits über einen Account verfügen und sich einloggen möchten.
@@ -59,19 +60,23 @@ Darunter gibt es eine Weiterleitung zur Login-Seite für Benutzer, die bereits �
 Ähnliche Funktionen sind auch auf der Login-Seite verfügbar.
 Hier werden nur der Username und das Passwort abgefragt, die dann bei Betätigung der “Login”-Schaltfläche im Backend validiert werden, um den Nutzer erfolgreich oder erfolglos einzuloggen.
 Auch hier gibt es eine Weiterleitung zur Sign-Up-Seite für Benutzer, die noch keinen Account haben und sich auf die Sign-Up-Seite begeben möchten.
+Beide Seiten sind in Abbildung~\ref{fig:login-sign-up-pages} dargestellt.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.86\textwidth]{login-sign-up-pages}
+    \includegraphics[width=0.95\textwidth]{login-sign-up-pages}
     \caption{Login/Sign-Up}
     \label{fig:login-sign-up-pages}
 \end{figure}
 
-Hat sich der Nutzer erfolgreich eingeloggt so wird er nun zuerst auf seine eigene Homepage weitergeleitet.
+Hat sich der Nutzer erfolgreich eingeloggt, so wird er nun zuerst auf seine eigene Homepage weitergeleitet.
+Diese ist in Abbildung~\ref{fig:collection-home-page} zu sehen.
+
+\newpage
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.86\textwidth]{collection-home-page}
+    \includegraphics[width=0.95\textwidth]{collection-home-page}
     \caption{Collection Home}
     \label{fig:collection-home-page}
 \end{figure}
@@ -83,13 +88,7 @@ Benötigt wird zuerst was für eine Sammlung man anlegen möchte.
 Die Presets Video Spiele, Parfüm und Filme sin vorgefertigte Templates, die der Benutzer auswählen kann, jedoch besteht auch die möglichkeit eine eigene Kategorie anzulegen.
 Ein Name für die Sammlung und eine Farbe soll der Nutzer auswählen können.
 Bei einer eigenen Sammlung gibt es die Möglichkeit die einzelnen Attribute anzugeben, die man braucht, wie beispielsweise das Erscheinungsjahr eines Comics.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.86\textwidth]{collection-add-modal}
-    \caption{Sammlung anlegen}
-    \label{fig:collection-add-modal}
-\end{figure}
+Zu sehen ist dieses Fenster in Abbildung~\ref{fig:collection-add-modal}.
 
 Hat der Nutzer jetzt eine Sammlung angelegt, wird er wieder auf seine Home-Seite geleitet.
 Auf dieser Seite erscheint eine Liste.
@@ -97,15 +96,22 @@ In dieser Liste wird jetzt die neue Sammlung angezeigt, zukünftig werden alle S
 Hier gibt es die Möglichkeit entweder mit einem Klick auf den Sammlungsnamen die Sammlung aufzurufen oder seine Sammlung zu löschen.
 Angenommen der Nutzer möchte seine Sammlung pflegen, so klickt er auf gewünschte angelegte Sammlung.
 In einem neuen Fenster hat er die übersicht seiner Sammlung in einer Tabelle.
-Der Nutzer kann hier den Namen der Sammlung und die jeweiligen Einträge einsehen und bearbeiten.
+Der Nutzer kann hier den Namen der Sammlung und die jeweiligen Einträge einsehen und bearbeiten (siehe Abbildung~\ref{fig:collection-home-page2}).
+\newpage
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.95\textwidth]{collection-add-modal}
+    \caption{Sammlung anlegen}
+    \label{fig:collection-add-modal}
+\end{figure}
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.86\textwidth]{collection-home-page2}
+    \includegraphics[width=0.95\textwidth]{collection-home-page2}
     \caption{Collection Home Liste}
     \label{fig:collection-home-page2}
 \end{figure}
-
+\newpage
 \subsection{Entwicklung des Backends}\label{subsec:EntwicklungDesBackends}
 Der erste Schritt bei der Backend entwicklung war es, einen geeigneten Startpunkt zu finden.
 Hierbei wurde entschieden, dass zuerst eine Implementierung der Datenbankverbindung erfolgen sollte, da diese als Grundlage für die weitere Entwicklung dient.
