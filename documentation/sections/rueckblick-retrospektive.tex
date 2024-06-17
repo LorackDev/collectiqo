@@ -1,8 +1,8 @@
 \section{Rückblick / Retrospektive}\label{sec:rueckblick-retrospektive}
 
-Dieser Abschnitt gibt einen Vergleich zwischen den geplanten Zielen und den tatsächlich erreichten Zielen.
-Daraufhin wird geschaut, welche Verbesserungen in der Durchführung nächstes Semester umgesetzt werden könnten, sowie welche neuen Kenntnisse .
-Schlussendlich wird ein Ausblick auf zukünftige Ziele und Funktionen gegeben, wovon einige aus den geplanten Zielen für dieses Semester übernommen werden und einige neue hinzukommen, die dem Team bei der Umsetzung eingefallen sind.
+Dieser Abschnitt gibt einen Vergleich zwischen den geplanten Zielen und den tatsächlich erreichten Zielen in Kapitel~\ref{subsec:abweichungen-der-geplanten-ziele}.
+Daraufhin wird geschaut, welche Verbesserungen in der Durchführung nächstes Semester umgesetzt werden könnten in Kapitel~\ref{subsec:retrospektive}.
+Schlussendlich wird ein Ausblick auf zukünftige Ziele und Funktionen in Kapitel~\ref{subsec:ausblick-zukuenftige-ziele-und-funktionen} gegeben, wovon einige aus den geplanten Zielen für dieses Semester übernommen werden und einige neue hinzukommen, die dem Team bei der Umsetzung eingefallen sind.
 
 \subsection{Abweichungen der geplanten Ziele}\label{subsec:abweichungen-der-geplanten-ziele}
 Während der Umsetzung wurden immer wieder die Definitions of done in Betracht gezogen.
@@ -56,7 +56,7 @@ Hierbei wurden die Ziele auf die beschränkt, die direkt etwas mit der Umsetzung
         \hline
         Benutzer kann erfolgreich eigene Templates anlegen & in Bearbeitung & Die Backend Funktion inklusive Datenbankverbindung wurde bereits implementiert, im Frontend fehlt jedoch ein Interface zum Erstellen eigener Vorlagen. \\
         \hline
-        Benutzerrechte-Einstellungen sind passend & verschoben & Erste Drafts von Nutzereinstellungen wurden bereits erstellt, die Umsetzung wurde jedoch zeitbedingt auf das nächste Semester verschoben. \\
+        Benutzer-Einstellungen sind passend & verschoben & Erste Drafts von Nutzereinstellungen wurden bereits erstellt, die Umsetzung wurde jedoch zeitbedingt auf das nächste Semester verschoben. \\
         \hline
         Alle notwendigen Tests erfolgreich & verschoben & Das Erstellen von einfachen Unit-Tests war zwar erfolgreich, doch das Erstellen von Integrationstests hat sich als zeitlich zu aufwendig erwiesen.
         Die Implementierung von komplexeren Tests wurde auf das nächste Semester verschoben. \\
@@ -67,16 +67,16 @@ Hierbei wurden die Ziele auf die beschränkt, die direkt etwas mit der Umsetzung
 \newpage
 \subsection{Retrospektive}\label{subsec:retrospektive}
 
-Im Rahmen des Projektes konnten sich viele neue Kentnisse zu diversen Tools angeeignet werden.
-Hierbei geht das erlangte wissen über die eigentliche Programmierung hinaus und umfasst den Umgang mit der Programmierumgebung, Docker und praktische Arbeit mit MongoDB und MySQL.
-Diese Retrospektive umfasst einen kurzen Rückblick auf das Gelernte, aber auch Kritik an uns selbst, an welchen Stellen wir hätten ander agieren sollen.
+Im Rahmen des Projektes konnten sich viele neue Kenntnisse zu diversen Tools angeeignet werden.
+Hierbei geht das erlangte Wissen über die eigentliche Programmierung hinaus und umfasst den Umgang mit der Programmierumgebung, Docker und praktische Arbeit mit MongoDB und MySQL.
+Diese Retrospektive umfasst einen kurzen Rückblick auf das Gelernte, aber auch Kritik an uns selbst, an welchen Stellen wir hätten anders handeln sollen.
 
 Während der Durchführungsphase wurde schnell klar, dass die Lernkurve mit den gewählten Technologien steiler war als gedacht.
-Dies lag vor allem daran, dass mehr Komponenten in die Entwicklung einer Website fielen als gedacht.
+Dies lag vor allem daran, dass mehr Komponenten in die Entwicklung einer Website fielen als erwartet.
 Hierbei hätte sich das Team während der Planungsphase intensiver damit auseinandersetzen sollen, welche Bausteine für eine Webanwendung benötigt werden.
 Die Auswahl an Tools fiel hierbei im Programmierbereich oberflächlich statt, weshalb nur Komponenten wie die gewählte Programmiersprache angegeben wurden, jedoch keine spezifischen Bibliotheken.
-An dieser Stelle hätte man kleinteiliger planen sollen, um die Ziele für dieses Semester realistischer setzen zu können.
-Außerdem hätte sich das Team öfters das Gespräch mit dem Dozenten suchen sollen, um in diesem Weg empfehlungen zu erhalten.
+An dieser Stelle hätte das Team kleinteiliger planen sollen, um die Ziele für dieses Semester realistischer setzen zu können.
+Außerdem hätte sich das Team öfters das Gespräch mit dem Dozenten suchen sollen, um in diesem Weg Empfehlungen zu erhalten.
 
 Gleichzeitig stellte diese Herausforderung einen hohen Lerneffekt dar.
 Dadurch, dass fast ausschließlich Tools genutzt wurden, mit denen das Team noch keine Erfahrung hatte, konnten sich so viele neue Kenntnisse angeeignet werden.
@@ -90,6 +90,11 @@ Bei der Implementierung des Backends fiel besonders der Unterschied im Umgang mi
 Auch das Erstellen einer node.js Applikation stellte sich als lehrreich heraus.
 Die Programmierung einer Webanwendung unterscheidet sich stärker als erwartet von der Programmierung, die das Team bis dahin gewohnt war.
 Das Nutzen von HTTP Requests, der Aufbau einzelner Backend Funktionen, sowie die Aufteilung in server- und clientseitigen Code und das Zusammenführen aller Komponenten in der app.js sind alles Beispiele für Stellen, die sich für das Team lehrreich erwiesen.
+
+Für die Durchführung des Projekts war geplant, die Entwicklung des Front- und Backends sowie der Datenbank möglichst unabhängig voneinander durchzuführen.
+Diese Vorangehensweise hat jedoch stellenweise zu Problemen geführt.
+Gegen Ende der Durchführungsphase, als alle Komponenten miteinander verbunden werden sollten, stellte sich heraus das Front- und Backend jeweils ein Overhead an implementierten Funktionen hatten, die die jeweils andere Seite nicht abgedeckt hatte.
+Für nächstes Semester ist geplant regelmäßigere Pair Programming Sessions durchzuführen, damit sich der implementierte Funktionsumfang auf beiden Seiten überschneidet.
 
 Im Allgemeinen konnte sich das Team im Rahmen dieses Projekts die Grundkenntnisse der Webentwicklung aneignen.
 Mit Docker und den Datenbanken konnte darüber hinaus Wissen erlangt werden, welches auch auf andere Projekte außerhalb einer node.js Anwendung projiziert werden kann.
@@ -117,5 +122,5 @@ Dieses Semester wurden nur einfache Unit-Tests erstellt, die im nächsten Semest
 Das Projektmanagementtool YouTrack soll ersetzt werden, da es sich als unübersichtlich und unintuitiv erwiesen hat.
 Stattdessen soll ein Tool wie Jira oder Trello genutzt werden, um die Übersichtlichkeit zu erhöhen und Erfahrung in einem Tool zu sammeln, was in der Industrie mehr verbreitet ist.
 
-Zusätzlich zu der Erweiterung der Funktionen und dem Ändern der tools wird eine Umstrukturierung im GitHub Repository stattfinden.
+Zusätzlich zu der Erweiterung der Funktionen und dem Ändern der tools wird eine Umstrukturierung im Git Repository stattfinden.
 Der jetzige Stand des Repositories hat ein großes maß an unübersichtlichkeit und teilweise unstrukturiertheit gewonnen, was den Entwicklungsflow der Applikation einschränkt.
