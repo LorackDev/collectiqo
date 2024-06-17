@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (settingsLink) {
         settingsLink.addEventListener("click", function(event) {
-            event.preventDefault(); // Prevent default link behavior
-            window.location.href = "/settings"; // Change "settings.html" to the path of your settings page
+            event.preventDefault();
+            window.location.href = "/settings";
         });
     }
 });

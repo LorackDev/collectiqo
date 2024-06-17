@@ -8,6 +8,6 @@ function load() {
     let container = document.querySelector(".content-container");
     sidebar.classList.toggle("active");
     container.classList.toggle("active_margin_left");
-    btnToggle.classList.toggle("active"); // This will move the button
+    btnToggle.classList.toggle("active");
   });
 }

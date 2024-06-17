@@ -25,7 +25,6 @@
 
 <body>
 
-<!--Include home sidebar-->
 <%- include('../templates/sidebar.ejs') %>
 
 <div class="content-container">
@@ -48,7 +47,6 @@
       </div>
     <% } %>
 
-    <!--Include new collection modal-->
     <%- include('../templates/new-collection-modal.html') %>
   </div>
 </div>
@@ -81,7 +79,7 @@
   document.querySelectorAll('.deleteCltBtn').forEach(button => {
     button.addEventListener('click', async function (event) {
       const index = event.target.getAttribute('data-index');
-      const collectionName = '<%= collections %>'.split(',')[index]; // Assuming collections is an array of strings
+      const collectionName = '<%= collections %>'.split(',')[index];
 
       const response = await fetch('/delete-collection', {
         method: 'POST',
@@ -92,7 +90,6 @@
       });
 
       if (response.ok) {
-        // Optionally, you can remove the item from the DOM or refresh the page
         event.target.parentElement.remove();
       } else {
         console.error('Failed to delete collection');

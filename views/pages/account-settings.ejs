@@ -70,13 +70,11 @@
             }
         }
 
-        // Assuming you have these functions available
         const updateUsernameHandler = require('./updateUsernameHandler');
         const updatePasswordHandler = require('./updatePasswordHandler');
         const deleteAccountHandler = require('./deleteAccountHandler'); // You need to implement this
 
         window.onload = function() {
-            // Add event listener for general settings form
             document.getElementById('generalSettingsForm').addEventListener('submit', async function(event) {
                 event.preventDefault();
                 const username = document.getElementById('username').value;

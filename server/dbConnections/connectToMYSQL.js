@@ -1,8 +1,4 @@
-// connectToMYSQL.js
-
 const mysql = require('mysql2');
-
-
 
 const db = mysql.createConnection({
     host: process.env.MYSQL_DATABASE_HOST,

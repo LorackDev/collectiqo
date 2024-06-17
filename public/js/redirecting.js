@@ -1,13 +1,13 @@
 function redirectToLoginPage() {
-    window.location.href = "/login"; // Redirect to the login route
+    window.location.href = "/login";
 }
 
 function redirectToSignUpPage() {
-    window.location.href = "/signup"; // Redirect to the login route
+    window.location.href = "/signup";
 }
 
 function redirectToHome() {
-    window.location.href = "/home"; // Redirect to the login route
+    window.location.href = "/home";
 }
 
 module.exports = redirectToLoginPage();

@@ -1,6 +1,3 @@
-/* ////////////////////
-////////// CSS Variables
-//////////////////// */
 :root {
     --padding: 0.7rem;
     --margin-left: 0.5rem;
@@ -11,9 +8,7 @@
     --font-size: 1.2rem;
   }
   
-  /* ////////////////////
-  ////////// General Styles
-  //////////////////// */
+
   * {
     margin: 0;
     padding: 0;
@@ -25,9 +20,7 @@
     font-family: "Roboto", sans-serif;
   }
   
-  /* ////////////////////
-  ////////// Main container
-  //////////////////// */
+
   .container {
     width: auto;
     min-height: 100vh;
@@ -36,9 +29,7 @@
     z-index: 2;
   }
 
-  /* ////////////////////
-  ////////// HEADER
-  //////////////////// */
+
   .header {
     width: 100%;
     height: 60px;
@@ -48,9 +39,7 @@
     background-color: var(--blue);
   }
   
-  /* ////////////////////
-  ////////// Main content
-  //////////////////// */
+
   .content {
     height: 50px;
     padding: 50px 0 0;
@@ -60,9 +49,7 @@
     text-align: center;
   }
 
-  /* ////////////////////
-  ////////// Table
-  //////////////////// */
+
   table {
     width: 95%;
     margin-top: 25px;
@@ -125,5 +112,5 @@
   }
   
   tr:nth-child(even) {
-    background-color: #f2f2f2; /* Set a light blue background color for even rows */
+    background-color: #f2f2f2;
   }

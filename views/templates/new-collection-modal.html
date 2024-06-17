@@ -130,11 +130,9 @@
         }
 
     });
-    ////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////
+
     document.getElementById('selectionForm').addEventListener('submit', async function (event) {
-        event.preventDefault(); // Prevent the default form submission
+        event.preventDefault();
 
         const formData = {
             templateName: document.getElementById('preset').value,

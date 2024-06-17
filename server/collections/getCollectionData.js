@@ -11,7 +11,6 @@ const getCollectionData = async (req, res) => {
         db = await connectToDb();
         const collection = db.collection(tableName);
 
-        // Check if the collection exists
         const collectionExists = await collection.findOne({ name: tableName, username: username });
         if (!collectionExists) {
             throw new Error(`Collection ${tableName} does not exist for user ${username}`);

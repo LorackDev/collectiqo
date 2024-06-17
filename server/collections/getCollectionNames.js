@@ -5,11 +5,9 @@ const getCollectionNames = async (username) => {
     try {
         db = await connectToDb();
 
-        // Get the list of all collections in the database
         const collections = await db.listCollections().toArray();
         const collectionNames = [];
 
-        // Iterate through all collections and find the ones belonging to the user
         for (const collectionInfo of collections) {
             const collection = db.collection(collectionInfo.name);
             const userCollections = await collection.distinct('name', { username: username });

@@ -1,5 +1,3 @@
-/* style.css */
-
 :root {
   --smoky-black: #12100e;
   --pine-tree: #98a320;
@@ -33,13 +31,13 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 20px; /* Adjust this value as needed */
+  margin-right: 20px;
 }
 
 .mascotPicture img {
-  width: 100%;  /* Adjust this value as needed */
-  max-width: 700px;  /* Adjust this value as needed */
-  height: auto;  /* Maintain aspect ratio */
+  width: 100%;
+  max-width: 700px;
+  height: auto;
 }
 
 .login-panel {
@@ -54,11 +52,11 @@ main {
   padding: 10px 20px;
   font-size: var(--font-size);
   border: 2px solid var(--smoky-black);
-  border-radius: 25px; /* Adjust this value for roundness */
+  border-radius: 25px;
   background-color: var(--white);
   color: var(--smoky-black);
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .auth-buttons button:hover {

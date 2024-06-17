@@ -117,6 +117,5 @@ async function addSampleData() {
     }
 }
 
-// Run the functions
 setDefaultTemplates();
 addSampleData();

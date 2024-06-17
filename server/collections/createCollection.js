@@ -4,9 +4,9 @@ const createCollection = async (req, res) => {
 
     const { collectionName, columns } = req.body;
 
-    //const username2 = req.session.username;
+    const username = req.session.username;
 
-    const username = 'Lorack2'
+    // const username = 'Lorack2'
 
     if (columns.length > 10) {
         res.status(400).json({ error: 'Cannot add more than 10 columns' });

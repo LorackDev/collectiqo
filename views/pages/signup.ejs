@@ -24,7 +24,7 @@
 
 <script>
   document.getElementById('signup-form').addEventListener('submit', async function(event) {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault();
 
     const username = document.getElementById('username').value;
     const email = document.getElementById('email').value;
@@ -42,7 +42,6 @@
       const data = await response.json();
       if (response.status === 201) {
         alert('User created successfully');
-        //Redirect to page after user creation
         window.location.href = '/login';
       } else {
         alert(data.message);

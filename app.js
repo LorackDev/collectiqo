@@ -4,7 +4,6 @@ const session = require('express-session');
 const mysql = require("mysql2");
 const dotenv = require("dotenv");
 const path = require("path");
-// Load environment variables from .env file
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 const bcrypt = require("bcryptjs");
@@ -20,14 +19,13 @@ const createCollectionFromTemplate = require('./server/collections/createCollect
 const getCollectionNames = require('./server/collections/getCollectionNames');
 const getCollectionData = require('./server/collections/getCollectionData');
 
-// Middleware to parse JSON bodies
 app.use(session({
     secret: 'your-secret-key',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false }
 }));
-app.use(express.urlencoded({ extended: true })); // Added middleware to parse URL-encoded bodies
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 app.use("/page", express.static(__dirname + "/views/pages"));
@@ -36,30 +34,26 @@ app.use("/js", express.static(__dirname + "/public/js"));
 app.use("/img", express.static(__dirname + "/public/assets/img"));
 
 
-// Set the view engine to use EJS
 app.set('view engine', 'ejs');
 
 const server = http.createServer(app);
 
-// Route for homepage
 app.get("/", async function(req, res) {
     res.render("index.ejs");
 });
 
-// Route for login
 app.get('/login', (req, res) => {
     res.render('pages/login');
 });
 
 app.post('/login', loginHandler, (req, res) => {
     if (req.session.username) {
-        res.redirect('/home'); // Redirect to home after successful login
+        res.redirect('/home');
     } else {
-        res.redirect('/login'); // Redirect back to login if session is not set
+        res.redirect('/login');
     }
 });
 
-// Route for Sign-Up
 app.get('/signup', (req, res) => {
     res.render('pages/signup');
 });
@@ -68,7 +62,6 @@ app.post('/signup', signUpHandler, function(req, res) {
     res.render('/pages/home')
 })
 
-// Route for user's home page to show username and collection names
 app.get('/home', async (req, res) => {
     if (!req.session.username) {
         return res.redirect('/login');
@@ -137,7 +130,6 @@ app.use((err, req, res, next) => {
     res.status(500).send(errorMessage);
 });
 
-// Start the server
 app.listen(port, () => {
     console.log(`Server Started on port ${port}...`);
 });

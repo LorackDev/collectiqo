@@ -83,18 +83,14 @@
 </div>
 
 <script>
-    // Get the modal
     var modal = document.getElementById("myModal");
 
-    // Get the button that opens the modal
     var btn = document.getElementsByTagName("button")[0];
 
-    // When the user clicks the button, open the modal
     function openModal() {
         modal.style.display = "block";
     }
 
-    // When the user clicks on the button (Cancel), close the modal
     function closeModal() {
         modal.style.display = "none";
     }
@@ -150,7 +146,6 @@
                 for (var i = 3; i < customInputs.length; i++) {
                     customInputs[i].getElementsByTagName("label")[0].textContent = "Custom " + (i + 1) + ":";
                 }
-                // Re-display the "+" button
                 document.getElementById("addCustomField").style.display = "inline-block";
             };
 
@@ -159,7 +154,6 @@
             inputGroup.appendChild(removeBtn);
             customOptions.appendChild(inputGroup);
 
-            // Hide the "+" button if inputCount reached 10
             if (inputCount >= 10) {
                 document.getElementById("addCustomField").style.display = "none";
             }

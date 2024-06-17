@@ -1,5 +1,3 @@
-// signUpHandler.js
-
 const bcrypt = require('bcryptjs');
 const { queryDatabase, handleResults } = require('../dbConnections/connectToMYSQL');
 

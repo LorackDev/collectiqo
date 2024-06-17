@@ -1,6 +1,3 @@
-/* ////////////////////
-////////// CSS Variables
-//////////////////// */
 :root {
     --padding: 0.7rem;
     --margin-left: 0.5rem;
@@ -11,9 +8,6 @@
     --font-size: 1.2rem;
 }
 
-/* ////////////////////
-////////// General Styles
-//////////////////// */
 * {
     margin: 0;
     padding: 0;
@@ -25,9 +19,6 @@ body {
     font-family: "Roboto", sans-serif;
 }
 
-/* ////////////////////
-////////// Main container
-//////////////////// */
 .container {
     width: auto;
     min-height: 100vh;
@@ -36,9 +27,6 @@ body {
     z-index: 2;
 }
 
-/* ////////////////////
-////////// HEADER
-//////////////////// */
 .header {
     width: 100%;
     display: flex;
@@ -53,12 +41,6 @@ body {
     text-align: center;
 }
 
-/* ////////////////////
-////////// Main content
-//////////////////// */
-/* ////////////////////
-////////// Main container
-//////////////////// */
 
 .content-container {
     width: 100%; /* Set width to 100% to span the entire viewport */
@@ -67,9 +49,6 @@ body {
     align-items: center; /* Center content vertically */
 }
 
-/* ////////////////////
-////////// Main content
-//////////////////// */
 .content {
     width: 80%;
     max-width: 900px;
@@ -91,7 +70,6 @@ h2 {
     margin-bottom: 15px;
 }
 
-/* Styling the list of collections */
 ul {
     list-style: none;
     padding: 0;
@@ -110,7 +88,6 @@ li:hover {
     background-color: #f0f0f0;
 }
 
-/* Delete Button styling */
 .collection-item {
     display: flex;
     justify-content: space-between;
@@ -132,7 +109,6 @@ li:hover {
     background-color: #ff1a1a;
 }
 
-/* Centered message styling */
 .centered-message {
     display: flex;
     justify-content: center;
