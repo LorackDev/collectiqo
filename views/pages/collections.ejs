@@ -20,7 +20,7 @@
   <script src="/js/calcTH.js"></script>
   <script src="/js/modal.js"></script>
 
-  <title>Game Collection</title>
+  <title>Collection Data</title>
 
   <style>
     .centered-message {
@@ -35,65 +35,24 @@
 </head>
 
 <body>
-
 <%- include('../templates/sidebar.ejs') %>
 
-<div class="container">
-  <header class="header">
-    <button class="btn-toggle"><i class="fa-solid fa-bars"></i></button>
-  </header>
-
-
+<div class="content-container">
   <div class="content">
-
-
-    <% if (collections && collections.headers && collections.headers.length > 0) { %>
-      <div class="table-options">
-        <h1 class="title">Example Collection</h1>
-        <div class="button-group">
-          <button class="delete-button">Delete</button>
-        </div>
-      </div>
-
-      <table class="mainTable">
-        <thead>
-        <tr>
-          <% collections.headers.forEach(header => { %>
-            <th><%= header %></th>
-          <% }) %>
-          <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% collections.data.forEach(row => { %>
-          <tr>
-            <% collections.headers.forEach(header => { %>
-              <td data-label="<%= header %>">
-                <span><%= row[header.toLowerCase().replace(/ /g, '')] %></span>
-                <input type="text" style="display:none;" value="<%= row[header.toLowerCase().replace(/ /g, '')] %>">
-              </td>
-            <% }) %>
-            <td>
-              <button class="edit-button" onclick="editRow(this)">Edit</button>
-              <button class="save-button" onclick="saveRow(this)" style="display:none;">Save</button>
-            </td>
-          </tr>
+    <h1>Collection: <%= collectionName %></h1>
+    <% if (collections && collections.length > 0) { %>
+      <h2>Entries:</h2>
+      <ul>
+        <% collections.forEach((entry) => { %>
+          <li><%= entry.name %> - <%= entry.value %></li>
         <% }) %>
-        </tbody>
-      </table>
+      </ul>
     <% } else { %>
-      <div class="centered-message">
-        Collection not available
-      </div>
+      <div class="centered-message">No entries found for this collection.</div>
     <% } %>
-
-
     <%- include('../templates/new-collection-modal.html') %>
-
   </div>
 </div>
-
-
 </body>
 
 </html>

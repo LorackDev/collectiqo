@@ -13,10 +13,8 @@ const getCollectionData = async (req, res) => {
         if (!collectionExists) {
             throw new Error(`Collection ${collectionName} does not exist for user ${username}`);
         }
-
-        const data = await collection.find({username: username}).toArray();
-
-        res.json(data);
+        const collections = await collection.find({ username: username }).toArray(); // Fetch collection entries
+        res.render('pages/collections', { collections, collectionName });
     } catch (error) {
         console.error(`Failed to get collection data: ${error}`);
 

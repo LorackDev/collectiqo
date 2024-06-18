@@ -107,6 +107,7 @@ app.post('/create-collection-from-template', createCollectionFromTemplate, funct
 
 app.get('/collection-data/:collectionName', getCollectionData);
 
+
 app.post('/delete-collection', async (req, res) => {
     try {
         await deleteCollection(req, res);
