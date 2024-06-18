@@ -7,7 +7,6 @@
     --white: #ffffff;
     --font-size: 1.2rem;
   }
-  
 
   * {
     margin: 0;
@@ -15,20 +14,17 @@
     box-sizing: border-box;
     text-decoration: none;
   }
-  
+
   body {
     font-family: "Roboto", sans-serif;
   }
-  
 
-  .container {
+  .content-container {
     width: auto;
-    min-height: 100vh;
+    min-height: 60vh;
     transition: margin-left 0.3s linear;
     position: relative;
-    z-index: 2;
   }
-
 
   .header {
     width: 100%;
@@ -38,66 +34,29 @@
     align-items: center;
     background-color: var(--blue);
   }
-  
 
   .content {
-    height: 50px;
-    padding: 50px 0 0;
+    padding: 10px 0 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     text-align: center;
   }
 
+  h1 {
+    margin-bottom: 20px;
+  }
 
   table {
     width: 95%;
-    margin-top: 25px;
+    margin-top: 10px;
     background-color: #d7d7d7;
     overflow: hidden;
     border-spacing: 0;
     border-collapse: separate;
     border-radius: 10px;
   }
-
-.table-options {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  position: absolute;
-  top: 60px;
-  left: 0;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.title {
-  margin-left: 3vh;
-}
-
-.button-group {
-  display: flex; gap: 10px; margin-right: 3vh; }
-
-.edit-button {
-  padding: 10px 20px;
-  margin-right: 10px;
-  border: none;
-  border-radius: 10px;
-  background-color: #fffc58;
-  color: black;
-  font-weight: bold;
-  cursor: pointer; }
-
-.delete-button {
-  padding: 10px 20px;
-  margin-right: 10px;
-  border: none;
-  border-radius: 10px;
-  background-color: #f85656;
-  font-weight: bold;
-  color: black;
-  cursor: pointer;}
 
   th, td {
     padding: 10px;
@@ -110,7 +69,48 @@
     background-color: #1672c8;
     font-size: 20px;
   }
-  
+
   tr:nth-child(even) {
     background-color: #f2f2f2;
   }
+
+  .table-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .title {
+    margin-left: 3vh;
+  }
+
+  .button-group {
+    display: flex; gap: 10px; margin-right: 3vh; }
+
+  .edit-button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #fffc58;
+    color: black;
+    font-weight: bold;
+    cursor: pointer; }
+
+  .delete-button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #f85656;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+  }
+
