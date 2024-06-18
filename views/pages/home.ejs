@@ -55,33 +55,15 @@
 </html>
 <script>
 
-  //Load collection by clicking on the list item (WIP)
   document.querySelectorAll('.collection-name').forEach(span => {
-    span.addEventListener('click', async function(event) {
+    span.addEventListener('click', function(event) {
       const collectionName = this.textContent;
       if (!collectionName) {
         console.error('Collection name is null or undefined.');
         return;
       }
       const url = `/collection-data/${encodeURIComponent(collectionName)}`;
-      try {
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-        window.location.href = url;
-        if (response.ok) {
-          const data = await response.json();
-          console.log('Collection Data:', data);
-
-        } else {
-          console.error('Failed to load collection');
-        }
-      } catch (error) {
-        console.error('Error fetching collection data:', error);
-      }
+      window.location.href = url;
     });
   });
 

@@ -8,7 +8,7 @@
 
   <script src="https://kit.fontawesome.com/433b24fc29.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/css/collections.css">
@@ -40,21 +40,21 @@
 <div class="content-container">
   <div class="content">
     <h1>Collection: <%= collectionName %></h1>
-    <% if (collections && collections.length > 0) { %>
+    <% if (specifiedCollection && specifiedCollection.entries.length > 0) { %>
       <table>
         <thead>
         <tr>
-          <% collections[0].columns.forEach(column => { %>
+          <% specifiedCollection.columns.forEach(column => { %>
             <th><%= column %></th>
           <% }) %>
         </tr>
         </thead>
         <tbody>
-        <% collections.forEach(entry => { %>
+        <% specifiedCollection.entries.forEach(entry => { %>
           <tr>
-            <% entry.data.forEach(value => { %>
-              <td><%= value %></td>
-            <% }) %>
+            <% for (let key in entry) { %>
+              <td><%= entry[key] %></td>
+            <% } %>
           </tr>
         <% }) %>
         </tbody>
