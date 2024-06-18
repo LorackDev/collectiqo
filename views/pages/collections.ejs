@@ -41,12 +41,24 @@
   <div class="content">
     <h1>Collection: <%= collectionName %></h1>
     <% if (collections && collections.length > 0) { %>
-      <h2>Entries:</h2>
-      <ul>
-        <% collections.forEach((entry) => { %>
-          <li><%= entry.name %> - <%= entry.value %></li>
+      <table>
+        <thead>
+        <tr>
+          <% collections[0].columns.forEach(column => { %>
+            <th><%= column %></th>
+          <% }) %>
+        </tr>
+        </thead>
+        <tbody>
+        <% collections.forEach(entry => { %>
+          <tr>
+            <% entry.data.forEach(value => { %>
+              <td><%= value %></td>
+            <% }) %>
+          </tr>
         <% }) %>
-      </ul>
+        </tbody>
+      </table>
     <% } else { %>
       <div class="centered-message">No entries found for this collection.</div>
     <% } %>
