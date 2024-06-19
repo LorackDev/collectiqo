@@ -1,12 +1,12 @@
-\section{Rückblick / Retrospektive}\label{sec:rueckblick-retrospektive}
+\section{Fazit und Ausblick}\label{sec:fazit-ausblick}
 
-Dieser Abschnitt gibt einen Vergleich zwischen den geplanten Zielen und den tatsächlich erreichten Zielen in Kapitel~\ref{subsec:abweichungen-der-geplanten-ziele}.
-Daraufhin wird geschaut, welche Verbesserungen in der Durchführung nächstes Semester umgesetzt werden könnten in Kapitel~\ref{subsec:retrospektive}.
-Schlussendlich wird ein Ausblick auf zukünftige Ziele und Funktionen in Kapitel~\ref{subsec:ausblick-zukuenftige-ziele-und-funktionen} gegeben, wovon einige aus den geplanten Zielen für dieses Semester übernommen werden und einige neue hinzukommen, die dem Team bei der Umsetzung eingefallen sind.
+Dieser Abschnitt gibt einen Vergleich zwischen den geplanten Zielen und den tatsächlich erreichten Zielen in Abschnitt~\ref{subsec:abweichungen-der-geplanten-ziele}.
+Daraufhin wird in~\ref{subsec:retrospektive} geschaut, welche Verbesserungen in der Durchführung nächstes Semester umgesetzt werden könnten.
+Schlussendlich wird ein Ausblick auf zukünftige Ziele und Funktionen in Abschnitt~\ref{subsec:ausblick-zukuenftige-ziele-und-funktionen} gegeben, wovon einige aus den geplanten Zielen für dieses Semester übernommen werden und einige Neue hinzukommen, die dem Team bei der Umsetzung eingefallen sind.
 
 \subsection{Abweichungen der geplanten Ziele}\label{subsec:abweichungen-der-geplanten-ziele}
-Während der Umsetzung wurden immer wieder die Definitions of done in Betracht gezogen.
-Dieses Kapitel betrachtet die einzelnen Ziele und schaut, ob diese erreicht wurden und was der aktuelle Stand in der Umsetzung ist.
+Während der Umsetzung wurden immer wieder die Definitions of Done in Betracht gezogen.
+Dieser Abschnitt betrachtet die einzelnen Ziele und schaut, ob diese erreicht wurden und was der aktuelle Stand in der Umsetzung ist.
 Hierbei wurden die Ziele auf die beschränkt, die direkt etwas mit der Umsetzung des Projekts zu tun haben.
 
 \begin{table}[h!]
@@ -56,7 +56,7 @@ Hierbei wurden die Ziele auf die beschränkt, die direkt etwas mit der Umsetzung
         \hline
         Benutzer kann erfolgreich eigene Templates anlegen & in Bearbeitung & Die Backend Funktion inklusive Datenbankverbindung wurde bereits implementiert, im Frontend fehlt jedoch ein Interface zum Erstellen eigener Vorlagen. \\
         \hline
-        Benutzer-Einstellungen sind passend & verschoben & Erste Drafts von Nutzereinstellungen wurden bereits erstellt, die Umsetzung wurde jedoch zeitbedingt auf das nächste Semester verschoben. \\
+        Benutzer-Einstellungen sind selbst anpassbar & verschoben & Erste Drafts von Nutzereinstellungen, z.B.\ Passwort ändern, wurden bereits erstellt, die Umsetzung wurde jedoch zeitbedingt auf das nächste Semester verschoben. \\
         \hline
         Alle notwendigen Tests erfolgreich & verschoben & Das Erstellen von einfachen Unit-Tests war zwar erfolgreich, doch das Erstellen von Integrationstests hat sich als zeitlich zu aufwendig erwiesen.
         Die Implementierung von komplexeren Tests wurde auf das nächste Semester verschoben. \\
@@ -68,7 +68,7 @@ Hierbei wurden die Ziele auf die beschränkt, die direkt etwas mit der Umsetzung
 \subsection{Retrospektive}\label{subsec:retrospektive}
 
 Im Rahmen des Projektes konnten sich viele neue Kenntnisse zu diversen Tools angeeignet werden.
-Hierbei geht das erlangte Wissen über die eigentliche Programmierung hinaus und umfasst den Umgang mit der Programmierumgebung, Docker und praktische Arbeit mit MongoDB und MySQL.
+Hierbei geht das erlangte Wissen über die eigentliche Programmierung hinaus und umfasst den Umgang mit der Programmierumgebung, Docker und praktische Arbeiten mit den MongoDB und MySQL-Datenbanken.
 Diese Retrospektive umfasst einen kurzen Rückblick auf das Gelernte, aber auch Kritik an uns selbst, an welchen Stellen wir hätten anders handeln sollen.
 
 Während der Durchführungsphase wurde schnell klar, dass die Lernkurve mit den gewählten Technologien steiler war als gedacht.
@@ -84,30 +84,31 @@ Besonders sticht hierbei der Umgang mit Docker heraus.
 Die Docker Kenntnisse, die sich durch dieses Projekt angeeignet wurden, konnten bei einigen Teammitgliedern bereits sinnvoll in ihren Unternehmen genutzt werden.
 
 Die Nutzung von MySQL und besonders MongoDB war eine weitere Neuheit für das Team.
-Während bereits praktische Erfahrung in SQL bestand, war die Arbeit mit einer Dokumenten-orientierten Datenbank neu.
+Während bereits praktische Erfahrung in SQL bestand, war die Arbeit mit einer dokumentenorientierten Datenbank neu.
 Bei der Implementierung des Backends fiel besonders der Unterschied im Umgang mit den beiden Datenbankarten auf und es konnte ein Verständnis dafür entwickelt werden, für welche Anwendungsfälle die jeweilige Art geeignet ist.
 
 Auch das Erstellen einer node.js Applikation stellte sich als lehrreich heraus.
 Die Programmierung einer Webanwendung unterscheidet sich stärker als erwartet von der Programmierung, die das Team bis dahin gewohnt war.
-Das Nutzen von HTTP Requests, der Aufbau einzelner Backend Funktionen, sowie die Aufteilung in server- und clientseitigen Code und das Zusammenführen aller Komponenten in der app.js sind alles Beispiele für Stellen, die sich für das Team lehrreich erwiesen.
+Das Nutzen von HTTP-Requests, der Aufbau einzelner Backend-Funktionen, sowie die Aufteilung in server- und clientseitigen Code und das Zusammenführen aller Komponenten in der app.js sind alles Beispiele für Stellen, die sich für das Team lehrreich erwiesen.
 
 Für die Durchführung des Projekts war geplant, die Entwicklung des Front- und Backends sowie der Datenbank möglichst unabhängig voneinander durchzuführen.
-Diese Vorangehensweise hat jedoch stellenweise zu Problemen geführt.
+Diese Vorgehensweise hat jedoch stellenweise zu Problemen geführt.
 Gegen Ende der Durchführungsphase, als alle Komponenten miteinander verbunden werden sollten, stellte sich heraus das Front- und Backend jeweils ein Overhead an implementierten Funktionen hatten, die die jeweils andere Seite nicht abgedeckt hatte.
-Für nächstes Semester ist geplant regelmäßigere Pair Programming Sessions durchzuführen, damit sich der implementierte Funktionsumfang auf beiden Seiten überschneidet.
+Für nächstes Semester ist geplant regelmäßigere Pair-Programming-Sessions durchzuführen, damit der implementierte Funktionsumfang auf beiden Seiten deckungsgleich ist.
 
 Im Allgemeinen konnte sich das Team im Rahmen dieses Projekts die Grundkenntnisse der Webentwicklung aneignen.
 Mit Docker und den Datenbanken konnte darüber hinaus Wissen erlangt werden, welches auch auf andere Projekte außerhalb einer node.js Anwendung projiziert werden kann.
 Hierbei wurde das Interesse geweckt, diese Kenntnisse, im Rahmen der Praxismodule der kommenden Semester, weiter auszubauen.
-Welche Ideen für Funktionen hierbei aufgekommen sind, wird im Kapitel~\ref{subsec:ausblick-zukuenftige-ziele-und-funktionen} beschrieben.
+Welche Ideen für Funktionen hierbei aufgekommen sind, wird im Abschnitt~\ref{subsec:ausblick-zukuenftige-ziele-und-funktionen} beschrieben.
 
-\subsection{Ausblick / Zukünftige Ziele und Funktionen}\label{subsec:ausblick-zukuenftige-ziele-und-funktionen}
+\subsection{Ausblick}\label{subsec:ausblick-zukuenftige-ziele-und-funktionen}
 
 In erster Linie sollen Funktionen, die für dieses Semester geplant waren, jedoch nicht umgesetzt wurden, im nächsten Semester umgesetzt werden.
 Hierbei soll besonders der Fokus auf der Erweiterung des Funktionsumfangs der Sammlungsverwaltung liegen.
 Dazu zählen die Erstellung eigener Templates und das Editieren von bestehenden Sammlungen.
 
 Ein Frontendaspekt, der im nächsten Semester umgesetzt werden soll, ist ein visuelles Redesign.
+Erste konkretere Ideen liegen bereits in Abbildung~\ref{fig:usersettings} am Ende des Abschnitts~\ref{subsec:entwicklung-des-webfrontends} vor.
 Dieses Semester wurden die HTML-Grundlagen erstellt, die im nächsten Semester modernisiert werden sollen.
 Im Backend sollen die bestehenden Funktionen robuster und die Verknüpfung mit dem Frontend vervollständigt werden.
 Auf Datenbankebene sollen die bestehenden Datenbanken mithilfe von Constraints abgesichert werden, um die Datenintegrität zu gewährleisten.
@@ -122,5 +123,8 @@ Dieses Semester wurden nur einfache Unit-Tests erstellt, die im nächsten Semest
 Das Projektmanagementtool YouTrack soll ersetzt werden, da es sich als unübersichtlich und unintuitiv erwiesen hat.
 Stattdessen soll ein Tool wie Jira oder Trello genutzt werden, um die Übersichtlichkeit zu erhöhen und Erfahrung in einem Tool zu sammeln, was in der Industrie mehr verbreitet ist.
 
-Zusätzlich zu der Erweiterung der Funktionen und dem Ändern der tools wird eine Umstrukturierung im Git Repository stattfinden.
-Der jetzige Stand des Repositories hat ein großes maß an unübersichtlichkeit und teilweise unstrukturiertheit gewonnen, was den Entwicklungsflow der Applikation einschränkt.
+Zusätzlich zu der Erweiterung der Funktionen und dem Ändern der Tools wird eine Umstrukturierung im Git Repository stattfinden.
+Der jetzige Stand des Repositories hat ein großes Maß an Unübersichtlichkeit und teilweise Unstrukturiertheit gewonnen, was den Entwicklungsflow der Applikation einschränkt.
+
+Als weitere neue Funktionalität ist dem Team während der Projektarbeit die Idee gekommen, eine technische Möglichkeit zu implementieren, den Benutzern es zu ermöglichen ihre Sammlung teilen zu können.
+Dieser Community-Aspekt bedingt ebenso den bereits angestrebten Ausbau der Settings-Strukturen.
