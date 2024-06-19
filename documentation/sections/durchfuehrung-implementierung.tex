@@ -98,13 +98,13 @@ Hier gibt es die Möglichkeit entweder mit einem Klick auf den Sammlungsnamen di
 Angenommen der Nutzer möchte seine Sammlung pflegen, so klickt er auf gewünschte angelegte Sammlung.
 In einem neuen Fenster hat er die übersicht seiner Sammlung in einer Tabelle.
 Der Nutzer kann hier den Namen der Sammlung und die jeweiligen Einträge einsehen und bearbeiten (siehe Abbildung~\ref{fig:collection-home-page2}).
-%ToDo: Bild fehlt noch im Repo
-%\begin{figure}[h]
-%    \centering
-%    \includegraphics[width=0.95\textwidth]{collection-home-page2}
-%    \caption{Sammlung anlegen}
-%    \label{fig:collection-home-page2}
-%\end{figure}
+\newpage
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.95\textwidth]{collection-home-page2}
+    \caption{Übersicht angelegte Sammlungen}
+    \label{fig:collection-home-page2}
+\end{figure}
 
 
 Der Aufbau der Home-Seite des Nutzer befindet sich in der home.ejs.
@@ -138,17 +138,15 @@ Das Script befindet sich in folgendem Code:
 
 In der Sidebar der Seite befinden sich unterschiedliche Reiter, wovon einer den Titel ``Settings'' trägt.
 Klickt der Nutzer auf diesen Reiter wird er auf eine neue Seite weitergeleitet, bei denen Einstellungen zum Account getätigt werden können.
-Darunter zählt beispielsweise das Ändern des Account-Passworts, des Nutzernamens oder der E-Mail.
+Darunter zählt beispielsweise das Ändern des Account-Passworts, des Nutzernamens oder der E-Mail (siehe Abbildung~\ref{fig:usersettings}).
 Die Seite ist strukturell fertig, die Funktionen dafür sind allerdings noch nicht implementiert.
-
+\newpage
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.95\textwidth]{usersettings}
     \caption{Account Einstellungen}
     \label{fig:usersettings}
 \end{figure}
-
-\newpage
 
 \subsection{Entwicklung des Backends}\label{subsec:EntwicklungDesBackends}
 Der erste Schritt bei der Backendentwicklung war es, einen geeigneten Startpunkt zu finden.
@@ -160,7 +158,6 @@ Einen Einblick gibt der folgende Code:
 \vspace{1em}
 \lstinputlisting[language=JavaScript,label={lst:mysqlconnection}]{../server/dbConnections/connectToMYSQL.js}
 \vspace{1em}
-\newpage
 
 Als Nächstes wurde sich dazu entschieden, ein einfaches Sign Up und Login System zu programmieren.
 Hierbei wurde auf die Bibliothek bcryptjs zurückgegriffen, welche das Hashen von Passwörtern erleichtert.
@@ -205,7 +202,7 @@ Am Ende sah die Docker-Compose Datei wie im folgenden Code aus:
 \lstinputlisting[language=docker-compose, label={lst:docker-compose}]{../docker-compose.yaml}
 \vspace{1em}
 
-Das Docker Image für die NodeJS Applikation wurde ebenfalls selbst erstellt, basierend auf dem offiziellen NodeJS Image.
+Das Docker Image für die Node.js Applikation wurde ebenfalls selbst erstellt, basierend auf dem offiziellen Node.js Image.
 Die dazugehörige Dockerfile sieht wie folgt aus:
 
 \vspace{1em}
@@ -232,7 +229,6 @@ Die Nutzerdaten beinhalten Username, E-Mail und Passwort.
 Da diese Tabelle eine feste Form besitzt, wurde sich für eine relationale Datenbank entschieden.
 Die Struktur der MySQL-Datenbank ist in Abbildung~\ref{fig:mysql_structure} zu sehen.
 
-\newpage
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{mysql_structure}
@@ -264,7 +260,7 @@ Die Struktur der MongoDB-Datenbank ist in Abbildung~\ref{fig:mongodb_structure} 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.4\textwidth]{mongodb_structure}
+    \includegraphics[width=0.35\textwidth]{mongodb_structure}
     \caption{Struktur der MongoDB Datenbank}
     \label{fig:mongodb_structure}
 \end{figure}
@@ -300,13 +296,12 @@ Bringt man einen Community-Aspekt mit ein, so könnte es zukünftig möglich sei
     \caption{Daten innerhalb der MongoDB Collection für die Vorlagen}
     \label{fig:mongodb_templates}
 \end{figure}
-\newpage
 
 Befüllt wurde die MongoDB-Datenbank mit einem Skript, welches die Vorlagen und Beispieldaten für die Sammlungen einfügt.
-Das Skript für die Vorlagen sieht so aus:
+Das ein Ausschnitt des Skripts für die Vorlagen sieht so aus:
 
 \vspace{1em}
-\lstinputlisting[language=JavaScript, label={lst:insertTemplates}]{../scripts/mongodb/init.js}
+\lstinputlisting[language=JavaScript, firstline=1, lastline=33, label={lst:insertTemplates}]{../scripts/mongodb/init.js}
 \vspace{1em}
 
 Das Integrieren der Datenbank in der Programmierumgebung war schnell erledigt, da dies analog zu der MySQL-Datenbankverbindung erfolgt ist.
@@ -344,7 +339,7 @@ Die Schnittstelle von Front- und Backend findet sich in der app.js, in welcher d
 Einen Ausschnitt aus der app.js findet sich im folgenden Code:
 
 \vspace{1em}
-\lstinputlisting[language=JavaScript,firstline=39, lastline=83, label={lst:appjs}]{../app.js}
+\lstinputlisting[language=JavaScript,firstline=39, lastline=78, label={lst:appjs}]{../app.js}
 \vspace{1em}
 \newpage
 
