@@ -226,11 +226,11 @@ Ein konkretes Beispiel hierfür ist besagtes Session-Management.
 
 Bei der Einrichtung der Datenbank stellt sich als erste Hürde der Umgang mit Docker Container heraus.
 Zwar waren grundlegende Kenntnisse über Docker vorhanden, doch eine Datenbank praktisch in einem Container hochzufahren und diese dann mit dem Code und der Programmierumgebung zu verknüpfen, war eine neue Herausforderung.
-Wie in der Planung entschieden, sollen zwei Datenbanken genutzt werden - eine MySQL Datenbank für strukturierte Daten und eine MongoDB Datenbank für unstrukturierte Daten.
-Im ersten Schritt wurde die MySQL Datenbank aufgesetzt und mit einer Tabelle für Nutzerdaten befüllt.
+Wie in der Planung entschieden, sollen zwei Datenbanken genutzt werden - eine MySQL-Datenbank für strukturierte Daten und eine MongoDB-Datenbank für unstrukturierte Daten.
+Im ersten Schritt wurde die MySQL-Datenbank aufgesetzt und mit einer Tabelle für Nutzerdaten befüllt.
 Die Nutzerdaten beinhalten Username, E-Mail und Passwort.
 Da diese Tabelle eine feste Form besitzt, wurde sich für eine relationale Datenbank entschieden.
-Die Struktur der MySQL Datenbank ist in Abbildung~\ref{fig:mysql_structure} zu sehen.
+Die Struktur der MySQL-Datenbank ist in Abbildung~\ref{fig:mysql_structure} zu sehen.
 
 \newpage
 \begin{figure}[h]
@@ -240,7 +240,7 @@ Die Struktur der MySQL Datenbank ist in Abbildung~\ref{fig:mysql_structure} zu s
     \label{fig:mysql_structure}
 \end{figure}
 
-Die Datenbank wurde mit einigen Testnutzern befüllt, mithilfe zweier SQL Queries.
+Die Datenbank wurde mithilfe zweier SQL-Queries mit einigen Testnutzern befüllt.
 Die erste Query erstellt die Tabelle für die Nutzerdaten:
 
 \vspace{1em}
@@ -253,14 +253,14 @@ Die zweite Query fügt die Testnutzer hinzu:
 \lstinputlisting[language=SQL, label={lst:insertValues}]{../scripts/mysql/insert_values.sql}
 \vspace{1em}
 
-Als Datenbank für die Sammlungen und die Vorlagen wurde sich für eine MongoDB Datenbank entschieden.
+Als Datenbank für die Sammlungen und die Vorlagen wurde sich für eine MongoDB-Datenbank entschieden.
 Dies liegt daran, dass MongoDB eine dokumentenorientierte Datenbank ist, die sich gut für die Speicherung von unstrukturierten Daten eignet.
 Die Daten der Sammlungen sind unstrukturiert, da sie sich je nach Thema unterscheiden, da jede Sammlung andere Spalten besitzt.
 Dasselbe gilt für die Vorlagen, die zum Erstellen von Sammlungen genutzt werden können.
 Dies ist das erste Mal, dass das Team mit einer dokumentenorientierten Datenbank arbeitet, daher musste erstmal ein Verständnis über den Aufbau einer solchen Datenbank geschaffen werden.
-Zunächst wurde versucht Vergleiche mit einer SQL Datenbank herzustellen, wobei schnell auffiel, dass Konzepte wie Schemata hier Collections sind.
+Zunächst wurde versucht Vergleiche mit einer SQL-Datenbank herzustellen, wobei schnell auffiel, dass Konzepte wie Schemata hier Collections sind.
 Für dieses Projekt wurden zwei verschiedene Collections angelegt, eine für die Vorlagen, die zum Erstellen eigener Sammlungen genutzt werden können und eine für die Sammlungen selbst.
-Die Struktur der MongoDB Datenbank ist in Abbildung~\ref{fig:mongodb_structure} zu sehen.
+Die Struktur der MongoDB-Datenbank ist in Abbildung~\ref{fig:mongodb_structure} zu sehen.
 
 \begin{figure}[h]
     \centering
@@ -292,7 +292,7 @@ Die Spalten sind exemplarisch für eine Autosammlung und ändern sich je nach Th
 Die Vorlagen für die Sammlungen sind in Abbildung~\ref{fig:mongodb_templates} zu sehen.
 Aktuell sind diese festgelegt, ohne Option diese zu verändern oder neue hinzuzufügen und sie sind gültig für alle User der Website.
 In späteren Versionen soll jedoch das Anlegen von eigenen Vorlagen möglich sein, welche dann auch einzelnen Nutzern zugewiesen werden.
-Bringt man einen Community-Aspekt mit ein, so könnte es in zukunft möglich sein, diese Vorlagen untereinander zu teilen.
+Bringt man einen Community-Aspekt mit ein, so könnte es zukünftig möglich sein, diese Vorlagen untereinander zu teilen.
 
 \begin{figure}[h]
     \centering
@@ -302,22 +302,22 @@ Bringt man einen Community-Aspekt mit ein, so könnte es in zukunft möglich sei
 \end{figure}
 \newpage
 
-Befüllt wurde die MongoDB Datenbank mit einem Skript, welches die Vorlagen und Beispieldaten für die Sammlungen einfügt.
+Befüllt wurde die MongoDB-Datenbank mit einem Skript, welches die Vorlagen und Beispieldaten für die Sammlungen einfügt.
 Das Skript für die Vorlagen sieht so aus:
 
 \vspace{1em}
 \lstinputlisting[language=JavaScript, label={lst:insertTemplates}]{../scripts/mongodb/init.js}
 \vspace{1em}
 
-Das Integrieren der Datenbank in der Programmierumgebung war schnell erledigt, da dies analog zu der MySQL Datenbankverbindung erfolgt ist.
-Das Auslesen und schreiben von Daten in die Datenbank war dank der MongoDB Bibliothek einfach erledigt.
+Das Integrieren der Datenbank in der Programmierumgebung war schnell erledigt, da dies analog zu der MySQL-Datenbankverbindung erfolgt ist.
+Das Auslesen und schreiben von Daten in die Datenbank war dank der MongoDB-Bibliothek einfach erledigt.
 Funktionen für die Verbindung mit der Datenbank wurden in einer separaten Datei ausgelagert.
 
 Die Herausforderungen, die beim Einrichten des Datenbanksystems entstanden sind, teilen sich in zwei Punkte auf.
 Der erste Punkt hängt damit zusammen, dass das Einrichten der Datenbanken gleichzeitig die erste praktische Nutzung von Docker Containern war.
 Somit musste erstmal ein Verständnis dafür entwickelt werden, wie vom Hostsystem auf die Container zugegriffen werden kann und wie Daten persistiert werden.
-Da die Datenbanken vorgefertigten Inhalt benötigten, wie bspw.\ die Templates für die Sammlungen in der MongoDB oder das Datenbankschema für User in der MySQL Datenbank, musste sich angeeignet werden, wie Docker Images erstellt werden können.
-Darüber hinaus musste recherchiert werden, wie man solche Images hosten kann, sodass jeder beim Starten der Docker Compose Datei die Datenbanken mit den nötigen Inhalten erhält.
+Da die Datenbanken vorgefertigten Inhalt benötigten, wie bspw.\ die Templates für die Sammlungen in der MongoDB oder das Datenbankschema für User in der MySQL-Datenbank, musste sich angeeignet werden, wie Docker Images erstellt werden können.
+Darüber hinaus musste recherchiert werden, wie man solche Images hosten kann, sodass jeder beim Starten der Docker-Compose-Datei die Datenbanken mit den nötigen Inhalten erhält.
 Die Herausforderungen ähneln somit denen, die bereits bei der Entwicklung des Backends aufgetreten sind.
 
 \subsection{Verbinden des Frontends und Backends}\label{subsec:verbinden-des-frontends-und-backends}
@@ -331,14 +331,14 @@ Problematischer wurde die Verbindung bei Funktionen, die mit der MongoDB interag
 Eine Hürde war hierbei herauszufinden, wie Code in einer NodeJS Applikation gedebugt wird, dass Breakpoints auch genutzt werden, wenn die Funktion nur über eine Route in der app.js aufgerufen wird.
 Es war dem Team nicht sofort klar, das die gesamte app.js im Debug Modus gestartet werden muss, und nicht nur die zu testende Funktion.
 Mit Debugging konnten nun die Fehler herausgestellt werden, die die Verbindung verhinderten.
-Neben einer falschen Extraktion der Daten aus dem Frontend lag das Problem an einer fehlerhaften Implementierung der Username Session Variable.
+Neben einer falschen Extraktion der Daten aus dem Frontend lag das Problem an einer fehlerhaften Implementierung der Username-Session-Variable.
 Nach der Lösung dieses Problems konnten nun die Sammlungen eines Users angezeigt werden.
 
 Als Nächstes wurde die Funktion implementiert, dass ein User eine Sammlung über die Benutzeroberfläche erstellen kann.
-Aktuell wird nur das Anlegen von Sammlungen über Vorlagen unterstützt, backendfunktionen für das Anlegen von komplett selbsterstellten Sammlungen existieren jedoch bereits.
-Da nun Sammlungen angelegt werden können und diese auch im Frontend angezeigt werden, wurde als Nächstes die Funktion implementiert, dass diese Sammlungen auch gelöscht werden können.
+Aktuell wird nur das Anlegen von Sammlungen über Vorlagen unterstützt, Backendfunktionen für das Anlegen von komplett selbsterstellten Sammlungen existieren jedoch bereits.
+Da inzwischen Sammlungen angelegt werden können und diese auch im Frontend angezeigt werden, wurde als Nächstes die Funktion implementiert, dass diese Sammlungen auch gelöscht werden können.
 Als letzte Verbindung zwischen Front- und Backend wurde implementiert, das User die Inhalte ihrer Sammlungen durch das Frontend einsehen können.
-Die jeweiligen Screenshots finden sich im Kapitel~\ref{subsec:entwicklung-des-webfrontends}
+Die jeweiligen Screenshots finden sich im Abschnitt~\ref{subsec:entwicklung-des-webfrontends}.
 
 Die Schnittstelle von Front- und Backend findet sich in der app.js, in welcher die Routen definiert sind.
 Einen Ausschnitt aus der app.js findet sich im folgenden Code:
@@ -353,16 +353,16 @@ Einen Ausschnitt aus der app.js findet sich im folgenden Code:
 Um Teile des Backends zu testen, bevor diese mit dem Frontend verbunden werden konnten, wurde versucht Unit-Tests zu schreiben.
 Dieser Prozess stellte sich als komplizierter heraus als gedacht, da das Team zuvor noch nie mit Tests für JavaScript gearbeitet hat.
 So konnten zwar einfache Unit-Tests für das Login System geschrieben werden, jedoch Integrationstests, in welchen die Datenbank angesprochen wird, stellten sich als schwierig heraus.
-Ein exemplarischer Test für das Login System ist in Listing~\ref{lst:loginTest} zu sehen.
+Ein exemplarischer Test für das Login System ist in nachfolgend zu sehen:
 
 \vspace{1em}
 \lstinputlisting[language=JavaScript, firstline=15, lastline=32, label={lst:loginTest}]{../tests/loginHandler.test.js}
 \vspace{1em}
 
 Auch gab es Probleme damit, eine Datei für Umgebungsvariablen für Testdatenbanken korrekt in die Tests mit einzubinden.
-Erst nach längerer Recherche stellte sich heraus, dass Umgebungsvariablen für jest Tests in einer separaten Config Datei definiert werden müssen und nicht wie die normale .env Datei in den Code eingebunden werden konnte.
-Auch mit den Mock Funktionen von jest musste sich erst eingearbeitet werden.
+Erst nach längerer Recherche stellte sich heraus, dass Umgebungsvariablen für jest-Tests in einer separaten Config Datei definiert werden müssen und nicht wie die normale .env Datei in den Code eingebunden werden konnte.
+Auch mit den Mock-Funktionen von jest musste sich erst eingearbeitet werden.
 An dieser Stelle wurde sich dazu entschieden, die Implementierung von Tests für alle Backend Funktionen abzubrechen, da der Aufwand zu groß war und die Zeit zu knapp.
 Der zeitliche Aufwand für das Einrichten der automatisierten Tests war zu hoch, vor allem im Vergleich zu dem zeitlichen Aufwand den ein manueller Test benötigt hätte.
 Manuelle Tests wurden durchgeführt, als das Backend mit dem Frontend verbunden war.
-Ein Nachteil, der dadurch entstanden ist, ist dass Funktionen öfters nachträglich angepasst werden mussten, was die Verbindung zum Frontend zeitaufwendiger machte.
+Ein Nachteil, der dadurch entstanden ist, dass Funktionen öfters nachträglich angepasst werden mussten, was die Verbindung zum Frontend zeitaufwendiger machte.
