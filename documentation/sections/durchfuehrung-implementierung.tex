@@ -79,10 +79,17 @@ Da der Nutzer bisher keine Sammlungen angelegt hat, muss er zuerst eine neue Sam
 Das Anlegen kann der Benutzer über einen Reiter in der Sidebar namens ``+ New Collection'' durchführen.
 In diesem Fenster kann der Benutzer jetzt eine Sammlung anlegen.
 Benötigt wird zuerst was für eine Sammlung man anlegen möchte.
-Die Presets Video Spiele, Parfüm und Filme sind vorgefertigte Templates, die der Benutzer auswählen kann, jedoch besteht auch die möglichkeit eine eigene Kategorie anzulegen.
+Die Presets Videospiele, Parfüm und Filme sind vorgefertigte Templates, die der Benutzer auswählen kann, jedoch besteht auch die Möglichkeit eine eigene Kategorie anzulegen.
 Ein Name für die Sammlung und eine Farbe soll der Nutzer auswählen können.
-Bei einer eigenen Sammlung gibt es die Möglichkeit die einzelnen Attribute anzugeben, die man braucht, wie beispielsweise das Erscheinungsjahr eines Comics.
+Bei einer eigenen Sammlung gibt es die Möglichkeit, die einzelnen Attribute anzugeben, die man braucht, wie beispielsweise das Erscheinungsjahr eines Comics.
 Zu sehen ist dieses Fenster in Abbildung~\ref{fig:collection-add-modal}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.95\textwidth]{collection-add-modal}
+    \caption{Sammlung anlegen}
+    \label{fig:collection-add-modal}
+\end{figure}
 
 Hat der Nutzer jetzt eine Sammlung angelegt, wird er wieder auf seine Home-Seite geleitet.
 Auf dieser Seite erscheint eine Liste.
@@ -91,16 +98,17 @@ Hier gibt es die Möglichkeit entweder mit einem Klick auf den Sammlungsnamen di
 Angenommen der Nutzer möchte seine Sammlung pflegen, so klickt er auf gewünschte angelegte Sammlung.
 In einem neuen Fenster hat er die übersicht seiner Sammlung in einer Tabelle.
 Der Nutzer kann hier den Namen der Sammlung und die jeweiligen Einträge einsehen und bearbeiten (siehe Abbildung~\ref{fig:collection-home-page2}).
-\newpage
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.95\textwidth]{collection-add-modal}
-    \caption{Sammlung anlegen}
-    \label{fig:collection-add-modal}
-\end{figure}
+%ToDo: Bild fehlt noch im Repo
+%\begin{figure}[h]
+%    \centering
+%    \includegraphics[width=0.95\textwidth]{collection-home-page2}
+%    \caption{Sammlung anlegen}
+%    \label{fig:collection-home-page2}
+%\end{figure}
+
 
 Der Aufbau der Home-Seite des Nutzer befindet sich in der home.ejs.
-Einen Ausschnitt aus der home.ejs mit den HTML und EJS Tags findet sich im folgenden Code:
+Einen Ausschnitt aus der home.ejs mit den HTML- und EJS-Tags findet sich im folgenden Code:
 
 \vspace{1em}
 \lstinputlisting[language=JavaScript,firstline=26, lastline=54, label={lst:homeejs}]{../views/pages/home.ejs}
@@ -112,9 +120,7 @@ Einen Ausschnitt des CSS für home.ejs findet sich in folgendem Code:
 \lstinputlisting[language=css,firstline=11, lastline=50, label={lst:homecss}]{../public/css/home.css}
 \vspace{1em}
 
-Nach dem anlegen einer neuen Sammlung wird der Nutzer wieder auf seine Home-Seite weitergeleitet.
-In dieser ist die Sammlung nach dem anlegen aufgelistet.
-Möchte der Nutzer nun seine Sammlung einsehen kann er auf den Namen der Sammlung klicken, was dazu führt, dass eine neue Seite geladen wird auf der die angelegte Sammlung angezeigt wird.
+Möchte der Nutzer nun seine Sammlung einsehen kann er auf den Namen der Sammlung innerhalb seiner Home-Seite klicken, was dazu führt, dass eine neue Seite geladen wird auf der die angelegte Sammlung angezeigt wird (siehe Abbildung~\ref{fig:collection-show-data}).
 
 \begin{figure}[h]
     \centering
@@ -123,16 +129,16 @@ Möchte der Nutzer nun seine Sammlung einsehen kann er auf den Namen der Sammlun
     \label{fig:collection-show-data}
 \end{figure}
 
-Die weiterleitung auf diese Seite wird durch ein JavaScript aus der home.ejs angestoßen.
+Die Weiterleitung auf diese Seite wird durch ein JavaScript aus der home.ejs angestoßen.
 Das Script befindet sich in folgendem Code:
 
 \vspace{1em}
 \lstinputlisting[language=JavaScript,firstline=58, lastline=68, label={lst:appjs}]{../views/pages/home.ejs}
 \vspace{1em}
 
-In der Sidebar der seite befinden sich unterschieldiche Reiter, davon ist einer mit Settings betitel.
-Klickt der Nutzer auf diesen reiter wird er auf eine neue Seite weitergeleitet, bei denen man Einstellungen zu seinem Account tätigen kann.
-Darunter zählt beispielsweise das ändern des Account-Passworts, ändern des Nutzernamens oder der E-Mail.
+In der Sidebar der Seite befinden sich unterschiedliche Reiter, wovon einer den Titel ``Settings'' trägt.
+Klickt der Nutzer auf diesen Reiter wird er auf eine neue Seite weitergeleitet, bei denen Einstellungen zum Account getätigt werden können.
+Darunter zählt beispielsweise das Ändern des Account-Passworts, des Nutzernamens oder der E-Mail.
 Die Seite ist strukturell fertig, die Funktionen dafür sind allerdings noch nicht implementiert.
 
 \begin{figure}[h]
@@ -145,10 +151,10 @@ Die Seite ist strukturell fertig, die Funktionen dafür sind allerdings noch nic
 \newpage
 
 \subsection{Entwicklung des Backends}\label{subsec:EntwicklungDesBackends}
-Der erste Schritt bei der Backend entwicklung war es, einen geeigneten Startpunkt zu finden.
+Der erste Schritt bei der Backendentwicklung war es, einen geeigneten Startpunkt zu finden.
 Hierbei wurde entschieden, dass zuerst eine Implementierung der Datenbankverbindung erfolgen sollte, da diese als Grundlage für die weitere Entwicklung dient.
 Dies wurde mit der Bibliothek mysql2 realisiert, welche eine erweiterte Funktionalität gegenüber der Standardbibliothek bietet und diverse Probleme behebt.
-Diese implementierung war erst möglich, nachdem die Grundstruktur der Datenbank aufgesetzt wurde.
+Diese Implementierung war erst möglich, nachdem die Grundstruktur der Datenbank aufgesetzt wurde.
 Einen Einblick gibt der folgende Code:
 
 \vspace{1em}
@@ -158,7 +164,7 @@ Einen Einblick gibt der folgende Code:
 
 Als Nächstes wurde sich dazu entschieden, ein einfaches Sign Up und Login System zu programmieren.
 Hierbei wurde auf die Bibliothek bcryptjs zurückgegriffen, welche das Hashen von Passwörtern erleichtert.
-Die SQL queries, die hier genutzt werden, wurden ebenfalls mit der mysql2 Bibliothek realisiert.
+Die SQL-Queries, die hier genutzt werden, wurden ebenfalls mit der mysql2 Bibliothek realisiert.
 Die einzigen Nutzerdaten, die hierbei gespeichert werden, sind der Username, die E-Mail und das Passwort.
 Beim Login wurde darauf geachtet, das Nutzer Username und E-Mail benutzen können, um sich einzuloggen.
 Einen Einblick gibt der folgende Code:
@@ -169,11 +175,11 @@ Einen Einblick gibt der folgende Code:
 
 Nun stellte sich die Frage, wie es möglich ist, dass Nutzer nur auf ihre eigenen Sammlungen zugreifen können.
 Beim Recherchieren sind wir auf das Konzept von Sessions gestoßen und wollten diese ausprobieren.
-Die erste Anwendung fanden Sessions im Speichern des Usernamens in einer Session Variable, nachdem der User sich angemeldet hat.
+Die erste Anwendung fanden Sessions im Speichern des Usernamens in einer Session-Variable, nachdem der User sich angemeldet hat.
 Der nächste Schritt war es, die Sammlungen eines Nutzers basierend auf dem Usernamen aus der Datenbank zu laden.
-Zuvor muss jedoch erstmal eine Funktion implementiert werden, mit der Sammlungen angelegt werden können.
+Zuvor musste jedoch eine Funktion implementiert werden, mit der Sammlungen angelegt werden können.
 Hierzu muss zuerst die Datenbank implementiert werden, in welcher die Sammlungen gespeichert werden.
-Als Datenbank für die Sammlungen wurde sich für MongoDB entschieden, welches im Kapitel~\ref{subsec:entwicklung-der-datenbank-und-datenstruktur} genauer erläutert wird.
+Als Datenbank für die Sammlungen wurde MongoDB gewählt, welches im Abschnitt~\ref{subsec:entwicklung-der-datenbank-und-datenstruktur} genauer erläutert wird.
 
 Nur das Anlegen von Sammlungen reicht natürlich nicht, weshalb weitere Funktionen im Backend implementiert wurden, die diverse grundlegende Funktionen ermöglichen.
 Hierzu zählen das Löschen von Sammlungen, das Hinzufügen von Items zu Sammlungen und das Löschen von Items aus Sammlungen.
@@ -192,7 +198,7 @@ Auch im späteren Verlauf des Projekts, als es darum ging alle Applikationskompo
 Wie sich Dockerfiles in dem ganzen System einordnen und wo sie genutzt werden, war ebenfalls neu für das Team.
 Allgemein hat das Einfinden in Docker dem Team mehr Zeit als erwartet abverlangt.
 Das Image für die MySQL Datenbank ist selbst erstellt, basierend auf dem offiziellen MySQL Image.
-Diese beinhalten beispieleinträge für diverse Sammlungen verschiedener Nutzer, bereits angelegte Testnutzer und die Datenbankstruktur inklusive der Templates für die Sammlungen.
+Diese beinhalten Beispieleinträge für diverse Sammlungen verschiedener Nutzer, bereits angelegte Testnutzer und die Datenbankstruktur inklusive der Templates für die Sammlungen.
 Am Ende sah die Docker-Compose Datei wie im folgenden Code aus:
 
 \vspace{1em}
@@ -207,14 +213,14 @@ Die dazugehörige Dockerfile sieht wie folgt aus:
 \vspace{1em}
 
 Eine weitere Herausforderung war das Einfinden in die verschiedenen Bibliotheken, die bei Webentwicklung mit JavaScript genutzt werden.
-Zwar wurde in der Planung bereits einige Bibliotheken festgelegt, die genutzt werden sollten, doch während der Entwicklung kamen einige neue hinzu.
+Zwar wurde in der Planung bereits einige Bibliotheken festgelegt, die genutzt werden sollten, doch während der Entwicklung kamen einige Neue hinzu.
 Ein Beispiel hierfür ist die Bibliothek express-session, die für das Session-Management genutzt wird.
-Da zur Planung noch kein detailliertes Verständnis darüber vorhanden war, welche Komponenten bei der Entwicklung einer solchen Anwendung benötigt werden, wurden Thematiken wie Session Management erst während der Entwicklung entdeckt.
+Da zur Planung noch kein detailliertes Verständnis darüber vorhanden war, welche Komponenten bei der Entwicklung einer solchen Anwendung benötigt werden, wurden Thematiken wie Session-Management erst während der Entwicklung entdeckt.
 Hierdurch kam es an einigen Stellen zu steilen, jedoch unvermeidbaren Lernkurven, die jedoch auch entsprechenden zeitlichen Aufwand mit sich gebracht haben.
 
 Da das Team zuvor noch nie eine Webanwendung entwickelt hat, fehlte es an Verständnis, wie viele Komponenten Teil einer solchen Anwendung sind.
 So kam es, dass während der Entwicklung immer wieder neue Komponenten entdeckt wurden, die in der Planung nicht berücksichtigt wurden.
-Ein konkretes Beispiel hierfür ist das Session-Management.
+Ein konkretes Beispiel hierfür ist besagtes Session-Management.
 
 \subsection{Entwicklung der Datenbank und Datenstruktur}\label{subsec:entwicklung-der-datenbank-und-datenstruktur}
 
