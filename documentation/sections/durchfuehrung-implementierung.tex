@@ -35,56 +35,51 @@ Die Datenbank wird dabei durch JavaScript und dessen Frameworks und Bibliotheken
 Für das Webfrontend wurde eine Express-Anwendung in Node.js erstellt, welche auf statische Dateien (CSS, JS, Bilder) aus dem Ordnerverzeichnis zugreift.
 Die Verwendung von Node.js ermöglicht das Definieren von HTTP Routen mit JavaScript, um so durch die verschiedenen Seiten der Webseite navigieren zu können und serverseitige Funktionen aufzurufen.
 
-EJS wurde als Template-Engine verwendet, um die Integration von JavaScript innerhalb von HTMLDokumenten zu ermöglichen und somit auch Sammlungenen abrufen zu können.
-Dies erlaubte eine flexible und dynamische Gestaltung der Webseite, insbesondere durch die Verwendung von EJS-Tags wie \grqq\textless{}\%=\%\textgreater{}\grqq{}, die es ermöglichte, serverseitige Variablen oder Ausdrücke direkt in die HTML-Struktur einzufügen.
+EJS wurde als Template-Engine verwendet, um die Integration von JavaScript innerhalb von HTML-Dokumenten zu ermöglichen und somit auch Sammlungen abrufen zu können.
+Dies erlaubte eine flexible und dynamische Gestaltung der Webseite, insbesondere durch die Verwendung von EJS-Tags wie \grqq\textless{}\%=\%\textgreater{}\grqq{}, die es ermöglichten, serverseitige Variablen oder Ausdrücke direkt in die HTML-Struktur einzufügen.
 
-Wenn der Nutzer zu Collectiqo navigiert, gelangt er zunächst auf eine Landing-Page (siehe Abbildung~\ref{fig:landing-page}).
+Wenn der Nutzer zu Collectiqo navigiert, gelangt er zunächst auf eine Landing-Page, zu sehen in Abbildung~\ref{fig:landing-page}.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.95\textwidth]{landing-page}
+    \includegraphics[width=0.8\textwidth]{landing-page}
     \caption{Login/Sign-Up}
     \label{fig:landing-page}
 \end{figure}
 
 Diese ist recht simpel gestaltet und bietet nur wenige Interaktionsmöglichkeiten.
 Der Nutzer sieht sofort, dass er sich zuerst anmelden muss, bevor er seine Sammlung anlegen kann.
-Im Header befindet sich eine Schaltfläche “Login or Sign-Up”, und in der Mitte der Landing-Page befinden sich zwei Schaltflächen Login und Sign-Up.
+Im Header befindet sich eine Schaltfläche ``Login or Register'', und in der Mitte der Landing-Page befinden sich zwei Schaltflächen ``Login'' und ``Sign-Up''.
 Dadurch wird der Nutzer aufgefordert, entweder einen neuen Account zu erstellen, falls er zum ersten Mal auf dieser Seite ist, oder sich mit seinem bestehenden Account einzuloggen.
 \newpage
 Auf der Sign-Up-Seite befinden sich drei erforderliche Eingabefelder: Username, E-Mail und Passwort, die zur Erstellung eines Accounts benötigt werden.
-Unter den Eingabefeldern befindet sich eine Schaltfläche, die das Formular validiert und im Backend den Account erstellt.
-Darunter gibt es eine Weiterleitung zur Login-Seite für Benutzer, die bereits über einen Account verfügen und sich einloggen möchten.
-
-Ähnliche Funktionen sind auch auf der Login-Seite verfügbar.
-Hier werden nur der Username und das Passwort abgefragt, die dann bei Betätigung der “Login”-Schaltfläche im Backend validiert werden, um den Nutzer erfolgreich oder erfolglos einzuloggen.
-Auch hier gibt es eine Weiterleitung zur Sign-Up-Seite für Benutzer, die noch keinen Account haben und sich auf die Sign-Up-Seite begeben möchten.
-Beide Seiten sind in Abbildung~\ref{fig:login-sign-up-pages} dargestellt.
+Unterhalb befindet sich eine ``Sign Up''-Schaltfläche, die das Formular validiert und im Backend den Account erstellt.
+Auf der Login-Seite werden Username/Email und das Passwort abgefragt, die dann mittels ``Login''-Schaltfläche im Backend validiert werden, um den Nutzer erfolgreich oder erfolglos einzuloggen.
+Beide Seiten verlinken sich gegenseitig, falls doch die jeweils andere Aktion durchgeführt werden soll.
+Die beiden Seiten sind in Abbildung~\ref{fig:login-sign-up-pages} dargestellt.
+Nach erfolgreichem Login wird auf die ``Home''-Page weitergeleitet, siehe Abbildung~\ref{fig:collection-home-page}.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.95\textwidth]{login-sign-up-pages}
+    \includegraphics[width=0.7\textwidth]{login-sign-up-pages}
     \caption{Login/Sign-Up}
     \label{fig:login-sign-up-pages}
 \end{figure}
 
-Hat sich der Nutzer erfolgreich eingeloggt, so wird er nun zuerst auf seine eigene Homepage weitergeleitet.
-Diese ist in Abbildung~\ref{fig:collection-home-page} zu sehen.
-
-\newpage
-
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.95\textwidth]{collection-home-page}
+    \includegraphics[width=0.8\textwidth]{collection-home-page}
     \caption{Collection Home}
     \label{fig:collection-home-page}
 \end{figure}
 
+\newpage
+
 Da der Nutzer bisher keine Sammlungen angelegt hat, muss er zuerst eine neue Sammlung anlegen.
-Das anlegen kann der Benutzer über einen Reiter in der Sidebar namens Add New Collection.
+Das Anlegen kann der Benutzer über einen Reiter in der Sidebar namens ``+ New Collection'' durchführen.
 In diesem Fenster kann der Benutzer jetzt eine Sammlung anlegen.
 Benötigt wird zuerst was für eine Sammlung man anlegen möchte.
-Die Presets Video Spiele, Parfüm und Filme sin vorgefertigte Templates, die der Benutzer auswählen kann, jedoch besteht auch die möglichkeit eine eigene Kategorie anzulegen.
+Die Presets Video Spiele, Parfüm und Filme sind vorgefertigte Templates, die der Benutzer auswählen kann, jedoch besteht auch die möglichkeit eine eigene Kategorie anzulegen.
 Ein Name für die Sammlung und eine Farbe soll der Nutzer auswählen können.
 Bei einer eigenen Sammlung gibt es die Möglichkeit die einzelnen Attribute anzugeben, die man braucht, wie beispielsweise das Erscheinungsjahr eines Comics.
 Zu sehen ist dieses Fenster in Abbildung~\ref{fig:collection-add-modal}.
