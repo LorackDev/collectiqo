@@ -104,13 +104,39 @@ Der Nutzer kann hier den Namen der Sammlung und die jeweiligen Einträge einsehe
     \label{fig:collection-add-modal}
 \end{figure}
 
+Der Aufbau der Home-Seite des Nutzer befindet sich in der home.ejs.
+Einen Ausschnitt aus der home.ejs mit den HTML und EJS Tags findet sich im folgenden Code:
+
+\vspace{1em}
+\lstinputlisting[language=JavaScript,firstline=26, lastline=54, label={lst:homeejs}]{../views/pages/home.ejs}
+\vspace{1em}
+
+Einen Ausschnitt des CSS für home.ejs findet sich in folgendem Code:
+
+\vspace{1em}
+\lstinputlisting[language=css,firstline=11, lastline=50, label={lst:homecss}]{../public/css/home.css}
+\vspace{1em}
+
+Nach dem anlegen einer neuen Sammlung wird der Nutzer wieder auf seine Home-Seite weitergeleitet.
+In dieser ist die Sammlung nach dem anlegen aufgelistet.
+Möchte der Nutzer nun seine Sammlung einsehen kann er auf den Namen der Sammlung klicken, was dazu führt, dass eine neue Seite geladen wird auf der die angelegte Sammlung angezeigt wird.
+
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.95\textwidth]{collection-home-page2}
-    \caption{Collection Home Liste}
-    \label{fig:collection-home-page2}
+    \includegraphics[width=0.95\textwidth]{collection-show-data}
+    \caption{Collection Ansicht}
+    \label{fig:collection-show-data}
 \end{figure}
+
+Die weiterleitung auf diese Seite wird durch ein JavaScript aus der home.ejs angestoßen.
+Das Script befindet sich in folgendem Code:
+
+\vspace{1em}
+\lstinputlisting[language=JavaScript,firstline=58, lastline=68, label={lst:appjs}]{../views/pages/home.ejs}
+\vspace{1em}
+
 \newpage
+
 \subsection{Entwicklung des Backends}\label{subsec:EntwicklungDesBackends}
 Der erste Schritt bei der Backend entwicklung war es, einen geeigneten Startpunkt zu finden.
 Hierbei wurde entschieden, dass zuerst eine Implementierung der Datenbankverbindung erfolgen sollte, da diese als Grundlage für die weitere Entwicklung dient.

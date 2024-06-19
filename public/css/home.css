@@ -31,9 +31,9 @@ body {
     width: 100%;
     display: flex;
     background-color: var(--blue);
-    padding: 0 var(--padding); /* Add padding to match other elements */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
-    z-index: 999; /* Ensure header appears above other content */
+    padding: 0 var(--padding); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    z-index: 999; 
     height: 50px;
 
     justify-content: center;
@@ -43,10 +43,10 @@ body {
 
 
 .content-container {
-    width: 100%; /* Set width to 100% to span the entire viewport */
-    display: flex; /* Use flexbox to center content vertically */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
+    width: 100%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
 }
 
 .content {
@@ -57,7 +57,7 @@ body {
     margin-top: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Center text content */
+    text-align: center; 
 }
 
 h1 {
