@@ -43,7 +43,7 @@ async function setDefaultTemplates() {
 
 const wineData = {
     name: 'wine',
-    username: 'Lorack2',
+    username: 'Darko',
     columns: ['name', 'origin', 'year', 'price'],
     entries: [
         { name: 'Chardonnay', origin: 'France', year: 2018, price: 20 },
@@ -61,7 +61,7 @@ const wineData = {
 
 const carData = {
     name: 'cars',
-    username: 'Lorack2',
+    username: 'Darko',
     columns: ['brand', 'model', 'year', 'price'],
     entries: [
         { brand: 'Toyota', model: 'Corolla', year: 2020, price: 20000 },
