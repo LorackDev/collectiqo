@@ -111,13 +111,13 @@ Der Aufbau der Home-Seite des Nutzer befindet sich in der home.ejs.
 Einen Ausschnitt aus der home.ejs mit den HTML- und EJS-Tags findet sich im folgenden Code:
 
 \vspace{1em}
-\lstinputlisting[language=JavaScript,firstline=26, lastline=54, label={lst:homeejs}]{../views/pages/home.ejs}
+\lstinputlisting[language=JavaScript,firstline=26, lastline=54, label={lst:homeejs}]{../../views/pages/home.ejs}
 \vspace{1em}
 
 Einen Ausschnitt des CSS für home.ejs findet sich in folgendem Code:
 
 \vspace{1em}
-\lstinputlisting[language=css,firstline=11, lastline=50, label={lst:homecss}]{../public/css/home.css}
+\lstinputlisting[language=css,firstline=11, lastline=50, label={lst:homecss}]{../../public/css/home.css}
 \vspace{1em}
 
 Möchte der Nutzer nun seine Sammlung einsehen kann er auf den Namen der Sammlung innerhalb seiner Home-Seite klicken, was dazu führt, dass eine neue Seite geladen wird auf der die angelegte Sammlung angezeigt wird (siehe Abbildung~\ref{fig:collection-show-data}).
@@ -133,7 +133,7 @@ Die Weiterleitung auf diese Seite wird durch ein JavaScript aus der home.ejs ang
 Das Script befindet sich in folgendem Code:
 
 \vspace{1em}
-\lstinputlisting[language=JavaScript,firstline=58, lastline=68, label={lst:appjs}]{../views/pages/home.ejs}
+\lstinputlisting[language=JavaScript,firstline=58, lastline=68, label={lst:appjs}]{../../views/pages/home.ejs}
 \vspace{1em}
 
 In der Sidebar der Seite befinden sich unterschiedliche Reiter, wovon einer den Titel ``Settings'' trägt.
@@ -156,7 +156,7 @@ Diese Implementierung war erst möglich, nachdem die Grundstruktur der Datenbank
 Einen Einblick gibt der folgende Code:
 
 \vspace{1em}
-\lstinputlisting[language=JavaScript,label={lst:mysqlconnection}]{../server/dbConnections/connectToMYSQL.js}
+\lstinputlisting[language=JavaScript,label={lst:mysqlconnection}]{../../server/dbConnections/connectToMYSQL.js}
 \vspace{1em}
 
 Als Nächstes wurde sich dazu entschieden, ein einfaches Sign Up und Login System zu programmieren.
@@ -167,7 +167,7 @@ Beim Login wurde darauf geachtet, das Nutzer Username und E-Mail benutzen könne
 Einen Einblick gibt der folgende Code:
 
 \vspace{1em}
-\lstinputlisting[languange=JavaScript,label={lst:login}]{../server/authentication/loginHandler.js}
+\lstinputlisting[languange=JavaScript,label={lst:login}]{../../server/authentication/loginHandler.js}
 \vspace{1em}
 
 Nun stellte sich die Frage, wie es möglich ist, dass Nutzer nur auf ihre eigenen Sammlungen zugreifen können.
@@ -184,7 +184,7 @@ Außerdem wurde eine separate Funktion implementiert, die das Erstellen einer Sa
 Das Hinzufügen von Daten in eine existierende Sammlung wird mit dem folgenden Code ermöglicht:
 
 \vspace{1em}
-\lstinputlisting[language=JavaScript, label={lst:addCollectionEntry}]{../server/collections/addCollectionEntry.js}
+\lstinputlisting[language=JavaScript, label={lst:addCollectionEntry}]{../../server/collections/addCollectionEntry.js}
 \vspace{1em}
 
 Während der Entwicklung des Backends kam es jedoch auch des Öfteren zu Herausforderungen.
@@ -199,14 +199,14 @@ Diese beinhalten Beispieleinträge für diverse Sammlungen verschiedener Nutzer,
 Am Ende sah die Docker-Compose Datei wie im folgenden Code aus:
 
 \vspace{1em}
-\lstinputlisting[language=docker-compose, label={lst:docker-compose}]{../docker-compose.yaml}
+\lstinputlisting[language=docker-compose, label={lst:docker-compose}]{../../docker-compose.yaml}
 \vspace{1em}
 
 Das Docker Image für die Node.js Applikation wurde ebenfalls selbst erstellt, basierend auf dem offiziellen Node.js Image.
 Die dazugehörige Dockerfile sieht wie folgt aus:
 
 \vspace{1em}
-\lstinputlisting[language=dockerfile, label={lst:dockerfile}]{../Dockerfile}
+\lstinputlisting[language=dockerfile, label={lst:dockerfile}]{../../Dockerfile}
 \vspace{1em}
 
 Eine weitere Herausforderung war das Einfinden in die verschiedenen Bibliotheken, die bei Webentwicklung mit JavaScript genutzt werden.
@@ -240,13 +240,13 @@ Die Datenbank wurde mithilfe zweier SQL-Queries mit einigen Testnutzern befüllt
 Die erste Query erstellt die Tabelle für die Nutzerdaten:
 
 \vspace{1em}
-\lstinputlisting[language=SQL, label={lst:createDatabase}]{../scripts/mysql/create_database.sql}
+\lstinputlisting[language=SQL, label={lst:createDatabase}]{../../scripts/mysql/create_database.sql}
 \vspace{1em}
 
 Die zweite Query fügt die Testnutzer hinzu:
 
 \vspace{1em}
-\lstinputlisting[language=SQL, label={lst:insertValues}]{../scripts/mysql/insert_values.sql}
+\lstinputlisting[language=SQL, label={lst:insertValues}]{../../scripts/mysql/insert_values.sql}
 \vspace{1em}
 
 Als Datenbank für die Sammlungen und die Vorlagen wurde sich für eine MongoDB-Datenbank entschieden.
@@ -301,7 +301,7 @@ Befüllt wurde die MongoDB-Datenbank mit einem Skript, welches die Vorlagen und 
 Das ein Ausschnitt des Skripts für die Vorlagen sieht so aus:
 
 \vspace{1em}
-\lstinputlisting[language=JavaScript, firstline=1, lastline=33, label={lst:insertTemplates}]{../scripts/mongodb/init.js}
+\lstinputlisting[language=JavaScript, firstline=1, lastline=33, label={lst:insertTemplates}]{../../scripts/mongodb/init.js}
 \vspace{1em}
 
 Das Integrieren der Datenbank in der Programmierumgebung war schnell erledigt, da dies analog zu der MySQL-Datenbankverbindung erfolgt ist.
@@ -339,7 +339,7 @@ Die Schnittstelle von Front- und Backend findet sich in der app.js, in welcher d
 Einen Ausschnitt aus der app.js findet sich im folgenden Code:
 
 \vspace{1em}
-\lstinputlisting[language=JavaScript,firstline=39, lastline=78, label={lst:appjs}]{../app.js}
+\lstinputlisting[language=JavaScript,firstline=39, lastline=78, label={lst:appjs}]{../../app.js}
 \vspace{1em}
 \newpage
 
@@ -351,7 +351,7 @@ So konnten zwar einfache Unit-Tests für das Login System geschrieben werden, je
 Ein exemplarischer Test für das Login System ist in nachfolgend zu sehen:
 
 \vspace{1em}
-\lstinputlisting[language=JavaScript, firstline=15, lastline=32, label={lst:loginTest}]{../tests/loginHandler.test.js}
+\lstinputlisting[language=JavaScript, firstline=15, lastline=32, label={lst:loginTest}]{../../tests/loginHandler.test.js}
 \vspace{1em}
 
 Auch gab es Probleme damit, eine Datei für Umgebungsvariablen für Testdatenbanken korrekt in die Tests mit einzubinden.
