@@ -18,6 +18,8 @@ const createCollection = require('./server/collections/createCollection');
 const createCollectionFromTemplate = require('./server/collections/createCollectionFromTemplate');
 const getCollectionNames = require('./server/collections/getCollectionNames');
 const getCollectionData = require('./server/collections/getCollectionData');
+const authRoutes = require('./apis/auth/routes/authRoutes');
+const collectionRoutes = require('./apis/collections/routes/collectionRoutes');
 
 app.use(session({
     secret: 'your-secret-key',
@@ -37,6 +39,9 @@ app.use("/img", express.static(__dirname + "/public/assets/img"));
 app.set('view engine', 'ejs');
 
 const server = http.createServer(app);
+
+app.use('/api/auth', authRoutes);
+app.use('/api/collections', collectionRoutes);
 
 app.get("/", async function(req, res) {
     res.render("index.ejs");

@@ -2,7 +2,7 @@
   "name": "colleqtico",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
     "test": "NODE_ENV=test jest",
     "start": "node server.js",
@@ -24,6 +24,7 @@
     "express-session": "^1.18.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.6.2",
+    "mongoose": "^8.7.0",
     "mysql2": "^3.9.7",
     "node": "^22.0.0",
     "supertest": "^7.0.0"

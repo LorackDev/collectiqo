@@ -1,12 +1,12 @@
 /* global jest, describe, it, expect, beforeEach */
 const request = require('supertest');
 const express = require('express');
-const loginHandler = require('../server/authentication/loginHandler');
+const loginHandler = require('../src/server/authentication/loginHandler');
 const bcrypt = require('bcrypt');
-const db = require('../server/dbConnections/connectToMYSQL');
+const db = require('../src/server/dbConnections/connectToMYSQL');
 
 jest.mock('bcrypt');
-jest.mock('../server/dbConnections/connectToMYSQL');
+jest.mock('../src/server/dbConnections/connectToMYSQL');
 
 const app = express();
 app.use(express.json());
