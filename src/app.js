@@ -19,7 +19,7 @@ const createCollectionFromTemplate = require('./server/collections/createCollect
 const getCollectionNames = require('./server/collections/getCollectionNames');
 const getCollectionData = require('./server/collections/getCollectionData');
 const authRoutes = require('./apis/auth/routes/authRoutes');
-const collectionRoutes = require('./apis/collections/routes/collectionRoutes');
+const collectionRoutes = require('./apis/collections/routes/');
 
 app.use(session({
     secret: 'your-secret-key',
