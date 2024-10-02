@@ -1,5 +1,5 @@
 const getCollectionDataService = require('../services/getCollectionDataService');
-const { sendSuccessResponse } = require('../../utils/responseHandler');
+const { sendSuccessResponse } = require('../../../utils/responseHandler');
 
 class GetCollectionDataController {
     async getCollectionData(req, res, next) {

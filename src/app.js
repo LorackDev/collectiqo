@@ -13,13 +13,11 @@ const app = express();
 
 const loginHandler = require('./server/authentication/loginHandler');
 const signUpHandler = require('./server/authentication/signUpHandler');
-const addCollectionEntry = require('./server/collections/addCollectionEntry');
-const createCollection = require('./server/collections/createCollection');
-const createCollectionFromTemplate = require('./server/collections/createCollectionFromTemplate');
-const getCollectionNames = require('./server/collections/getCollectionNames');
-const getCollectionData = require('./server/collections/getCollectionData');
-const authRoutes = require('./apis/auth/routes/authRoutes');
-const collectionRoutes = require('./apis/collections/routes/');
+
+const routeLoader = require('./utils/routeLoader');
+
+const routes = await routeLoader('./routes/**/**/*.js');
+app.use('/', routes);
 
 app.use(session({
     secret: 'your-secret-key',
@@ -30,7 +28,7 @@ app.use(session({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
-app.use("/page", express.static(__dirname + "/views/pages"));
+app.use("/page", express.static(__dirname + "/pages/pages"));
 app.use("/css", express.static(__dirname + "/public/css"));
 app.use("/js", express.static(__dirname + "/public/js"));
 app.use("/img", express.static(__dirname + "/public/assets/img"));
@@ -40,16 +38,12 @@ app.set('view engine', 'ejs');
 
 const server = http.createServer(app);
 
-app.use('/api/auth', authRoutes);
-app.use('/api/collections', collectionRoutes);
 
 app.get("/", async function(req, res) {
     res.render("index.ejs");
 });
 
-app.get('/login', (req, res) => {
-    res.render('pages/login');
-});
+
 
 app.post('/login', loginHandler, (req, res) => {
     if (req.session.username) {
@@ -59,9 +53,7 @@ app.post('/login', loginHandler, (req, res) => {
     }
 });
 
-app.get('/signup', (req, res) => {
-    res.render('pages/signup');
-});
+
 
 app.post('/signup', signUpHandler, function(req, res) {
     res.render('/pages/home')

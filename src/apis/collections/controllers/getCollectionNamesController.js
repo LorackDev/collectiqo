@@ -1,5 +1,5 @@
 const getCollectionNamesService = require('../services/getCollectionNamesService');
-const { sendSuccessResponse } = require('../../utils/responseHandler');
+const { sendSuccessResponse } = require('../../../utils/responseHandler');
 
 class GetCollectionNamesController {
     async getCollectionNames(req, res, next) {

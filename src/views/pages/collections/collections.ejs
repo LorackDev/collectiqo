@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://kit.fontawesome.com/433b24fc29.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../../public/css/collections.css">
+  <link rel="stylesheet" href="../../../public/css/modal.css">
+  <link rel="stylesheet" href="../../../public/css/templates/sidebar.css">
+  <link rel="stylesheet" href="../../../public/css/templates/new-collection-modal.css">
+  <script src="../../../public/js/home-navigation.js"></script>
+  <script src="../../../public/js/sidebar.js"></script>
+  <script src="../../../public/js/calcTH.js"></script>
+  <script src="../../../public/js/modal.js"></script>
+
+  <title>Collection Data</title>
+
+  <style>
+    .centered-message {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 65vh;
+      font-size: 24px;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+<%- include('../templates/sidebar.ejs') %>
+
+<div class="content-container">
+  <div class="content">
+    <h1>Collection: <%= collectionName %></h1>
+
+    <div class="button-group">
+      <button class="edit-button"><i class="fas fa-edit"></i> Edit</button>
+      <button class="delete-button"><i class="fas fa-trash-alt"></i> Delete</button>
+    </div>
+
+    <% if (specifiedCollection && specifiedCollection.entries.length > 0) { %>
+      <table>
+        <thead>
+        <tr>
+          <% specifiedCollection.columns.forEach(column => { %>
+            <th><%= column %></th>
+          <% }) %>
+        </tr>
+        </thead>
+        <tbody>
+        <% specifiedCollection.entries.forEach(entry => { %>
+          <tr>
+            <% for (let key in entry) { %>
+              <td><%= entry[key] %></td>
+            <% } %>
+          </tr>
+        <% }) %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <div class="centered-message">No entries found for this collection.</div>
+    <% } %>
+    <%- include('../templates/new-collection-modal.html') %>
+  </div>
+</div>
+</body>
+
+</html>

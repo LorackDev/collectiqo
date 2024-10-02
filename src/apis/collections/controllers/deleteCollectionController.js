@@ -1,4 +1,4 @@
-const deleteCollectionEntryService = require('../services/deleteCollectionEntryService');
+const deleteCollectionEntryService = require('../services/deleteCollectionService');
 const { sendSuccessResponse } = require('../../../utils/responseHandler');
 
 class DeleteCollectionController {

@@ -1,5 +1,5 @@
-const addCollectionEntryService = require('../services/addCollectionEntryService');
-const { sendSuccessResponse } = require('../../utils/responseHandler');
+const addCollectionEntryService = require('../services/createCollectionEntryService');
+const { sendSuccessResponse } = require('../../../utils/responseHandler');
 
 class CreateCollectionEntryController {
     async createCollectionEntry(req, res, next) {
@@ -7,7 +7,7 @@ class CreateCollectionEntryController {
         const username = 'Lorack2';
 
         try {
-            const result = await addCollectionEntryService.addCollectionEntry(collectionName, entry, username);
+            const result = await addCollectionEntryService.createCollectionEntry(collectionName, entry, username);
             sendSuccessResponse(res, result, 'Entry added successfully');
         } catch (error) {
             next(error);
