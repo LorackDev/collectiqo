@@ -59,35 +59,6 @@ app.post('/signup', signUpHandler, function(req, res) {
     res.render('/pages/home')
 })
 
-app.get('/home', async (req, res) => {
-    if (!req.session.username) {
-        return res.redirect('/login');
-    }
-    try {
-        const collectionNames = await getCollectionNames(req.session.username);
-        res.render('pages/home', { username: req.session.username, collections: collectionNames });
-    } catch (err) {
-        console.error(err);
-        res.render('pages/home', { username: req.session.username, collections: [] });
-    }
-});
-
-
-/*
-app.get('/home/:username', async (req, res) => {
-    const username = req.params.username;
-    if (req.session.username !== username) {
-        return res.status(403).send('Unauthorized access');
-    }
-    try {
-        const collectionNames = await getCollectionNames(username);
-        res.render('pages/home', { username: username, collections: collectionNames });
-    } catch (err) {
-        console.error(err);
-        res.render('pages/home', { username: username });
-    }
-});
-*/
 app.get('/settings', (req, res) => {
     res.render('pages/account-settings');
 });
