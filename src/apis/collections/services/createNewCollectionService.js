@@ -1,5 +1,5 @@
-const { connectToDb, closeConnection } = require('../../dbConnections/connectToMongoDB');
-const { ValidationError, DatabaseError } = require('../../errors/customErrors');
+const { connectToDb, closeConnection } = require('../../../utils/mongoUtils');
+const { ValidationError, DatabaseError } = require('../../../errors/customErrors');
 
 class CreateNewCollectionService {
     async createCollection(collectionName, columns, username) {

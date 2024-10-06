@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const { queryDatabase, handleResults } = require('../dbConnections/connectToMYSQL');
+const { queryDatabase, handleResults } = require('../../../utils/mysqlUtils');
 
 const loginService = async (username, password) => {
     const results = await queryDatabase('SELECT * FROM clq_users WHERE username = ? OR email = ?', [username, username]);

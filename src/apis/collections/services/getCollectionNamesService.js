@@ -1,5 +1,5 @@
-const { connectToDb, closeConnection } = require('../../dbConnections/connectToMongoDB');
-const { DatabaseError } = require('../../errors/customErrors');
+const { connectToDb, closeConnection } = require('../../../utils/mongoUtils');
+const { DatabaseError } = require('../../../errors/customErrors');
 
 class GetCollectionNamesService {
     async getCollectionNames(username) {

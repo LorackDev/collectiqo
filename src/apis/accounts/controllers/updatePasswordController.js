@@ -1,4 +1,4 @@
-const updatePasswordService = require('./updatePasswordService');
+const updatePasswordService = require('../services/updatePasswordService');
 
 const updatePasswordController = async (req, res) => {
     const { oldPassword, newPassword } = req.body;

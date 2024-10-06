@@ -1,4 +1,4 @@
-const { queryDatabase, handleResults } = require('../dbConnections/connectToMYSQL');
+const { queryDatabase, handleResults } = require('../../../utils/mysqlUtils');
 
 const updateUsernameService = async (oldUsername, newUsername) => {
     let results = await queryDatabase('SELECT * FROM clq_users WHERE username = ?', [oldUsername]);

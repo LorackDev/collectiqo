@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const { queryDatabase, handleResults } = require('../dbConnections/connectToMYSQL');
+const { queryDatabase, handleResults } = require('../../../utils/mysqlUtils');
 
 const signUpService = async (username, email, password) => {
     const hashedPassword = await bcrypt.hash(password, 10);
