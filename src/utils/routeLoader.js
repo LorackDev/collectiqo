@@ -1,7 +1,7 @@
-import { Router } from 'express';
-import glob from 'fast-glob';
-import fs from 'fs';
-import path from 'path';
+const { Router } = require('express');
+const glob = require('fast-glob');
+const fs = require('fs');
+const path = require('path');
 
 const BASE_DIR = path.join(__dirname, '..');
 
@@ -17,7 +17,7 @@ async function RouteLoader(globPattern) {
     for (const file of files) {
         if (fs.statSync(file).isFile() && path.extname(file).toLowerCase() === '.js') {
             try {
-                const routeModule = await import(path.resolve(file));
+                const routeModule = require(path.resolve(file));
                 router = (routeModule.default || routeModule)(router);
             } catch (e) {
                 throw new Error(`Error when loading route file: ${file} [ ${e.toString()} ]`);
@@ -28,4 +28,4 @@ async function RouteLoader(globPattern) {
     return router;
 }
 
-export default RouteLoader;
+module.exports = RouteLoader;

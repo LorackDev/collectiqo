@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/login-page', (req, res) => {
-    res.render('../pages/login');
+router.get('/collections-page', (req, res) => {
+    res.render('../pages/collections');
 });
 
 module.exports = router;

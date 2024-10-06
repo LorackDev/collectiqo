@@ -12,7 +12,7 @@ const loginService = async (username, password) => {
     const passwordMatches = await bcrypt.compare(password, user.password);
     if (!passwordMatches) {
         throw new Error('Incorrect password');
-    }
+    } 
 
     return user;
 };

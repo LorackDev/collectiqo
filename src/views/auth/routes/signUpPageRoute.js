@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-router.post('/sign-up-page', (req, res) => {
-    res.render('pages/signup');
+router.get('/sign-up-page', (req, res) => {
+    res.render('../pages/sign-up');
 });
 
 module.exports = router;
