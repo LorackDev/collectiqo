@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const getCollectionNamesController  = require('../../apis/collections/controllers/getCollectionNamesController');
+const getCollectionNamesController  = require('../../../apis/collections/controllers/getCollectionNamesController');
 
 router.get('/home-page', async (req, res) => {
     if (!req.session.username) {

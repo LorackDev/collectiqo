@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const deleteCollectionController = require('../../apis/collections/controllers/deleteCollectionController');
+const deleteCollectionController = require('../controllers/deleteCollectionController');
 
 router.post('/delete-collection', deleteCollectionController.deleteCollection);
 
