@@ -1,5 +1,5 @@
 const { connectToDb, closeConnection } = require('../../../utils/mongoUtils');
-const { CollectionNotFoundError, DatabaseError } = require('../../../errors/customErrors');
+//const { CollectionNotFoundError, DatabaseError } = require('../../../errors/customErrors');
 
 class GetCollectionDataService {
     async getCollectionData(collectionName, username) {
@@ -10,7 +10,7 @@ class GetCollectionDataService {
 
             const specifiedCollection = await collection.findOne({ name: collectionName, username: username });
             if (!specifiedCollection) {
-                throw new CollectionNotFoundError(`Collection ${collectionName} does not exist for user ${username}`);
+                //throw new CollectionNotFoundError(`Collection ${collectionName} does not exist for user ${username}`);
             }
             return specifiedCollection;
         } catch (err) {

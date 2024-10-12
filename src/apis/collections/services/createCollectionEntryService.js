@@ -1,5 +1,5 @@
 const { connectToDb, closeConnection } = require('../../../utils/mongoUtils');
-const { CollectionNotFoundError, DatabaseError } = require('../../../errors/customErrors');
+// const { CollectionNotFoundError, DatabaseError } = require('../../../errors/customErrors');
 
 class CreateCollectionEntryService {
     async createCollectionEntry(collectionName, entry, username) {
@@ -10,7 +10,7 @@ class CreateCollectionEntryService {
             const doc = await collection.findOne({ name: collectionName, username: username });
 
             if (!doc) {
-                throw new CollectionNotFoundError('Collection does not exist');
+                // throw new CollectionNotFoundError('Collection does not exist');
             }
 
             doc.entries.push(entry);
@@ -19,7 +19,7 @@ class CreateCollectionEntryService {
 
             return { message: 'Entry added successfully', result: result };
         } catch (err) {
-            throw new DatabaseError('An error occurred while adding the entry');
+            // throw new DatabaseError('An error occurred while adding the entry');
         } finally {
             await closeConnection();
         }

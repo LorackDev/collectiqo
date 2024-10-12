@@ -1,5 +1,5 @@
 const { connectToDb, closeConnection } = require('../../../utils/mongoUtils');
-const { TemplateNotFoundError, DatabaseError } = require('../../../errors/customErrors');
+// const { TemplateNotFoundError, DatabaseError } = require('../../../errors/customErrors');
 
 class CreateNewCollectionFromTemplateService {
     async createCollectionFromTemplate(collectionName, templateName, username) {
@@ -11,7 +11,7 @@ class CreateNewCollectionFromTemplateService {
             const template = await templatesCollection.findOne({ name: templateName });
 
             if (!template) {
-                throw new TemplateNotFoundError('Invalid template name');
+                // throw new TemplateNotFoundError('Invalid template name');
             }
 
             const templateCollectionData = {
@@ -30,7 +30,7 @@ class CreateNewCollectionFromTemplateService {
 
             return { message: 'Collection created successfully from template' };
         } catch (err) {
-            throw new DatabaseError('An error occurred while creating collection from template');
+            // throw new DatabaseError('An error occurred while creating collection from template');
         } finally {
             if (db) {
                 await closeConnection();

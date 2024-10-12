@@ -20,20 +20,6 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: password
     networks:
       - app-network
-  node:
-    image: lorackdev/clq-app:latest
-    restart: always
-    ports:
-      - "3005:3005"
-    volumes:
-      - .:/app
-    depends_on:
-      - mysql
-      - mongodb
-    env_file:
-      - .env
-    networks:
-      - app-network
 networks:
   app-network:
     driver: bridge

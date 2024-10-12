@@ -1,5 +1,5 @@
 const { connectToDb, closeConnection } = require('../../../utils/mongoUtils');
-const { CollectionNotFoundError, DatabaseError } = require('../../../errors/customErrors');
+// const { CollectionNotFoundError, DatabaseError } = require('../../../errors/customErrors');
 
 class DeleteCollectionService {
     async deleteCollectionEntry(collectionName, entryId, username) {
@@ -10,7 +10,7 @@ class DeleteCollectionService {
             const doc = await collection.findOne({ name: collectionName, username: username });
 
             if (!doc) {
-                throw new CollectionNotFoundError('Collection does not exist');
+                //throw new CollectionNotFoundError('Collection does not exist');
             }
 
             doc.entries = doc.entries.filter(entry => entry.id !== entryId);
@@ -19,7 +19,7 @@ class DeleteCollectionService {
 
             return { message: 'Entry deleted successfully', result: result };
         } catch (err) {
-            throw new DatabaseError('An error occurred while deleting the entry');
+            //throw new DatabaseError('An error occurred while deleting the entry');
         } finally {
             await closeConnection();
         }

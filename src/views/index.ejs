@@ -5,10 +5,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Landing Page</title>
-  <link rel="stylesheet" href="../public/css/style.css"/>
-  <link rel="stylesheet" href="../public/css/templates/header.css" />
-  <link rel="stylesheet" href="../public/css/templates/footer.css" />
-  <script src="../public/js/redirecting.js"></script>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="stylesheet" href="/css/templates/header.css" />
+  <link rel="stylesheet" href="/css/templates/footer.css" />
+  <script src="/js/redirecting.js"></script>
 </head>
 
 <body>
@@ -20,13 +20,13 @@
   <main>
     <div class="centerPage">
       <div class="mascotPicture">
-        <img src="../public/assets/img/collecta-as-logo.png" alt="Collecta" />
+        <img src="/img/collecta-as-logo.png" alt="Collecta" />
       </div>
       <div class="login-panel">
         <h1>Start collecting now!</h1>
         <div class="auth-buttons">
-          <button onclick="redirectToLoginPage()">Login</button>
-          <button onclick="redirectToSignUpPage()">Sign Up</button>
+          <button onclick="fetch('/auth/login-page')">Login</button>
+          <button onclick="fetch('/auth/sign-up-page')">Sign Up</button>
         </div>
       </div>
     </div>

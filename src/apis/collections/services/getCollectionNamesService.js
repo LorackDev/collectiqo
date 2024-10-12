@@ -1,5 +1,5 @@
 const { connectToDb, closeConnection } = require('../../../utils/mongoUtils');
-const { DatabaseError } = require('../../../errors/customErrors');
+// const { DatabaseError } = require('../../../errors/customErrors');
 
 class GetCollectionNamesService {
     async getCollectionNames(username) {
@@ -19,7 +19,7 @@ class GetCollectionNamesService {
 
             return collectionNames;
         } catch (error) {
-            throw new DatabaseError('An error occurred while retrieving the collection names');
+            // throw new DatabaseError('An error occurred while retrieving the collection names');
         } finally {
             if (db) {
                 await closeConnection();
