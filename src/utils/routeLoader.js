@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 function routeLoader(app) {
-    const baseDir = path.join(__dirname, '..', 'apis');
+    const baseDirApis = path.join(__dirname, '..', 'apis');
+    const baseDirViews = path.join(__dirname, '..', 'views');
 
     // Recursively load routes from all the 'routes' directories
     function loadRoutesFromDir(dir, basePath = '') {
@@ -19,9 +20,9 @@ function routeLoader(app) {
                             const route = require(routePath);
 
                             if (typeof route === 'function' || typeof route.use === 'function') {
-                                // Mount the router on the correct base path
-                                const routeBasePath = `${basePath}/${file.replace('routes', '')}`;
-                                app.use(routeBasePath, route);
+                                const relativePath = path.relative(__dirname, routePath);
+                                const routeBasePath = `/${relativePath.replace(/\\/g, '/').replace('src/', '').replace('.js', '')}`;
+                                app.use('/', route);
                             } else {
                                 console.error(`The file ${routeFile} does not export a valid router.`);
                             }
@@ -35,7 +36,8 @@ function routeLoader(app) {
         });
     }
 
-    loadRoutesFromDir(baseDir); // Start from the apis folder
+    loadRoutesFromDir(baseDirApis); // Start from the apis folder
+    loadRoutesFromDir(baseDirViews); // Start from the views folder
 }
 
 module.exports = routeLoader;

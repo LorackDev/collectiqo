@@ -19,10 +19,7 @@ app.use(session({
 }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("public"));
-app.use("/css", express.static(__dirname + "/public/css"));
-app.use("/js", express.static(__dirname + "/public/js"));
-app.use("/img", express.static(__dirname + "/public/assets/img"));
+app.use(express.static(__dirname + "/public"));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views')); // Set the correct views directory

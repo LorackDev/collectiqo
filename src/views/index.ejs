@@ -8,7 +8,8 @@
   <link rel="stylesheet" href="/css/style.css"/>
   <link rel="stylesheet" href="/css/templates/header.css" />
   <link rel="stylesheet" href="/css/templates/footer.css" />
-  <script src="/js/redirecting.js"></script>
+  <script src="/js/redirects/auth/redirectToLoginPage.js"></script>
+  <script src="/js/redirects/auth/redirectToSignUpPage.js"></script>
 </head>
 
 <body>
@@ -20,13 +21,13 @@
   <main>
     <div class="centerPage">
       <div class="mascotPicture">
-        <img src="/img/collecta-as-logo.png" alt="Collecta" />
+        <img src="assets/img/collecta-as-logo.png" alt="Collecta" />
       </div>
       <div class="login-panel">
         <h1>Start collecting now!</h1>
         <div class="auth-buttons">
-          <button onclick="fetch('/auth/login-page')">Login</button>
-          <button onclick="fetch('/auth/sign-up-page')">Sign Up</button>
+          <button onclick="redirectToLoginPage()">Login</button>
+          <button onclick="redirectToSignUpPage()">Sign Up</button>
         </div>
       </div>
     </div>
