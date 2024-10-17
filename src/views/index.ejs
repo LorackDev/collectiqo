@@ -24,10 +24,16 @@
         <img src="assets/img/collecta-as-logo.png" alt="Collecta" />
       </div>
       <div class="login-panel">
-        <h1>Start collecting now!</h1>
-        <div class="auth-buttons">
-          <button onclick="redirectToLoginPage()">Login</button>
-          <button onclick="redirectToSignUpPage()">Sign Up</button>
+        <h1>Sign up, start collecting now!</h1>
+        <div class="signup-container">
+
+          <form id="signup-form">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit" onclick="submitSignUpForm()">Sign Up</button>
+          </form>
+          <p class="switch-option">Already have an account? <a onclick="redirectToLoginPage()">Login</a></p>
         </div>
       </div>
     </div>
