@@ -1,4 +1,3 @@
-const http = require("http");
 const express = require("express");
 const session = require('express-session');
 const dotenv = require("dotenv");
@@ -10,13 +9,6 @@ const app = express();
 
 const routeLoader = require('./utils/routeLoader');
 
-
-app.use(session({
-    secret: 'your-secret-key',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false }
-}));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(__dirname + "/public"));

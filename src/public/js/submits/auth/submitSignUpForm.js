@@ -17,9 +17,18 @@ function submitSignUpForm() {
 
             const data = await response.json();
             if (response.status === 201) {
-                alert('User created successfully');
-                window.location.href = '/login';
-            } else {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({username, password})
+                });
+                if (response.status === 200) {
+                    window.location.href = '/home';
+                }
+            }
+                else {
                 alert(data.message);
             }
         } catch (error) {
