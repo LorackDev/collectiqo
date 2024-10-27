@@ -16,6 +16,12 @@ app.use(express.static(__dirname + "/public"));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views')); // Set the correct views directory
 
+app.use(session({
+    secret: 'my-secret-key',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+}));
 
 app.get("/", async function(req, res) {
     res.render("index.ejs");

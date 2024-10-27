@@ -7,6 +7,7 @@ function submitSignUpForm() {
         const password = document.getElementById('password').value;
 
         try {
+            console.log('Sending sign-up request...');
             const response = await fetch('/sign-up', {
                 method: 'POST',
                 headers: {
@@ -16,22 +17,37 @@ function submitSignUpForm() {
             });
 
             const data = await response.json();
+            console.log('Sign-up response:', data);
+
             if (response.status === 201) {
-                const response = await fetch('/login', {
+                console.log('Sign-up successful, attempting login...');
+                const loginResponse = await fetch('/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({username, password})
+                    body: JSON.stringify({ username, password })
                 });
-                if (response.status === 200) {
-                    window.location.href = '/home';
+
+                const loginData = await loginResponse.json();
+                console.log('Login response:', loginData);
+
+                if (loginResponse.status === 200) {
+                    console.log('Login successful, attempting home page redirect...');
+                    await fetch('/home-page', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                } else {
+                    alert(loginData.message);
                 }
-            }
-                else {
+            } else {
                 alert(data.message);
             }
         } catch (error) {
+            console.error('Error occurred:', error);
             alert('An error occurred');
         }
     });
