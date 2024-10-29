@@ -10,7 +10,8 @@ router.get('/home-page', async (req, res) => {
     }
     try {
         const collectionNames = await getCollectionNamesController.getCollectionNames(req.session.username);
-        res.render('home/pages/home/', { username: req.session.username, collections: collectionNames });
+        console.log('Collection names:', collectionNames);
+        res.render('home/pages/home', { username: req.session.username, collections: collectionNames });
     } catch (err) {
         console.error(err);
         res.render('home/pages/home', { username: req.session.username, collections: [] });

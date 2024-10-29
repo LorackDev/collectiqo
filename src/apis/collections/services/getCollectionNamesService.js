@@ -1,8 +1,7 @@
 const { connectToDb, closeConnection } = require('../../../utils/mongoUtils');
 // const { DatabaseError } = require('../../../errors/customErrors');
 
-class GetCollectionNamesService {
-    async getCollectionNames(username) {
+const getCollectionNamesService = async(username) => {
         let db;
         try {
             db = await connectToDb();
@@ -25,7 +24,6 @@ class GetCollectionNamesService {
                 await closeConnection();
             }
         }
-    }
 }
 
-module.exports = new GetCollectionNamesService();
+module.exports = new getCollectionNamesService;

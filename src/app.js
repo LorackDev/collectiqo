@@ -19,13 +19,15 @@ app.set('views', path.join(__dirname, 'views')); // Set the correct views direct
 app.use(session({
     secret: 'my-secret-key',
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }
+    saveUninitialized: false,
+    cookie: { secure: false }
 }));
 
 app.get("/", async function(req, res) {
     res.render("index.ejs");
 });
+
+
 
 routeLoader(app);
 

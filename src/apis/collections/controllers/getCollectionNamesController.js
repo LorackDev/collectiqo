@@ -1,8 +1,7 @@
 const getCollectionNamesService = require('../services/getCollectionNamesService');
 const { sendSuccessResponse } = require('../../../utils/responseHandler');
 
-class GetCollectionNamesController {
-    async getCollectionNames(req, res, next) {
+const getCollectionNamesController = async (req, res, next) => {
         const username = req.session.username;
 
         try {
@@ -11,7 +10,6 @@ class GetCollectionNamesController {
         } catch (error) {
             next(error);
         }
-    }
-}
+};
 
-module.exports = new GetCollectionNamesController();
+module.exports = new getCollectionNamesController;

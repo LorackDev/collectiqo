@@ -8,13 +8,13 @@ const url = 'mongodb://' +
 const dbName = 'clq_collections';
 const client = new MongoClient(url);
 
-async function connectToDb() {
+const connectToDb = async() => {
     await client.connect();
     console.log("Connected correctly to server");
     return client.db(dbName);
 }
 
-async function closeConnection() {
+const closeConnection = async() => {
     await client.close();
 }
 
