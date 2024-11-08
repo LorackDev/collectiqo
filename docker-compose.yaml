@@ -1,7 +1,7 @@
 version: '3'
 services:
   mysql:
-    image: lorackdev/clq-mysql:latest
+    image: mysql:latest
     command: --default-authentication-plugin=caching_sha2_password
     restart: always
     environment:

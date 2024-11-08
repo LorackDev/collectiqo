@@ -1,12 +1,25 @@
-FROM node:latest
+# Use Node.js base image
+FROM node:23-alpine3.19
 
+# Set working directory
 WORKDIR /app
 
-COPY package.json package.json
-COPY package-lock.json package-lock.json
+# Copy package files
+COPY package.json package-lock.json ./
 
-RUN npm install
+# Install build dependencies
+RUN apk add --no-cache python3 make g++ \
+    && npm install \
+    && apk del python3 make g++
 
+# Copy the rest of the application code
 COPY . .
 
-CMD [ "node", "app.js" ]
+# Build the application (if needed)
+# RUN npm run build
+
+# Expose the application port
+EXPOSE 3000
+
+# Start the application
+CMD ["node", "app.js"]
