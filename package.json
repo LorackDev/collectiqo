@@ -5,8 +5,7 @@
   "main": "src/app.js",
   "scripts": {
     "test": "NODE_ENV=test jest",
-    "start": "node server.js",
-    "postinstall": "npm rebuild bcrypt --build-from-source"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
