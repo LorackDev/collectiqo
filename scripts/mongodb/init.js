@@ -1,6 +1,9 @@
 const MongoClient = require('mongodb').MongoClient;
+const dotenv = require("dotenv");
+const path = require("path");
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
-const url = 'mongodb://root:password@localhost:27017';
+const url = 'mongodb://'+ process.env.MONGO_DATABASE_USER + ':' + process.env.MONGO_DATABASE_PASSWORD + '@' + process.env.MONGO_DATABASE_HOST + ':' + process.env.MONGO_DATABASE_PORT;
 const dbName = 'clq_collections';
 const client = new MongoClient(url);
 
