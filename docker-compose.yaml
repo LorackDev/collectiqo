@@ -1,13 +1,12 @@
 version: '3'
 services:
   mysql:
-    image: mysql:latest
-    command: --default-authentication-plugin=caching_sha2_password
+    image: lorackdev/clq-mysql-multiarch
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: password
     ports:
-      - "3307:3306"
+      - "3306:3306"
     networks:
       - app-network
   mongodb:
