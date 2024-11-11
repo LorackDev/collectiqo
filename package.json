@@ -14,7 +14,7 @@
   "private": true,
   "dependencies": {
     "@jest/globals": "^29.7.0",
-    "axios": "^1.6.8",
+    "axios": "^1.7.7",
     "bcryptjs": "^2.4.3",
     "common-errors": "^1.2.0",
     "dotenv": "^16.4.5",
@@ -23,11 +23,13 @@
     "express": "^4.19.2",
     "express-session": "^1.18.0",
     "fast-glob": "^3.3.2",
+    "jose": "^5.9.6",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.6.2",
     "mongoose": "^8.7.0",
     "mysql2": "^3.9.7",
     "node": "^22.0.0",
+    "qs": "^6.13.0",
     "supertest": "^7.0.0"
   },
   "devDependencies": {
