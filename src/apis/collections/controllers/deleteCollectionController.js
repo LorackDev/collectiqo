@@ -1,8 +1,7 @@
 const deleteCollectionEntryService = require('../services/deleteCollectionService');
 const { sendSuccessResponse } = require('../../../utils/responseHandler');
 
-class DeleteCollectionController {
-    async deleteCollection(req, res, next) {
+const deleteCollectionController = async (req, res, next) => {
         const { collectionName, entryId, username } = req.body;
 
         try {
@@ -12,6 +11,5 @@ class DeleteCollectionController {
             next(error);
         }
     }
-}
 
-module.exports = new DeleteCollectionController();
+module.exports = deleteCollectionController;

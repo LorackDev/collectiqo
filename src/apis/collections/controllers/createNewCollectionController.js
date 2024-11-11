@@ -1,8 +1,7 @@
 const createCollectionService = require('../services/createNewCollectionService');
 const { sendSuccessResponse } = require('../../../utils/responseHandler');
 
-class CreateNewCollectionController {
-    async createCollection(req, res, next) {
+const createNewCollectionController = async (req, res, next) => {
         const { collectionName, columns, username } = req.body;
 
         try {
@@ -12,6 +11,5 @@ class CreateNewCollectionController {
             next(error);
         }
     }
-}
 
-module.exports = new CreateNewCollectionController();
+module.exports = createNewCollectionController;

@@ -1,8 +1,7 @@
 const createCollectionFromTemplateService = require('../services/createNewCollectionFromTemplateService');
 const { sendSuccessResponse } = require('../../../utils/responseHandler');
 
-class CreateNewCollectionFromTemplateController {
-    async createCollectionFromTemplate(req, res, next) {
+const createNewCollectionFromTemplateController = async (req, res, next) => {
         const { collectionName, templateName } = req.body;
         const username = req.session.username;
 
@@ -13,6 +12,5 @@ class CreateNewCollectionFromTemplateController {
             next(error);
         }
     }
-}
 
-module.exports = new CreateNewCollectionFromTemplateController();
+module.exports = createNewCollectionFromTemplateController;
