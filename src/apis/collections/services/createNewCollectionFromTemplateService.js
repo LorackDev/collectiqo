@@ -1,8 +1,7 @@
 const { connectToDb, closeConnection } = require('../../../utils/mongoUtils');
 // const { TemplateNotFoundError, DatabaseError } = require('../../../errors/customErrors');
 
-class CreateNewCollectionFromTemplateService {
-    async createCollectionFromTemplate(collectionName, templateName, username) {
+const createNewCollectionFromTemplateService = async (collectionName, templateName, username) => {
         let db;
         try {
             db = await connectToDb();
@@ -36,7 +35,6 @@ class CreateNewCollectionFromTemplateService {
                 await closeConnection();
             }
         }
-    }
 }
 
-module.exports = new CreateNewCollectionFromTemplateService();
+module.exports = createNewCollectionFromTemplateService;

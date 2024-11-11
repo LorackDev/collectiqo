@@ -1,8 +1,7 @@
 const { connectToDb, closeConnection } = require('../../../utils/mongoUtils');
 // const { CollectionNotFoundError, DatabaseError } = require('../../../errors/customErrors');
 
-class CreateCollectionEntryService {
-    async createCollectionEntry(collectionName, entry, username) {
+const createCollectionEntryService = async (collectionName, entry, username) => {
         try {
             const db = await connectToDb();
             const collection = db.collection('collections');
@@ -23,7 +22,6 @@ class CreateCollectionEntryService {
         } finally {
             await closeConnection();
         }
-    }
 }
 
-module.exports = new CreateCollectionEntryService();
+module.exports = createCollectionEntryService;

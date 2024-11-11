@@ -1,8 +1,7 @@
 const { connectToDb, closeConnection } = require('../../../utils/mongoUtils');
 // const { ValidationError, DatabaseError } = require('../../../errors/customErrors');
 
-class CreateNewCollectionService {
-    async createCollection(collectionName, columns, username) {
+const createNewCollectionService = async (collectionName, columns, username) => {
         if (columns.length > 10) {
             // throw new ValidationError('Cannot add more than 10 columns');
         }
@@ -27,6 +26,6 @@ class CreateNewCollectionService {
             await closeConnection();
         }
     }
-}
 
-module.exports = new CreateNewCollectionService();
+
+module.exports = createNewCollectionService;

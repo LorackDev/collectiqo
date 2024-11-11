@@ -1,8 +1,7 @@
 const { connectToDb, closeConnection } = require('../../../utils/mongoUtils');
 // const { CollectionNotFoundError, DatabaseError } = require('../../../errors/customErrors');
 
-class DeleteCollectionService {
-    async deleteCollectionEntry(collectionName, entryId, username) {
+const deleteCollectionService = async (collectionName, entryId, username) => {
         try {
             const db = await connectToDb();
             const collection = db.collection('collections');
@@ -24,6 +23,5 @@ class DeleteCollectionService {
             await closeConnection();
         }
     }
-}
 
-module.exports = new DeleteCollectionService();
+module.exports = deleteCollectionService;

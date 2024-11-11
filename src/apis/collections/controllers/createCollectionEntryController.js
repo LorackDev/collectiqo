@@ -1,8 +1,7 @@
 const addCollectionEntryService = require('../services/createCollectionEntryService');
 const { sendSuccessResponse } = require('../../../utils/responseHandler');
 
-class CreateCollectionEntryController {
-    async createCollectionEntry(req, res, next) {
+const createCollectionEntryController = async (req, res, next) => {
         const { collectionName, entry } = req.body;
         const username = 'Lorack2';
 
@@ -13,6 +12,5 @@ class CreateCollectionEntryController {
             next(error);
         }
     }
-}
 
-module.exports = new CreateCollectionEntryController();
+module.exports = createCollectionEntryController;

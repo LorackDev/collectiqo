@@ -26,4 +26,4 @@ const getCollectionNamesService = async(username) => {
         }
 }
 
-module.exports = new getCollectionNamesService;
+module.exports = getCollectionNamesService;

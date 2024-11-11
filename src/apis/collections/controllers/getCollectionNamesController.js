@@ -5,11 +5,11 @@ const getCollectionNamesController = async (req, res, next) => {
         const username = req.session.username;
 
         try {
-            const collectionNames = await getCollectionNamesService.getCollectionNames(username);
+            const collectionNames = await getCollectionNamesService(username);
             sendSuccessResponse(res, collectionNames, 'Collection names retrieved successfully');
         } catch (error) {
             next(error);
         }
 };
 
-module.exports = new getCollectionNamesController;
+module.exports = getCollectionNamesController;
