@@ -1,40 +1,47 @@
 const { connectToDb, closeConnection } = require('../../../utils/mongoUtils');
-// const { TemplateNotFoundError, DatabaseError } = require('../../../errors/customErrors');
+const axios = require('axios');
+const https = require('https');
+const BASE_URL = 'https://' + process.env.DOMAIN + ':' + process.env.PORT;
+
+const agent = new https.Agent({
+    rejectUnauthorized: false
+});
 
 const createNewCollectionFromTemplateService = async (collectionName, templateName, username) => {
-        let db;
-        try {
-            db = await connectToDb();
-            const templatesCollection = db.collection('templates');
+    let db;
+    try {
+        db = await connectToDb();
+        const templatesCollection = db.collection('templates');
 
-            const template = await templatesCollection.findOne({ name: templateName });
+        const template = await templatesCollection.findOne({ name: templateName });
 
-            if (!template) {
-                // throw new TemplateNotFoundError('Invalid template name');
-            }
-
-            const templateCollectionData = {
-                collectionName: collectionName,
-                columns: template.columns,
-                username: username
-            };
-
-            let response = await fetch('http://localhost:3005/create-collection', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(templateCollectionData)
-            });
-
-            if (!response.ok) throw new Error('Failed to create template collection');
-
-            return { message: 'Collection created successfully from template' };
-        } catch (err) {
-            // throw new DatabaseError('An error occurred while creating collection from template');
-        } finally {
-            if (db) {
-                await closeConnection();
-            }
+        if (!template) {
+            throw new Error('Invalid template name');
         }
+
+        let response = await axios.post(BASE_URL + '/create-new-collection', {
+            collectionName: collectionName,
+            columns: template.columns,
+            username: username
+        }, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            httpsAgent: agent
+        });
+
+        if (response.status !== 200) {
+            throw new Error('Failed to create template collection');
+        }
+
+        return { message: 'Collection created successfully from template' };
+    } catch (err) {
+        console.error('Error creating collection from template:', err);
+    } finally {
+        if (db) {
+            await closeConnection();
+        }
+    }
 }
 
 module.exports = createNewCollectionFromTemplateService;

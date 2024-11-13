@@ -6,6 +6,7 @@ const signUpController = async (req, res) => {
     try {
         await signUpService(username, email, password);
         return res.status(201).json({ message: "User created successfully" });
+
     } catch (error) {
         if (error.message === 'User already exists' || error.message === 'Email already in use') {
             return res.status(409).json({ message: error.message });

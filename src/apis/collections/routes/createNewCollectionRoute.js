@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const createCollectionController = require('../controllers/createNewCollectionController');
+const createNewCollectionController = require('../controllers/createNewCollectionController');
 
-router.post('/create-new-collection', createCollectionController);
+router.post('/create-new-collection', createNewCollectionController);
 
 module.exports = router;

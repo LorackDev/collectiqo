@@ -9,7 +9,8 @@ router.get('/home-page', async (req, res) => {
         return res.redirect('/login-page');
     }
     try {
-        const collectionNames = await getCollectionNamesController.getCollectionNames(req.session.username);
+        const collectionNames = await getCollectionNamesController(req.session.username);
+
         console.log('Collection names:', collectionNames);
         res.render('home/pages/home', { username: req.session.username, collections: collectionNames });
     } catch (err) {

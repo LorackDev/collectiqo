@@ -5,7 +5,7 @@ const deleteCollectionController = async (req, res, next) => {
         const { collectionName, entryId, username } = req.body;
 
         try {
-            const result = await deleteCollectionEntryService.deleteCollectionEntry(collectionName, entryId, username);
+            const result = await deleteCollectionEntryService(collectionName, entryId, username);
             sendSuccessResponse(res, result, 'Entry deleted successfully');
         } catch (error) {
             next(error);

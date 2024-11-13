@@ -1,14 +1,13 @@
 const getCollectionNamesService = require('../services/getCollectionNamesService');
 const { sendSuccessResponse } = require('../../../utils/responseHandler');
 
-const getCollectionNamesController = async (req, res, next) => {
-        const username = req.session.username;
+const getCollectionNamesController = async (username, res, next) => {
 
-        try {
+    try {
             const collectionNames = await getCollectionNamesService(username);
             sendSuccessResponse(res, collectionNames, 'Collection names retrieved successfully');
         } catch (error) {
-            next(error);
+            console.log(error);
         }
 };
 

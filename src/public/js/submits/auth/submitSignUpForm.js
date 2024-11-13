@@ -1,54 +1,57 @@
-function submitSignUpForm() {
+document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('signup-form').addEventListener('submit', async function(event) {
         event.preventDefault();
-        console.log('Form submitted');
+
+        // Get user parameters for sign up from ejs file
         const username = document.getElementById('username').value;
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
+        console.log('Form submitted');
 
         try {
             console.log('Sending sign-up request...');
-            const response = await fetch('/sign-up', {
+            const signUpResponse = await fetch('/sign-up', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ username, email, password })
+                body: JSON.stringify({username, email, password})
             });
 
-            const data = await response.json();
-            console.log('Sign-up response:', data);
-
-            if (response.status === 201) {
-                console.log('Sign-up successful, attempting login...');
+            // After successful account creation, login user
+            if (signUpResponse.status === 201) {
+                console.log('Default collection created, attempting login...');
                 const loginResponse = await fetch('/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ username, password })
+                    body: JSON.stringify({username, password})
                 });
 
-                const loginData = await loginResponse.json();
-                console.log('Login response:', loginData);
-
+                // After successful login, create a default template for the user
                 if (loginResponse.status === 200) {
-                    console.log('Login successful, attempting home page redirect...');
-                    await fetch('/home-page', {
-                        method: 'GET',
+                    console.log('Sign-up successful, creating first collection...');
+                    const collectionResponse = await fetch('/create-new-collection-from-template', {
+                        method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
-                        }
+                        },
+                        body: JSON.stringify({
+                            collectionName: `${username}'s first collection`,
+                            templateName: 'perfume'
+                        })
                     });
-                } else {
-                    alert(loginData.message);
+
+                    // And finally, redirect user to the home page
+                    if (collectionResponse.status === 200) {
+                        console.log('Login successful, attempting home page redirect...');
+                        window.location.href = '/home-page';
+                    }
                 }
-            } else {
-                alert(data.message);
             }
         } catch (error) {
-            console.error('Error occurred:', error);
-            alert('An error occurred');
+            console.log(error);
         }
     });
-}
+});

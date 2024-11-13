@@ -6,7 +6,7 @@ const createCollectionEntryController = async (req, res, next) => {
         const username = 'Lorack2';
 
         try {
-            const result = await addCollectionEntryService.createCollectionEntry(collectionName, entry, username);
+            const result = await addCollectionEntryService(collectionName, entry, username);
             sendSuccessResponse(res, result, 'Entry added successfully');
         } catch (error) {
             next(error);
