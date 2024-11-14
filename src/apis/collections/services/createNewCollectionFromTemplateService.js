@@ -2,6 +2,7 @@ const { connectToDb, closeConnection } = require('../../../utils/mongoUtils');
 const axios = require('axios');
 const https = require('https');
 const BASE_URL = 'https://' + process.env.DOMAIN + ':' + process.env.PORT;
+const createNewCollectionService = require('./createNewCollectionService');
 
 const agent = new https.Agent({
     rejectUnauthorized: false
@@ -19,20 +20,7 @@ const createNewCollectionFromTemplateService = async (collectionName, templateNa
             throw new Error('Invalid template name');
         }
 
-        let response = await axios.post(BASE_URL + '/create-new-collection', {
-            collectionName: collectionName,
-            columns: template.columns,
-            username: username
-        }, {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            httpsAgent: agent
-        });
-
-        if (response.status !== 200) {
-            throw new Error('Failed to create template collection');
-        }
+        await createNewCollectionService(collectionName, template.columns, username);
 
         return { message: 'Collection created successfully from template' };
     } catch (err) {
