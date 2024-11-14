@@ -6,6 +6,7 @@ const getCollectionNamesController = async (username, res, next) => {
     try {
             const collectionNames = await getCollectionNamesService(username);
             sendSuccessResponse(res, collectionNames, 'Collection names retrieved successfully');
+            return collectionNames;
         } catch (error) {
             console.log(error);
         }
