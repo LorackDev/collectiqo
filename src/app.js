@@ -6,6 +6,9 @@ const dotenv = require("dotenv");
 const path = require("path");
 const os = require("os");
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
+const MongoStore = require('connect-mongo');
+const cors = require('cors');
+
 
 const port = process.env.PORT;
 const app = express();
@@ -26,7 +29,7 @@ const options = {
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views')); // Set the correct views directory
@@ -34,13 +37,23 @@ app.set('views', path.join(__dirname, 'views')); // Set the correct views direct
 app.use(session({
     secret: 'my-secret-key',
     resave: false,
-    saveUninitialized: false,
-    cookie: { secure: false }
+    saveUninitialized: true,
+    cookie: { secure: false, sameSite: 'lax' },
+    store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/sessions'})
+}));
+
+app.use(cors({
+    origin: 'https://dev.collectiqo.com:3000', // Replace with your frontend URL
+    credentials: true,
+    methods: ['GET', 'POST'],
+    optionsSuccessStatus: 204
 }));
 
 app.get("/", async function(req, res) {
     res.render("index.ejs");
 });
+
+
 
 routeLoader(app);
 

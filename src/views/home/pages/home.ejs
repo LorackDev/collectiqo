@@ -19,13 +19,13 @@
   <script src="/js/sidebar.js"></script>
   <script src="/js/calcTH.js"></script>
   <script src="/js/modal.js"></script>
-  <script src="/js/collection-actions.js"></script>
+  <script src="/js/collection-action.js"></script>
 
   <title>Home</title>
 </head>
 
 <body>
-
+|
 <%- include('../../templates/sidebar.ejs') %>
 
 <div class="content-container">
@@ -37,7 +37,7 @@
       <ul>
         <% collections.forEach((collection, id) => { %>
           <li class="collection-item">
-            <span class="collection-name" data-index="<%= id %>"><%= collection %></span>
+            <span class="collection-link" data-index="<%= id %>"><%= collection %></span>
             <button type="button" class="deleteCltBtn" data-index="<%= id %>">Delete</button>
           </li>
         <% }) %>
