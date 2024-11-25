@@ -1,8 +1,10 @@
 :root {
-    --smoky-black: #12100e;
-    --pine-tree: #98a320;
-    --blue: #1672c8;
-    --white: #ffffff;
+    --light: #6472D0;
+    --mid-light: #5460AE;
+    --mid: #434D8C;
+    --mid-dark: #333A6A;
+    --dark: #232848;
+    --grey-white: #e3e3e3;
     --font-size: 1.2rem;
 }
 
@@ -20,7 +22,7 @@ body {
 
 .header {
     overflow: hidden;
-    background-color: var(--blue);
+    background-color: var(--mid-dark);
     padding: 20px 20px;
     display: flex;
     align-items: center;
@@ -32,36 +34,33 @@ body {
     border-radius: 50%;
 }
 
-.header-right {
-    margin-left: auto;
+.header-nav-links {
+    margin: auto;
 }
 
-.header-right a {
-    color: black;
+.header-nav-links a {
+    display: inline-block;
+    color: var(--grey-white);
     text-align: center;
-    padding: 12px;
     text-decoration: none;
     font-size: 18px;
     line-height: 25px;
     border-radius: 4px;
+    width: 100px;
 }
 
-.header-right a:hover {
-    background-color: #ddd;
-    color: black;
+.header-nav-links a:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease-in-out;
 }
 
-.header-right a.active {
-    background-color: dodgerblue;
-    color: white;
-}
 
 @media screen and (max-width: 500px) {
     .header {
         flex-direction: column;
     }
 
-    .header-right {
+    .header-nav-links {
         margin: 10px 0 0 0;
     }
 }

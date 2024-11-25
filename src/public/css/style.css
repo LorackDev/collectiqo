@@ -1,8 +1,10 @@
 :root {
-  --smoky-black: #12100e;
-  --pine-tree: #98a320;
-  --blue: #1672c8;
-  --white: #ffffff;
+  --light: #6472D0;
+  --mid-light: #5460AE;
+  --mid: #434D8C;
+  --mid-dark: #333A6A;
+  --dark: #232848;
+  --grey-white: #e3e3e3;
   --font-size: 1.2rem;
 }
 
@@ -19,12 +21,14 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #f7f7f7;
 }
 
 .centerPage {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 75px;
 }
 
 .mascotPicture {
@@ -36,7 +40,7 @@ main {
 
 .mascotPicture img {
   width: 100%;
-  max-width: 700px;
+  max-width: 500px;
   height: auto;
 }
 
@@ -58,7 +62,7 @@ main {
 .login-panel .signup-container h1 {
   margin-bottom: 15px;
   font-size: 24px;
-  color: #4285F4;
+  color: var(--mid);
 }
 
 .login-panel .signup-container form {
@@ -75,18 +79,20 @@ main {
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 3px;
+  box-sizing: border-box;
+  transition: box-shadow 0.2s ease;
 }
 
 .login-panel .signup-container input[type="text"]:focus,
 .login-panel .signup-container input[type="email"]:focus,
 .login-panel .signup-container input[type="password"]:focus {
   outline: none;
-  border-color: #4285F4;
+  box-shadow: 0 0 7px 2px var(--mid);
 }
 
 .login-panel .signup-container button {
   padding: 15px 30px;
-  background-color: #4285F4;
+  background-color: var(--mid);
   color: #ffffff;
   border: none;
   border-radius: 3px;
@@ -95,7 +101,7 @@ main {
 }
 
 .login-panel .signup-container button:hover {
-  background-color: #3367D6;
+  background-color: var(--light);
 }
 
 .login-panel .signup-container .switch-option {
@@ -104,8 +110,9 @@ main {
 }
 
 .login-panel .signup-container .switch-option a {
-  color: #4285F4;
+  color: var(--mid);
   text-decoration: none;
+  font-weight: bold;
 }
 
 .login-panel .signup-container .switch-option a:hover {

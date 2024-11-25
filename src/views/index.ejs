@@ -18,28 +18,28 @@
   <%- include('./templates/header.html') %>
 </header>
 
-  <main>
-    <div class="centerPage">
-      <div class="mascotPicture">
-        <img src="assets/img/collecta-as-logo.png" alt="Collecta" />
-      </div>
-      <div class="login-panel">
-        <h1>Sign up, start collecting now!</h1>
-        <div class="signup-container">
-
-          <form id="signup-form">
-            <input type="text" id="username" placeholder="Username" required>
-            <input type="email" id="email" placeholder="Email" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button type="submit">Sign Up</button>
-          </form>
-          <p class="switch-option">Already have an account? <a onclick="redirectToLoginPage()">Login</a></p>
-        </div>
+<main>
+  <div class="centerPage">
+    <div class="login-panel">
+      <h1>Sign up, start collecting now!</h1>
+      <div class="signup-container">
+        <form id="signup-form">
+          <input type="text" id="username" placeholder="Username" required>
+          <input type="email" id="email" placeholder="Email" required>
+          <input type="password" id="password" placeholder="Password" required>
+          <button type="submit">Sign Up</button>
+        </form>
+        <p class="switch-option">Already have an account? <a onclick="redirectToLoginPage()">Login</a></p>
       </div>
     </div>
-  </main>
+    <div class="mascotPicture">
+      <img src="assets/img/collecta-as-logo.png" alt="Collecta" />
+    </div>
+  </div>
+</main>
 
-  <footer>
+
+<footer>
     <%- include('./templates/footer.html') %>
   </footer>
 
