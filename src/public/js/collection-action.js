@@ -1,14 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.collection-link').forEach(button => {
         console.log('Found collection link:', button);
-        button.addEventListener('click', function(event) {
+        button.addEventListener('click', async function (event) {
             const collectionName = this.textContent;
             if (!collectionName) {
                 console.error('Collection name is null or undefined.');
                 return;
             }
-            const url = `/collection/${encodeURIComponent(collectionName.trim())}`;
-            window.location.href = url;
+            window.location.href = `/collection/${encodeURIComponent(collectionName.trim())}`;
         });
     });
 
