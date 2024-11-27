@@ -5,13 +5,13 @@
     --mid-dark: #333A6A;
     --dark: #232848;
     --grey-white: #e3e3e3;
+    --white: #ffffff;
     --dark-grey: #383838;
     --font-size: 1.2rem;
 }
 
-/* Footer */
 .footer {
-    padding: 20px;
+    padding: 10px;
     background-color: var(--dark-grey);
     font-size: 0.9rem;
     text-align: center;
@@ -19,10 +19,13 @@
     width: 100%;
 }
 
+.footer h1 {
+    color: var(--white);
+}
+
 .footer p {
     color: var(--grey-white);
 }
-
 
 /* Social Media in Footer */
 .social-media {
