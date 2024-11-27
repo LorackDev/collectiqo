@@ -1,3 +1,13 @@
+:root {
+  --light: #6472D0;
+  --mid-light: #5460AE;
+  --mid: #434D8C;
+  --mid-dark: #333A6A;
+  --dark: #232848;
+  --grey-white: #e3e3e3;
+  --font-size: 1.2rem;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -5,7 +15,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f4;
+    background-color: var(--grey-white);
     font-family: Arial, sans-serif;
   }
   
@@ -18,9 +28,9 @@ body {
   }
   
   .container h1 {
-    margin-bottom: 15px;
-    font-size: 24px;
-    color: #4285F4;
+    margin-bottom: 25px;
+    font-size: 27px;
+    color: var(--mid);
   }
   
   .container form {
@@ -41,12 +51,13 @@ body {
   .container input[type="text"]:focus,
   .container input[type="password"]:focus {
     outline: none;
-    border-color: #4285F4;
+    box-shadow: 0 0 7px 2px var(--mid);
+    transition: box-shadow 0.2s ease;
   }
   
   .container button {
     padding: 15px 30px;
-    background-color: #4285F4;
+    background-color: var(--mid);
     color: #ffffff;
     border: none;
     border-radius: 3px;
@@ -55,7 +66,7 @@ body {
   }
   
   .container button:hover {
-    background-color: #3367D6;
+    background-color: var(--light);
   }
   
   .container .switch-option {
@@ -64,8 +75,9 @@ body {
   }
   
   .container .switch-option a {
-    color: #4285F4;
+    color: var(--mid);
     text-decoration: none;
+    font-weight: bold;
   }
   
   .container .switch-option a:hover {
