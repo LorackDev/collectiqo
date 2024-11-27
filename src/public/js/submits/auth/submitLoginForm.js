@@ -1,4 +1,4 @@
-function submitLoginForm() {
+document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('loginForm').addEventListener('submit', async function(event) {
         event.preventDefault();
 
@@ -16,8 +16,8 @@ function submitLoginForm() {
 
             const data = await response.json();
             if (response.status === 200) {
-                alert('Login successful');
-                window.location.href = '/home';
+                console.log('Login successful');
+                window.location.href = '/home-page';
             } else {
                 alert(data.message);
             }
@@ -25,4 +25,4 @@ function submitLoginForm() {
             alert('An error occurred');
         }
     });
-}
+});
