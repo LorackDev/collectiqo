@@ -88,7 +88,7 @@
                 event.preventDefault();
                 const oldPassword = document.getElementById('currentPassword').value;
                 const newPassword = document.getElementById('newPassword').value;
-                const username = req.session.username;
+                const username = req.session.user.name;
                 await updatePasswordHandler({ body: { oldPassword, newPassword }, session: { username } }, {
                     status: (statusCode) => ({ json: (response) => console.log(response) })
                 });
@@ -96,7 +96,7 @@
 
             document.getElementById('accountDeletionForm').addEventListener('submit', async function(event) {
                 event.preventDefault();
-                const username = req.session.username;
+                const username = req.session.user.name;
                 await deleteAccountHandler({ session: { username } }, {
                     status: (statusCode) => ({ json: (response) => console.log(response) })
                 });

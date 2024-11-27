@@ -1,7 +1,7 @@
 const deleteAccountService = require('../services/deleteAccountService');
 
 const deleteAccountController = async (req, res) => {
-    const username = req.session.username;
+    const username = req.session.user.name;
 
     try {
         await deleteAccountService(username);

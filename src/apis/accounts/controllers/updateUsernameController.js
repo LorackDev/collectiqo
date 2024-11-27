@@ -2,11 +2,11 @@ const updateUsernameService = require('../services/updateUsernameService');
 
 const updateUsernameController = async (req, res) => {
     const { newUsername } = req.body;
-    const oldUsername = req.session.username;
+    const oldUsername = req.session.user.name;
 
     try {
         await updateUsernameService(oldUsername, newUsername);
-        req.session.username = newUsername;
+        req.session.user.name = newUsername;
         return res.status(200).json({ message: "Username updated successfully" });
     } catch (error) {
         if (error.message === 'User not found') {

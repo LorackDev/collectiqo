@@ -112,6 +112,8 @@ async function addSampleData() {
             collections.insertOne(videoGameData)
         ]);
 
+
+
         console.log('Sample data added successfully');
     } catch (error) {
         console.error(`Failed to add sample data: ${error}`);
