@@ -14,6 +14,7 @@ body, html {
   height: 100%;
   display: flex;
   flex-direction: column;
+  background-color: var(--grey-white);
 }
 
 main {
@@ -21,14 +22,13 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f7f7f7;
 }
 
 .centerPage {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 75px;
+  gap: 175px;
 }
 
 .mascotPicture {
@@ -44,11 +44,16 @@ main {
   height: auto;
 }
 
+.collectiqo-text {
+  color: var(--mid-light);
+}
+
 .login-panel {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
 
 .login-panel .signup-container {
@@ -57,6 +62,17 @@ main {
   border-radius: 5px;
   text-align: center;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  width: 500px;
+}
+
+.login-panel h1 {
+  text-align: left;
+}
+
+.login-panel .heading {
+  color: var(--mid-light); /* Set color for the first <h1> */
+  margin-bottom: 1px; /* Adjust spacing for the first <h1> if needed */
+  text-align: left;
 }
 
 .login-panel .signup-container h1 {

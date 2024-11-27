@@ -19,7 +19,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    background-color: var(--mid);
+    background-color: var(--mid-dark);
 }
 
 .sidebar {
@@ -30,7 +30,7 @@
     left: 0;
     overflow: hidden;
     z-index: 1;
-    background-color: var(--mid);
+    background-color: var(--mid-dark);
     transition: width 0.3s linear;
 }
 
@@ -53,7 +53,7 @@
     width: 100%;
     padding: var(--padding);
     font-size: var(--font-size);
-    background-color: var(--mid);
+    background-color: var(--mid-dark);
     color: #fff;
     display: block;
     position: relative;
@@ -67,7 +67,7 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    background-color: var(--mid);
+    background-color: var(--mid-dark);
     transform: scale(0);
     transform-origin: left;
     transition: all 0.3s linear;
@@ -134,7 +134,7 @@
     align-items: center;
     padding: var(--padding);
     background-color: var(--white);
-    color: var(--mid);
+    color: var(--mid-dark);
     margin-left: var(--margin-left);
     cursor: pointer;
     transition: all 0.3s linear;
