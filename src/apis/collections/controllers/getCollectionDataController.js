@@ -3,7 +3,7 @@ const { sendSuccessResponse } = require('../../../utils/responseHandler');
 
 const getCollectionDataController = async (req, res, next) => {
         const collectionName = req.query.collectionName;
-        const username = req.session.username;
+        const username = req.session.user.name;
 
         try {
             const specifiedCollection = await getCollectionDataService(collectionName, username);

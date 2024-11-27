@@ -2,7 +2,7 @@ const updatePasswordService = require('../services/updatePasswordService');
 
 const updatePasswordController = async (req, res) => {
     const { oldPassword, newPassword } = req.body;
-    const username = req.session.username;
+    const username = req.session.user.name;
 
     try {
         await updatePasswordService(username, oldPassword, newPassword);

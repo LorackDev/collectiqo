@@ -13,10 +13,28 @@ const handleLoginError = (res, error) => {
 const loginController = async (req, res) => {
     const {username, password} = req.body;
     try {
-        const loggedInUser = await loginService(username, password);
-        req.session.username = loggedInUser.username;
-        console.log(`User ${req.session.username} logged in successfully`);
-        res.status(200).json({message: LOGIN_SUCCESS_MESSAGE, userId: loggedInUser.id});
+        // check if user can be found in database
+        const user = await loginService(username, password);
+        // throw error if user can't be found
+        if(user===undefined){
+            throw new Error('User not found')
+        }
+        // add user data to session variables
+        req.session.user = {
+            name: user.username,
+            id: user.id,
+            isLoggedIn: true
+        }
+
+        // try to save changes, else throw error
+        try {
+            await req.session.save();
+            console.log(`User ${req.session.user.name} logged in successfully`);
+            res.status(200).json({message: LOGIN_SUCCESS_MESSAGE, userId: req.session.user.id});
+        } catch (err) {
+            console.error('Error saving to session storage: ', err);
+            return new Error('Error logging in user');
+        }
     } catch (error) {
         handleLoginError(res, error);
     }

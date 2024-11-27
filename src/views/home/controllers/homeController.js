@@ -1,6 +1,6 @@
 // src/apis/home/controllers/homeController.js
 const homeController = (req, res) => {
-    const username = req.session.username;
+    const username = req.session.user.name;
 
     if (username) {
         res.status(200).json({ message: `Welcome back, ${username}!` });
