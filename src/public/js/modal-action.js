@@ -29,10 +29,11 @@ function resetModal() {
 function closeModal() {
     modal.style.display = "none";
 }
-
-document.getElementById("cancelBtn").addEventListener("click", function() {
-    resetModal();
-    closeModal();
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById("cancelBtn").addEventListener("click", function () {
+        resetModal();
+        closeModal();
+    });
 });
 
 window.addEventListener("click", function (event) {
