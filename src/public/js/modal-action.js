@@ -115,7 +115,7 @@ document.getElementById('selectionForm').addEventListener('submit', async functi
     const collectionName = document.getElementById('collection').value;
     const templateName = document.getElementById('preset').value;
     try {
-        const response = await fetch('http://localhost:3005/create-collection-from-template', {
+        const response = await fetch('/create-new-collection-from-template', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
