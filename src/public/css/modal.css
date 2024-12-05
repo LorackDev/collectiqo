@@ -1,4 +1,8 @@
 /* Style the modal */
+
+* {
+  font-family: Inter, sans-serif;
+}
 .modal {
     display: none;
     position: fixed;
@@ -16,12 +20,156 @@
     position: relative;
     background-color: #fefefe;
     margin: 10% auto;
+    border-radius: 10px;
     padding: 20px;
     border: 1px solid #888;
     width: 60%;
     display: flex;
   }
-  
+
+.view-left {
+  display: inline-block;
+  padding: 10px;
+  margin: auto;
+}
+
+.view-right {
+  display: inline-block;
+  padding: 10px;
+  margin: auto;
+}
+
+form#selectionForm {
+  display: block;
+  align-items: center;
+  margin: auto;
+
+}
+
+.input-group {
+  color: #363e74;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+.input-group label {
+  display: block;
+}
+
+
+.input-group select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
+  color: #ffffff;
+  border: 0;
+  background-color: #7884d6;
+}
+.input-group select:focus {
+  outline: none;
+  background-color: #a9afd9;
+  transition: background-color 1s;
+}
+
+.input-group select:hover {
+  outline: none;
+  background-color: #a9afd9;
+  transition: background-color 1s;
+}
+
+
+
+.input-group input#color {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  width: 100px;
+  height: 50px;
+
+  border: none;
+  cursor: pointer;
+  border-radius: 7px;
+}
+
+#color::-webkit-color-swatch {
+  border-radius: 10px;
+  border: none;
+}
+#color::-moz-color-swatch {
+  border-radius: 10px;
+  border: none;
+}
+
+.input-group input#collection {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
+  color: #ffffff;
+  border: none;
+  background-color: #7884d6;
+
+}
+
+input#collection:focus {
+  outline: none;
+  background-color: #a9afd9;
+  transition: background-color 1s;
+}
+input#collection:hover {
+  outline: none;
+  background-color: #a9afd9;
+  transition: background-color 1s;
+}
+
+button#addCustomField {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
+  color: #ffffff;
+  border: none;
+  background-color: #6472D0;
+}
+
+.custom-options input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 6px;
+  border-radius: 10px;
+  color: #c0c5e8;
+  border: none;
+  background-color: #a9afd9;
+}
+button#cancelBtn {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: #c0c5e8;
+  border: none;
+  background-color: #434D8C;
+}
+
+button#saveBtn {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #ffffff;
+  border: none;
+  background-color: #363e74;
+}
   /* Existing modal styles */
   .modal-left {
     width: 50%;
@@ -62,3 +210,5 @@
     margin-top: 20rem;
     width: auto;
   }
+
+

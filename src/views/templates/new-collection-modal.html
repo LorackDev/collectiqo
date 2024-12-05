@@ -2,8 +2,11 @@
 <div id="myModal" class="modal">
     <div class="modal-content">
         <form id="selectionForm">
+            <h2>New Collection</h2>
+            <div class="view-left">
             <div class="input-group">
-                <label for="preset">Preset:</label>
+
+                <label for="preset">Preset</label>
                 <select id="preset" name="preset">
                         <option value="x" disabled selected>Select preset...</option>
                         <option value="video games">video games</option>
@@ -13,25 +16,29 @@
                 </select>
             </div>
             <div class="input-group">
-                <label for="color">Color:</label>
+                <label for="color">Color</label>
                 <input type="color" id="color" name="color">
             </div>
+            </div>
+            <div class="view-right">
             <div class="input-group">
-                <label for="collection">Collection Name:</label>
+                <label for="collection">Collection Name</label>
                 <input type="text" id="collection" name="collection">
             </div>
             <div class="custom-options">
                 <div class="input-group">
-                    <label for="custom1">Custom 1: </label>
+                    <label for="custom1">Row 1: </label>
                     <input type="text" id="custom1" name="custom1">
                 </div>
             </div>
             <div class="input-group">
-                <button type="button" id="addCustomField">+</button>
+                <button type="button" id="addCustomField">+ Row</button>
+
             </div>
             <div class="input-group">
                 <button type="button" id="cancelBtn">Cancel</button>
                 <button type="submit" id="saveBtn">Save</button>
+            </div>
             </div>
         </form>
     </div>

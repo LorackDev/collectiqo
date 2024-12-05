@@ -65,7 +65,7 @@ document.getElementById("addCustomField").addEventListener("click", function () 
 
     var label = document.createElement("label");
     label.setAttribute("for", "custom" + (inputCount + 1));
-    label.textContent = "Custom " + (inputCount + 1) + ": ";
+    label.textContent = "Row " + (inputCount + 1) + ": ";
 
     var input = document.createElement("input");
     input.type = "text";
