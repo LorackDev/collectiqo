@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (settingsLink) {
         settingsLink.addEventListener("click", function(event) {
             event.preventDefault();
-            window.location.href = "/settings";
+            window.location.href = "/account-settings";
         });
     }
 });
