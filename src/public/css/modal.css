@@ -27,14 +27,14 @@
     display: flex;
   }
 
-.view-left {
-  display: inline-block;
+.view-upper {
+  display: block;
   padding: 10px;
   margin: auto;
 }
 
-.view-right {
-  display: inline-block;
+.view-lower {
+  display: block;
   padding: 10px;
   margin: auto;
 }
@@ -67,6 +67,7 @@ form#selectionForm {
   color: #ffffff;
   border: 0;
   background-color: #7884d6;
+  transition: background-color 0.5s;
 }
 .input-group select:focus {
   outline: none;
@@ -113,7 +114,7 @@ form#selectionForm {
   color: #ffffff;
   border: none;
   background-color: #7884d6;
-
+  transition: background-color 0.5s;
 }
 
 input#collection:focus {
@@ -136,6 +137,13 @@ button#addCustomField {
   color: #ffffff;
   border: none;
   background-color: #6472D0;
+  transition: background-color 0.5s;
+}
+
+button#addCustomField:hover {
+
+  background-color: #363e74;
+  transition: background-color 1s;
 }
 
 .custom-options input {
@@ -157,6 +165,13 @@ button#cancelBtn {
   color: #c0c5e8;
   border: none;
   background-color: #434D8C;
+  transition: background-color 0.5s;
+}
+
+button#cancelBtn:hover {
+  text-decoration: underline;
+  background-color: #743636;
+  transition: background-color 0.5s;
 }
 
 button#saveBtn {
@@ -170,6 +185,13 @@ button#saveBtn {
   border: none;
   background-color: #363e74;
 }
+
+button#saveBtn:hover {
+  text-decoration: underline;
+  background-color: #627436;
+  transition: background-color 0.5s;
+}
+
   /* Existing modal styles */
   .modal-left {
     width: 50%;
