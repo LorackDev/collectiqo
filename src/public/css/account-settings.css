@@ -1,3 +1,14 @@
+
+:root {
+    --light: #6472D0;
+    --mid-light: #5460AE;
+    --mid: #434D8C;
+    --mid-dark: #333A6A;
+    --dark: #232848;
+    --grey-white: #e3e3e3;
+    --font-size: 1.2rem;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,111 +16,44 @@
 }
 
 body {
-    margin: 0;
-    padding: 0;
+    font-family: "Roboto", sans-serif;
+    background-color: var(--grey-white);
+}
+
+.content-container {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
-    font-family: Arial, sans-serif;
-   
-    background-image: linear-gradient(
-    320deg,
-    hsl(207deg 70% 61%) 0%,
-    hsl(208deg 69% 66%) 10%,
-    hsl(209deg 68% 71%) 20%,
-    hsl(210deg 68% 75%) 30%,
-    hsl(211deg 68% 79%) 40%,
-    hsl(211deg 68% 82%) 50%,
-    hsl(212deg 68% 86%) 60%,
-    hsl(212deg 68% 90%) 70%,
-    hsl(213deg 68% 93%) 80%,
-    hsl(213deg 68% 97%) 90%,
-    hsl(0deg 0% 100%) 100%
-    );
-  }
-
-main {
-    background: #f0f0f3;
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: 10px 10px 15px #a3a3a3;
-    width: 100%;
-    max-width: 600px;
 }
 
-section {
-    background: #f0f0f3;
-    border-radius: 15px;
-    padding: 1rem;
-    margin-bottom: .2rem;
-}
-
-h2 {
+.content {
+    width: 80%;
+    max-width: 900px;
+    background-color: #ffffff;
+    padding: 30px;
+    margin-top: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-bottom: 1.5rem;
-    color: #333;
 }
+.main {
+    width: 90%;
+    height: 90%;
+    margin: 10% 5% 10% 5%;
 
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #6B7B8C;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    
-    outline: none;
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    background: #ffffff;               
-    width: calc(100% - 1.5rem);
-}
-
-button {
-    display: block; 
-    margin: auto; 
-    outline: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.75rem 2rem;
     border-radius: 10px;
-    color: #fff;
-    background-color: #6EB6FF;
-    box-shadow: 4px 4px 6px #bebebe;
-    transition: 0.2s;
+    background-color: white;
 }
 
-button:hover {
-    background-color: #58a4e1;
+.settings-button {
+
 }
 
-button:active {
-    box-shadow: inset 1px 1px 3px #bebebe,
-                inset -1px -1px 3px #ffffff;
+.settingsDesign {
+
 }
 
-/* Delete-Section */
+.settingsTabs {
 
-.delete-account button {
-    background-color: #ff5555;
-    margin: auto;
-    margin-top: 1rem;
-}
-
-.delete-account button:hover {
-    background-color: #e64444;
-}
-
-.delete-account button:active {
-    box-shadow: inset 1px 1px 3px #bebebe,
-                inset -1px -1px 3px #ffffff;
 }
