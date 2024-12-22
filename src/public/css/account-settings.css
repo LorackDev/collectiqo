@@ -25,6 +25,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: width 0.6s ease-in-out;
 }
 
 .content {
@@ -36,7 +37,14 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    transition: all 1s ease-in-out;
+
 }
+
+#general-settings, #account-settings , #collection-settings, #extra-settings {
+
+}
+
 .main {
     width: 90%;
     height: 90%;
@@ -44,16 +52,23 @@ body {
 
     border-radius: 10px;
     background-color: white;
+
 }
 
 .settings-button {
-
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+    background: none;
+    color: var(--mid-dark);
+    margin: 0 5% 2% 5%;
+    cursor: pointer;
 }
 
 .settingsDesign {
 
 }
 
-.settingsTabs {
-
-}

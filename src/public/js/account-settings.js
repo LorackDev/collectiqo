@@ -46,26 +46,32 @@ document.addEventListener('DOMContentLoaded', function() {
 */
 
     function openSettings(settingsName) {
-        var i;
-        var x = document.getElementsByClassName("settingsTabs");
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
-        }
+
+        var general = document.getElementById('general-settings');
+        var account = document.getElementById('account-settings');
+        var collection = document.getElementById('collection-settings');
+        var extra = document.getElementById('extra-settings');
+
+        general.style.display = 'none';
+        account.style.display = 'none';
+        collection.style.display = 'none';
+        extra.style.display = 'none';
+
         document.getElementById(settingsName).style.display = "inline";
     }
-    document.getElementById("account-management").addEventListener("click", function () {
+    document.getElementById("account-management-btn").addEventListener("click", function () {
      openSettings("account-management");
     });
 
-    document.getElementById("general-settings").addEventListener("click", function () {
+    document.getElementById("general-settings-btn").addEventListener("click", function () {
         openSettings("general-settings");
     });
 
-    document.getElementById("extra-settings").addEventListener("click", function () {
+    document.getElementById("extra-settings-btn").addEventListener("click", function () {
         openSettings("extra-settings");
     });
 
-    document.getElementById("collection-settings").addEventListener("click", function () {
+    document.getElementById("collection-settings-btn").addEventListener("click", function () {
         openSettings("collection-settings");
     });
 })

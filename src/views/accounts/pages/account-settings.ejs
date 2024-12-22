@@ -32,14 +32,14 @@
 <div class="content-container">
     <div class="content">
 
-        <button class="settings-button" id="general-settings">General</button>
-        <button class="settings-button">Collections</button>
-        <button class="settings-button" id="account-management">Account</button>
-        <button class="settings-button">Extras</button>
+        <button class="settings-button" id="general-settings-btn">General</button>
+        <button class="settings-button" id="collection-settings-btn">Collections</button>
+        <button class="settings-button" id="account-management-btn">Account</button>
+        <button class="settings-button" id="extra-settings-btn">Extras</button>
 
         <div class="settingsDesign">
 
-    <div class="settingsTabs" id="general-settings">
+    <div id="general-settings">
         <h2>General</h2>
 
         <form id="generalSettingsForm">
@@ -59,7 +59,7 @@
         </form>
     </div>
 
-    <div  id="account-management" class="settingsTabs" style="display:none">
+    <div  id="account-settings" style="display: none;">
         <h2>Account Management</h2>
 
         <form id="passwordChangeForm">
@@ -82,7 +82,12 @@
         </form>
     </div>
 
-    <div id="extra-settings" class="settingsTabs" style="display:none">
+            <div id="collection-settings" style="display: none;">
+                <h2>Collection Settings</h2>
+
+            </div>
+
+    <div id="extra-settings" style="display: none;">
         <h2>Delete Account</h2>
 
         <form id="accountDeletionForm">
