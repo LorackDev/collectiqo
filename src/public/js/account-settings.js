@@ -59,8 +59,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         document.getElementById(settingsName).style.display = "inline";
     }
-    document.getElementById("account-management-btn").addEventListener("click", function () {
-     openSettings("account-management");
+    document.getElementById("account-settings-btn").addEventListener("click", function () {
+     openSettings("account-settings");
     });
 
     document.getElementById("general-settings-btn").addEventListener("click", function () {

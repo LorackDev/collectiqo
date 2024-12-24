@@ -34,7 +34,7 @@
 
         <button class="settings-button" id="general-settings-btn">General</button>
         <button class="settings-button" id="collection-settings-btn">Collections</button>
-        <button class="settings-button" id="account-management-btn">Account</button>
+        <button class="settings-button" id="account-settings-btn">Account</button>
         <button class="settings-button" id="extra-settings-btn">Extras</button>
 
         <div class="settingsDesign">
@@ -44,23 +44,25 @@
 
         <form id="generalSettingsForm">
 
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username">
-            </div>
 
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email">
-            </div>
-
-            <button type="submit">Update General Settings</button>
 
         </form>
     </div>
 
     <div  id="account-settings" style="display: none;">
         <h2>Account Management</h2>
+
+         <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+        </div>
+
+        <button type="submit">Save Settings</button>
 
         <form id="passwordChangeForm">
             <div class="form-group">
@@ -88,6 +90,19 @@
             </div>
 
     <div id="extra-settings" style="display: none;">
+        <h2> Social Media </h2>
+        <form id="socialMediaSettingsForm">
+            <div class="form-group">
+                <label for="facebook">Facebook:</label>
+                <input type="text" id="facebook" name="facebook">
+                <label for="twitter">Twitter:</label>
+                <input type="text" id="twitter" name="twitter">
+                <label for="instagram">Instagram:</label>
+                <input type="text" id="instagram" name="instagram">
+                <label for="website">Discord:</label>
+                <input type="text" id="discord" name="discord">
+            </div>
+        </form>
         <h2>Delete Account</h2>
 
         <form id="accountDeletionForm">
@@ -99,59 +114,7 @@
     </main>
 
         <script src="/js/account-settings.js" type="module"></script>
-<!--
-<script>
-        import req from "express/lib/request";
 
-        function confirmAccountDeletion() {
-            if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
-                console.log('Account deletion confirmed.');
-            }
-        }
-
-        const updateUsernameHandler = require('./updateUsernameHandler');
-        const updatePasswordHandler = require('./updatePasswordHandler');
-        const deleteAccountHandler = require('./deleteAccountHandler'); // You need to implement this
-
-        window.onload = function() {
-            document.getElementById('generalSettingsForm').addEventListener('submit', async function(event) {
-                event.preventDefault();
-                const username = document.getElementById('username').value;
-                const email = document.getElementById('email').value;
-                await updateUsernameHandler({ body: { newUsername: username }, session: { username } }, {
-                    status: (statusCode) => ({ json: (response) => console.log(response) })
-                });
-            });
-
-            document.getElementById('passwordChangeForm').addEventListener('submit', async function(event) {
-                event.preventDefault();
-                const oldPassword = document.getElementById('currentPassword').value;
-                const newPassword = document.getElementById('newPassword').value;
-                const username = req.session.user.name;
-                await updatePasswordHandler({ body: { oldPassword, newPassword }, session: { username } }, {
-                    status: (statusCode) => ({ json: (response) => console.log(response) })
-                });
-            });
-
-            document.getElementById('accountDeletionForm').addEventListener('submit', async function(event) {
-                event.preventDefault();
-                const username = req.session.user.name;
-                await deleteAccountHandler({ session: { username } }, {
-                    status: (statusCode) => ({ json: (response) => console.log(response) })
-                });
-            });
-        }
-
-        function openSettings(settingsName){
-            var i;
-            var x = document.getElementsByClassName("settingsTabs");
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
-            }
-            document.getElementById(settingsName).style.display = "block";
-        }
-
-    </script>-->
         <%- include('../../templates/new-collection-modal.html') %>
     </div>
 
@@ -161,114 +124,3 @@
 
 
 
-
-<!--
-
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/account-settings.css">
-    <title>Account Settings</title>
-</head>
-<body>
-    <main>
-        <section class="general-settings">
-            <h2>General</h2>
-
-            <form id="generalSettingsForm">
-
-                <div class="form-group">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email">
-                </div>
-
-                <button type="submit">Update General Settings</button>
-
-            </form>
-        </section>
-
-        <section class="account-management">
-            <h2>Account Management</h2>
-            
-            <form id="passwordChangeForm">
-                <div class="form-group">
-                    <label for="currentPassword">Current Password:</label>
-                    <input type="password" id="currentPassword" name="currentPassword">
-                </div>
-                
-                <div class="form-group">
-                    <label for="newPassword">New Password:</label>
-                    <input type="password" id="newPassword" name="newPassword">
-                </div>
-
-                <div class="form-group">
-                    <label for="confirmPassword">Confirm New Password:</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword">
-                </div>
-
-                <button type="submit">Change Password</button>
-            </form>
-        </section>
-
-        <section class="delete-account">
-                <h2>Delete Account</h2>
-
-                    <form id="accountDeletionForm">
-                        <button type="button" onclick="confirmAccountDeletion();">Delete Account</button>
-                    </form>
-        </section>
-    
-    </main>
-
-    <script>
-        import req from "express/lib/request";
-
-        function confirmAccountDeletion() {
-            if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
-                console.log('Account deletion confirmed.');
-            }
-        }
-
-        const updateUsernameHandler = require('./updateUsernameHandler');
-        const updatePasswordHandler = require('./updatePasswordHandler');
-        const deleteAccountHandler = require('./deleteAccountHandler'); // You need to implement this
-
-        window.onload = function() {
-            document.getElementById('generalSettingsForm').addEventListener('submit', async function(event) {
-                event.preventDefault();
-                const username = document.getElementById('username').value;
-                const email = document.getElementById('email').value;
-                await updateUsernameHandler({ body: { newUsername: username }, session: { username } }, {
-                    status: (statusCode) => ({ json: (response) => console.log(response) })
-                });
-            });
-
-            document.getElementById('passwordChangeForm').addEventListener('submit', async function(event) {
-                event.preventDefault();
-                const oldPassword = document.getElementById('currentPassword').value;
-                const newPassword = document.getElementById('newPassword').value;
-                const username = req.session.user.name;
-                await updatePasswordHandler({ body: { oldPassword, newPassword }, session: { username } }, {
-                    status: (statusCode) => ({ json: (response) => console.log(response) })
-                });
-            });
-
-            document.getElementById('accountDeletionForm').addEventListener('submit', async function(event) {
-                event.preventDefault();
-                const username = req.session.user.name;
-                await deleteAccountHandler({ session: { username } }, {
-                    status: (statusCode) => ({ json: (response) => console.log(response) })
-                });
-            });
-        }
-
-    </script>
-</body>
-</html>
--->
