@@ -1,22 +1,30 @@
 version: '3'
 services:
+  web:
+    image: clq-app
+    restart: always
+    env_file: ./.env
+    ports:
+      - "${PORT}:${PORT}"
+    networks:
+      - app-network
   mysql:
     image: lorackdev/clq-mysql-multiarch
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
     ports:
-      - "3306:3306"
+      - "${MYSQL_DATABASE_PORT}:${MYSQL_DATABASE_PORT}"
     networks:
       - app-network
   mongodb:
     image: mongo:latest
     restart: always
     ports:
-      - "27017:27017"
+      - "${MONGO_DATABASE_PORT}:${MONGO_DATABASE_PORT}"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_DATABASE_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_DATABASE_PASSWORD}
     networks:
       - app-network
 networks:
