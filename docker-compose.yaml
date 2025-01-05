@@ -1,61 +1,10 @@
 version: '3'
 services:
-  web:
-    image: clq-app
-    env_file: ./.env.docker
-    ports:
-      - "${PORT}:${PORT}"
-    volumes:
-      - ~/.certificates/collectiqo/:/root/.certificates/collectiqo:ro # mount local keys into container for dev purposes
-    networks:
-      - app-network
-  mysql:
-    image: lorackdev/clq-mysql-multiarch
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
-    ports:
-      - "${MYSQL_DATABASE_PORT}:${MYSQL_DATABASE_PORT}"
-    networks:
-      - app-network
-  mongodb:
-    image: mongo:latest
-    restart: always
-    ports:
-      - "${MONGO_DATABASE_PORT}:${MONGO_DATABASE_PORT}"
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_DATABASE_USER}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_DATABASE_PASSWORD}
-    networks:
-      - app-network
-  webserver-test:
-    container_name: webserver-test
-    image: nginx:alpine
-  nginx:
-    container_name: nginx
-    image: nginx:latest
+  web-test:
+    container_name: web-test
+    image: bfancy/thttpd:latest
     restart: unless-stopped
     ports:
       - "80:80"
-      - "443:443"
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-    networks:
-      - app-network
-  certbot:
-    container_name: certbot
-    image: certbot/certbot
-    volumes:
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
-    depends_on:
-      - nginx
-    command: certonly --webroot -w /var/www/certbot --keep-until-expiring --email robin.schaefer@students.hs-mainz.de -d collectiqo.com -d www.collectiqo.com --agree-tos --no-eff-email
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
-    networks:
-      - app-network
-
-
-networks:
-  app-network:
-    driver: bridge
+      - "./thttpd:/home/static:ro"
