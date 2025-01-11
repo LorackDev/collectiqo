@@ -2,7 +2,7 @@
 services:
   web-test:
     container_name: web-test
-    image: dragas/thttpd:latest
+    image: ajoergensen/thttpd:latest
     restart: unless-stopped
     ports:
       - "80:80"
