@@ -3,7 +3,7 @@
 /data
 
 # idea
-
+.env.docker
 .idea
 
 # latex

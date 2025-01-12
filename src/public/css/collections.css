@@ -90,27 +90,62 @@
     margin-left: 3vh;
   }
 
-  .button-group {
-    display: flex; gap: 10px; margin-right: 3vh; }
+.button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
 
-  .edit-button {
-    padding: 10px 20px;
-    margin-right: 10px;
-    border: none;
-    border-radius: 10px;
-    background-color: #fffc58;
-    color: black;
-    font-weight: bold;
-    cursor: pointer; }
+.button-group button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
 
-  .delete-button {
-    padding: 10px 20px;
-    margin-right: 10px;
-    border: none;
-    border-radius: 10px;
-    background-color: #f85656;
-    font-weight: bold;
-    color: black;
-    cursor: pointer;
-  }
+.button-group .hidden {
+  display: none !important;
+}
+
+.icon {
+  font-size: 18px;
+}
+
+.edit-button {
+  background-color: #e7cc5a;
+  color: white;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.save-button {
+  background-color: #2196F3;
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+.save-button:hover {
+  background-color: #45a049;
+}
+
+.centered-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 65vh;
+  font-size: 24px;
+  color: #666;
+}
 

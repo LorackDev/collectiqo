@@ -13,7 +13,7 @@ RUN apk add --no-cache python3 make g++ \
     && apk del python3 make g++
 
 # Copy the rest of the application code
-COPY . .
+COPY ./src/ .
 
 # Build the application (if needed)
 # RUN npm run build
