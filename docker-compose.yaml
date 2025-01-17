@@ -4,7 +4,15 @@ services:
     container_name: test-webserver
     image: arm64v8/httpd:latest
     restart: unless-stopped
-    ports:
-      - "80:80"
     volumes:
       - ./webtest:/usr/local/apache2/htdocs:ro
+
+  nginx-reverse-proxy:
+    container_name: nginx-reverse-proxy
+    image: nginx:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - .nginx/nginx.conf:/etc/nginx/nginx.conf
