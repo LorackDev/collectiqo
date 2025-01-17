@@ -1,11 +1,10 @@
 # version: '3'
 services:
-  web-test:
-    container_name: web-test
-    image: ajoergensen/thttpd:latest
+  test-webserver:
+    container_name: test-webserver
+    image: arm64v8/httpd:latest
     restart: unless-stopped
     ports:
       - "80:80"
     volumes:
-      #- "./thttpd:/home/static:ro"
-      - "./thttpd:/var/www/htdocs:ro"
+      - ./webtest:/usr/local/apache2/htdocs:ro
