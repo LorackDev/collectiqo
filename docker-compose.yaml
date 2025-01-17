@@ -7,4 +7,5 @@ services:
     ports:
       - "80:80"
     volumes:
-      - "./thttpd:/home/static:ro"
+      #- "./thttpd:/home/static:ro"
+      - "./thttpd:/var/www/htdocs:ro"
