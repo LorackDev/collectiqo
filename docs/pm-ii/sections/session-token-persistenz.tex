@@ -10,7 +10,25 @@ Im vorherigen Semester wurde bereits eine Mongo DB implementiert.
 Aus verschiedenen Anleitung hat sich herauskristallisiert, dass eine Mongo DB geeignet ist für solch eine Session Toke Storage.
 Es musste nur eine neue Collection hinzugefügt werden, auf welche dann in der Session Konfiguration in der app.js verwiesen wird:
 
-% hier code snippet aus app.js
+\vspace{1em}
+% \lstinputlisting[language=JavaScript, label={lst:session_storage}]{../../../src/app.js}
+\vspace{1em}
 
 Jegliche Session Variablen, die nun im Code gesetzt werden, werden in der Mongo DB gespeichert, in Verbindung mit dem Token.
-Das Lesen und Speichern der Variablen wird automatisch von der Session Library übernommen.
+Das Lesen und Speichern der Variablen wird automatisch von der Session Library übernommen, welches in der Datenbank dann wie folgt aussah:
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{session_storage_1}
+    \caption{Struktur der Mongo DB}
+    \label{fig:session:_storage_1}
+\end{figure}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{session_storage_2}
+    \caption{Tabellenansicht der Session Storage}
+    \label{fig:session_storage_2}
+\end{figure}

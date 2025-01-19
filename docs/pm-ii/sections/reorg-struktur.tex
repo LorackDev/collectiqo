@@ -137,7 +137,7 @@ Hierzu wurde auf Docker Hub ein Token erstellt, mit Read-Only Berechtigungen, we
 Somit lassen sich die Images nun auf den Server pullen.
 Die docker compose Datei sieht wie folgt aus:
 
-\lstinputlisting[language=docker-compose, label={lst:docker-compose}]{../../../docker-compose.yaml}
+% \lstinputlisting[language=docker-compose, label={lst:docker-compose}]{docker-compose.yaml}
 
 Diese Verändert sich zur vorherigen Version insofern, dass sie nun auf Umgebungsvariablen für Werte wie Ports und Passwörter angewiesen ist.
 Auch dem Container des NodeJS Servers wird eine .env Datei übergeben.
