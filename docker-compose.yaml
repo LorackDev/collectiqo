@@ -8,6 +8,8 @@ services:
       - "8000"
     volumes:
       - ./webtest:/usr/local/apache2/htdocs:ro
+    networks:
+      - app-network
 
   nginx-reverse-proxy:
     container_name: nginx-reverse-proxy
@@ -18,3 +20,9 @@ services:
       - "443:443"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+        - app-network
+
+networks:
+    app-network:
+        driver: bridge
