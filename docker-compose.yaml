@@ -4,6 +4,8 @@ services:
     container_name: test-webserver
     image: arm64v8/httpd:latest
     restart: unless-stopped
+    ports:
+      - "8000"
     volumes:
       - ./webtest:/usr/local/apache2/htdocs:ro
 
