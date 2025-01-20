@@ -1,0 +1,86 @@
+
+/* Main Section */
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Intro Section */
+.intro {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.intro h1 {
+    font-size: 32px;
+    color: var(--mid-light);
+    margin-bottom: 10px;
+}
+
+.intro p {
+    font-size: 18px;
+    color: #555;
+}
+
+/* Team Section */
+.team {
+    margin-bottom: 40px;
+}
+
+.team h2 {
+    font-size: 28px;
+    color: var(--mid-light);
+    margin-bottom: 15px;
+}
+
+.team ul {
+    list-style: none;
+    padding: 0;
+}
+
+.team ul li {
+    font-size: 18px;
+    color: #555;
+    margin: 5px 0;
+}
+
+/* Phases Section */
+.phases {
+    margin-bottom: 40px;
+}
+
+.phases h2 {
+    font-size: 28px;
+    color: var(--mid-light);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.showcase-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.showcase-box {
+    flex: 1 1 calc(33.333% - 20px);
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.showcase-box h3 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.showcase-box p {
+    font-size: 16px;
+    color: #555;
+}
