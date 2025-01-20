@@ -35,7 +35,11 @@ body {
 }
 
 .header-nav-links {
-    margin: auto;
+    display: flex; /* Flexbox aktivieren */
+    justify-content: space-around; /* Gleiche Abstände zwischen den Elementen */
+    align-items: right; /* Vertikale Zentrierung */
+    margin: auto; /* Zentriere das gesamte Menü */
+    width: 50%;
 }
 
 .header-nav-links a {
@@ -46,7 +50,7 @@ body {
     font-size: 18px;
     line-height: 25px;
     border-radius: 4px;
-    width: 100px;
+    width: 150px;
 }
 
 .header-nav-links a:hover {
