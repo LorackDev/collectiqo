@@ -1,0 +1,22 @@
+.legal-notice {
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.legal-notice h2 {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.legal-notice a {
+    color: #1672c8;
+    text-decoration: none;
+}
+
+.legal-notice a:hover {
+    text-decoration: underline;
+}
