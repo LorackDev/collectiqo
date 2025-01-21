@@ -5,11 +5,11 @@ services:
     image: arm64v8/httpd:latest
     restart: unless-stopped
     ports:
-      - "8000"
+      - "8000:8000"
     volumes:
       - ./webtest:/usr/local/apache2/htdocs:ro
     networks:
-      - app-network
+      - proxy-network
 
   nginx-reverse-proxy:
     container_name: nginx-reverse-proxy
@@ -21,8 +21,8 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     networks:
-        - app-network
+      - proxy-network
 
 networks:
-    app-network:
+    proxy-network:
         driver: bridge
