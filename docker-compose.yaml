@@ -31,8 +31,8 @@ services:
       - ./certbot/www:/var/www/certbot/:rw
     networks:
       - proxy-network
-    command: certonly --webroot -w /var/www/certbot --keep-until-expiring --email robin.schaefer@students.hs-mainz.de -d collectiqo.com --agree-tos --no-eff-email
-
+    depends_on:
+      - nginx-reverse-proxy
 
 networks:
     proxy-network:
