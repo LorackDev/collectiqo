@@ -26,13 +26,15 @@ services:
   certbot:
     container_name: certbot
     image: certbot/certbot:latest
-    restart: unless-stopped
     volumes:
       - ./certbot/conf:/etc/letsencrypt/:rw
       - ./certbot/www:/var/www/certbot/:rw
-    command: certonly --webroot -w /var/www/certbot --force-renewal --email robin.schaefer@students.hs-mainz.de -d collectiqo.com --agree-tos --no-eff-email
+    depends_on:
+      - nginx-reverse-proxy
     networks:
       - proxy-network
+    command: certonly --webroot -w /var/www/certbot --force-renewal --email robin.schaefer@students.hs-mainz.de -d collectiqo.com --agree-tos --no-eff-email
+
 
 networks:
     proxy-network:
