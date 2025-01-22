@@ -1,5 +1,37 @@
 # version: '3'
 services:
+  web:
+    image: clq-app
+    env_file: ./.env.docker
+    ports:
+      - "${PORT}:${PORT}"
+    #volumes:
+    #  - ~/.certificates/collectiqo/:/root/.certificates/collectiqo:ro # mount local keys into container for dev purposes
+    networks:
+      - proxy-network
+      - app-network
+
+  mysql:
+    image: lorackdev/clq-mysql-multiarch
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
+    ports:
+      - "${MYSQL_DATABASE_PORT}:${MYSQL_DATABASE_PORT}"
+    networks:
+      - app-network
+
+  mongodb:
+    image: mongo:latest
+    restart: always
+    ports:
+      - "${MONGO_DATABASE_PORT}:${MONGO_DATABASE_PORT}"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_DATABASE_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_DATABASE_PASSWORD}
+    networks:
+      - app-network
+
   test-webserver:
     container_name: test-webserver
     image: arm64v8/httpd:latest
@@ -35,5 +67,7 @@ services:
       - nginx-reverse-proxy
 
 networks:
+    app-network:
+        driver: bridge
     proxy-network:
         driver: bridge
