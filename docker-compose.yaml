@@ -5,8 +5,9 @@ services:
     env_file: ./.env.docker
     ports:
       - "${PORT}:${PORT}"
-    #volumes:
-    #  - ~/.certificates/collectiqo/:/root/.certificates/collectiqo:ro # mount local keys into container for dev purposes
+    volumes:
+      #- ~/.certificates/collectiqo/:/root/.certificates/collectiqo:ro # mount local keys into container for dev purposes
+      - /home/collectiqo/local_cert/collectiqo_rs:/root/.certificates/collectiqo:ro # mount local keys into container for dev purposes
     networks:
       - proxy-network
       - app-network
