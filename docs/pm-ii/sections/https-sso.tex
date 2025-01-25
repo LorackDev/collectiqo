@@ -8,7 +8,7 @@ Die SSO Implementierung sieht bisher wie folgt aus:
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\textwidth]{apple_sso_2}
+    \includegraphics[width=0.7\textwidth]{apple_sso_2}
     \caption{Apple SSO 1}
     \label{fig:apple_sso_1}
 \end{figure}
@@ -17,7 +17,7 @@ Beim Klicken des Buttons öffnet sich auch bereits das Apple Sign On Fenster:
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\textwidth]{apple_sso_1}
+    \includegraphics[width=0.7\textwidth]{apple_sso_1}
     \caption{Apple SSO 2}
     \label{fig:apple_sso_2}
 \end{figure}
@@ -26,7 +26,13 @@ Grundlage dieses Prototyps war die Implementierung von HTTPS für die Website.
 NodeJS besitzt eine eigene HTTPS Klassen, mit der das Programm gestartet werden kann:
 
 \vspace{1em}
-% \lstinputlisting[language=JavaScript, firstline=65, lastline=68, label={lst:addCollectionEntry}]{../../../src/app.js}
+\lstset{language=JavaScript}
+\begin{lstlisting}[label={lst:https}]
+// starts app with https protocol
+https.createServer(options, app).listen(port, () => {
+    console.log(`App running on https://dev.collectiqo.com:${port}`);
+});
+\end{lstlisting}
 \vspace{1em}
 
 Voraussetzung für HTTPS ist ein Zertifikat, was mit einem Key gesigned wird.
@@ -37,7 +43,10 @@ Diese beiden Dateien wurden auf den verschiedenen Entwicklungsmaschinen mit dem 
 Folgender Befehl wurde genutzt:
 
 \vspace{1em}
-\textit{openssl req -newkey rsa:4096 -nodes -keyout local.key -x509 -days 365 -out local.crt -subj "/CN=dev.collectiqo.com" -addext "subjectAltName=DNS:dev.collectiqo.com"}
+\lstset{language=sh}
+\begin{lstlisting}[label={lst:openssl}]
+openssl req -newkey rsa:4096 -nodes -keyout local.key -x509 -days 365 -out local.crt -subj "/CN=dev.collectiqo.com" -addext "subjectAltName=DNS:dev.collectiqo.com"}
+\end{lstlisting}[label={lst:openssl}]
 \vspace{1em}
 
 Im Browser muss dann das Zertifikat als vertrauenswürdig eingetragen werden.
