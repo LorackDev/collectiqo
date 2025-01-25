@@ -8,7 +8,7 @@ Die SSO Implementierung sieht bisher wie folgt aus:
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\textwidth]{apple_sso_2}
+    \includegraphics[width=0.7\textwidth]{apple_sso_1}
     \caption{Apple SSO 1}
     \label{fig:apple_sso_1}
 \end{figure}
@@ -17,7 +17,7 @@ Beim Klicken des Buttons öffnet sich auch bereits das Apple Sign On Fenster:
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\textwidth]{apple_sso_1}
+    \includegraphics[width=0.7\textwidth]{apple_sso_2}
     \caption{Apple SSO 2}
     \label{fig:apple_sso_2}
 \end{figure}
@@ -46,11 +46,11 @@ Folgender Befehl wurde genutzt:
 \lstset{language=sh}
 \begin{lstlisting}[label={lst:openssl}]
 openssl req -newkey rsa:4096 -nodes -keyout local.key -x509 -days 365 -out local.crt -subj "/CN=dev.collectiqo.com" -addext "subjectAltName=DNS:dev.collectiqo.com"}
-\end{lstlisting}[label={lst:openssl}]
+\end{lstlisting}
 \vspace{1em}
 
 Im Browser muss dann das Zertifikat als vertrauenswürdig eingetragen werden.
-Im Befehl wird "dev.collectiqo.com" als Domain für dieses Zertifikat hinterlegt, nur ist ohne weitere Konfiguration die App lokal nicht über diese Adresse erreichbar.
+Im Befehl wird 'dev.collectiqo.com' als Domain für dieses Zertifikat hinterlegt, nur ist ohne weitere Konfiguration die App lokal nicht über diese Adresse erreichbar.
 Damit die Domain lokal auf die korrekte IP-Adresse aufgelöst wird, muss die hostnames Datei angepasst werden.
 Sind diese Vorbereitungen getroffen, so wird die Website vom Browser mit einer HTTPS Verbindung angezeigt:
 

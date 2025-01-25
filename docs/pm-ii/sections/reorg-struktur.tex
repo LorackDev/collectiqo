@@ -15,21 +15,24 @@ Um die neue Idee umzusetzen wurden alle Ordner und Dateien, die den eigentlichen
 Dies hilft auch beim Bauen des Docker Images, da nun in der Dockerfile nur die Inhalte des src Ordners kopiert werden.
 So wird kein unnötiger und ungewollter Overhead an Dateien in das Docker Image eingebaut.
 Dateien wie \textit{.env}, die \textit{docker-compose.yaml} sowie der \textit{node\_modules} Ordner gehören nicht mit in das Image, da sie unter anderem sensible Daten beinhalten, die jeder mit Zugriff auf das Docker Image einsehen kann.
-Dies ist nicht gewollt, da die Docker Images öffentlich auf Docker Hub einsehbar sind.
 Hier ist ein Vergleich der Projektstruktur nach dem letzten Commit des ersten Praxismoduls vs nach der Umstrukturierung in diesem Praxismodul:
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.5\textwidth]{root_path_structure_old}
-  \caption{Old root path structure}
+  \includegraphics[width=0.3\textwidth]{root_path_structure_old}
+  \caption{Alte Projektstruktur}
   \label{fig:root_path_structure_old}
 \end{figure}
+
+\newpage
+
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.5\textwidth]{root_path_structure_new}
-  \caption{New root path structure}
+  \includegraphics[width=0.3\textwidth]{root_path_structure_new}
+  \caption{Neue Projektstruktur}
   \label{fig:root_path_strucutr_new}
 \end{figure}
 Code, der zuvor unter den Ordnern Server, Public und Views zu finden war, wurde nun in den src Ordner verlagert.
+Die gesamte Projektstruktur ist auf der \href{https://github.com/LorackDev/collectiqo}{Collectiqo Github Seite} einsehbar.
 Im nächsten Abschnitt wird der Inhalt des src Ordners genauer betrachtet.
 
 \subsubsection{Struktur des Quellcodes}
@@ -38,14 +41,18 @@ Hierzu zählen ebenfalls einige Ordner wie der public und views Ordner, die zuvo
 Hier eine Übersicht über alle Inhalte des neuen src Ordners:
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.5\textwidth]{src_folder_structure}
-  \caption{src Folder Structure}
+  \includegraphics[width=0.3\textwidth]{src_folder_structure}
+  \caption{src Ordner Struktur}
   \label{fig:src_folder_structure}
 \end{figure}
+
+\newpage
 
 Während zuvor alle Bestandteile einer Funktion (Route, Response Codes und Funktionalität) in einer Datei gehandhabt wurden, wurden diese nun in drei separate Dateien aufgeteilt.
 Jede Route erhält eine eigene Datei, in welcher der Endpunkt für HTTP Request definiert wird und der entsprechende Controller aufgerufen wird.
 Hier ein Beispiel für die Route der Login Funktion:
+
+\vspace{1em}
 \lstset{language=javascript}
 \begin{lstlisting}[label={lst:lst-login-route}]
 const express = require('express');
@@ -56,11 +63,13 @@ router.post('/login', loginController);
 
 module.exports = router;
 \end{lstlisting}
+\vspace{1em}
 
 
 Der Controller kümmert sich um den Aufruf der gewünschten Service Datei und handhabt die Response Codes, die beim Aufruf des Endpunkts zurückgegeben werden.
 Als Beispiel dient dieser Controller der Login Funktion:
 
+\vspace{1em}
 \begin{lstlisting}[label={lst:lst-login-controller}]
 const loginService = require('../services/loginService');
 
@@ -106,12 +115,13 @@ const loginController = async (req, res) => {
 
 module.exports = loginController;
 \end{lstlisting}
+\vspace{1em}
 
 Die eigentliche Funktionalität ist in der Service Datei implementiert.
 Zuletzt noch die Service Datei der Login Funktion:
 
+\vspace{1em}
 \begin{lstlisting}[label={lst:lst-login-service}]
-
 const bcrypt = require('bcryptjs');
 const { queryDatabase, handleResults } = require('../../../utils/mysqlUtils');
 
@@ -133,6 +143,7 @@ const loginService = async (username, password) => {
 
 module.exports = loginService;
 \end{lstlisting}
+\vspace{1em}
 
 Diese Aufteilung bringt mehrere Vorteile mit sich.
 Jede Funktionalität, die ab sofort implementiert wird, folgt genau diesem Muster, wodurch jede Implementierung für jedes Teammitglied klar nachverfolgbar ist.

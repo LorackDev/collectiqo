@@ -11,24 +11,31 @@ Aus verschiedenen Anleitung hat sich herauskristallisiert, dass eine Mongo DB ge
 Es musste nur eine neue Collection hinzugefügt werden, auf welche dann in der Session Konfiguration in der app.js verwiesen wird:
 
 \vspace{1em}
-% \lstinputlisting[language=JavaScript, label={lst:session_storage}]{../../../src/app.js}
+\lstset{language=javascript}
+\begin{lstlisting}[label={lst:sessions}]
+app.use(session({
+    secret: process.env.SESSION_KEY,
+    httpOnly: true,
+    secure: true,
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({
+        mongoUrl: mongoSessionUri,
+        collectionName: 'sessions'
+    }),
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 //Equals 24 hours
+    }
+}));
+\end{lstlisting}
 \vspace{1em}
 
 Jegliche Session Variablen, die nun im Code gesetzt werden, werden in der Mongo DB gespeichert, in Verbindung mit dem Token.
 Das Lesen und Speichern der Variablen wird automatisch von der Session Library übernommen, welches in der Datenbank dann wie folgt aussah:
 
-
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\textwidth]{session_storage_1}
-    \caption{Struktur der Mongo DB}
-    \label{fig:session:_storage_1}
-\end{figure}
-
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth]{session_storage_2}
+    \includegraphics[width=1\textwidth]{session_storage_2}
     \caption{Tabellenansicht der Session Storage}
     \label{fig:session_storage_2}
 \end{figure}
