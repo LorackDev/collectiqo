@@ -1,31 +1,41 @@
-\section{Docker Containerisierung}\label{subsec:docker-containerisierung}
+\section{Anpassung in der Docker Containerisierung}\label{subsec:docker-containerisierung}
 
 Bereits im Praxismodul I wurde mit Docker Containern für die lokale Entwicklung gearbeitet.
-Dieses Semester kamen zwei Aspekte hinzu, die auf dem angeeigneten Wissenstand aus dem vorherigen Semester aufgebaut haben - Multiplattform Images und das Deployen von Docker Anwendungen auf einem Server, der über das öffentliche Netz erreichbar ist.
+Dieses Semester kamen zwei Aspekte hinzu, die auf dem angeeigneten Wissensstand aus dem vorherigen Semester aufgebaut haben - Multiplattform Images und das Deployen von Docker Anwendungen auf einem Server, der über das öffentliche Netz erreichbar ist.
 
-\subsubsection{Multiplattform Images}\label{subsubsec:multiplattform-images}
+\subsection{Multiplattform Images}\label{subsubsec:multiplattform-images}
 Während der Durchführung des Projekts ist ein Teammitglied auf einen ARM-Prozessor umgestiegen.
 Letztes Semester erfolgte die Programmierung ausschließlich auf x86 Windows Maschinen, wodurch Docker Images, die auf einer Maschine gebaut wurden, problemlos auf allen anderen Maschinen funktioniert haben.
 Images, die für x86 Architektur gebaut wurden, funktionieren nicht auf ARM-Maschinen.
-Eine Lösung wurde hier in Multiarchitektur Docker Images gefunden.
+Eine Lösung wurde hier in Multiplattform Docker Images gefunden.
 Wird ein solches Image aus einer Registry auf den eigenen Rechner gezogen, so erkennt Docker automatisch die Architektur, die benötigt wird.
 So lässt sich bspw eine x86 und eine ARM Version des gleichen Docker Images in Docker Hub unter dem gleichen Registry Eintrag hosten.
 Beim pullen des Images wird dann automatisch erkannt, für welche Architektur das Image benötigt wird.
+In Dockerhub sieht ein Multiplattform Image dann wie folgt aus:
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{docker_hub}
+  \caption{Multiplattform Images in Docker Hub}
+  \label{fig:docker_hub}
+\end{figure}
 
 Bevor die Images gehostet werden können, müssen diese aber zuerst gebaut werden.
-Das Bauen von Multiarchitektur Images erfolgt mit einer Komponenten von Docker, die sich buildx nennt.
+Das Bauen von Multiplattform Images erfolgt mit einer Komponente von Docker, die sich buildx nennt.
 Buildx selbst ist hierbei eine Anwendung, die selbst in einem Docker Container läuft.
 Damit interagiert wird über den üblichen docker build befehl, welcher nun aber um den buildx Befehl erweitert wird.
 Das buildx Packet wird bei den aktuellsten Docker Versionen mitgeliefert, so muss der Container einfach wie folgt gestartet werden:
 
-\lstset{language=Shell}
+\vspace{1em}
 \begin{lstlisting}[label={lst:lst-shell-buildx-setup}]
 docker buildx create --name multi-arch-build --use
 \end{lstlisting}
+\vspace{1em}
 
 Da verschiedene Images gebaut werden müssen, wurde folgendes Shell-Script entworfen, um den manuellen Aufwand zu verringern.
 Übergeben werden hier der Name, den das Image tragen soll sowie die Dockerfile, die als Basis für das Image dienen soll.
 
+\vspace{1em}
 \begin{lstlisting}[label={lst:lst-shell-buildx-build}]
 #!/bin/bash
 
@@ -60,12 +70,13 @@ docker login || { echo "Docker login failed"; exit 1; }
 # Build and push the Docker image
 docker buildx build --platform linux/amd64,linux/arm64 -t ${FULL_IMAGE_NAME} -f ${DOCKERFILE_PATH} --push .
 \end{lstlisting}
+\vspace{1em}
 
 Die Push Flag am Ende des Befehls lädt gleichzeitig das neue Image in die Container Registry, in die der User eingelogt ist, hoch.
 Im Fall dieses Projekts werden alle Images in Docker Hub gehostet.
 
-\subsubsection{Deployment auf vServer}
-Das hosten von den Docker Images in Docker Hub hat das Deployen auf den vServer sehr einfach gestaltet.
+\subsection{Deployment auf vServer}\label{subsec:deployment-auf-vserver}
+Das Hosten von den Docker Images in Docker Hub hat das Deployen auf den vServer sehr einfach gestaltet.
 Bei dem Server handelt es sich um eine ARM-Maschine, spätestens hier wären also Multiplattform Images benötigt gewesen.
 Zuerst wurde der ssh key des Servers als deploy Key auf GitHub hinterlegt.
 Deploy Keys können pro Projekt hinterlegt werden und auf Read-Only geschaltet werden.
@@ -77,7 +88,7 @@ Hierzu wurde auf Docker Hub ein Token erstellt, mit Read-Only Berechtigungen, we
 Somit lassen sich die Images nun auf den Server pullen.
 Die docker compose Datei sieht wie folgt aus:
 
-\lstset{language=yaml}
+\vspace{1em}
 \begin{lstlisting}[label={lst:lst-docker-compose-yaml}]
   version: '3'
   services:
@@ -113,7 +124,7 @@ Die docker compose Datei sieht wie folgt aus:
     app-network:
     driver: bridge
 \end{lstlisting}
-
+\vspace{1em}
 
 Diese Verändert sich zur vorherigen Version insofern, dass sie nun auf Umgebungsvariablen für Werte wie Ports und Passwörter angewiesen ist.
 Auch dem Container des NodeJS Servers wird eine .env Datei übergeben.
