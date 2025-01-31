@@ -9,8 +9,8 @@ Letztes Semester erfolgte die Programmierung ausschließlich auf x86 Windows Mas
 Images, die für x86 Architektur gebaut wurden, funktionieren nicht auf ARM-Maschinen.
 Eine Lösung wurde hier in Multiplattform Docker Images gefunden.
 Wird ein solches Image aus einer Registry auf den eigenen Rechner gezogen, so erkennt Docker automatisch die Architektur, die benötigt wird.
-So lässt sich bspw eine x86 und eine ARM Version des gleichen Docker Images in Docker Hub unter dem gleichen Registry Eintrag hosten.
-Beim pullen des Images wird dann automatisch erkannt, für welche Architektur das Image benötigt wird.
+So lässt sich bspw. eine x86 und eine ARM Version des gleichen Docker Images in Docker Hub unter dem gleichen Registry Eintrag hosten.
+Beim Pullen des Images wird dann automatisch erkannt, für welche Architektur das Image benötigt wird.
 In Dockerhub sieht ein Multiplattform Image dann wie folgt aus:
 
 \begin{figure}[h]
@@ -23,7 +23,7 @@ In Dockerhub sieht ein Multiplattform Image dann wie folgt aus:
 Bevor die Images gehostet werden können, müssen diese aber zuerst gebaut werden.
 Das Bauen von Multiplattform Images erfolgt mit einer Komponente von Docker, die sich buildx nennt.
 Buildx selbst ist hierbei eine Anwendung, die selbst in einem Docker Container läuft.
-Damit interagiert wird über den üblichen docker build befehl, welcher nun aber um den buildx Befehl erweitert wird.
+Die Interaktion erfolgt über den üblichen `docker build` Befehl, der nun um den `buildx` Befehl erweitert wird.
 Das buildx Packet wird bei den aktuellsten Docker Versionen mitgeliefert, so muss der Container einfach wie folgt gestartet werden:
 
 \vspace{1em}
@@ -72,7 +72,7 @@ docker buildx build --platform linux/amd64,linux/arm64 -t ${FULL_IMAGE_NAME} -f 
 \end{lstlisting}
 \vspace{1em}
 
-Die Push Flag am Ende des Befehls lädt gleichzeitig das neue Image in die Container Registry, in die der User eingelogt ist, hoch.
+Die Push Flag am Ende des Befehls lädt gleichzeitig das neue Image in die Container Registry, in die der User eingeloggt ist, hoch.
 Im Fall dieses Projekts werden alle Images in Docker Hub gehostet.
 
 \subsection{Deployment auf vServer}\label{subsec:deployment-auf-vserver}
