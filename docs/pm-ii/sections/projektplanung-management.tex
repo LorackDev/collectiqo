@@ -1,9 +1,8 @@
 \section{Projektplanung- und Management}\label{sec:section-one}
 
-In diesem Kapitel wird in Abschnitt~\ref{subsec:subsection-one-one} zu Beginn der bisherige Stand aus dem ersten Praxismodul zusammengefasst.
-Abschnitt~\ref{subsec:subsection-one-two} behandelt die Zielsetzung dieses zweiten Praxismoduls.
-Die aktuelle Projektorganisation wird im dritten Abschnitt~\ref{subsec:subsection-one-three} definiert.
-Abschnitt~\ref{subsec:subsection-one-four} gibt abschließend einen aktualisierten Überblick über die verwendeten Tools.
+In diesem Kapitel wird zu Beginn der bisherige Stand aus dem ersten Praxismodul zusammengefasst.
+Der zweite Abschnitt behandelt die Zielsetzung dieses zweiten Praxismoduls, gefolgt von der aktuellen Projektorganisation.
+Abschließend wird ein Überblick über die verwendeten Tools in diesem Praxismodul gewehrt.
 
 \subsection{Rückblick auf Praxismodul I}\label{subsec:subsection-one-one}
 
@@ -42,8 +41,7 @@ Hauptaugenmerk liegt daher auf der technischen Implementierung und der Erweiteru
 
 Die Projektstruktur soll zu Beginn überarbeitet werden.
 Eine Umstrukturierung des Git-Repositories ist geplant, um die Übersichtlichkeit zu verbessern, die Komplexität zu reduzieren und den Entwicklungsworkflow zu optimieren.
-Die Dockerumgebung wird erweitert, indem Client- und Serverseite in separate Container aufgeteilt werden.
-Fortan wird das Projekt aus mindestens vier Containern bestehen: Frontend (clientseitig), Backend (serverseitig) und den beiden Datenbanken für User bzw\. Sammlungen.
+Die Dockerumgebung soll ebenfalls ausgebaut werden.
 
 Eine umfangreichere Designanalyse soll durchgeführt werden.
 Welche rechtlichen Vorgaben für den Betrieb einer Webseite zu beachten sind, soll dabei genauer untersucht und erläutert werden.
@@ -56,12 +54,8 @@ Das Backend soll robuster gestaltet und die Verknüpfung mit dem Frontend vervol
 Auf Datenbankebene ist die Absicherung durch Constraints vorgesehen, um die Datenintegrität zu gewährleisten.
 Kleinere Bugs in Front- und Backend sollen behoben werden.
 
-
 Für das Praxismodul II sollen ebenfalls Funktionserweiterung einfließen.
-Ein wichtiger Schwerpunkt liegt auf der Erstellung von Integrationstests, die die bestehenden einfachen Unit-Tests ergänzen sollen.
-% TODO: Sofern die Sharing Funktion verfolgt wird!
-Als neue Funktion ist die Implementierung einer Sharing-Möglichkeit für Sammlungen vorgesehen.
-Dieser Community-Aspekt erfordert auch einen Ausbau der Benutzereinstellungen.
+U.a. soll die Plattform auf einem virtuellen Server gehostet werden, um die Verfügbarkeit zu erhöhen und die Docker-Containerisierung zu erweitern.
 
 
 \subsection{Projektorganisationen}\label{subsec:subsection-one-three}
@@ -73,14 +67,15 @@ Die Organisation und Übersicht der einzelnen Aufgaben wird weiterhin mit einem 
 
 Anika und Darko sind für die grafische und technische Frontendentwicklung zuständig, wobei Anika sich auf die grafische Entwicklung basierend auf dem Design konzentriert und Darko die technische Umsetzung in JavaScript übernimmt.
 Für die Backend-Entwicklung ist Lorenz zuständig, er übernimmt ebenfalls die Integrationstests.
-Um die Datenbanksysteme und Docker kümmert sich Robin, des Weiteren übernimmt er den Lead für die Dokumentation sowie Präsentation.
-Da Lorenz sich in Praxismodul I bereits intensiv mit Docker auseinandergesetzt hat, wird er Robin hier unterstützen.
+Durch seine intensive Einarbeitung in Docker ist er zudem für die Containerisierung zuständig.
+Robin unterstützt bei dem Thema Docker und übernimmt die Implementierung von Constraints in der Datenbank.
+Zudem ist er für die rechtlichen Vorgaben und den virtuellen Server zuständig, des Weiteren übernimmt er den Lead für die Dokumentation sowie Präsentation.
 
 
 \subsection{Verwendete Tools}\label{subsec:subsection-one-four}
 
 Der überwiegende Teil der im Projekt verwendeten Tools ist unverändert geblieben.
-Es soll nur auf einige wenige Änderungen eingegangen werden, die sich im Vergleich zum ersten Praxismodul ergeben haben.
+Es soll nur auf die Änderungen eingegangen werden, die sich im Vergleich zum ersten Praxismodul ergeben haben.
 
 In der Kategorie \textit{Allgemein} ist Google Forms, das für die Umfrage im Praxismodul I genutzt wurde, weggefallen.
 Hinzugekommen ist die Nutzung von Photoshop, welches über vergünstigte Bildungskonditionen bezogen wurde.
@@ -88,12 +83,15 @@ Es dient der Erstellung von Grafiken für die Plattform sowie in der Designanaly
 Das Projektmanagementtool YouTrack wurde durch ein übersichtlicheres und in der Industrie verbreiteteres Tool ersetzt.
 Jira wird fortan in der Free-Version genutzt, die bis zu 10 Nutzer kostenlos und für die Vorhaben ausreichend ist.
 Zugriff und Verwaltung erfolgt über die Atlassian Cloud mithilfe der Browseroberfläche und den mobilen Apps.
+Zusätzlich wird dadurch Confluence genutzt, um technische Dokumentationen zu verwalten.
 
-Im Bereich \textit{Backend} ist axios weggefallen, da es im ersten Praxismodul nur für die Anbindung an die REST-API genutzt wurde.
-Da die REST-API im Backend selbst implementiert wird, ist axios nicht mehr notwendig. %TODO: Stimmt das technisch so?^^
+Im Bereich \textit{Backend} ist axios weggefallen, die Funktion von HTTP-Requests wird nun intern anderweitig gelöst.
+
+Es kamen zwei neue produktive Docker-Container hinzu, die für die Bereitstellung der Plattform auf einem virtuellen Server notwendig sind.
+Der Nginx Reverse Proxy Nginx wird genutzt, um den integrierten Webserver innerhalb des node.js-Containers auf dem vServer mit einer verschlüsselten Verbindung über HTTPS öffentlich erreichbar zu machen.
+Zudem wird Certbot verwendet, um SSL-Zertifikate zu verwalten.
 
 Nachfolgend wird eine Übersicht der verwendeten Tools als Grafik gegeben, die im Praxismodul II zum Einsatz kommen.
-Die Aufteilung des Frontends und Backends in separate Container wird ebenfalls dargestellt.
 
 \begin{figure}[H]
     \centering
