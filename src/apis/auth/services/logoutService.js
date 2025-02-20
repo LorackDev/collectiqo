@@ -8,3 +8,5 @@ const logoutService = async (req, res, next) => {
 
     res.status(200).send();
 };
+
+module.exports = logoutService;
