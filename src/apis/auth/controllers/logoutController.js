@@ -1,18 +1,9 @@
-const logOutService = require('../services/logOutService');
+const authService = require('../services/logoutService');
 
-const logOutController = async (req, res) => {
-
-    try {
-        await logOutService();
-        return res.status(201).json({ message: "Logged out successfully" });
-
-    } catch (error) {
-        if (error.message === 'User already exists' || error.message === 'Email already in use') {
-            return res.status(409).json({ message: error.message });
-        } else {
-            return res.status(500).json({ message: 'An error occurred' });
-        }
-    }
+const logoutController = async (req, res) => {
+    authService.logout(req)
+        .then(() => res.status(200).json({ message: 'Logout successful' }))
+        .catch(err => res.status(500).json({ error: err.message }));
 };
 
-module.exports = logOutController;
+module.exports = logoutController;
