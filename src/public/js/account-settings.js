@@ -48,11 +48,10 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('logoutButton').addEventListener('click', function(event) {
         event.preventDefault();
 
-            // Show confirmation dialog
             const userConfirmed = confirm('Are you sure you want to log out?');
 
             if (userConfirmed) {
-                fetch('/api/logout', {
+                fetch('/logout', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -61,12 +60,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     .then(response => response.json())
                     .then(data => {
                         if (data.message === 'Logout successful') {
-                            window.location.href = '/login'; // Redirect to login page
+                            window.location.href = '/';
                         }
                     })
                     .catch(error => console.error('Error:', error));
             } else {
-                // User canceled the logout
                 console.log('Logout canceled by user.');
             }
         });
