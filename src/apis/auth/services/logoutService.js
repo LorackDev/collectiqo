@@ -1,10 +1,15 @@
-const logoutService = async (req, res, next) => {
-    try {
-        await req.session.destroy();
-    } catch (err) {
-        console.error('Error logging out:', err);
-        return next(new Error('Error logging out'));
-    }
-
-    res.status(200).send();
+exports.logout = async (req) => {
+    return new Promise((resolve, reject) => {
+        try {
+            // Assuming session-based authentication
+            req.session.destroy(err => {
+                if (err) {
+                    return reject(new Error('Failed to logout'));
+                }
+                resolve();
+            });
+        } catch (error) {
+            reject(error);
+        }
+    });
 };

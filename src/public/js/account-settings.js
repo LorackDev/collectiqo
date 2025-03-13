@@ -45,33 +45,57 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 */
 
-    function openSettings(settingsName) {
+    document.getElementById('logoutButton').addEventListener('click', function(event) {
+        event.preventDefault();
 
-        var general = document.getElementById('general-settings');
-        var account = document.getElementById('account-settings');
-        var collection = document.getElementById('collection-settings');
-        var extra = document.getElementById('extra-settings');
+            const userConfirmed = confirm('Are you sure you want to log out?');
 
-        general.style.display = 'none';
-        account.style.display = 'none';
-        collection.style.display = 'none';
-        extra.style.display = 'none';
+            if (userConfirmed) {
+                fetch('/logout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.message === 'Logout successful') {
+                            window.location.href = '/';
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            } else {
+                console.log('Logout canceled by user.');
+            }
+        });
 
-        document.getElementById(settingsName).style.display = "inline";
-    }
-    document.getElementById("account-settings-btn").addEventListener("click", function () {
-     openSettings("account-settings");
+        function openSettings(settingsName) {
+            var general = document.getElementById('general-settings');
+            var account = document.getElementById('account-settings');
+            var collection = document.getElementById('collection-settings');
+            var extra = document.getElementById('extra-settings');
+
+            general.style.display = 'none';
+            account.style.display = 'none';
+            collection.style.display = 'none';
+            extra.style.display = 'none';
+
+            document.getElementById(settingsName).style.display = "inline";
+        }
+
+        document.getElementById("account-settings-btn").addEventListener("click", function () {
+            openSettings("account-settings");
+        });
+
+        document.getElementById("general-settings-btn").addEventListener("click", function () {
+            openSettings("general-settings");
+        });
+
+        document.getElementById("extra-settings-btn").addEventListener("click", function () {
+            openSettings("extra-settings");
+        });
+
+        document.getElementById("collection-settings-btn").addEventListener("click", function () {
+            openSettings("collection-settings");
+        });
     });
-
-    document.getElementById("general-settings-btn").addEventListener("click", function () {
-        openSettings("general-settings");
-    });
-
-    document.getElementById("extra-settings-btn").addEventListener("click", function () {
-        openSettings("extra-settings");
-    });
-
-    document.getElementById("collection-settings-btn").addEventListener("click", function () {
-        openSettings("collection-settings");
-    });
-})

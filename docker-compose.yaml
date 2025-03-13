@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    image: clq-app
+    image: lorackdev/clq-app
     env_file: ./.env.docker
     ports:
       - "${PORT}:${PORT}"
