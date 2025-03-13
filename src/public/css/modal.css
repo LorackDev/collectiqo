@@ -233,4 +233,57 @@ button#saveBtn:hover {
     width: auto;
   }
 
+.add-field, .remove-field {
+  background: #ffffff;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+}
 
+.add-field {
+  color: #64cd1e;
+}
+
+.remove-field {
+  color: #cd1e1e;
+}
+
+.remove-field:hover {
+    background: #cd1e1e;
+    color: #ffffff;
+}
+
+.add-field:hover {
+    background: #64cd1e;
+    color: #ffffff;
+}
+
+.multi-fields, .multi-field {
+    margin-top: 3%;
+}
+
+.multi-field-wrapper {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.textbox {
+    border: 1px solid #848484;
+    border-radius: 30px;
+    outline: 0;
+    height: 40px;
+    width: 275px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.textbox#collection-name {
+  border: 3px solid #7884d6;
+}

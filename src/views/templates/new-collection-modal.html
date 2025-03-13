@@ -1,47 +1,64 @@
-
 <div id="myModal" class="modal">
     <div class="modal-content">
         <form id="selectionForm">
             <h2>New Collection</h2>
-            <h3>Choose a preset, color and name.</h3>
             <div class="view-upper">
-            <div class="input-group">
-
-                <label for="preset">Preset</label>
-                <select id="preset" name="preset">
+                <div class="input-group">
+                    <label for="customCollection">Custom Collection</label>
+                    <input type="checkbox" id="customCollection" name="customCollection">
+                </div>
+                <div class="input-group" id="presetGroup">
+                    <label for="preset">Preset</label>
+                    <select id="preset" name="preset">
                         <option value="x" disabled selected>Select preset...</option>
                         <option value="video games">video games</option>
                         <option value="perfume">perfume</option>
                         <option value="movies">movies</option>
-                        <option value="custom">Custom</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <label for="color">Color</label>
-                <input type="color" id="color" name="color">
-            </div>
-            </div>
-            <div class="view-lower">
-            <div class="input-group">
-                <label for="collection">Collection Name</label>
-                <input type="text" id="collection" name="collection">
-            </div>
-            <div class="custom-options">
+                    </select>
+                </div>
                 <div class="input-group">
-                    <label for="custom1">Row 1: </label>
-                    <input type="text" id="custom1" name="custom1">
+                    <label for="color">Color</label>
+                    <input type="color" id="color" name="color">
                 </div>
             </div>
-            <div class="input-group">
-                <button type="button" id="addCustomField">+ Row</button>
+            <div class="view-lower">
+                <div class="input-group">
+                </div>
+                <div class="multi-field-wrapper">
+                    <input type="text" id="collection-name" class="textbox" placeholder="Enter collection name">
+                    <button type="button" class="add-field">+</button>
+                    <div class="multi-fields">
+                        <div class="multi-field">
+                            <input type="text" name="customField[]" class="textbox" placeholder="Enter field name">
+                            <button type="button" class="remove-field">-</button>
+                    </div>
+                </div>
+            </div>
 
-            </div>
-            <div class="input-group">
-                <button type="button" id="cancelBtn">Cancel</button>
-                <button type="submit" id="saveBtn">Save</button>
-            </div>
+                <div class="input-group">
+                    <button type="button" id="cancelBtn">Cancel</button>
+                    <button type="submit" id="saveBtn">Save</button>
+                </div>
             </div>
         </form>
     </div>
 </div>
 <script src="/js/modal-action.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.multi-field-wrapper').each(function() {
+            var $wrapper = $('.multi-fields', this);
+
+            $(".add-field", $(this)).click(function() {
+                $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('input').val('').focus();
+            });
+
+            $wrapper.on('click', '.remove-field', function() {
+                if ($('.multi-field', $wrapper).length > 1) {
+                    $(this).parent('.multi-field').remove();
+                }
+            });
+        });
+    });
+</script>
