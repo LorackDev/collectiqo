@@ -1,0 +1,72 @@
+\section{vServer}\label{subsec:vserver}
+
+Lorenz ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+At vero eos et accusam et justo duo dolores et ea rebum.
+Stet clita kasd gubergren, no sea takimata sanctus est Lorenz ipsum dolor sit amet.
+
+\subsection{Hosting}\label{subsubsec:hosting}
+
+Lorenz ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+At vero eos et accusam et justo duo dolores et ea rebum.
+Stet clita kasd gubergren, no sea takimata sanctus est Lorenz ipsum dolor sit amet.
+
+\subsection{Automatisierung Updates}\label{subsubsec:automatisierung-updates}
+
+Lorenz ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+At vero eos et accusam et justo duo dolores et ea rebum.
+Stet clita kasd gubergren, no sea takimata sanctus est Lorenz ipsum dolor sit amet.
+
+\subsection{Reverse Proxy}\label{subsubsec:reverse-proxy}
+
+Lorenz ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+At vero eos et accusam et justo duo dolores et ea rebum.
+Stet clita kasd gubergren, no sea takimata sanctus est Lorenz ipsum dolor sit amet.
+
+Die Konfiguration des Nginx-Revers-Proxys erfolgte in der Datei \textit{nginx/nginx.conf} und sieht wie folgt aus:
+\vspace{1em}
+\begin{lstlisting}[label={lst:lst-nginx-config}]
+events {
+    worker_connections  1024;
+}
+
+http {
+    server_tokens off;
+    charset utf-8;
+    server {
+        listen 80 default_server;
+        server_name collectiqo.de www.collectiqo.de collectiqo.com www.collectiqo.com;
+
+        location ~ /.well-known/acme-challenge/ {
+            root /var/www/certbot;
+        }
+
+        location / {
+            return 301 https://collectiqo.com$request_uri;
+        }
+    }
+    server {
+        listen 443 ssl;
+        server_name collectiqo.de www.collectiqo.de collectiqo.com www.collectiqo.com;
+
+        ssl_certificate /etc/letsencrypt/live/collectiqo.com/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/collectiqo.com/privkey.pem;
+
+        location ~ /.well-known/acme-challenge/ {
+            root /var/www/certbot;
+        }
+        location / {
+            #proxy_pass http://test-webserver;
+            proxy_pass https://collectiqo-web-1:3000;
+            proxy_http_version 1.1;
+            proxy_set_header Host $host;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_cache_bypass $http_upgrade;
+        }
+    }
+}
+\end{lstlisting}
+\vspace{1em}
