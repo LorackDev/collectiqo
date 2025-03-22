@@ -136,6 +136,7 @@
 //        alert('Failed to save collection');
 //    }
 //});
+
 document.addEventListener('DOMContentLoaded', function() {
     const customCollectionCheckbox = document.getElementById('customCollection');
     const presetGroup = document.getElementById('presetGroup');
@@ -156,11 +157,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    presetSelect.addEventListener('change', function() {
-        if (!customCollectionCheckbox.checked) {
-            customOptions.style.display = 'block';
-            customOptions.innerHTML = ''; // Clear previous fields
-            const presetData = getPresetData(presetSelect.value);
+    presetSelect.addEventListener('change', async function() {
+        if (!document.getElementById('customCollection').checked) {
+            // get currently selected value
+            const selectedPreset = presetSelect.value;
+
+            const response = await fetch(
+                `https://dev.collectiqo.com:3000/get-preset-data?templateName=${selectedPreset}`,
+            );
+            // get data from mongo db
+            // create a new field for each column entry in mongo db
             presetData.forEach((field, index) => {
                 const newField = document.createElement('div');
                 newField.className = 'input-group';
@@ -190,15 +196,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Form Data:', Object.fromEntries(formData.entries()));
         // Implement further logic to save the collection
     });
-
-    function getPresetData(preset) {
-        const presets = {
-            'video games': [{ label: 'Title', value: 'Game Title' }, { label: 'Genre', value: 'Action' }],
-            'perfume': [{ label: 'Brand', value: 'Brand Name' }, { label: 'Scent', value: 'Floral' }],
-            'movies': [{ label: 'Title', value: 'Movie Title' }, { label: 'Director', value: 'Director Name' }]
-        };
-        return presets[preset] || [];
-    }
 
     document.getElementById('saveBtn').addEventListener('click', async () => {
     // Extract values from modal inputs
@@ -233,6 +230,8 @@ document.addEventListener('DOMContentLoaded', function() {
         alert('An unexpected error occurred.');
     }
 });
+
+
 
 
 });
