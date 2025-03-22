@@ -17,9 +17,12 @@
   <link rel="stylesheet" href="/css/templates/new-collection-modal.css">
   <script src="/js/home-navigation.js"></script>
   <script src="/js/sidebar.js"></script>
-  <script src="/js/calcTH.js"></script>
   <script src="/js/modal.js"></script>
-  <script src="/js/saveButton.js"></script>
+
+  <!-- Tabellen Skripte -->
+  <script src="/js/calcTH.js"></script>
+  <script src="/js/tableEditMode.js"></script>
+  <script src="/js/inline-edit.js"></script>
 
   <title>Collection Data</title>
 
@@ -29,14 +32,14 @@
 <%- include('../../templates/sidebar.ejs') %>
 
 <div class="content-container">
-  <div class="content">
+  <div class="content edit-wrapper">
     <h1>Collection: <%= collectionName %></h1>
 
     <div class="button-group">
       <button class="edit-button" id="editButton">
         <span class="icon fas fa-edit"></span> Edit
       </button>
-      <button class="delete-button">
+      <button class="delete-button hidden" id="deleteButton">
         <span class="icon fas fa-trash-alt"></span> Delete
       </button>
       <button class="save-button hidden" id="saveButton">
@@ -45,8 +48,8 @@
     </div>
 
 
-  <% if (specifiedCollection && specifiedCollection.entries.length > 0) { %>
-      <table>
+    <% if (specifiedCollection && specifiedCollection.entries.length > 0) { %>
+      <table class="mainTable">
         <thead>
         <tr>
           <% specifiedCollection.columns.forEach(column => { %>
