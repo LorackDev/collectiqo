@@ -140,7 +140,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const customCollectionCheckbox = document.getElementById('customCollection');
     const presetGroup = document.getElementById('presetGroup');
-    const presetSelect = document.getElementById('preset');
     const customOptions = document.getElementById('customOptions');
     const addCustomFieldButton = document.getElementById('addCustomField');
     let customFieldCount = 0;
@@ -154,28 +153,6 @@ document.addEventListener('DOMContentLoaded', function() {
             presetGroup.style.display = 'block';
             customOptions.style.display = 'none';
             customOptions.innerHTML = ''; // Clear custom fields
-        }
-    });
-
-    presetSelect.addEventListener('change', async function() {
-        if (!document.getElementById('customCollection').checked) {
-            // get currently selected value
-            const selectedPreset = presetSelect.value;
-
-            const response = await fetch(
-                `https://dev.collectiqo.com:3000/get-preset-data?templateName=${selectedPreset}`,
-            );
-            // get data from mongo db
-            // create a new field for each column entry in mongo db
-            presetData.forEach((field, index) => {
-                const newField = document.createElement('div');
-                newField.className = 'input-group';
-                newField.innerHTML = `
-                    <label for="presetField${index}">${field.label}</label>
-                    <input type="text" id="presetField${index}" name="presetField${index}" value="${field.value}" disabled>
-                `;
-                customOptions.appendChild(newField);
-            });
         }
     });
 

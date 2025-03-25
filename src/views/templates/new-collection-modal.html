@@ -72,12 +72,14 @@
 
                     if (response.ok) {
                         const templateData = await response.json();
+                        console.log(`Template Data: ${templateData}`)
 
                         // Clear existing fields
                         $('.multi-fields').empty();
 
                         // Create a new field for each column entry in the template data
                         templateData.columns.forEach((column) => {
+                            console.log(`Create entry for column: ${column}`)
                             const newField = $('<div class="multi-field">')
                                 .append(`<input type="text" name="customField[]" class="textbox" placeholder="${column}">`)
                                 .append('<button type="button" class="remove-field">-</button>');
