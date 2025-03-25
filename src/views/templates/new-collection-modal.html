@@ -78,10 +78,12 @@
                         $('.multi-fields').empty();
 
                         // Create a new field for each column entry in the template data
+                        let i = 0;
                         templateData.columns.forEach((column) => {
+                            i++;
                             console.log(`Create entry for column: ${column}`)
                             const newField = $('<div class="multi-field">')
-                                .append(`<input type="text" name="customField[]" class="textbox" placeholder="${column}">`)
+                                .append(`<input type="text" name="customField[]" class="textbox" placeholder="Field ${i}" value="${column}">`)
                                 .append('<button type="button" class="remove-field">-</button>');
                             $('.multi-fields').append(newField);
                         });
