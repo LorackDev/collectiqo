@@ -12,6 +12,11 @@ services:
     networks:
       - proxy-network
       #- app-network
+    depends_on:
+      mysql:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
 
   mysql:
     container_name: collectiqo-mysql-1
@@ -24,6 +29,13 @@ services:
     networks:
       - proxy-network
       #- app-network
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_DATABASE_PASSWORD}"]
+      start_period: 30s
+      interval: 10s
+      timeout: 10s
+      retries: 9
+
 
   mongodb:
     container_name: collectiqo-mongodb-1
@@ -37,6 +49,15 @@ services:
     networks:
       - proxy-network
       #- app-network
+    healthcheck:
+      #test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      #test: echo 'db.runCommand("ping").ok' | mongosh mongodb:27017/test --quiet
+      test: echo 'db.runCommand("ping").ok' | mongosh collectiqo-mongodb-1:27017/test --quiet
+      start_period: 30s
+      interval: 10s
+      timeout: 10s
+      retries: 9
+
 
   test-webserver:
     container_name: test-webserver
@@ -60,6 +81,12 @@ services:
       - ./certbot/www:/var/www/certbot/:ro
     networks:
       - proxy-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -so /dev/null http://localhost/ || exit 1"]
+      start_period: 15s
+      interval: 15s
+      timeout: 15s
+      retries: 3
 
   certbot:
     container_name: certbot
@@ -70,7 +97,8 @@ services:
     networks:
       - proxy-network
     depends_on:
-      - nginx-reverse-proxy
+      nginx-reverse-proxy:
+        condition: service_healthy
 
 networks:
   app-network:
