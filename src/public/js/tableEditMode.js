@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const saveButton = document.getElementById('collectionSaveButton');
     const deleteButton = document.getElementById('collectionDeleteButton');
     const cancelButton = document.getElementById('collectionCancelButton');
+    const addColumnButton = document.getElementById('addColumnButton');
+
 
     if (editButton && saveButton && deleteButton && cancelButton) {
         editButton.addEventListener('click', function () {
@@ -10,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
             saveButton.classList.remove('hidden');
             deleteButton.classList.remove('hidden');
             cancelButton.classList.remove('hidden');
+            addColumnButton.classList.remove('hidden');
             console.log('Edit mode for collection');
         });
 
@@ -18,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
             saveButton.classList.add('hidden');
             deleteButton.classList.add('hidden');
             cancelButton.classList.add('hidden');
+            addColumnButton.classList.add('hidden');
             console.log('Left Edit Mode');
         });
     } else {

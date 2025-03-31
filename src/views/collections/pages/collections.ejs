@@ -51,12 +51,10 @@
       <button class="collection-cancel-button hidden" id="collectionCancelButton">
         <span class="icon fas fa-times"></span> Cancel
       </button>
-    </div>
-
-    <div class="table-action-header">
-      <button id="addColumnButton" class="hidden add-column-button">+ New Column</button>
-    </div>
+     </div>
+    <button id="addColumnButton" class="hidden add-column-button">+ New Column</button>
     <% if (specifiedCollection && specifiedCollection.entries.length > 0) { %>
+
       <table class="mainTable">
         <thead>
         <tr>
@@ -75,9 +73,7 @@
         <% }) %>
         </tbody>
       </table>
-      <div class="table-action-footer">
-        <button id="addRowButton" class="hidden add-row-button">+ New Entry</button>
-      </div>
+      <button id="addRowButton" class="hidden add-row-button">+ New Entry</button>
   <% } else { %>
       <div class="centered-message">No entries found for this collection.</div>
     <% } %>
