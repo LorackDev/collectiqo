@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const editButton = document.getElementById('editButton');
     const saveButton = document.getElementById('saveButton');
+    const body = document.body;
 
     editButton.addEventListener('click', () => {
         // Zellen in der Tabelle editierbar machen
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
             headerCell.innerHTML = '<input type="text" value="' + value + '" />';
         });
 
+        body.classList.add('edit-mode');
         editButton.classList.add('hidden');
         saveButton.classList.remove('hidden');
     });
@@ -42,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        body.classList.remove('edit-mode');
         saveButton.classList.add('hidden');
         editButton.classList.remove('hidden');
     });

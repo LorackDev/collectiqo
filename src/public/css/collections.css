@@ -75,6 +75,7 @@ table {
   border-spacing: 0;
   border-collapse: separate;
   border-radius: 10px;
+  transition: box-shadow 0.1s ease, transform 0.4s ease;
 }
 
 th, td {
@@ -116,6 +117,24 @@ td input {
 
 td input:focus, th input:focus {
   border-bottom: 1px dashed #000000;
+}
+
+body.edit-mode table {
+  animation: pulse-shadow 2.3s infinite ease-in-out;
+}
+
+@keyframes pulse-shadow {
+  0% {
+    box-shadow: 0 0 1px var(--mid);
+  }
+
+  50% {
+    box-shadow: 0 0 30px var(--mid);
+  }
+
+  100% {
+    box-shadow: 0 0 1px var(--mid);
+  }
 }
 
 /* ---------------------------------
