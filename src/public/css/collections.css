@@ -163,6 +163,49 @@ body.edit-mode #addRowButton {
   display: none;
 }
 
+.add-column-button {
+  margin-left: auto;
+  margin-right: 7.5%;
+  margin-top: -40px;
+  margin-bottom: 50px;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--light);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-column-button:hover {
+  background-color: var(--mid-light);
+}
+
+.table-action-header {
+  width: 85%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.table-action-footer {
+  width: 85%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+
+body.edit-mode #addColumnButton,
+body.edit-mode #addRowButton {
+  display: inline-block;
+}
+
+#addColumnButton.hidden,
+#addRowButton.hidden {
+  display: none;
+}
 
 /* ---------------------------------
    BUTTON GROUP & BUTTONS

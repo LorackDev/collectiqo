@@ -23,7 +23,9 @@
   <script src="/js/calcTH.js"></script>
   <script src="/js/tableEditMode.js"></script>
   <script src="/js/inline-edit.js"></script>
-  <script src="/js/addCollectionRow.js"></script>
+  <script src="/js/editTableControls.js"></script>
+
+
 
   <title>Collection Data</title>
 
@@ -51,7 +53,9 @@
       </button>
     </div>
 
-
+    <div class="table-action-header">
+      <button id="addColumnButton" class="hidden add-column-button">+ New Column</button>
+    </div>
     <% if (specifiedCollection && specifiedCollection.entries.length > 0) { %>
       <table class="mainTable">
         <thead>
@@ -71,7 +75,9 @@
         <% }) %>
         </tbody>
       </table>
-      <button id="addRowButton" class="hidden add-row-button">+ New Entry</button>
+      <div class="table-action-footer">
+        <button id="addRowButton" class="hidden add-row-button">+ New Entry</button>
+      </div>
   <% } else { %>
       <div class="centered-message">No entries found for this collection.</div>
     <% } %>
