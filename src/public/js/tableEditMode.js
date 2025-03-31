@@ -1,24 +1,26 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const editButton = document.getElementById('editButton');
-    const saveButton = document.getElementById('saveButton');
-    const deleteButton = document.getElementById('deleteButton');
+    const editButton = document.getElementById('collectionEditButton');
+    const saveButton = document.getElementById('collectionSaveButton');
+    const deleteButton = document.getElementById('collectionDeleteButton');
+    const cancelButton = document.getElementById('collectionCancelButton');
 
-    if (editButton && saveButton && deleteButton)  {
+    if (editButton && saveButton && deleteButton && cancelButton) {
         editButton.addEventListener('click', function () {
             console.log('Edit-Mode');
             saveButton.classList.remove('hidden');
             deleteButton.classList.remove('hidden');
-            console.log('Buttons now visible');
+            cancelButton.classList.remove('hidden');
+            console.log('Edit mode for collection');
         });
 
         saveButton.addEventListener('click', function () {
             alert('Changes saved successfully');
             saveButton.classList.add('hidden');
             deleteButton.classList.add('hidden');
-            console.log('Buttons hidden after save');
+            cancelButton.classList.add('hidden');
+            console.log('Left Edit Mode');
         });
     } else {
-        console.error("Buttons not found.. Verify IDs in HTML.");
+        console.error("One or more buttons not found. Verify IDs in HTML.");
     }
-
 });

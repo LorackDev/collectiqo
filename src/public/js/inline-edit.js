@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const editButton = document.getElementById('editButton');
-    const saveButton = document.getElementById('saveButton');
+    const editButton = document.getElementById('collectionEditButton');
+    const saveButton = document.getElementById('collectionSaveButton');
+    const cancelButton = document.getElementById('collectionCancelButton');
+
     const body = document.body;
 
     editButton.addEventListener('click', () => {
@@ -21,6 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
         body.classList.add('edit-mode');
         editButton.classList.add('hidden');
         saveButton.classList.remove('hidden');
+        cancelButton.classList.remove('hidden');
+    });
+
+    cancelButton.addEventListener('click', () => {
+        const confirmed = confirm("Are you sure you want to cancel? All unsaved changes will be lost.");
+        if (confirmed) {
+            location.reload();
+        }
     });
 
     saveButton.addEventListener('click', () => {
@@ -46,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         body.classList.remove('edit-mode');
         saveButton.classList.add('hidden');
+        cancelButton.classList.add('hidden');
         editButton.classList.remove('hidden');
     });
 });

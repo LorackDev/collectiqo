@@ -167,7 +167,7 @@ body.edit-mode #addRowButton {
 /* ---------------------------------
    BUTTON GROUP & BUTTONS
 ---------------------------------- */
-.button-group {
+.collection-button-group {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -175,7 +175,7 @@ body.edit-mode #addRowButton {
   margin-top: 20px;
 }
 
-.button-group button {
+.collection-button-group button {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -187,22 +187,27 @@ body.edit-mode #addRowButton {
 }
 
 /* Spezifische Buttons */
-.edit-button {
+.collection-edit-button {
   background-color: #e7cc5a;
   color: white;
 }
 
-.delete-button {
+.collection-cancel-button {
+  background-color: #888;
+  color: white;
+}
+
+.collection-delete-button {
   background-color: #f44336;
   color: white;
 }
 
-.save-button {
+.collection-save-button {
   background-color: #2196F3;
   color: white;
 }
 
-.save-button:hover {
+.collection-save-button:hover {
   background-color: #45a049;
 }
 
@@ -213,7 +218,7 @@ body.edit-mode #addRowButton {
   display: none;
 }
 
-.button-group .hidden {
+.collection-button-group .hidden {
   display: none !important;
 }
 
