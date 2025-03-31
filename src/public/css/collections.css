@@ -70,6 +70,7 @@ h1 {
 table {
   width: 85%;
   margin-top: 10px;
+  margin-bottom: 50px;
   background-color: #d7d7d7;
   overflow: hidden;
   border-spacing: 0;
@@ -136,6 +137,32 @@ body.edit-mode table {
     box-shadow: 0 0 1px var(--mid);
   }
 }
+
+.add-row-button {
+
+  margin-bottom: 50px;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--light);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-row-button:hover {
+  background-color: var(--mid-light);
+}
+
+body.edit-mode #addRowButton {
+  display: inline-block;
+}
+
+#addRowButton.hidden {
+  display: none;
+}
+
 
 /* ---------------------------------
    BUTTON GROUP & BUTTONS

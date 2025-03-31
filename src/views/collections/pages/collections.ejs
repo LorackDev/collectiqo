@@ -23,6 +23,7 @@
   <script src="/js/calcTH.js"></script>
   <script src="/js/tableEditMode.js"></script>
   <script src="/js/inline-edit.js"></script>
+  <script src="/js/addCollectionRow.js"></script>
 
   <title>Collection Data</title>
 
@@ -67,7 +68,8 @@
         <% }) %>
         </tbody>
       </table>
-    <% } else { %>
+      <button id="addRowButton" class="hidden add-row-button">+ New Entry</button>
+  <% } else { %>
       <div class="centered-message">No entries found for this collection.</div>
     <% } %>
     <%- include('../../templates/new-collection-modal.html') %>
