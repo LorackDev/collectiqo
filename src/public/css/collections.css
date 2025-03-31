@@ -23,7 +23,7 @@ body {
 }
 
 /* ---------------------------------
-   LAYOUT CONTAINER
+   LAYOUT
 ---------------------------------- */
 .content-container {
   width: auto;
@@ -54,7 +54,7 @@ body {
 }
 
 /* ---------------------------------
-   TYPOGRAFIE
+   TYPOGRAPHY
 ---------------------------------- */
 h1 {
   margin-bottom: 20px;
@@ -65,12 +65,11 @@ h1 {
 }
 
 /* ---------------------------------
-   TABLE DESIGN
+   TABLE
 ---------------------------------- */
 table {
   width: 85%;
-  margin-top: 15px;
-  margin-bottom: 50px;
+  margin: 15px 0 50px;
   background-color: #d7d7d7;
   overflow: hidden;
   border-spacing: 0;
@@ -95,29 +94,22 @@ tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-/* ---------------------------------
-   TABLE EDIT MODE
----------------------------------- */
-/* Header */
-th input {
-  font-size: 20px;
+/* Inputs in edit mode */
+th input, td input {
+  font-size: 1rem;
   background: transparent;
   border: none;
   outline: none;
   font-weight: bold;
+  color: inherit;
 }
 
-/* Tabellen-Input: wirkt wie normaler Text */
 td input {
-  font-size: var(--standard);
-  border: none;
-  background: transparent;
-  color: inherit;
-  outline: none;
+  font-weight: normal;
 }
 
 td input:focus, th input:focus {
-  border-bottom: 1px dashed #000000;
+  border-bottom: 1px dashed #000;
 }
 
 body.edit-mode table {
@@ -125,20 +117,15 @@ body.edit-mode table {
 }
 
 @keyframes pulse-shadow {
-  0% {
-    box-shadow: 0 0 var(--mid);
-  }
-
-  50% {
-    box-shadow: 0 0 30px var(--mid);
-  }
-
-  100% {
-    box-shadow: 0 0 var(--mid);
-  }
+  0%, 100% { box-shadow: 0 0 var(--mid); }
+  50% { box-shadow: 0 0 30px var(--mid); }
 }
 
-.add-row-button {
+/* ---------------------------------
+   TABLE ACTION BUTTONS
+---------------------------------- */
+.add-row-button,
+.add-column-button {
   margin-bottom: 10px;
   padding: 10px 20px;
   font-size: 1.1rem;
@@ -150,54 +137,30 @@ body.edit-mode table {
   transition: background-color 0.3s ease;
 }
 
-.add-row-button:hover {
-  background-color: var(--mid-light);
-}
-
-body.edit-mode #addRowButton {
-  display: inline-block;
-}
-
-#addRowButton.hidden {
-  display: none;
-}
-
-.add-column-button {
-  margin-bottom: 20px;
-  padding: 10px 20px;
-  font-size: 1.1rem;
-  border: none;
-  border-radius: 5px;
-  background-color: var(--light);
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
+.add-row-button:hover,
 .add-column-button:hover {
   background-color: var(--mid-light);
 }
 
-body.edit-mode #addColumnButton,
-body.edit-mode #addRowButton {
+body.edit-mode #addRowButton,
+body.edit-mode #addColumnButton {
   display: inline-block;
 }
 
-#addColumnButton.hidden,
-#addRowButton.hidden {
+#addRowButton.hidden,
+#addColumnButton.hidden {
   display: none;
 }
 
 /* ---------------------------------
-   BUTTON GROUP & BUTTONS
+   MAIN BUTTON GROUP
 ---------------------------------- */
 .collection-button-group {
   display: flex;
   flex-direction: row;
   gap: 10px;
   justify-content: flex-start;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 .collection-button-group button {
@@ -205,35 +168,20 @@ body.edit-mode #addRowButton {
   align-items: center;
   gap: 8px;
   font-size: 16px;
-  border: none;
   padding: 10px 20px;
-  cursor: pointer;
+  border: none;
   border-radius: 5px;
+  cursor: pointer;
 }
 
-/* Spezifische Buttons */
-.collection-edit-button {
-  background-color: #e7cc5a;
-  color: white;
-}
-
-.collection-delete-button {
-  background-color: #f44336;
-  color: white;
-}
-
-.collection-save-button {
-  background-color: #2196F3;
-  color: white;
-}
+/* Button variants */
+.collection-edit-button { background-color: #e7cc5a; color: white; }
+.collection-delete-button { background-color: #f44336; color: white; }
+.collection-save-button { background-color: #2196F3; color: white; }
+.collection-cancel-button { background-color: #888; color: white; }
 
 .collection-save-button:hover {
   background-color: #45a049;
-}
-
-.collection-cancel-button {
-  background-color: #888;
-  color: white;
 }
 
 .collection-add-column-button {
@@ -246,7 +194,7 @@ body.edit-mode #addRowButton {
 }
 
 /* ---------------------------------
-   UI STATES & HIDDEN ELEMENTS
+   UTILITY
 ---------------------------------- */
 .hidden {
   display: none;
@@ -265,9 +213,6 @@ body.edit-mode #addRowButton {
   color: #666;
 }
 
-/* ---------------------------------
-   OPTIONAL: TABLE OPTIONS
----------------------------------- */
 .table-options {
   display: flex;
   justify-content: space-between;
