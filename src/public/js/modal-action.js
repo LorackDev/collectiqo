@@ -142,6 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const presetGroup = document.getElementById('presetGroup');
     const customOptions = document.getElementById('customOptions');
     const addCustomFieldButton = document.getElementById('addCustomField');
+    const saveButton = document.getElementById('saveBtn');
     let customFieldCount = 0;
 
     customCollectionCheckbox.addEventListener('change', function() {
@@ -156,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    addCustomFieldButton.addEventListener('click', function() {
+/*    addCustomFieldButton.addEventListener('click', function() {
         customFieldCount++;
         const newField = document.createElement('div');
         newField.className = 'input-group';
@@ -165,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <input type="text" id="custom${customFieldCount}" name="custom${customFieldCount}">
         `;
         customOptions.appendChild(newField);
-    });
+    });*/
 
     document.getElementById('selectionForm').addEventListener('submit', function(event) {
         event.preventDefault();
@@ -174,41 +175,40 @@ document.addEventListener('DOMContentLoaded', function() {
         // Implement further logic to save the collection
     });
 
-    document.getElementById('saveBtn').addEventListener('click', async () => {
-    // Extract values from modal inputs
-    const collectionName = document.getElementById('collectionNameInput').value;
-    const columns = Array.from(document.querySelectorAll('.fieldNameInput')).map(input => input.value);
+    saveButton.addEventListener('click', async (event) => {
 
-    // Construct payload
-    const payload = {
-        collectionName: collectionName,
-        columns: columns,
-        username: 'currentUsername' // Replace with actual username logic
-    };
+        event.preventDefault();
 
-    try {
-        const response = await fetch('/create-new-collection', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload)
-        });
+        const collectionName = document.getElementById('collection-name').value;
+        const columns = Array.from(document.querySelectorAll('.multi-field input')).map(input => input.value);
+        const username = 'currentUsername';
 
-        const result = await response.json();
 
-        if (response.ok) {
-            alert(result.message);
-        } else {
-            alert('Error: ' + result.error);
+        const payload = {
+            name: collectionName,
+            columns: columns
+        };
+        console.log('Trying to create collection with payload:', payload);
+        console.log('Sending request to /create-new-collection');
+        try {
+            const response = await fetch('/create-new-collection', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                alert(result.message);
+            } else {
+                alert('Error: ' + result.error);
+            }
+        } catch (error) {
+            console.error('Error creating collection:', error);
+            alert('An unexpected error occurred.');
         }
-    } catch (error) {
-        console.error('Error creating collection:', error);
-        alert('An unexpected error occurred.');
-    }
-});
-
-
-
-
-});
+    });
+})

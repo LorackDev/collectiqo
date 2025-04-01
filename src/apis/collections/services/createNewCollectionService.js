@@ -1,17 +1,13 @@
 const { connectToDb, closeConnection } = require('../../../utils/mongoUtils');
-// const { ValidationError, DatabaseError } = require('../../../errors/customErrors');
 
-const createNewCollectionService = async (collectionName, columns, username) => {
-        if (columns.length > 10) {
-            // throw new ValidationError('Cannot add more than 10 columns');
-        }
+const createNewCollectionService = async (name, columns, username) => {
 
         try {
             const db = await connectToDb();
             const collection = db.collection('collections');
 
             const doc = {
-                name: collectionName,
+                name: name,
                 columns: columns,
                 username: username,
                 entries: []
@@ -21,9 +17,7 @@ const createNewCollectionService = async (collectionName, columns, username) => 
 
             return { message: 'Collection created successfully', result: result };
         } catch (err) {
-            // throw new DatabaseError('An error occurred while creating the collection');
-        } finally {
-            await closeConnection();
+            throw new Error('An error occurred while creating the collection');
         }
     }
 
