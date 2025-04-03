@@ -72,6 +72,12 @@
               <% } %>
             </tr>
           <% }) %>
+        <% } else if (specifiedCollection.columns && specifiedCollection.columns.length > 0) { %>
+          <tr class="no-entries-row">
+            <td colspan="<%= specifiedCollection.columns.length %>" class="no-entries-cell">
+              No entries yet – Got to edit mode!
+            </td>
+          </tr>
         <% } %>
         </tbody>
       </table>

@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     editButton.addEventListener('click', () => {
         // Zellen in der Tabelle editierbar machen
-        document.querySelectorAll('table tbody tr').forEach(row => {
+        document.querySelectorAll('table tbody tr:not(.no-entries-row)').forEach(row => {
             row.querySelectorAll('td').forEach(cell => {
                 const value = cell.textContent.trim();
                 cell.innerHTML = '<input type="text" value="' + value + '" />';
@@ -19,6 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const value = headerCell.textContent.trim();
             headerCell.innerHTML = '<input type="text" value="' + value + '" />';
         });
+
+        const noEntriesRow = document.querySelector('tr.no-entries-row');
+        if (noEntriesRow) {
+            noEntriesRow.remove();
+        }
 
         body.classList.add('edit-mode');
         editButton.classList.add('hidden');

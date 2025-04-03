@@ -224,3 +224,12 @@ body.edit-mode #addColumnButton {
   width: 100%;
   box-sizing: border-box;
 }
+
+.no-entries-cell {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+  cursor: default;
+  user-select: none;
+}
+
