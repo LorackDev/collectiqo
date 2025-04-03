@@ -25,8 +25,6 @@
   <script src="/js/inline-edit.js"></script>
   <script src="/js/editTableControls.js"></script>
 
-
-
   <title>Collection Data</title>
 
 </head>
@@ -53,30 +51,34 @@
       </button>
      </div>
     <button id="addColumnButton" class="hidden add-column-button">+ New Column</button>
-    <% if (specifiedCollection && specifiedCollection.entries.length > 0) { %>
-
+    <% if (specifiedCollection &&
+            ((specifiedCollection.columns && specifiedCollection.columns.length > 0) || (specifiedCollection.entries && specifiedCollection.entries.length > 0))) { %>
       <table class="mainTable">
         <thead>
         <tr>
-          <% specifiedCollection.columns.forEach(column => { %>
-            <th><%= column %></th>
-          <% }) %>
+          <% if (specifiedCollection.columns && specifiedCollection.columns.length > 0) { %>
+            <% specifiedCollection.columns.forEach(column => { %>
+              <th><%= column %></th>
+            <% }) %>
+          <% } %>
         </tr>
         </thead>
         <tbody>
-        <% specifiedCollection.entries.forEach(entry => { %>
-          <tr>
-            <% for (let key in entry) { %>
-              <td><%= entry[key] %></td>
-            <% } %>
-          </tr>
-        <% }) %>
+        <% if (specifiedCollection.entries && specifiedCollection.entries.length > 0) { %>
+          <% specifiedCollection.entries.forEach(entry => { %>
+            <tr>
+              <% for (let key in entry) { %>
+                <td><%= entry[key] %></td>
+              <% } %>
+            </tr>
+          <% }) %>
+        <% } %>
         </tbody>
       </table>
-      <button id="addRowButton" class="hidden add-row-button">+ New Entry</button>
-  <% } else { %>
+    <% } else { %>
       <div class="centered-message">No entries found for this collection.</div>
     <% } %>
+    <button id="addRowButton" class="hidden add-row-button">+ New Entry</button>
     <%- include('../../templates/new-collection-modal.html') %>
   </div>
 </div>

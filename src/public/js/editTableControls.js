@@ -1,40 +1,74 @@
 document.addEventListener('DOMContentLoaded', () => {
     const addRowButton = document.getElementById('addRowButton');
     const addColumnButton = document.getElementById('addColumnButton');
-    const table = document.querySelector('.mainTable');
+    const wrapper = document.querySelector('.edit-wrapper');
 
-    if (!table || !addRowButton || !addColumnButton) return;
+    function getTable() {
+        return document.querySelector('table.mainTable');
+    }
 
-    // Neue Zeile hinzufügen
-    addRowButton.addEventListener('click', () => {
-        const columnCount = table.querySelector('thead tr').children.length;
-        const newRow = document.createElement('tr');
+    addRowButton?.addEventListener('click', () => {
+        const table = getTable();
+        if (!table) return;
 
-        for (let i = 0; i < columnCount; i++) {
+        const tbody = table.querySelector('tbody') || table.appendChild(document.createElement('tbody'));
+        const headerCells = table.querySelectorAll('thead th');
+        const row = document.createElement('tr');
+
+        for (let i = 0; i < headerCells.length; i++) {
             const td = document.createElement('td');
             td.innerHTML = '<input type="text" value="" />';
-            newRow.appendChild(td);
+            row.appendChild(td);
         }
 
-        table.querySelector('tbody').appendChild(newRow);
-        newRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        tbody.appendChild(row);
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     });
 
-    // Neue Spalte hinzufügen
-    addColumnButton.addEventListener('click', () => {
-        const headerRow = table.querySelector('thead tr');
-        const newColumnIndex = headerRow.children.length + 1;
-        const th = document.createElement('th');
-        th.innerHTML = `<input type="text" value="column_${newColumnIndex}" />`;
-        headerRow.appendChild(th);
+    addColumnButton?.addEventListener('click', () => {
+        let table = getTable();
 
-        // Neue Zelle für jede Datenzeile
-        table.querySelectorAll('tbody tr').forEach(row => {
+        if (!table) {
+            // Keine Tabelle vorhanden → neue Tabelle erzeugen
+            const emptyMessage = document.querySelector('.centered-message');
+            if (emptyMessage) emptyMessage.remove();
+
+            table = document.createElement('table');
+            table.classList.add('mainTable');
+
+            const thead = document.createElement('thead');
+            const theadRow = document.createElement('tr');
+            const th = document.createElement('th');
+            th.innerHTML = '<input type="text" value="New Column" />';
+            theadRow.appendChild(th);
+            thead.appendChild(theadRow);
+
+            const tbody = document.createElement('tbody');
+
+            table.appendChild(thead);
+            table.appendChild(tbody);
+            wrapper.appendChild(table);
+            table.insertAdjacentElement('afterend', addRowButton);
+            addRowButton.classList.remove('hidden');
+            return;
+        }
+        if (table.querySelectorAll('thead th').length > 0) {
+            addRowButton.classList.remove('hidden');
+        }
+        // Tabelle vorhanden → neue Spalte hinzufügen
+        const thead = table.querySelector('thead');
+        const tbody = table.querySelector('tbody');
+        const thRow = thead.querySelector('tr');
+
+        const newHeader = document.createElement('th');
+        newHeader.innerHTML = '<input type="text" value="New Column" />';
+        thRow.appendChild(newHeader);
+
+        const rows = tbody.querySelectorAll('tr');
+        rows.forEach(row => {
             const td = document.createElement('td');
             td.innerHTML = '<input type="text" value="" />';
             row.appendChild(td);
         });
-
-        addColumnButton.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
 });
