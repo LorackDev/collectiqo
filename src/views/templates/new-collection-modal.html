@@ -10,10 +10,6 @@
                 <div class="input-group" id="presetGroup">
                     <label for="preset">Preset</label>
                     <select id="preset" name="preset">
-                        <option value="x" disabled selected>Select preset...</option>
-                        <option value="video games">video games</option>
-                        <option value="perfume">perfume</option>
-                        <option value="movies">movies</option>
                     </select>
                 </div>
                 <div class="input-group">
@@ -47,6 +43,17 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
+
+        $.getJSON('https://dev.collectiqo.com:3000/get-user-templates', function(templateNames) {
+            const $presetSelect = $('#preset');
+            $presetSelect.empty(); // Clear existing options
+            $presetSelect.append('<option value="x" disabled selected>Select preset...</option>');
+            templateNames.forEach(name => {
+                console.log('Name: ' + name)
+                $presetSelect.append(`<option value="${name}">${name}</option>`);
+            });
+        });
+
         $('.multi-field-wrapper').each(function() {
             var $wrapper = $('.multi-fields', this);
 
@@ -95,5 +102,6 @@
                 }
             }
         });
+
     });
 </script>
