@@ -30,7 +30,7 @@ services:
       - proxy-network
       #- app-network
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_DATABASE_PASSWORD}"]
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p${MYSQL_DATABASE_PASSWORD}"]
       start_period: 30s
       interval: 10s
       timeout: 10s
@@ -82,7 +82,7 @@ services:
     networks:
       - proxy-network
     healthcheck:
-      test: ["CMD-SHELL", "curl -so /dev/null http://localhost/ || exit 1"]
+      test: ["CMD-SHELL", "curl -sS http://localhost/ || exit 1"]
       start_period: 15s
       interval: 15s
       timeout: 15s
