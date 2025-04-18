@@ -143,6 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const customOptions = document.getElementById('customOptions');
     const addCustomFieldButton = document.getElementById('addCustomField');
     const saveButton = document.getElementById('saveBtn');
+    const cancelButton = document.getElementById('cancelBtn');
     let customFieldCount = 0;
 
     customCollectionCheckbox.addEventListener('change', function() {
@@ -181,8 +182,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const collectionName = document.getElementById('collection-name').value;
         const columns = Array.from(document.querySelectorAll('.multi-field input')).map(input => input.value);
-        const username = 'currentUsername';
-
 
         const payload = {
             name: collectionName,
@@ -202,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const result = await response.json();
 
             if (response.ok) {
-                alert(result.message);
+                location.reload()
             } else {
                 alert('Error: ' + result.error);
             }
@@ -210,5 +209,9 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error creating collection:', error);
             alert('An unexpected error occurred.');
         }
+    });
+
+    cancelButton.addEventListener('click', async (event) => {
+        window.closeModal()
     });
 })
