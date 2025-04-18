@@ -162,16 +162,31 @@ button#cancelBtn {
   appearance: none;
   padding: 10px;
   border-radius: 10px;
-  color: #c0c5e8;
   border: none;
-  background-color: #434D8C;
-  transition: background-color 0.5s;
+  color: #cd1e1e;
+  background-color: #ffffff;
+  transition: background-color 0.5s, color 0.5s;
 }
 
 button#cancelBtn:hover {
-  text-decoration: underline;
-  background-color: #743636;
-  transition: background-color 0.5s;
+  background-color: #cd1e1e;
+  color: #ffffff;
+  transition: background-color 1s, color 1s;
+}
+
+button#saveAsTemplateBtn {
+  background-color: #ffffff;
+  color: #363e74;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  transition: background-color 1s, color 1s;
+}
+
+button#saveAsTemplateBtn:hover {
+  background-color: #363e74;
+  color: #ffffff;
+  transition: background-color 1s, color  1s;
 }
 
 button#saveBtn {
@@ -187,7 +202,6 @@ button#saveBtn {
 }
 
 button#saveBtn:hover {
-  text-decoration: underline;
   background-color: #627436;
   transition: background-color 0.5s;
 }

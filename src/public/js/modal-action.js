@@ -143,6 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const customOptions = document.getElementById('customOptions');
     const addCustomFieldButton = document.getElementById('addCustomField');
     const saveButton = document.getElementById('saveBtn');
+    const saveAsTemplateButton = document.getElementById('saveAsTemplateBtn')
     const cancelButton = document.getElementById('cancelBtn');
     let customFieldCount = 0;
 
@@ -157,17 +158,6 @@ document.addEventListener('DOMContentLoaded', function() {
             customOptions.innerHTML = ''; // Clear custom fields
         }
     });
-
-/*    addCustomFieldButton.addEventListener('click', function() {
-        customFieldCount++;
-        const newField = document.createElement('div');
-        newField.className = 'input-group';
-        newField.innerHTML = `
-            <label for="custom${customFieldCount}">Row ${customFieldCount}: </label>
-            <input type="text" id="custom${customFieldCount}" name="custom${customFieldCount}">
-        `;
-        customOptions.appendChild(newField);
-    });*/
 
     document.getElementById('selectionForm').addEventListener('submit', function(event) {
         event.preventDefault();
@@ -207,6 +197,38 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         } catch (error) {
             console.error('Error creating collection:', error);
+            alert('An unexpected error occurred.');
+        }
+    });
+
+    saveAsTemplateButton.addEventListener('click', async (event) => {
+
+        event.preventDefault();
+
+        const templateName = document.getElementById('collection-name').value;
+        const columns = Array.from(document.querySelectorAll('.multi-field input')).map(input => input.value);
+
+        const payload = {
+            name: templateName,
+            columns: columns
+        };
+        console.log('Trying to create template with payload:', payload);
+        console.log('Sending request to /create-template');
+        try {
+            const response = await fetch('/create-template', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (response.ok) {
+                alert('Template saved successfully');
+                location.reload();
+            }
+        } catch (error) {
+            console.error('Error creating template:', error);
             alert('An unexpected error occurred.');
         }
     });
