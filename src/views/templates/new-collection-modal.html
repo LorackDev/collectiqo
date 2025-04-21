@@ -40,14 +40,17 @@
         </form>
     </div>
 </div>
-<script src="/js/modal-action.js"></script>
+<script src="/js/modal/cancel-button.js"></script>
+<script src="/js/modal/save-button.js"></script>
+<script src="/js/modal/save-as-template-button.js"></script>
+<script src="/js/modal/custom-collection-checkbox.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
 
         $.getJSON('https://dev.collectiqo.com:3000/get-user-templates', function(templateNames) {
             const $presetSelect = $('#preset');
-            $presetSelect.empty(); // Clear existing options
+            $presetSelect.empty();
             $presetSelect.append('<option value="x" disabled selected>Select preset...</option>');
             templateNames.forEach(name => {
                 console.log('Name: ' + name)
