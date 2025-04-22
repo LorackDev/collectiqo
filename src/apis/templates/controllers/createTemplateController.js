@@ -2,13 +2,20 @@ const createTemplateService= require('../services/createTemplateService');
 
 const createTemplateController = async (req, res, next) => {
 
-    const { name, columns } = req.body;
+    const { name, columns, color } = req.body;
     const username = req.session.user.name;
+
+    const imageFile = req.file;
+    const imageBuffer = imageFile?.buffer || null;
+    const imageType = imageFile?.mimetype || null;
 
     const templateData = {
         name,
         columns,
-        owner: username
+        owner: username,
+        color,
+        imageBuffer,
+        imageType
     }
 
     try {

@@ -13,9 +13,11 @@ const createTemplateService = async(templateData) => {
 
         const templatesCollection = db.collection('templates');
 
-        await Promise.all([
-            templatesCollection.insertOne(templateData),
-        ]);
+        await templatesCollection.insertOne({
+            ...templateData,
+            image: templateData.imageBuffer,
+            imageType: templateData.imageType
+        });
 
         console.log('All templates stored successfully');
     } catch (err) {

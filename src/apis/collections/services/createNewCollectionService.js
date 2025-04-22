@@ -1,6 +1,6 @@
 const { connectToDb, closeConnection } = require('../../../utils/mongoUtils');
 
-const createNewCollectionService = async (name, columns, username) => {
+const createNewCollectionService = async (name, columns, username, imageBuffer, imageType) => {
 
         try {
             const db = await connectToDb();
@@ -10,7 +10,9 @@ const createNewCollectionService = async (name, columns, username) => {
                 name: name,
                 columns: columns,
                 username: username,
-                entries: []
+                entries: [],
+                image: imageBuffer,
+                imageType: imageType
             };
 
             const result = await collection.insertOne(doc);

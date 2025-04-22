@@ -7,23 +7,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const collectionName = document.getElementById('collection-name').value;
         const columns = Array.from(document.querySelectorAll('.multi-field input')).map(input => input.value);
+        const color = document.getElementById('color').value;
+        const imageInput = document.getElementById('imageUpload');
+        const file = imageInput.files[0];
 
-        const payload = {
-            name: collectionName,
-            columns: columns
-        };
-        console.log('Trying to create collection with payload:', payload);
-        console.log('Sending request to /create-new-collection');
+        if (!file) {
+            alert('Please upload an image.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('name', collectionName);
+        formData.append('columns', JSON.stringify(columns));
+        formData.append('color', color);
+        formData.append('imageUpload', file);
+
         try {
             const response = await fetch('/create-new-collection', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
+                body: formData
             });
 
             const result = await response.json();
+
 
             if (response.ok) {
                 location.reload()
