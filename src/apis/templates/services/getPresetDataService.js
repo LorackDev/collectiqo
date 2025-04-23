@@ -6,7 +6,10 @@ const getPresetDataService = async(preset) => {
         db = await connectToDb();
         const templatesCollection = db.collection('templates');
 
-        const template = await templatesCollection.findOne({ name: preset });
+        if (typeof preset !== 'string') {
+            throw new Error('Invalid preset value');
+        }
+        const template = await templatesCollection.findOne({ name: { $eq: preset } });
 
         if (template) {
             return template;
