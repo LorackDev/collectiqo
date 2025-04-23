@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  var modal = document.getElementById('myModal');
+  var modal = document.getElementById('new-collection-modal');
 
   var btn = document.getElementById('openModalBtn');
 
