@@ -12,6 +12,12 @@ services:
     networks:
       - proxy-network
       #- app-network
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -sf http://localhost:${PORT}/health || exit 1" ]
+      start_period: 15s
+      interval: 10s
+      timeout: 5s
+      retries: 3
     depends_on:
       mysql:
         condition: service_healthy
@@ -33,9 +39,8 @@ services:
       test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p${MYSQL_DATABASE_PASSWORD}"]
       start_period: 30s
       interval: 10s
-      timeout: 10s
-      retries: 9
-
+      timeout: 5s
+      retries: 6
 
   mongodb:
     container_name: collectiqo-mongodb-1
@@ -52,19 +57,19 @@ services:
     healthcheck:
       #test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
       #test: echo 'db.runCommand("ping").ok' | mongosh mongodb:27017/test --quiet
-      test: echo 'db.runCommand("ping").ok' | mongosh collectiqo-mongodb-1:27017/test --quiet
+      #test: echo 'db.runCommand("ping").ok' | mongosh collectiqo-mongodb-1:27017/test --quiet
+      test: ["CMD-SHELL", "mongosh --host localhost --port 27017 -u ${MONGO_DATABASE_USER} -p ${MONGO_DATABASE_PASSWORD} --eval 'db.runCommand(\"ping\").ok' --quiet"]
       start_period: 30s
       interval: 10s
-      timeout: 10s
-      retries: 9
-
+      timeout: 5s
+      retries: 6
 
   test-webserver:
     container_name: test-webserver
     image: arm64v8/httpd:latest
     restart: unless-stopped
     volumes:
-      - ./webtest:/usr/local/apache2/htdocs:ro
+      - ../../webtest:/usr/local/apache2/htdocs:ro
     networks:
       - proxy-network
 
@@ -76,24 +81,29 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./certbot/conf:/etc/letsencrypt/:ro
-      - ./certbot/www:/var/www/certbot/:ro
+      - ../../nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ../../certbot/conf:/etc/letsencrypt/:ro
+      - ../../certbot/www:/var/www/certbot/:ro
     networks:
       - proxy-network
     healthcheck:
-      test: ["CMD-SHELL", "curl -sS http://localhost/ || exit 1"]
+      #test: ["CMD-SHELL", "curl -sS http://localhost/ || exit 1"]
+      #test: ["CMD-SHELL", "curl -sf http://localhost/ || exit 1"]
+      test: ["CMD-SHELL", "curl -sf http://localhost/health || exit 1"]
       start_period: 15s
       interval: 15s
-      timeout: 15s
+      timeout: 5s
       retries: 3
+    depends_on:
+      web:
+        condition: service_healthy
 
   certbot:
     container_name: certbot
     image: certbot/certbot:latest
     volumes:
-      - ./certbot/conf:/etc/letsencrypt/:rw
-      - ./certbot/www:/var/www/certbot/:rw
+      - ../../certbot/conf:/etc/letsencrypt/:rw
+      - ../../certbot/www:/var/www/certbot/:rw
     networks:
       - proxy-network
     depends_on:
