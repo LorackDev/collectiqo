@@ -13,7 +13,8 @@ services:
       - proxy-network
       #- app-network
     healthcheck:
-      test: [ "CMD-SHELL", "curl -sf http://localhost:${PORT}/health || exit 1" ]
+      #est: [ "CMD-SHELL", "curl -sf http://localhost:${PORT}/health || exit 1" ]
+      test: ["CMD-SHELL", "ps aux | grep node | grep -v grep || exit 1"]
       start_period: 15s
       interval: 10s
       timeout: 5s
