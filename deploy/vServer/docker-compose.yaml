@@ -110,6 +110,7 @@ services:
     depends_on:
       nginx-reverse-proxy:
         condition: service_healthy
+    command: certonly --cert-name collectiqo.com --webroot -w /var/www/certbot/ -d collectiqo.com -d www.collectiqo.com -d collectiqo.de -d www.collectiqo.de --email robin.schaefer@students.hs-mainz.de --agree-tos --no-eff-email
 
 networks:
   app-network:
