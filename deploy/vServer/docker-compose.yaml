@@ -105,12 +105,14 @@ services:
     volumes:
       - ../../certbot/conf:/etc/letsencrypt/:rw
       - ../../certbot/www:/var/www/certbot/:rw
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /usr/bin/docker:/usr/bin/docker:ro
     networks:
       - proxy-network
     depends_on:
       nginx-reverse-proxy:
         condition: service_healthy
-    command: certonly --cert-name collectiqo.com --webroot -w /var/www/certbot/ -d collectiqo.com -d www.collectiqo.com -d collectiqo.de -d www.collectiqo.de --email robin.schaefer@students.hs-mainz.de --agree-tos --no-eff-email
+    command: sh -c 'certonly --cert-name collectiqo.com --webroot -w /var/www/certbot/ -d collectiqo.com -d www.collectiqo.com -d collectiqo.de -d www.collectiqo.de --email robin.schaefer@students.hs-mainz.de --agree-tos --no-eff-email --renew-by-default --non-interactive --disable-hook-validation && sleep 60 && /usr/bin/docker restart nginx-reverse-proxy'
 
 networks:
   app-network:
