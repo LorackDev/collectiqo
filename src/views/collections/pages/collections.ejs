@@ -88,7 +88,57 @@
     <%- include('../../templates/new-collection-modal.html') %>
   </div>
 </div>
+<script>
+  document.getElementById('collectionSaveButton').addEventListener('click', async () => {
+    const table = document.querySelector('.mainTable');
+    if (!table) return;
 
+    const headers = Array.from(table.querySelectorAll('thead th')).map(th => th.innerText.trim());
+    const rows = Array.from(table.querySelectorAll('tbody tr'));
+
+    const entries = [];
+
+    for (const row of rows) {
+      const cells = Array.from(row.querySelectorAll('td'));
+      if (cells.length !== headers.length) continue;
+
+      const entry = {};
+      for (let i = 0; i < headers.length; i++) {
+        entry[headers[i]] = cells[i].innerText.trim();
+      }
+      entries.push(entry);
+    }
+
+    const payload = {
+      collectionName: <%- JSON.stringify(collectionName) %>,
+      username: <%- JSON.stringify(username) %>,
+      entries: entries
+    };
+
+    try {
+      const res = await fetch('/create-collection-entry', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+        alert('Entries saved successfully!');
+      } else {
+        alert(`Failed to save: ${result.message || 'Unknown error'}`);
+      }
+    } catch (err) {
+      console.error(err);
+      alert('An error occurred while saving.');
+    }
+  });
+</script>
 </body>
 
+
 </html>
+

@@ -30,7 +30,7 @@ router.get('/collection/:collectionName', async (req, res) => {
             return res.status(404).send('Collection not found');
         }
 
-        res.render('collections/pages/collections', { collectionName: collectionName, specifiedCollection: specifiedCollection });
+        res.render('collections/pages/collections', { collectionName: collectionName, specifiedCollection: specifiedCollection, username: username });
 
     } catch (error) {
         console.error("Error fetching data:", error);
