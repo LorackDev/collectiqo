@@ -3,12 +3,10 @@ const axios = require("axios");
 const router = express.Router();
 const https = require('https');
 
-// This is only for development purposes. Not very secure :D
 const agent = new https.Agent({
     rejectUnauthorized: false
 });
 
-// Assuming you have a function or middleware that fetches collection data based on name
 router.get('/collection/:collectionName', async (req, res) => {
     const collectionName = req.params.collectionName;
     const username = req.session.user.name;

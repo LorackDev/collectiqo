@@ -8,9 +8,7 @@ const createCollectionEntryController = async (req, res) => {
     }
 
     try {
-        const result = await Promise.all(
-            entries.map(entry => createCollectionEntryService(collectionName, entry, username))
-        );
+        const result = await createCollectionEntryService(collectionName, entries, username);
 
         res.status(200).json({ message: 'Entries saved successfully', result });
     } catch (err) {
