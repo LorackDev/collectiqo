@@ -12,7 +12,6 @@ services:
     networks:
       - private-network
     healthcheck:
-      #est: [ "CMD-SHELL", "curl -sf http://localhost:${PORT}/health || exit 1" ]
       test: ["CMD-SHELL", "ps aux | grep node | grep -v grep || exit 1"]
       start_interval: 15s
       start_period: 30s
@@ -29,6 +28,7 @@ services:
     container_name: collectiqo-mysql-1
     image: lorackdev/clq-mysql-multiarch
     restart: always
+    command: --bind-address=0.0.0.0  # Allow connections from any interface (needed cause of internal network)
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
     ports:
@@ -47,6 +47,7 @@ services:
     container_name: collectiqo-mongodb-1
     image: mongo:latest
     restart: always
+    command: mongod --bind_ip_all # Allow connections from any interface (needed cause of internal network)
     ports:
       - "${MONGO_DATABASE_PORT}:${MONGO_DATABASE_PORT}"
     environment:
@@ -55,9 +56,6 @@ services:
     networks:
       - private-network
     healthcheck:
-      #test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
-      #test: echo 'db.runCommand("ping").ok' | mongosh mongodb:27017/test --quiet
-      #test: echo 'db.runCommand("ping").ok' | mongosh collectiqo-mongodb-1:27017/test --quiet
       test: ["CMD-SHELL", "mongosh --host localhost --port 27017 -u ${MONGO_DATABASE_USER} -p ${MONGO_DATABASE_PASSWORD} --eval 'db.runCommand(\"ping\").ok' --quiet"]
       start_interval: 15s
       start_period: 30s
@@ -89,8 +87,6 @@ services:
       - public-network
       - private-network
     healthcheck:
-      #test: ["CMD-SHELL", "curl -sS http://localhost/ || exit 1"]
-      #test: ["CMD-SHELL", "curl -sf http://localhost/ || exit 1"]
       test: ["CMD-SHELL", "curl -sf http://localhost/health || exit 1"]
       start_interval: 15s
       start_period: 30s
