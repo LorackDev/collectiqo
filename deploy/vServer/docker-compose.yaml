@@ -15,10 +15,11 @@ services:
     healthcheck:
       #est: [ "CMD-SHELL", "curl -sf http://localhost:${PORT}/health || exit 1" ]
       test: ["CMD-SHELL", "ps aux | grep node | grep -v grep || exit 1"]
-      start_period: 15s
+      start_interval: 15s
+      start_period: 30s
       interval: 10s
       timeout: 5s
-      retries: 3
+      retries: 5
     depends_on:
       mysql:
         condition: service_healthy
@@ -38,10 +39,11 @@ services:
       #- app-network
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p${MYSQL_DATABASE_PASSWORD}"]
+      start_interval: 15s
       start_period: 30s
       interval: 10s
       timeout: 5s
-      retries: 6
+      retries: 5
 
   mongodb:
     container_name: collectiqo-mongodb-1
@@ -60,10 +62,11 @@ services:
       #test: echo 'db.runCommand("ping").ok' | mongosh mongodb:27017/test --quiet
       #test: echo 'db.runCommand("ping").ok' | mongosh collectiqo-mongodb-1:27017/test --quiet
       test: ["CMD-SHELL", "mongosh --host localhost --port 27017 -u ${MONGO_DATABASE_USER} -p ${MONGO_DATABASE_PASSWORD} --eval 'db.runCommand(\"ping\").ok' --quiet"]
+      start_interval: 15s
       start_period: 30s
       interval: 10s
       timeout: 5s
-      retries: 6
+      retries: 5
 
   test-webserver:
     container_name: test-webserver
@@ -91,10 +94,11 @@ services:
       #test: ["CMD-SHELL", "curl -sS http://localhost/ || exit 1"]
       #test: ["CMD-SHELL", "curl -sf http://localhost/ || exit 1"]
       test: ["CMD-SHELL", "curl -sf http://localhost/health || exit 1"]
-      start_period: 15s
-      interval: 15s
+      start_interval: 15s
+      start_period: 30s
+      interval: 10s
       timeout: 5s
-      retries: 3
+      retries: 5
     depends_on:
       web:
         condition: service_healthy
