@@ -10,8 +10,7 @@ services:
       #- ~/.certificates/collectiqo/:/root/.certificates/collectiqo:ro # mount local keys into container for dev purposes
       - /home/collectiqo/local_cert/collectiqo_rs:/root/.certificates/collectiqo:ro # mount local keys into container for dev purposes
     networks:
-      - proxy-network
-      #- app-network
+      - private-network
     healthcheck:
       #est: [ "CMD-SHELL", "curl -sf http://localhost:${PORT}/health || exit 1" ]
       test: ["CMD-SHELL", "ps aux | grep node | grep -v grep || exit 1"]
@@ -35,8 +34,7 @@ services:
     ports:
       - "${MYSQL_DATABASE_PORT}:${MYSQL_DATABASE_PORT}"
     networks:
-      - proxy-network
-      #- app-network
+      - private-network
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p${MYSQL_DATABASE_PASSWORD}"]
       start_interval: 15s
@@ -55,8 +53,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_DATABASE_USER}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_DATABASE_PASSWORD}
     networks:
-      - proxy-network
-      #- app-network
+      - private-network
     healthcheck:
       #test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
       #test: echo 'db.runCommand("ping").ok' | mongosh mongodb:27017/test --quiet
@@ -75,7 +72,7 @@ services:
     volumes:
       - ../../webtest:/usr/local/apache2/htdocs:ro
     networks:
-      - proxy-network
+      - private-network
 
   nginx-reverse-proxy:
     container_name: nginx-reverse-proxy
@@ -89,7 +86,8 @@ services:
       - ../../certbot/conf:/etc/letsencrypt/:ro
       - ../../certbot/www:/var/www/certbot/:ro
     networks:
-      - proxy-network
+      - public-network
+      - private-network
     healthcheck:
       #test: ["CMD-SHELL", "curl -sS http://localhost/ || exit 1"]
       #test: ["CMD-SHELL", "curl -sf http://localhost/ || exit 1"]
@@ -112,14 +110,15 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /usr/bin/docker:/usr/bin/docker:ro
     networks:
-      - proxy-network
+      - public-network
     depends_on:
       nginx-reverse-proxy:
         condition: service_healthy
     command: sh -c 'certonly --cert-name collectiqo.com --webroot -w /var/www/certbot/ -d collectiqo.com -d www.collectiqo.com -d collectiqo.de -d www.collectiqo.de --email robin.schaefer@students.hs-mainz.de --agree-tos --no-eff-email --renew-by-default --non-interactive --disable-hook-validation && sleep 60 && /usr/bin/docker restart nginx-reverse-proxy'
 
 networks:
-  app-network:
+  public-network:
     driver: bridge
-  proxy-network:
+  private-network:
     driver: bridge
+    internal: true
