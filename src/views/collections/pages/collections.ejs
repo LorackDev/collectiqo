@@ -88,7 +88,88 @@
     <%- include('../../templates/new-collection-modal.html') %>
   </div>
 </div>
+<script>
+  document.getElementById('collectionSaveButton').addEventListener('click', async () => {
+    const table = document.querySelector('.mainTable');
+    if (!table) return;
 
+    const headers = Array.from(table.querySelectorAll('thead th')).map(th => {
+      const input = th.querySelector('input');
+      return input ? input.value.trim() : th.innerText.trim();
+    });
+    console.log("Collected headers:", headers);
+
+    const rows = Array.from(table.querySelectorAll('tbody tr'))
+            .filter(row => !row.classList.contains('no-entries-row'));
+    console.log("Total rows found:", rows.length);
+
+    const entries = [];
+    rows.forEach((row, rowIndex) => {
+      const cells = row.querySelectorAll('td');
+      const entry = {};
+      let isEmpty = true;
+
+      headers.forEach((header, i) => {
+        const cell = cells[i];
+        const input = cell?.querySelector('input');
+        let value = '';
+        if (input) {
+          value = input.value?.trim();
+          if (!value && input.shadowRoot) {
+            const editable = input.shadowRoot.querySelector('[contenteditable]');
+            if (editable) {
+              value = editable.textContent?.trim();
+            }
+          }
+          if (!value) {
+            value = input.textContent?.trim() || '';
+          }
+        } else {
+          value = cell?.innerText.trim() || '';
+        }
+        entry[header] = value;
+
+        if (value) isEmpty = false;
+      });
+
+      console.log(`Row ${rowIndex} parsed entry:`, entry);
+
+      entries.push(entry);
+      console.log("Current status of entries:", entries);
+
+    });
+
+    const payload = {
+      collectionName: <%- JSON.stringify(collectionName) %>,
+      username: <%- JSON.stringify(username) %>,
+      entries: entries
+    };
+    console.log("Payload to send:", JSON.stringify(payload));
+
+    try {
+      const res = await fetch('/create-collection-entry', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+        alert('Entries saved successfully!');
+        location.reload(); // Optional: refresh to see saved data as text
+      } else {
+        alert(`Failed to save: ${result.message || 'Unknown error'}`);
+      }
+    } catch (err) {
+      console.error(err);
+      alert('An error occurred while saving.');
+    }
+  });
+</script>
 </body>
+
 
 </html>
