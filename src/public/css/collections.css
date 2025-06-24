@@ -193,6 +193,38 @@ body.edit-mode #addColumnButton {
   background-color: var(--mid-light);
 }
 
+/* Für Spaltenlöschen-Buttons */
+.delete-columns-container {
+  display: flex;
+  justify-content: start;
+  gap: 2px;
+  margin-bottom: 4px;
+  margin-left: 28px; /* Optional: für Ausrichtung */
+}
+
+.delete-column-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #a00;
+}
+
+/* Für Zeilenlöschen-Buttons */
+.row-delete-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #a00;
+}
+
+.row-delete-container {
+  width: 30px;
+  text-align: center;
+}
+
+
 /* ---------------------------------
    UTILITY
 ---------------------------------- */

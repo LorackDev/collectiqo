@@ -1,3 +1,30 @@
+/**
+ * ================================================================
+ * EditTableControls.js
+ *
+ * Dieses Skript steuert das dynamische Hinzufügen von Spalten und
+ * Zeilen im Bearbeitungsmodus einer Collection-Tabelle im Frontend.
+ *
+ * Hauptfunktionen:
+ * - + New Column: Erstellt eine neue Spalte (Header + leere Zellen).
+ *   → Falls keine Tabelle vorhanden ist, wird eine neue erstellt.
+ *
+ * - + New Entry: Fügt eine neue Zeile mit Eingabefeldern zur Tabelle hinzu.
+ *   → Scrollt automatisch an das Ende der Seite.
+ *
+ * Verhalten:
+ * - Erkennt automatisch, ob eine Tabelle existiert.
+ * - Macht den + New Entry Button sichtbar, sobald Spalten vorhanden sind.
+ * - Entfernt ggf. vorhandene Platzhalter (z. B. leere Hinweistexte).
+ *
+ * Voraussetzungen:
+ * - Die Buttons mit den IDs #addColumnButton und #addRowButton müssen im DOM vorhanden sein.
+ * - Die Tabelle hat die Klasse .mainTable.
+ * - Die Seite nutzt einen Container mit der Klasse .edit-wrapper für das Einfügen der Tabelle.
+ * ================================================================
+ */
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const addRowButton = document.getElementById('addRowButton');
     const addColumnButton = document.getElementById('addColumnButton');
