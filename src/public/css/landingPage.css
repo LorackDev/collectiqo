@@ -55,11 +55,17 @@ main {
 }
 
 .CollectiqoText span {
-  font-size: 150%;
+  font-size: 300%;
   margin: 0;
   padding: 0;
   line-height: 1.4;
-  color: var(--mid-light);
+  color: #eee;
+  text-transform: capitalize;
+  background: linear-gradient(-45deg, #2f2587, #5521f3, #6472d0, #43448c);
+  background-size: 200% 200%;
+  letter-spacing: 7px;
+  -webkit-background-clip: text;
+  -webkit-text-stroke: 10px transparent;
 }
 
 

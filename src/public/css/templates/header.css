@@ -24,7 +24,8 @@ body {
 
 .header {
     overflow: hidden;
-    background-color: var(--mid-dark);
+    /*background-color: var(--mid-dark);*/
+    background: linear-gradient( 45deg, #2c3570, #372d8f);
     /*padding: 10px 10px;*/
     display: flex;
     align-items: center;
