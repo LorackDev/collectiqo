@@ -1,5 +1,5 @@
 :root {
-    --light: #6472D0;
+    --light: #6472d0;
     --mid-light: #5460AE;
     --mid: #434D8C;
     --mid-dark: #333A6A;
@@ -20,7 +20,7 @@ body {
     background-color: var(--grey-white);
 }
 
-.container {
+.switch-container {
     width: auto;
     min-height: 100vh;
     transition: margin-left 0.3s linear;
