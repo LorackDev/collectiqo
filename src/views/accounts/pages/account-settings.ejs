@@ -52,17 +52,21 @@
     <div  id="account-settings" style="display: none;">
         <h2>Account Management</h2>
 
-         <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username">
-        </div>
+        <form id="usernameUpdateForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <button type="submit">Update Username</button>
+        </form>
 
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email">
-        </div>
-
-        <button type="submit">Save Settings</button>
+        <form id="emailUpdateForm">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <button type="submit">Save Settings</button>
+        </form>
 
         <form id="passwordChangeForm">
             <div class="form-group">
