@@ -118,15 +118,15 @@ services:
 
   smtp:
     container_name: colleqtiqo-smtp-1
-    image: namshi/smtp:latest
+    image: boky/postfix:latest
     restart: always
+    environment:
+      - ALLOWED_SENDER_DOMAIN=collectiqo.com
     ports:
       - "2525:25"
-    environment:
-      - BIND_IP=0.0.0.0
-      - DISABLE_IPV6
     networks:
       - private-network
+      - public-network
 
 networks:
   public-network:
