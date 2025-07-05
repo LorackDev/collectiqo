@@ -11,9 +11,9 @@
 }
 
 .footer {
-    padding: 10px;
+    padding: 12px 0 5px 0;
     background-color: var(--dark-grey);
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     text-align: center;
     margin-top: auto; /* Ensures the footer stays at the bottom */
     width: 100%;
@@ -25,11 +25,12 @@
 
 .footer p {
     color: var(--grey-white);
+    font-size: 0.6rem;
 }
 
 /* Social Media in Footer */
 .social-media {
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 .social-media a {
@@ -39,7 +40,7 @@
 }
 
 .social-media a img {
-    width: 24px; /* Set the width of the icon image */
+    width: 8px; /* Set the width of the icon image */
     margin: -3px;
     filter: brightness(0) saturate(100%) invert(79%) sepia(7%) saturate(1305%) hue-rotate(302deg) brightness(98%) contrast(114%);
 }
