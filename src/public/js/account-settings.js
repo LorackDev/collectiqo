@@ -38,13 +38,76 @@ document.addEventListener('DOMContentLoaded', function () {
         if (confirm('Are you sure you want to log out?')) {
             fetch('/logout', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' }
+                headers: {'Content-Type': 'application/json'}
             })
                 .then(res => res.json())
                 .then(data => {
                     if (data.message === 'Logout successful') {
                         window.location.href = '/';
                     }
+                })
+                .catch(err => console.error('Error:', err));
+        }
+    });
+
+    document.getElementById('usernameUpdateForm')?.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const usernameInput = document.getElementById('username');
+        if (!usernameInput) return;
+
+        if (confirm('Are you sure you want to change your username?')) {
+            fetch('/update-username', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({newUsername: usernameInput.value})
+            })
+                .then(res => res.json())
+                .then(data => {
+                    alert(data.message || 'Username updated.');
+                })
+                .catch(err => console.error('Error:', err));
+        }
+    });
+
+    document.getElementById('emailUpdateForm')?.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const emailInput = document.getElementById('email');
+        if (!emailInput) return;
+        console.log(emailInput.value);
+        if (confirm('Are you sure you want to change your email?')) {
+            fetch('/update-mail', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({email: emailInput.value})
+            })
+                .then(res => res.json())
+                .then(data => {
+                    alert(data.message || 'Email updated.');
+                })
+                .catch(err => console.error('Error:', err));
+        }
+    });
+
+    document.getElementById('passwordChangeForm')?.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const currentPassword = document.getElementById('currentPassword')?.value;
+        const newPassword = document.getElementById('newPassword')?.value;
+        const confirmPassword = document.getElementById('confirmPassword')?.value;
+
+        if (newPassword !== confirmPassword) {
+            alert("New passwords do not match.");
+            return;
+        }
+
+        if (confirm('Are you sure you want to change your password?')) {
+            fetch('/update-password', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({currentPassword, newPassword})
+            })
+                .then(res => res.json())
+                .then(data => {
+                    alert(data.message || 'Password updated.');
                 })
                 .catch(err => console.error('Error:', err));
         }
