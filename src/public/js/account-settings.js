@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
             fetch('/update-password', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({currentPassword, newPassword})
+                body: JSON.stringify({oldPassword: currentPassword, newPassword: newPassword})
             })
                 .then(res => res.json())
                 .then(data => {

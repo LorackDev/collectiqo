@@ -4,6 +4,8 @@ const updatePasswordController = async (req, res) => {
     const { oldPassword, newPassword } = req.body;
     const username = req.session.user.name;
 
+    console.log("Trying to change password for user ", username, " from ", oldPassword, " to ", newPassword);
+
     try {
         await updatePasswordService(username, oldPassword, newPassword);
         return res.status(200).json({ message: "Password updated successfully" });
