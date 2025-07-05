@@ -10,6 +10,8 @@
 
 * {
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 body {
@@ -22,10 +24,12 @@ body {
 
 .header {
     overflow: hidden;
-    background-color: var(--mid-dark);
-    padding: 20px 20px;
+    /*background-color: var(--mid-dark);*/
+    background: linear-gradient( 45deg, #2c3570, #372d8f);
+    /*padding: 10px 10px;*/
     display: flex;
     align-items: center;
+    width:100%;
 }
 
 .header img {
@@ -37,7 +41,7 @@ body {
 .header-nav-links {
     display: flex; /* Flexbox aktivieren */
     justify-content: space-around; /* Gleiche Abstände zwischen den Elementen */
-    align-items: right; /* Vertikale Zentrierung */
+    align-items: center; /* Vertikale Zentrierung */
     margin: auto; /* Zentriere das gesamte Menü */
     width: 50%;
 }
@@ -59,7 +63,7 @@ body {
 }
 
 
-@media screen and (max-width: 500px) {
+@media screen  {
     .header {
         flex-direction: column;
     }

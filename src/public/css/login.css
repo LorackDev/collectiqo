@@ -19,7 +19,7 @@ body {
     font-family: Arial, sans-serif;
   }
   
-  .container {
+  .switch-container {
     padding: 40px;
     background-color: #ffffff;
     border-radius: 5px;
@@ -27,20 +27,20 @@ body {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   }
   
-  .container h1 {
+  .switch-container h1 {
     margin-bottom: 25px;
     font-size: 27px;
     color: var(--mid);
   }
   
-  .container form {
+  .switch-container form {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
   
-  .container input[type="text"],
-  .container input[type="password"] {
+  .switch-container input[type="text"],
+  .switch-container input[type="password"] {
     padding: 15px;
     margin-bottom: 15px;
     width: 100%;
@@ -48,14 +48,14 @@ body {
     border-radius: 3px;
   }
   
-  .container input[type="text"]:focus,
-  .container input[type="password"]:focus {
+  .switch-container input[type="text"]:focus,
+  .switch-container input[type="password"]:focus {
     outline: none;
     box-shadow: 0 0 7px 2px var(--mid);
     transition: box-shadow 0.2s ease;
   }
   
-  .container button {
+  .switch-container button {
     padding: 15px 30px;
     background-color: var(--mid);
     color: #ffffff;
@@ -65,22 +65,22 @@ body {
     transition: background-color 0.3s ease;
   }
   
-  .container button:hover {
+  .switch-container button:hover {
     background-color: var(--light);
   }
   
-  .container .switch-option {
+  .switch-container .switch-option {
     margin-top: 15px;
     font-size: 14px;
   }
   
-  .container .switch-option a {
+  .switch-container .switch-option a {
     color: var(--mid);
     text-decoration: none;
     font-weight: bold;
   }
   
-  .container .switch-option a:hover {
+  .switch-container .switch-option a:hover {
     text-decoration: underline;
     cursor: pointer;
   }
