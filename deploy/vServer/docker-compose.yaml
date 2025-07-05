@@ -116,6 +116,18 @@ services:
     #--disable-hook-validation && sleep 60 && /usr/bin/docker restart nginx-reverse-proxy'
     #command: certonly --cert-name collectiqo.com --webroot -w /var/www/certbot/ -d collectiqo.com -d www.collectiqo.com -d collectiqo.de -d www.collectiqo.de --email robin.schaefer@students.hs-mainz.de --agree-tos --no-eff-email --renew-by-default --non-interactive'
 
+  smtp:
+    container_name: colleqtiqo-smtp-1
+    image: namshi/smtp:latest
+    restart: always
+    ports:
+      - "2525:25"
+    environment:
+      - BIND_IP=0.0.0.0
+      - DISABLE_IPV6
+    networks:
+      - private-network
+
 networks:
   public-network:
     driver: bridge
