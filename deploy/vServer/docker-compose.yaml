@@ -117,11 +117,11 @@ services:
     #command: certonly --cert-name collectiqo.com --webroot -w /var/www/certbot/ -d collectiqo.com -d www.collectiqo.com -d collectiqo.de -d www.collectiqo.de --email robin.schaefer@students.hs-mainz.de --agree-tos --no-eff-email --renew-by-default --non-interactive'
 
   smtp:
-    container_name: colleqtiqo-smtp-1
+    container_name: collectiqo-smtp-1
     image: boky/postfix:latest
     restart: always
     environment:
-      - ALLOWED_SENDER_DOMAIN=collectiqo.com
+      - ALLOWED_SENDER_DOMAINS=collectiqo.com
     ports:
       - "2525:25"
     networks:
