@@ -121,12 +121,20 @@ services:
     image: boky/postfix:latest
     restart: always
     environment:
-      - ALLOWED_SENDER_DOMAINS=collectiqo.com
+      - ALLOWED_SENDER_DOMAINS=collectiqo.de
+      - OVERRIDE_FROM=password-reset@collectiqo.de
     ports:
       - "2525:25"
     networks:
       - private-network
       - public-network
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z localhost 25 || exit 1"]
+      start_interval: 30s
+      start_period: 45s
+      interval: 60s
+      timeout: 5s
+      retries: 5
 
 networks:
   public-network:
