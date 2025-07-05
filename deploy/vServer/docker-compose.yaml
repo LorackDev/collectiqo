@@ -3,6 +3,7 @@ services:
   web:
     container_name: collectiqo-web-1
     image: clq-app
+    restart: always
     env_file: ./.env.docker
     ports:
       - "${PORT}:${PORT}"
@@ -13,8 +14,8 @@ services:
       - private-network
     healthcheck:
       test: ["CMD-SHELL", "ps aux | grep node | grep -v grep || exit 1"]
-      start_interval: 15s
-      start_period: 30s
+      start_interval: 30s
+      start_period: 45s
       interval: 10s
       timeout: 5s
       retries: 5
@@ -28,7 +29,7 @@ services:
     container_name: collectiqo-mysql-1
     image: lorackdev/clq-mysql-multiarch
     restart: always
-    command: --bind-address=0.0.0.0  # Allow connections from any interface (needed cause of internal network)
+    command: --bind-address=0.0.0.0  # Allow connections from any interface (necessary cause of internal network)
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
     ports:
@@ -37,8 +38,8 @@ services:
       - private-network
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p${MYSQL_DATABASE_PASSWORD}"]
-      start_interval: 15s
-      start_period: 30s
+      start_interval: 30s
+      start_period: 45s
       interval: 10s
       timeout: 5s
       retries: 5
@@ -47,7 +48,7 @@ services:
     container_name: collectiqo-mongodb-1
     image: mongo:latest
     restart: always
-    command: mongod --bind_ip_all # Allow connections from any interface (needed cause of internal network)
+    command: mongod --bind_ip_all # Allow connections from any interface (necessary cause of internal network)
     ports:
       - "${MONGO_DATABASE_PORT}:${MONGO_DATABASE_PORT}"
     environment:
@@ -57,20 +58,20 @@ services:
       - private-network
     healthcheck:
       test: ["CMD-SHELL", "mongosh --host localhost --port 27017 -u ${MONGO_DATABASE_USER} -p ${MONGO_DATABASE_PASSWORD} --eval 'db.runCommand(\"ping\").ok' --quiet"]
-      start_interval: 15s
-      start_period: 30s
+      start_interval: 30s
+      start_period: 45s
       interval: 10s
       timeout: 5s
       retries: 5
 
-  test-webserver:
-    container_name: test-webserver
-    image: arm64v8/httpd:latest
-    restart: unless-stopped
-    volumes:
-      - ../../webtest:/usr/local/apache2/htdocs:ro
-    networks:
-      - private-network
+  #test-webserver:
+    #container_name: test-webserver
+    #image: arm64v8/httpd:latest
+    #restart: unless-stopped
+    #volumes:
+      #- ../../webtest:/usr/local/apache2/htdocs:ro
+    #networks:
+      #- private-network
 
   nginx-reverse-proxy:
     container_name: nginx-reverse-proxy
@@ -88,8 +89,8 @@ services:
       - private-network
     healthcheck:
       test: ["CMD-SHELL", "curl -sf http://localhost/health || exit 1"]
-      start_interval: 15s
-      start_period: 30s
+      start_interval: 30s
+      start_period: 45s
       interval: 10s
       timeout: 5s
       retries: 5
@@ -103,14 +104,17 @@ services:
     volumes:
       - ../../certbot/conf:/etc/letsencrypt/:rw
       - ../../certbot/www:/var/www/certbot/:rw
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /usr/bin/docker:/usr/bin/docker:ro
+      #- /var/run/docker.sock:/var/run/docker.sock:ro
+      #- /usr/bin/docker:/usr/bin/docker:ro
     networks:
       - public-network
     depends_on:
       nginx-reverse-proxy:
         condition: service_healthy
-    command: sh -c 'certonly --cert-name collectiqo.com --webroot -w /var/www/certbot/ -d collectiqo.com -d www.collectiqo.com -d collectiqo.de -d www.collectiqo.de --email robin.schaefer@students.hs-mainz.de --agree-tos --no-eff-email --renew-by-default --non-interactive --disable-hook-validation && sleep 60 && /usr/bin/docker restart nginx-reverse-proxy'
+    #command: ["sh", "-c", "certbot certonly --cert-name collectiqo.com --webroot -w /var/www/certbot/ -d collectiqo.com -d www.collectiqo.com -d collectiqo.de -d www.collectiqo.de --email robin.schaefer@students.hs-mainz.de --agree-tos --no-eff-email --renew-by-default --non-interactive"]
+    #command: sh -c 'certbot certonly --cert-name collectiqo.com --webroot -w /var/www/certbot/ -d collectiqo.com -d www.collectiqo.com -d collectiqo.de -d www.collectiqo.de --email robin.schaefer@students.hs-mainz.de --agree-tos --no-eff-email --renew-by-default --non-interactive'
+    #--disable-hook-validation && sleep 60 && /usr/bin/docker restart nginx-reverse-proxy'
+    command: certonly --cert-name collectiqo.com --webroot -w /var/www/certbot/ -d collectiqo.com -d www.collectiqo.com -d collectiqo.de -d www.collectiqo.de --email robin.schaefer@students.hs-mainz.de --agree-tos --no-eff-email --renew-by-default --non-interactive'
 
 networks:
   public-network:
