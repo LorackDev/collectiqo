@@ -1,4 +1,3 @@
-
 :root {
     --light: #6472D0;
     --mid-light: #5460AE;
@@ -6,7 +5,7 @@
     --mid-dark: #333A6A;
     --dark: #232848;
     --grey-white: #e3e3e3;
-    --font-size: 1.2rem;
+    --font-size: 1rem;
 }
 
 * {
@@ -18,106 +17,166 @@
 body {
     font-family: "Roboto", sans-serif;
     background-color: var(--grey-white);
+    background-image: url('../assets/img/bg.png');
 }
 
 .content-container {
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    transition: width 0.6s ease-in-out;
+    align-items: flex-start;
+    padding-top: 40px;
 }
 
 .content {
-    width: 80%;
-    max-width: 900px;
+    width: 90%;
+    max-width: 800px;
     background-color: #ffffff;
-    padding: 30px;
-    margin-top: 30px;
+    padding: 25px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: all 1s ease-in-out;
-
-}
-
-#general-settings, #account-settings , #collection-settings, #extra-settings {
-
-}
-
-.main {
-    width: 90%;
-    height: 90%;
-    margin: 10% 5% 10% 5%;
-
-    border-radius: 10px;
-    background-color: white;
-
+    transition: all 0.6s ease-in-out;
 }
 
 .settings-button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border: 0;
+    border: none;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1rem;
     background: none;
     color: var(--mid-dark);
-    margin: 0 5% 2% 5%;
+    margin: 0 5px 10px;
     cursor: pointer;
+    padding: 8px 16px;
+    transition: color 0.3s ease-in-out;
+}
+
+.settings-button:hover {
+    color: var(--light);
 }
 
 .settingsDesign {
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
+/* Zentrierung + Fade-Animation */
+.settingsDesign > div {
+    display: none;
+    opacity: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    transition: opacity 0.4s ease-in-out;
+}
 
+.settingsDesign > div.active {
+    display: flex;
+    opacity: 1;
+}
 
-
-h2 {
+h1, h2 {
     color: #363e74;
-    display: block;
-    padding-bottom: 1rem;
-    padding-top: 0.5rem;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-
-    button {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        padding: 10px 20px 10px 20px;
-        border-radius: 10px;
-        color: #ffffff;
-        border: none;
-        background-color: #6472D0;
-        cursor: pointer;
-        transition: background-color 0.5s;
-    }
-
-button:hover {
-
-    background-color: #363e74;
-    transition: background-color 1s;
+p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 10px 0;
 }
-
 
 label {
-    color: #363e74;
     font-weight: bold;
-    text-align: left;
-}
- input {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    padding: 6px;
-    border-radius: 10px;
-    color: #c0c5e8;
-    border: none;
-    background-color: #a9afd9;
-     cursor: text;
-     margin: 10px;
+    color: #363e74;
+    margin-bottom: 2px;
+    display: block;
+    font-size: 0.9rem;
 }
 
+input {
+    padding: 6px 10px;
+    border-radius: 8px;
+    background-color: #a9afd9;
+    border: none;
+    color: #ffffff;
+    font-size: 0.9rem;
+    margin: 6px 0 6px;
+    width: 240px;
+    text-align: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Button Styling */
+button {
+    padding: 8px 16px;
+    border-radius: 8px;
+    color: #ffffff;
+    border: none;
+    background-color: var(--light);
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 0.95rem;
+    margin: 5px;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background-color: var(--mid-light);
+}
+
+footer {
+    background-color: var(--dark-grey);
+    color: #fff;
+    font-size: 1.2rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 999;
+    padding: 0;
+
+
+}
+
+footer i {
+    color: var(--mid);
+}
+
+footer a {
+    color: #3c97bf;
+    text-decoration: none;
+}
+
+.social-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.social-container a {
+    border: 1px solid var(--grey-white);
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Default Sichtbarkeit beim Laden */
+#general-settings {
+    display: flex;
+    opacity: 1;
+}

@@ -2,26 +2,28 @@ const { connectToDb, closeConnection } = require('../../../utils/mongoUtils');
 // const { CollectionNotFoundError, DatabaseError } = require('../../../errors/customErrors');
 
 const createCollectionEntryService = async (collectionName, entry, username) => {
-        try {
-            const db = await connectToDb();
-            const collection = db.collection('collections');
+    try {
 
-            const doc = await collection.findOne({ name: collectionName, username: username });
+        const db = await connectToDb();
+        const collection = db.collection('collections');
 
-            if (!doc) {
-                // throw new CollectionNotFoundError('Collection does not exist');
-            }
+        console.log("Trying to update collection with name:", collectionName, "and username:", username);
+        console.log("Entries being saved:", entry);
 
-            doc.entries.push(entry);
+        const result = await collection.updateOne(
+            { name: collectionName, username: username },
+            { $set: { entries: entry } },
+            { upsert: true } // 👈 creates the document if it doesn't exist
+        );
 
-            const result = await collection.updateOne({ name: collectionName, username: username }, { $set: doc });
+        console.log("MongoDB update result:", result);
 
-            return { message: 'Entry added successfully', result: result };
-        } catch (err) {
-            // throw new DatabaseError('An error occurred while adding the entry');
-        } finally {
-            await closeConnection();
-        }
+        return { message: 'Entries overwritten successfully', result: result };
+    } catch (err) {
+        // throw new DatabaseError('An error occurred while overwriting the entries');
+    } finally {
+        await closeConnection();
+    }
 }
 
 module.exports = createCollectionEntryService;

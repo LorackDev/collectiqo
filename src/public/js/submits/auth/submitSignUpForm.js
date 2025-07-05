@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
 
         // Get user parameters for sign up from ejs file
-        const username = document.getElementById('username').value;
+        const username = document.getElementById('usernameSU').value;
         const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
+        const password = document.getElementById('passwordSU').value;
         console.log('Form submitted');
 
         try {

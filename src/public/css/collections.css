@@ -1,143 +1,239 @@
 :root {
-    --padding: 0.7rem;
-    --margin-left: 0.5rem;
-    --black: #12100e;
-    --pine-tree: #98a320;
-    --blue: #1672c8;
-    --white: #ffffff;
-    --font-size: 1.2rem;
-  }
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-  }
-
-  body {
-    font-family: "Roboto", sans-serif;
-  }
-
-  .content-container {
-    width: auto;
-    min-height: 60vh;
-    transition: margin-left 0.3s linear;
-    position: relative;
-  }
-
-  .header {
-    width: 100%;
-    height: 60px;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    background-color: var(--blue);
-  }
-
-  .content {
-    padding: 10px 0 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-
-  h1 {
-    margin-bottom: 20px;
-  }
-
-  table {
-    width: 95%;
-    margin-top: 10px;
-    background-color: #d7d7d7;
-    overflow: hidden;
-    border-spacing: 0;
-    border-collapse: separate;
-    border-radius: 10px;
-  }
-
-  th, td {
-    padding: 10px;
-    text-align: left;
-    height: 50px;
-    overflow: hidden;
-  }
-
-  th {
-    background-color: #1672c8;
-    font-size: 20px;
-  }
-
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-
-  .table-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .title {
-    margin-left: 3vh;
-  }
-
-.button-group {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 20px;
+  --light: #6472D0;
+  --mid-light: #5460AE;
+  --mid: #434D8C;
+  --mid-dark: #333A6A;
+  --dark: #232848;
+  --grey-white: #e3e3e3;
+  --standard: 1rem;
 }
 
-.button-group button {
+/* ---------------------------------
+   GLOBAL / RESET
+---------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+/* ---------------------------------
+   LAYOUT
+---------------------------------- */
+.content-container {
+  width: auto;
+  min-height: 60vh;
+  transition: margin-left 0.3s linear;
+  position: relative;
+}
+
+.header {
+  width: 100%;
+  height: 60px;
   display: flex;
+  justify-content: start;
   align-items: center;
-  gap: 8px;
-  font-size: 16px;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 5px;
 }
 
-.button-group .hidden {
-  display: none !important;
+.content {
+  padding: 10px 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  margin-left: 3vh;
+}
+
+/* ---------------------------------
+   TYPOGRAPHY
+---------------------------------- */
+h1 {
+  margin-bottom: 20px;
 }
 
 .icon {
   font-size: 18px;
 }
 
-.edit-button {
-  background-color: #e7cc5a;
+/* ---------------------------------
+   TABLE
+---------------------------------- */
+table {
+  width: 85%;
+  margin: 15px 0 50px;
+  background-color: #d7d7d7;
+  overflow: hidden;
+  border-spacing: 0;
+  border-collapse: separate;
+  border-radius: 10px;
+  transition: box-shadow 0.1s ease, transform 0.4s ease;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  height: 50px;
+  overflow: hidden;
+}
+
+th {
+  background-color: var(--mid);
+  font-size: 20px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Inputs in edit mode */
+th input, td input {
+  font-size: 1rem;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  color: inherit;
+}
+
+td input {
+  font-weight: normal;
+}
+
+td input:focus, th input:focus {
+  border-bottom: 1px dashed #000;
+}
+
+body.edit-mode table {
+  animation: pulse-shadow 2.3s infinite ease-in-out;
+}
+
+@keyframes pulse-shadow {
+  0%, 100% { box-shadow: 0 0 var(--mid); }
+  50% { box-shadow: 0 0 30px var(--mid); }
+}
+
+/* ---------------------------------
+   TABLE ACTION BUTTONS
+---------------------------------- */
+.add-row-button,
+.add-column-button {
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--light);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-row-button:hover,
+.add-column-button:hover {
+  background-color: var(--mid-light);
+}
+
+body.edit-mode #addRowButton,
+body.edit-mode #addColumnButton {
+  display: inline-block;
+}
+
+#addRowButton.hidden,
+#addColumnButton.hidden {
+  display: none;
+}
+
+/* ---------------------------------
+   MAIN BUTTON GROUP
+---------------------------------- */
+.collection-button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: flex-start;
+  margin: 20px 0;
+}
+
+.collection-button-group button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Button variants */
+.collection-edit-button { background-color: #e7cc5a; color: white; }
+.collection-delete-button { background-color: #f44336; color: white; }
+.collection-save-button { background-color: #2196F3; color: white; }
+.collection-cancel-button { background-color: #888; color: white; }
+
+.collection-save-button:hover {
+  background-color: #45a049;
+}
+
+.collection-add-column-button {
+  background-color: var(--light);
   color: white;
 }
 
-.delete-button {
-  background-color: #f44336;
-  color: white;
+.collection-add-column-button:hover {
+  background-color: var(--mid-light);
 }
 
-.save-button {
-  background-color: #2196F3;
-  color: white;
+/* Für Spaltenlöschen-Buttons */
+.delete-columns-container {
+  display: flex;
+  justify-content: start;
+  gap: 2px;
+  margin-bottom: 4px;
+  margin-left: 28px; /* Optional: für Ausrichtung */
 }
 
+.delete-column-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #a00;
+}
+
+/* Für Zeilenlöschen-Buttons */
+.row-delete-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #a00;
+}
+
+.row-delete-container {
+  width: 30px;
+  text-align: center;
+}
+
+
+/* ---------------------------------
+   UTILITY
+---------------------------------- */
 .hidden {
   display: none;
 }
 
-.save-button:hover {
-  background-color: #45a049;
+.collection-button-group .hidden {
+  display: none !important;
 }
 
 .centered-message {
@@ -147,5 +243,25 @@
   height: 65vh;
   font-size: 24px;
   color: #666;
+}
+
+.table-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.no-entries-cell {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+  cursor: default;
+  user-select: none;
 }
 

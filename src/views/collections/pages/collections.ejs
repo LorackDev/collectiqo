@@ -17,9 +17,13 @@
   <link rel="stylesheet" href="/css/templates/new-collection-modal.css">
   <script src="/js/home-navigation.js"></script>
   <script src="/js/sidebar.js"></script>
-  <script src="/js/calcTH.js"></script>
   <script src="/js/modal.js"></script>
-  <script src="/js/saveButton.js"></script>
+
+  <!-- Tabellen Skripte -->
+  <script src="/js/calcTH.js"></script>
+  <script src="/js/tableEditMode.js"></script>
+  <script src="/js/inline-edit.js"></script>
+  <script src="/js/editTableControls.js"></script>
 
   <title>Collection Data</title>
 
@@ -29,48 +33,150 @@
 <%- include('../../templates/sidebar.ejs') %>
 
 <div class="content-container">
-  <div class="content">
+  <div class="content edit-wrapper">
     <h1>Collection: <%= collectionName %></h1>
 
-    <div class="button-group">
-      <button class="edit-button" id="editButton">
+    <div class="collection-button-group">
+      <button class="collection-edit-button" id="collectionEditButton">
         <span class="icon fas fa-edit"></span> Edit
       </button>
-      <button class="delete-button">
+      <button class="collection-delete-button hidden" id="collectionDeleteButton">
         <span class="icon fas fa-trash-alt"></span> Delete
       </button>
-      <button class="save-button hidden" id="saveButton">
+      <button class="collection-save-button hidden" id="collectionSaveButton">
         <span class="icon fas fa-save"></span> Save
       </button>
-    </div>
+      <button class="collection-cancel-button hidden" id="collectionCancelButton">
+        <span class="icon fas fa-times"></span> Cancel
+      </button>
+     </div>
+    <button id="addColumnButton" class="hidden add-column-button">+ New Column</button>
+    <% if (specifiedCollection &&
+            ((specifiedCollection.columns && specifiedCollection.columns.length > 0) || (specifiedCollection.entries && specifiedCollection.entries.length > 0))) { %>
+    <div style="display: flex;">
+      <div id="rowDeleteContainer" class="hidden" style="display: flex; flex-direction: column; gap: 6px; margin-right: 10px;"></div>
 
-
-  <% if (specifiedCollection && specifiedCollection.entries.length > 0) { %>
-      <table>
+      <div style="flex-grow: 1;">
+        <div id="columnDeleteContainer" class="hidden" style="display: flex; gap: 10px; margin-bottom: 10px;"></div>
+      <table class="mainTable">
         <thead>
         <tr>
-          <% specifiedCollection.columns.forEach(column => { %>
-            <th><%= column %></th>
-          <% }) %>
+          <% if (specifiedCollection.columns && specifiedCollection.columns.length > 0) { %>
+            <% specifiedCollection.columns.forEach(column => { %>
+              <th><%= column %></th>
+            <% }) %>
+          <% } %>
         </tr>
         </thead>
         <tbody>
-        <% specifiedCollection.entries.forEach(entry => { %>
-          <tr>
-            <% for (let key in entry) { %>
-              <td><%= entry[key] %></td>
-            <% } %>
+        <% if (specifiedCollection.entries && specifiedCollection.entries.length > 0) { %>
+          <% specifiedCollection.entries.forEach(entry => { %>
+            <tr>
+              <% for (let key in entry) { %>
+                <td><%= entry[key] %></td>
+              <% } %>
+            </tr>
+          <% }) %>
+        <% } else if (specifiedCollection.columns && specifiedCollection.columns.length > 0) { %>
+          <tr class="no-entries-row">
+            <td colspan="<%= specifiedCollection.columns.length %>" class="no-entries-cell">
+              No entries yet – Got to edit mode!
+            </td>
           </tr>
-        <% }) %>
+        <% } %>
         </tbody>
       </table>
+      </div>
+    </div>
     <% } else { %>
       <div class="centered-message">No entries found for this collection.</div>
     <% } %>
+    <button id="addRowButton" class="hidden add-row-button">+ New Entry</button>
     <%- include('../../templates/new-collection-modal.html') %>
   </div>
 </div>
+<script>
+  document.getElementById('collectionSaveButton').addEventListener('click', async () => {
+    const table = document.querySelector('.mainTable');
+    if (!table) return;
 
+    const headers = Array.from(table.querySelectorAll('thead th')).map(th => {
+      const input = th.querySelector('input');
+      return input ? input.value.trim() : th.innerText.trim();
+    });
+    console.log("Collected headers:", headers);
+
+    const rows = Array.from(table.querySelectorAll('tbody tr'))
+            .filter(row => !row.classList.contains('no-entries-row'));
+    console.log("Total rows found:", rows.length);
+
+    const entries = [];
+    rows.forEach((row, rowIndex) => {
+      const cells = row.querySelectorAll('td');
+      const entry = {};
+      let isEmpty = true;
+
+      headers.forEach((header, i) => {
+        const cell = cells[i];
+        const input = cell?.querySelector('input');
+        let value = '';
+        if (input) {
+          value = input.value?.trim();
+          if (!value && input.shadowRoot) {
+            const editable = input.shadowRoot.querySelector('[contenteditable]');
+            if (editable) {
+              value = editable.textContent?.trim();
+            }
+          }
+          if (!value) {
+            value = input.textContent?.trim() || '';
+          }
+        } else {
+          value = cell?.innerText.trim() || '';
+        }
+        entry[header] = value;
+
+        if (value) isEmpty = false;
+      });
+
+      console.log(`Row ${rowIndex} parsed entry:`, entry);
+
+      entries.push(entry);
+      console.log("Current status of entries:", entries);
+
+    });
+
+    const payload = {
+      collectionName: <%- JSON.stringify(collectionName) %>,
+      username: <%- JSON.stringify(username) %>,
+      entries: entries
+    };
+    console.log("Payload to send:", JSON.stringify(payload));
+
+    try {
+      const res = await fetch('/create-collection-entry', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+        alert('Entries saved successfully!');
+        location.reload(); // Optional: refresh to see saved data as text
+      } else {
+        alert(`Failed to save: ${result.message || 'Unknown error'}`);
+      }
+    } catch (err) {
+      console.error(err);
+      alert('An error occurred while saving.');
+    }
+  });
+</script>
 </body>
+
 
 </html>

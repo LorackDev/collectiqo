@@ -1,7 +1,7 @@
 :root {
-    --light: #6472D0;
+    --light: #6472d0;
     --mid-light: #5460AE;
-    --mid: #434D8C;
+    --mid: #dfe1ff;
     --mid-dark: #333A6A;
     --dark: #232848;
     --grey-white: #e3e3e3;
@@ -18,9 +18,10 @@
 body {
     font-family: "Roboto", sans-serif;
     background-color: var(--grey-white);
+    background-image: url('../assets/img/bg.png');
 }
 
-.container {
+.switch-container {
     width: auto;
     min-height: 100vh;
     transition: margin-left 0.3s linear;
@@ -31,7 +32,7 @@ body {
 .header {
     width: 100%;
     display: flex;
-    padding: 0 var(--padding); 
+    padding: 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
     z-index: 999; 
     height: 50px;
@@ -116,4 +117,73 @@ li:hover {
     height: 65vh;
     font-size: 24px;
     color: #666;
+}
+
+footer {
+    background-color: #222;
+    color: #fff;
+    font-size: 2rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 999;
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+footer i {
+    color: var(--mid);
+}
+
+footer a {
+    color: #3c97bf;
+    text-decoration: none;
+}
+
+.social-container {
+    margin: 5px 0;
+}
+
+.social-container a {
+    border: 1px solid var(--grey-white);
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    height: 20px;
+    width: 20px;
+}
+
+h1 {
+    font-weight: bold;
+    margin: 0;
+    font-size: 2em;
+}
+
+h2 {
+    text-align: center;
+}
+
+p {
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 20px 0 30px;
+}
+
+span {
+    font-size: 12px;
+}
+
+a {
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0;
 }
