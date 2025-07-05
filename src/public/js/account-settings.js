@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("collection-settings-btn").addEventListener("click", () => openSettings("collection-settings"));
     document.getElementById("extra-settings-btn").addEventListener("click", () => openSettings("extra-settings"));
 
-    // Logout (optional aus deinem bestehenden Code)
     document.getElementById('logoutButton')?.addEventListener('click', function (event) {
         event.preventDefault();
         if (confirm('Are you sure you want to log out?')) {
