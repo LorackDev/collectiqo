@@ -19,3 +19,22 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById('logoutBtn')?.addEventListener('click', function (event) {
+        event.preventDefault();
+        if (confirm('Are you sure you want to log out?')) {
+            fetch('/logout', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'}
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message === 'Logout successful') {
+                        window.location.href = '/';
+                    }
+                })
+                .catch(err => console.error('Error:', err));
+        }
+    })
+});
