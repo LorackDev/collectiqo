@@ -4,7 +4,6 @@
   --mid: #434D8C;
   --mid-dark: #333A6A;
   --dark: #232848;
-  --dark-grey: #1a1a1a; /* hinzugefügt */
   --grey-white: #e3e3e3;
   --standard: 1rem;
 }
@@ -19,16 +18,8 @@
   text-decoration: none;
 }
 
-html, body {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
 body {
   font-family: "Roboto", sans-serif;
-  background-color: var(--grey-white);
-  background-image: url('../assets/img/bg.png');
 }
 
 /* ---------------------------------
@@ -36,11 +27,9 @@ body {
 ---------------------------------- */
 .content-container {
   width: auto;
-  flex: 1;
+  min-height: 60vh;
   transition: margin-left 0.3s linear;
   position: relative;
-  display: flex;
-  flex-direction: column;
 }
 
 .header {
@@ -49,8 +38,6 @@ body {
   display: flex;
   justify-content: start;
   align-items: center;
-  background: linear-gradient(45deg, #2c3570, #372d8f);
-  overflow: hidden;
 }
 
 .content {
@@ -100,8 +87,7 @@ th, td {
 
 th {
   background-color: var(--mid);
-  font-size: 15px;
-  color: #a9afd9;
+  font-size: 20px;
 }
 
 tr:nth-child(even) {
@@ -213,7 +199,7 @@ body.edit-mode #addColumnButton {
   justify-content: start;
   gap: 2px;
   margin-bottom: 4px;
-  margin-left: 28px;
+  margin-left: 28px; /* Optional: für Ausrichtung */
 }
 
 .delete-column-button {
@@ -237,6 +223,7 @@ body.edit-mode #addColumnButton {
   width: 30px;
   text-align: center;
 }
+
 
 /* ---------------------------------
    UTILITY
@@ -262,7 +249,7 @@ body.edit-mode #addColumnButton {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
   position: absolute;
   top: 60px;
   left: 0;
@@ -278,66 +265,3 @@ body.edit-mode #addColumnButton {
   user-select: none;
 }
 
-.header_item {
-  display: flex;
-  align-items: center;
-  padding: 5px;
-  margin: auto;
-  font-size: var(--font-size);
-  color: var(--white);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-  white-space: nowrap;
-  text-decoration: none;
-}
-
-/* ---------------------------------
-   FOOTER
----------------------------------- */
-.footer {
-  padding: 12px 0 5px 0;
-  background-color: var(--dark-grey);
-  font-size: 0.7rem;
-  text-align: center;
-  margin-top: auto;
-  width: 100%;
-}
-
-.footer h1 {
-  color: white;
-}
-
-.footer p {
-  color: var(--grey-white);
-  font-size: 0.6rem;
-}
-
-/* Social Media in Footer */
-.social-media {
-  margin: 10px 0;
-}
-
-.social-media a {
-  color: var(--grey-white);
-  margin: 0 10px;
-  font-size: 1.5rem;
-}
-
-.social-media a img {
-  width: 8px;
-  margin: -3px;
-  filter: brightness(0) saturate(100%) invert(79%) sepia(7%) saturate(1305%) hue-rotate(302deg) brightness(98%) contrast(114%);
-}
-
-.social-media a i {
-  transition: transform 0.2s ease-in-out;
-}
-
-.social-media a i:hover {
-  transform: scale(1.5);
-}
-
-.social-icon:hover {
-  opacity: 0.8;
-}

@@ -50,7 +50,7 @@
 
 .header_icon {
     margin-right: 0.5rem;
-    color: #8E99E3FF;
+    color: var(--light);
     font-size: 1.4rem;
 }
 

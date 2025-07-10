@@ -33,8 +33,8 @@ body {
     width: 100%;
     display: flex;
     padding: 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    z-index: 999;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    z-index: 999; 
     height: 50px;
 
     justify-content: center;
@@ -44,10 +44,10 @@ body {
 
 
 .content-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
 }
 
 .content {
@@ -58,7 +58,7 @@ body {
     margin-top: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    text-align: center; 
 }
 
 h1 {
