@@ -2,7 +2,7 @@
    Root Variables
    ========================== */
 :root {
-  --light: #6472D0;
+  --light: #8e99e3;
   --mid-light: #5460AE;
   --mid: #434D8C;
   --mid-dark: #333A6A;
@@ -136,6 +136,7 @@ main {
 
 .login-panel .signup-container button:hover {
   background-color: var(--light);
+  cursor: pointer;
 }
 
 .login-panel .signup-container .switch-option {
@@ -199,6 +200,7 @@ h2 {
   text-align: center;
 }
 
+
 p {
   font-size: 14px;
   font-weight: 100;
@@ -230,6 +232,7 @@ button {
   font-weight: bold;
   padding: 12px 45px;
   letter-spacing: 1px;
+  cursor: pointer;
   text-transform: uppercase;
   transition: transform 80ms ease-in;
 }
