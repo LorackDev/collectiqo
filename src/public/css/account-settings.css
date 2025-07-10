@@ -23,6 +23,7 @@ body {
 .content-container {
     width: 100%;
     display: flex;
+    margin: 0 auto 20% auto;
     justify-content: center;
     align-items: flex-start;
     padding-top: 40px;

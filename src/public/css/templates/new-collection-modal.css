@@ -12,7 +12,7 @@
 
 .modal-content {
     background-color: #fefefe;
-    margin: 10% auto;
+    margin: 7% auto 7% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
@@ -34,4 +34,25 @@
 .remove-btn {
     margin-left: 5px;
     cursor: pointer;
+}
+
+.multi-field-wrapper {
+
+}
+
+button {
+    padding: 8px 16px;
+    border-radius: 8px;
+    color: #ffffff;
+    border: none;
+    background-color: var(--light);
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 0.95rem;
+    margin: 5px;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background-color: var(--mid-light);
 }

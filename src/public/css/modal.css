@@ -31,7 +31,7 @@
 
 .view-upper {
   display: block;
-  padding: 10px;
+  padding: 0px;
   margin: auto;
 }
 
@@ -235,4 +235,23 @@ button#saveBtn:hover {
     width: auto;
   }
 
+label {
+  font-weight: bold;
+  color: #363e74;
+  margin-bottom: 2px;
+  display: block;
+  font-size: 0.9rem;
+}
+
+input {
+  padding: 6px 10px;
+  border-radius: 8px;
+  background-color: #a9afd9;
+  border: none;
+  color: #ffffff;
+  font-size: 0.9rem;
+  margin: 6px 0 6px;
+  width: 240px;
+  text-align: center;
+}
 
