@@ -6,6 +6,9 @@
 .env.docker
 .idea
 
+# macOS
+.DS_store
+
 # latex
 
 /out/.aux

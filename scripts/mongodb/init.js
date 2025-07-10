@@ -9,17 +9,20 @@ const client = new MongoClient(url);
 
 const perfumeTemplate = {
     name: 'perfume',
-    columns: ['brand', 'name', 'prodYear', 'obtained', 'value', 'size', 'smell']
+    columns: ['brand', 'name', 'prodYear', 'obtained', 'value', 'size', 'smell'],
+    owner: 'GLOBAL'
 };
 
 const videoGamesTemplate = {
     name: 'video games',
-    columns: ['title', 'platform', 'releaseYear', 'price']
+    columns: ['title', 'platform', 'releaseYear', 'price'],
+    owner: 'GLOBAL'
 };
 
 const moviesTemplate = {
     name: 'movies',
-    columns: ['title', 'director', 'genre', 'releaseYear']
+    columns: ['title', 'director', 'genre', 'releaseYear'],
+    owner: 'GLOBAL'
 };
 
 async function setDefaultTemplates() {

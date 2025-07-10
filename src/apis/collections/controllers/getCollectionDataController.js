@@ -1,5 +1,4 @@
 const getCollectionDataService = require('../services/getCollectionDataService');
-const { sendSuccessResponse } = require('../../../utils/responseHandler');
 
 const getCollectionDataController = async (req, res, next) => {
         const collectionName = req.query.collectionName;
