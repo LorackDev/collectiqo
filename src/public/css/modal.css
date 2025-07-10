@@ -1,37 +1,33 @@
 /* Style the modal */
 
 * {
-  font-family: Inter, sans-serif;
+  font-family: "Roboto", sans-serif;
+  padding: 0;
+  margin: 0;
 }
-
 .modal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-/* Modal content */
-.modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: 10% auto;
-  border-radius: 20px;
-  padding: 60px 60px 40px;
-  border: 1px solid #888;
-  width: 60%;
-  display: flex;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-}
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Modal content */
+  .modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: 10% auto;
+    border-radius: 10px;
+    padding: 20px 20px 100px 20px;
+    border: 1px solid #888;
+    width: 60%;
+    display: flex;
+  }
 
 .view-upper {
   display: block;
@@ -43,326 +39,200 @@
   display: block;
   padding: 10px;
   margin: auto;
-  margin-top: 0px;
 }
 
 form#selectionForm {
   display: block;
   align-items: center;
   margin: auto;
+
 }
 
 .input-group {
   color: #363e74;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 20px;
-  width: 100%;
 }
-.input-group:last-of-type {
-  margin-top: 20px;
-}
+
 
 .input-group label {
   display: block;
 }
 
-.input-group select,
-.input-group input#imageUpload {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 14px 16px;
+
+.input-group select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  height: 50px;
-  width: 100%;
-  border-radius: 12px;
-  font-family: Inter, sans-serif;
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
   color: #ffffff;
-  border: none;
-  background-color: #6472D0;
-  box-sizing: border-box;
-  font-weight: 500;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  border: 0;
+  background-color: #7884d6;
+  transition: background-color 0.5s;
+}
+.input-group select:focus {
+  outline: none;
+  background-color: #a9afd9;
+  transition: background-color 1s;
 }
 
-.input-group select:focus,
-.input-group input#imageUpload:focus {
+.input-group select:hover {
   outline: none;
-  filter: brightness(0.95);
+  background-color: #a9afd9;
+  transition: background-color 1s;
 }
 
-.input-group select:hover,
-.input-group input#imageUpload:hover {
-  outline: none;
-  filter: brightness(0.95);
-}
+
 
 .input-group input#color {
-  border: none;
-  padding: 0;
-  height: 50px;
-  width: 100%;
-  background: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  font-family: Inter, sans-serif;
-  color: #ffffff;
-  box-sizing: border-box;
-  font-weight: 500;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  margin-bottom: 16px;
+  background-color: transparent;
+  width: 100px;
+  height: 50px;
+
+  border: none;
+  cursor: pointer;
+  border-radius: 7px;
 }
 
-.input-group input#color:focus {
-  outline: none;
-  filter: brightness(0.95);
+#color::-webkit-color-swatch {
+  border-radius: 10px;
+  border: none;
 }
-
-.input-group input#color:hover {
-  outline: none;
-  filter: brightness(0.95);
-}
-
-#color::-webkit-color-swatch,
 #color::-moz-color-swatch {
+  border-radius: 10px;
   border: none;
-  border-radius: 12px;
-  padding: 0;
 }
 
-/* Unified button styles */
-button#addCustomField,
-.add-field,
-.remove-field {
+.input-group input#collection {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border-radius: 12px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  font-weight: 500;
-  padding: 12px 24px;
-  border: none;
-  cursor: pointer;
-  box-sizing: border-box;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  font-family: Inter, sans-serif;
-}
-
-button#cancelBtn,
-button#saveAsTemplateBtn,
-button#saveBtn {
-  background: none;
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
   color: #ffffff;
   border: none;
-  border-radius: 12px;
-  font-weight: 500;
-  padding: 12px 24px;
-  font-size: 14px;
-  transition: all 0.2s ease-in-out;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #7884d6;
+  transition: background-color 0.5s;
 }
 
+input#collection:focus {
+  outline: none;
+  background-color: #a9afd9;
+  transition: background-color 1s;
+}
+input#collection:hover {
+  outline: none;
+  background-color: #a9afd9;
+  transition: background-color 1s;
+}
+
+button#addCustomField {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
+  color: #ffffff;
+  border: none;
+  background-color: #6472D0;
+  transition: background-color 0.5s;
+}
+
+button#addCustomField:hover {
+
+  background-color: #363e74;
+  transition: background-color 1s;
+}
+
+.custom-options input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 6px;
+  border-radius: 10px;
+  color: #c0c5e8;
+  border: none;
+  background-color: #a9afd9;
+}
 button#cancelBtn {
-  background-color: #a3a3a3;
-}
-
-button#saveAsTemplateBtn {
-  background-color: #7884d6;
-}
-
-button#saveBtn {
-  background-color: #4a63e7;
-}
-
-button#cancelBtn:hover,
-button#saveAsTemplateBtn:hover,
-button#saveBtn:hover {
-  filter: brightness(1.1);
-  cursor: pointer;
-}
-
-button#addCustomField:hover,
-.add-field:hover,
-.remove-field:hover {
-  filter: brightness(0.95);
-}
-
-.add-field {
-  background-color: #28c76f;
-  color: white;
-  border-radius: 12px;
-  font-size: 20px;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  padding: 0;
-}
-
-.remove-field {
-  background-color: #ea5455;
-  color: white;
-  border-radius: 12px;
-  font-size: 20px;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  padding: 0;
-}
-
-.modal-left {
-  width: 50%;
-  text-align: center;
-  padding: 10px;
-  z-index: 100;
-}
-
-.modal-right {
-  width: 50%;
-  text-align: center;
-  padding: 10px;
-  z-index: 100;
-}
-
-.vertical-divider {
-  width: 1px;
-  background-color: #ccc;
-  height: 70%;
-  position: absolute;
-  top: 2rem;
-  left: 50%;
-  transform: translateX(-30%);
-}
-
-/* Adjustments for input fields and buttons */
-.modal-right input {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.modal-right button {
-  display: block;
-  margin-top: 10px;
-}
-
-.cancel-button {
-  margin-top: 20rem;
-  width: auto;
-}
-
-.multi-fields, .multi-field {
-  margin-top: 12px;
-}
-
-.multi-field-wrapper {
-  margin-top: 2%;
-  margin-bottom: 2%;
-}
-
-.textbox {
-  border: 1px solid #848484;
-  border-radius: 30px;
-  outline: 0;
-  height: 40px;
-  width: 275px;
-  padding-left: 10px;
-  padding-right: 10px;
-  box-sizing: border-box;
-  font-family: Inter, sans-serif;
-}
-
-.textbox#collection-name {
-  border: 3px solid #7884d6;
-}
-
-.input-group select#preset {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  height: 50px;
-  width: 100%;
-  border-radius: 12px;
-  font-family: Inter, sans-serif;
-  padding: 12px 16px;
+  padding: 10px;
+  border-radius: 10px;
+  color: #c0c5e8;
+  border: none;
+  background-color: #434D8C;
+  transition: background-color 0.5s;
+}
+
+button#cancelBtn:hover {
+  text-decoration: underline;
+  background-color: #743636;
+  transition: background-color 0.5s;
+}
+
+button#saveBtn {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
   color: #ffffff;
   border: none;
-  background-color: #6472D0;
-  box-sizing: border-box;
-  font-weight: 500;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  font-size: 16px;
-  text-align: center;
-  text-align-last: center; /* for Firefox */
+  background-color: #363e74;
 }
 
-.input-group select#preset:focus {
-  outline: none;
-  filter: brightness(0.95);
+button#saveBtn:hover {
+  text-decoration: underline;
+  background-color: #627436;
+  transition: background-color 0.5s;
 }
 
-.input-group select#preset:hover {
-  outline: none;
-  filter: brightness(0.95);
-}
+  /* Existing modal styles */
+  .modal-left {
+    width: 50%;
+    text-align: center;
+    padding: 10px;
+    z-index: 100;
+  }
+  
+  .modal-right {
+    width: 50%;
+    text-align: center;
+    padding: 10px;
+    z-index: 100;
+  }
+  
+  .vertical-divider {
+    width: 1px;
+    background-color: #ccc;
+    height: 70%;
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-30%);
+  }
+  
+  /* Adjustments for input fields and buttons */
+  .modal-right input {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .modal-right button {
+    display: block;
+    margin-top: 10px;
+  }
 
-.input-group input#imageUpload:focus {
-  outline: none;
-  filter: brightness(0.95);
-}
+  .cancel-button {
+    margin-top: 20rem;
+    width: auto;
+  }
 
-.input-group input#imageUpload:hover {
-  outline: none;
-  filter: brightness(0.95);
-}
 
-.input-group input::file-selector-button {
-  font-size: 14px;
-  padding: 8px 12px;
-  margin-right: 12px;
-}
-
-/* Flexbox centering and vertical alignment for image upload input */
-.input-group input#imageUpload {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  text-align: center;
-  text-align-last: center; /* for Firefox */
-  height: 50px;
-  line-height: 50px;
-  padding: 0;
-  background-color: #6472D0;
-  color: white;
-  border-radius: 12px;
-  border: none;
-  font-weight: 500;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.input-group input#imageUpload::file-selector-button {
-  font-size: 16px;
-  padding: 0 18px;
-  height: 100%;
-  line-height: 50px;
-  margin: 0;
-  background-color: #7884d6;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-family: Inter, sans-serif;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
