@@ -3,3 +3,58 @@
 \subsection{Frontend}
 
 \subsection{Backend}
+
+\subsubsection{Speichern von Tabelleneinträgen}
+
+Beim Bearbeiten einer Sammlung können in der Tabellenansicht beliebige Einträge erfasst oder geändert werden.
+Beim Klick auf den „Save“-Button wird der aktuelle Zustand der Tabelle erfasst, in ein JSON-Objekt umgewandelt und an den Server gesendet.
+Der zugehörige JavaScript-Code in \texttt{collections.ejs} erstellt dazu ein Payload-Objekt mit Spaltenüberschriften und Zeileninhalten:
+
+\begin{lstlisting}[language=JavaScript, caption=Payload-Erstellung im Frontend]
+const payload = {
+    collectionName: <%- JSON.stringify(collectionName) %>,
+    username: <%- JSON.stringify(username) %>,
+    entries: entries
+};
+
+const res = await fetch('/create-collection-entry', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+});
+\end{lstlisting}
+
+Der POST-Request wird auf Serverseite vom Endpunkt \texttt{/create-collection-entry} entgegengenommen.
+Dieser ruft den Service \texttt{createCollectionEntryService(collectionName, entry, username)} auf, welcher die Daten in der Datenbank aktualisiert:
+
+\begin{lstlisting}[language=JavaScript, caption=Service-Logik zum Überschreiben von Einträgen]
+const result = await collection.updateOne(
+    { name: collectionName, username: username },
+    { $set: { entries: entry } },
+    { upsert: true } // falls nicht vorhanden, wird Dokument neu erstellt
+);
+\end{lstlisting}
+
+Dieser Ansatz erlaubt das vollständige Überschreiben aller vorhandenen Einträge mit einer neuen, vom Client gelieferten Struktur.
+
+\subsubsection{Laden bestehender Einträge}
+
+Beim Aufrufen einer Sammlung werden die zugehörigen Daten aus der Datenbank geladen und serverseitig in die View eingebunden.
+Diese Einbindung erfolgt über EJS, sodass bei Initialisierung der Seite bereits alle Spaltenüberschriften und vorhandenen Einträge angezeigt werden:
+
+\begin{lstlisting}[language=JavaScript, caption=Darstellung in collections.ejs]
+<% if (specifiedCollection.entries && specifiedCollection.entries.length > 0) { %>
+    <% specifiedCollection.entries.forEach(entry => { %>
+        <tr>
+            <% for (let key in entry) { %>
+                <td><%= entry[key] %></td>
+            <% } %>
+        </tr>
+    <% }) %>
+<% } %>
+\end{lstlisting}
+
+Dadurch ist eine sofortige Interaktion mit der Sammlung ohne zusätzlichen API-Call möglich.
+Die Verbindung zwischen Benutzer, Sammlung und gespeicherten Einträgen wird automatisch aufgelöst und im Template dargestellt.
