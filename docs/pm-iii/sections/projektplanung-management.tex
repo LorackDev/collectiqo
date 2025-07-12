@@ -37,4 +37,28 @@ Stet clita kasd gubergren, no sea takimata sanctus est Lorenz ipsum dolor sit am
     \caption{Übersicht der Tools}\label{fig:uebersicht-tools}
 \end{figure}
 
+\subsection{Arbeit mit Pull Requests und Restrictions in Git}\label{subsec:arbeit-mit-pull-requests-und-restrictions-in-git}
 
+Im aktuellen Praxismodul III wurde die bereits im vorherigen Semester eingeführte Arbeitsweise mit separaten Feature-Branches weiterentwickelt und professionalisiert.
+Während die Nutzung von Branches bereits in Praxismodul II etabliert wurde, lag der Fokus nun darauf, den Entwicklungsprozess durch verbindliche Strukturen und Regeln qualitativ weiter zu verbessern.
+
+Neu eingeführt wurden sogenannte Pull Requests (PRs), über die Änderungen aus einem Feature-Branch nicht mehr direkt, sondern nur nach expliziter Prüfung durch ein Review in den `main`-Branch übernommen werden dürfen.
+Dazu wurden feste Reviewer pro Pull Request definiert, die jeweils für die Freigabe verantwortlich sind.
+Bei größeren Änderungen wurde gemeinsame Review Sitzungen während Team Meetings durchgeführt.
+Zusätzlich wurden Git-Restrictions aktiviert, welche das direkte Pushen in den `main`-Branch unterbinden.
+Dadurch ist sichergestellt, dass keine unkontrollierten Änderungen in die stabile Hauptversion gelangen.
+
+Diese Weiterentwicklung der Git-Nutzung brachte folgende Vorteile mit sich:
+\begin{itemize}
+    \item Durch Reviews und Restrictions wurden potenziell fehlerhafte oder ungetestete Änderungen frühzeitig erkannt.
+    \item Gemeinsame Review Sessions haben zu umfangreicherem Wissenstransfer innerhalb des Teams gesorgt.
+    \item Die stabile Version im `main`-Branch konnte nicht durch versehen und unsauberes Arbeiten überschrieben werden.
+\end{itemize}
+
+Gleichzeitig entstanden aber auch folgende Herausforderungen:
+\begin{itemize}
+    \item Im Team musste vorerst ein Verständnis über den neuen Workflow geschaffen werden.
+    \item Auch für kleinere Änderungen waren nun zusätzliche Review-Schritte notwendig.
+\end{itemize}
+
+Allgemein hat die Einführung der neuen Herangehensweise zu einer strukturierten Arbeitsweise geführt.
