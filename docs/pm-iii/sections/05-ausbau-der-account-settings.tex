@@ -1,16 +1,19 @@
 \section{Ausbau der Nutzereinstellungen}\label{sec:ausbau-der-nutzereinstellungen}
 
+In diesem Kapitel wird die Erweiterung der Nutzereinstellungen beschrieben.
+Ziel war es, Nutzern mehr Kontrolle über ihr Konto zu geben, insbesondere im Hinblick auf die Verwaltung von Zugangsdaten und Authentifizierungsinformationen.
+Aufbauend auf dem bestehenden Frontend wurde das Backend um verschiedene Funktionalitäten ergänzt, welche die Selbstverwaltung der Nutzerkonten ermöglichen.
+
 \subsection{Frontend}\label{subsec:frontend}
 
 \subsection{Backend}\label{subsec:backend}
 
-Im Rahmen des dritten Praxismoduls wurden mehrere Backend-Funktionalitäten für die Nutzereinstellungen implementiert.
-Ziel war es, den Nutzern eine komfortable Möglichkeit zu bieten, ihre Kontoinformationen selbstständig zu verwalten.
-Es wurden vier zentrale Funktionen umgesetzt: die Änderung des Benutzernamens, des Passworts, der E-Mail-Adresse sowie ein Logout-Service.
-Diese Auswahl wurde mit dem Hintergrund der Zielsetzung für dieses Semester getroffen.
-Für alle diese Funktionen existierte bereits eine Frontend implementierung, nun sollte auch das Backend eingebaut werden.
-Die Implementierungen nutzt die etablierte MySQL für Benutzerdaten sowie MongoDB für sammlungsrelevante Daten.
-Strukturell nutzen alle Funktionen die im Praxismodul II eingeführte Aufteilung in Route, Controller und Service.
+Im Rahmen des dritten Praxismoduls wurde das Backend zur Verwaltung von Nutzereinstellungen weiterentwickelt.
+Aufbauend auf dem Frontend aus dem vorherigen Semester wurde die serverseitige Logik ergänzt, um Änderungen an Benutzerdaten sicher zu verarbeiten.
+Die umgesetzten Funktionen umfassen die Änderung von Benutzername, Passwort und E-Mail-Adresse sowie das Ausloggen eines Nutzers.
+Zur Datenverarbeitung wird eine Kombination aus MySQL (für Nutzerdaten) und MongoDB (für sammlungsbezogene Informationen) verwendet.
+Die Implementierung folgt dem etablierten Aufbau aus Route, Controller und Service.
+Da die Aufteilung bereits in der Dokumentation des Praxismoduls II erklärt wurde, wird hier nicht näher darauf eingegangen.
 
 \subsubsection{Ändern des Benutzernamens}\label{subsubsec:username-update}
 

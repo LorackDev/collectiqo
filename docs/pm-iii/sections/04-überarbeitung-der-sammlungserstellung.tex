@@ -1,17 +1,16 @@
 \section{Überarbeitung der Sammlungserstellung}\label{sec:uberarbeitung-der-sammlungserstellung}
 
 Das New Collection Modal ist die zentrale Schnittstelle zur Erstellung einer neuen Sammlung auf der Collectiqo-Plattform.
-Es ermöglicht Nutzer:innen, grundlegende Eigenschaften wie Presets, Farbauswahl, Name und optional benutzerdefinierte Felder festzulegen.
-Im aktuellen Praxismodul wurde das Modal sowohl funktional als auch visuell überarbeitet.
+Es ermöglicht Nutzern, grundlegende Eigenschaften wie Presets, Farbauswahl, Name und optional benutzerdefinierte Felder festzulegen.
+Im aktuellen Praxismodul wurde das Modal sowohl funktional als auch visuell überarbeitet und erweitert.
 
-%
 \subsection{Frontend}\label{subsec:new-collection-frontend}
 
 Die visuelle und funktionale Überarbeitung des Collection-Modals im aktuellen Praxismodul stellt eine wesentliche Erweiterung gegenüber der vorherigen Version dar.
 Abbildung \ref{fig:modal-old} zeigt das ursprüngliche Modal aus dem vorangegangenen Semester.
 Hier war es lediglich möglich, eine neue Sammlung durch Auswahl eines vordefinierten Presets zu erstellen.
 Benutzerdefinierte Felder konnten nicht ergänzt werden, ebenso fehlte die Möglichkeit, Farben oder Bilder zu hinterlegen.
-Für die benutzerdefinierten Felder sowie die Farbauswahl existierten zwar bereits die Frontend Buttons, jedoch waren diese nicht funktional bzw. das Backend konnte mit der Auswahl noch nicht umgehen.
+Für die benutzerdefinierten Felder sowie die Farbauswahl existierten zwar bereits die Frontend-Buttons, jedoch waren diese nicht funktional bzw. das Backend konnte mit der Auswahl noch nicht umgehen.
 
 \begin{figure}[H]
     \centering
@@ -21,7 +20,8 @@ Für die benutzerdefinierten Felder sowie die Farbauswahl existierten zwar berei
 \end{figure}
 
 Die überarbeitete Version, dargestellt in Abbildung~\ref{fig:modal-new}, erweitert diesen Funktionsumfang deutlich.
-Neben einer visuell zentrierten und optisch konsistenten Gestaltung wurden mehrere neue Eingabemöglichkeiten ergänzt: Nutzer können nun eigene Felder definieren sowie ein Bild hochladen.
+Neben einer visuell zentrierten und optisch konsistenten Gestaltung wurden mehrere neue Eingabemöglichkeiten ergänzt.
+Nutzer können nun eigene Felder definieren sowie ein Bild hochladen.
 Diese Funktionen korrespondieren direkt mit der im Abschnitt \ref{subsubsec:save-new-collection} beschriebenen Speicherung im Backend.
 
 \begin{figure}[H]
@@ -33,12 +33,16 @@ Diese Funktionen korrespondieren direkt mit der im Abschnitt \ref{subsubsec:save
 
 Zusätzlich zu diesen Eingabefeldern wurden zwei Schaltflächen implementiert: „Save“ und „Save as template“.
 Über „Save“ wird die Sammlung wie in Abschnitt \ref{subsubsec:save-new-collection} beschrieben direkt gespeichert, während „Save as template“ eine Vorlage erstellt, die beim nächsten Öffnen des Modals im Preset-Menü ausgewählt werden kann (siehe Abschnitt \ref{subsubsec:save-as-template}).
-Beim Wechsel eines Presets wird das Modal dynamisch mit den entsprechenden Daten befüllt – diese Funktionalität ist ebenfalls im Backend dokumentiert (vgl. Abschnitt \ref{subsubsec:load-template-data}).
+Der „Save“ Button existierte zwar bereits im vorherigen Semester, funktionierte jedoch nur mit der stark limitierten Funktionalität, ausschließlich Presets als Tabelle zu speichern.
+Beim Wechsel eines Presets wird das Modal dynamisch mit den entsprechenden Daten befüllt.
+Diese Funktionalität ist ebenfalls im Backend dokumentiert (vgl. Abschnitt \ref{subsubsec:load-template-data}).
 
 \subsection{Backend}\label{subsec:new-collection-backend}
 
 Parallel zur Überarbeitung des Frontends wurde auch das Backend des New Collection Modals grundlegend erweitert.
-Während im vorherigen Semester lediglich das Erstellen einer Sammlung anhand vordefinierter Presets möglich war, unterstützt das System nun eine deutlich flexiblere und funktionsreichere Erstellung.
+Wie bereits beschrieben war im vorherigen Semester lediglich das Erstellen einer Sammlung anhand vordefinierter Presets möglich war, unterstützt das System nun eine deutlich flexiblere und funktionsreichere Erstellung.
+Das Backend wurde in dieser Iteration auf ein Level gehoben, in dem die seit dem ersten Praxismodul angepeilte Funktionalität nun vollständig eingebaut ist.
+Der Kern ist hierbei die dynamische Anpassung der Spalten beim Anlegen der Sammlung.
 
 \subsubsection{Speichern einer individuellen Sammlung}\label{subsubsec:save-new-collection}
 
@@ -57,12 +61,12 @@ const response = await fetch('/create-new-collection', {
 });
 \end{lstlisting}
 
-Der Server verarbeitet diese Daten und speichert die Inhalte in der Datenbank.
-Das Bild wird in der MongoDB als Binärdaten abgelegt, die Farbe als Textwert gespeichert.
+Diese Daten werden vom Endpunkt  verarbeitet und die Inhalte in der Datenbank gespeichert.
+Das Bild wird in der MongoDB als Binärdaten, die Farbe als Textwert abgelegt.
 Die so gespeicherte Sammlung erscheint anschließend in der Übersicht.
 Leider wird im Frontend die Auswahl der Farbe und des Bilds nicht weiter verwertet.
 
-Der API-Endpunkt \texttt{/create-new-collection} wird durch den \texttt{createNewCollectionController} verarbeitet, der intern den \texttt{createNewCollectionService} aufruft.
+Der Endpunkt \texttt{/create-new-collection} wird durch den \texttt{createNewCollectionController} verarbeitet, der intern den \texttt{createNewCollectionService} aufruft.
 Dieser wurde im aktuellen Praxismodul dahingehend erweitert, dass neben dem Namen, den Spalten und dem Benutzername nun auch ein Bild (als Binärdaten) sowie ein Farbwähler-Wert verarbeitet und in der Datenbank gespeichert werden können.
 
 \begin{lstlisting}[language=JavaScript, caption=Service-Aufruf im Controller]
@@ -114,7 +118,7 @@ await fetch('/create-template', {
 });
 \end{lstlisting}
 
-Der API-Endpunkt \texttt{/create-template} wird durch den \texttt{createTemplateController} verarbeitet.
+Der Endpunkt \texttt{/create-template} wird durch den \texttt{createTemplateController} verarbeitet.
 Dieser ruft intern den \texttt{createTemplateService} auf und übergibt die extrahierten Daten des Formulars, einschließlich der optionalen Bild- und Farbangaben:
 
 \begin{lstlisting}[language=JavaScript, caption=Service-Aufruf im Controller]
@@ -138,7 +142,7 @@ await templatesCollection.insertOne({
 });
 \end{lstlisting}
 
-Durch diese Erweiterung ist es nun möglich, Vorlagen nicht nur mit strukturellen Informationen (z.B. Spaltennamen), sondern auch mit visuellen Eigenschaften wie Farbe und Bild zu versehen.
+Durch diese Erweiterung ist es jetzt möglich, Vorlagen nicht nur mit strukturellen Informationen (z.B. Spaltennamen), sondern auch mit visuellen Eigenschaften wie Farbe und Bild zu versehen.
 Diese Templates stehen beim nächsten Öffnen des Modals im Preset-Auswahlfeld zur Verfügung.
 Das System lädt die verfügbaren Templates beim Initialisieren des Modals über eine GET-Anfrage:
 
@@ -157,8 +161,9 @@ fetch('/get-user-templates')
     });
 \end{lstlisting}
 
-Der GET-Endpunkt \texttt{/get-user-templates} wird durch einen zugehörigen Controller verarbeitet, der intern den Service \texttt{getUserTemplatesServices(username)} aufruft.
+Der Endpunkt \texttt{/get-user-templates} wird durch einen zugehörigen Controller verarbeitet, der intern den Service \texttt{getUserTemplatesServices(username)} aufruft.
 Dieser Service liest alle Vorlagen aus der Collection \texttt{templates}, die entweder dem aktuellen Benutzer oder als global markiert (\texttt{owner: 'GLOBAL'}) gespeichert wurden.
+Der Eintrag „GLOBAL“ wird genutzt, um spezifische Templates für alle Nutzer der Plattform bereitzustellen.
 
 \begin{lstlisting}[language=JavaScript, caption=Service zum Abrufen von Template-Namen]
 const db = await connectToDb();
@@ -188,7 +193,7 @@ populateFieldsFromTemplate(templateData);
 setColorPickerValue(templateData.color);
 \end{lstlisting}
 
-\textbf{Backend-Logik:} Der GET-Endpunkt \texttt{/get-preset-data} ruft im Hintergrund den \texttt{getPresetDataService(preset)} auf.
+Der Endpunkt \texttt{/get-preset-data} ruft im Hintergrund den \texttt{getPresetDataService(preset)} auf.
 Dieser Service wurde erweitert, um ein vollständiges Template-Objekt mit allen gespeicherten Werten zurückzugeben – einschließlich der dynamisch definierten Felder, der ausgewählten Farbe sowie optional des hinterlegten Bilds und dessen MIME-Type.
 
 \begin{lstlisting}[language=JavaScript, caption=Service zum Laden eines Templates]
@@ -227,4 +232,5 @@ Damit können im Frontend alle notwendigen Eingabefelder und Darstellungen korre
 
 Im vorherigen Semester war ausschließlich das Erstellen von Sammlungen basierend auf fest programmierten Presets möglich.
 Es bestand keine Möglichkeit, benutzerdefinierte Felder zu speichern oder die Sammlung visuell mit Farbe oder Bild anzureichern.
-Die neuen Funktionen stellen daher einen erheblichen Fortschritt dar: Sie ermöglichen nicht nur eine flexible Sammlungserstellung, sondern erlauben es auch, Vorlagen für wiederkehrende Strukturen anzulegen und weiterzuverwenden.
+Die neuen Funktionen bauen das Modal soweit aus, dass es nun die essenzielle Grundfunktion der Plattform umfasst.
+Eine flexible Sammlungserstellung ist jetzt möglich sowie das Anlegen von Vorlagen für wiederkehrende Strukturen.

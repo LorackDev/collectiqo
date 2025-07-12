@@ -1,8 +1,17 @@
 \section{Erweiterung der Sammlungsansicht}\label{sec:erweiterung-der-sammlungsansicht}
 
+
 \subsection{Frontend}
 
+Die Umsetzung der Tabellenansicht im Frontend war ein entscheidender Schritt für die Nutzbarkeit der Plattform.
+Nutzer können nun ihre Sammlungen nicht nur strukturell definieren, sondern auch mit konkreten Inhalten füllen und bearbeiten.
+Ziel war es, die Interaktion mit Sammlungen intuitiv und ohne Medienbruch direkt über die Weboberfläche zu ermöglichen.
+
 \subsection{Backend}
+
+Im Backend wurden die notwendigen Funktionalitäten geschaffen, um die Bearbeitung und Speicherung von Einträgen in einer Sammlung zu ermöglichen.
+Neben der Verarbeitung neuer Daten aus der Tabellenansicht umfasst dies auch die strukturierte Ablage der Informationen in der Datenbank.
+Außerdem wurde eine serverseitige Initiallogik implementiert, um beim Öffnen einer Sammlung bereits vorhandene Daten direkt anzeigen zu können.
 
 \subsubsection{Speichern von Tabelleneinträgen}
 
@@ -33,7 +42,7 @@ Dieser ruft den Service \texttt{createCollectionEntryService(collectionName, ent
 const result = await collection.updateOne(
     { name: collectionName, username: username },
     { $set: { entries: entry } },
-    { upsert: true } // falls nicht vorhanden, wird Dokument neu erstellt
+    { upsert: true }
 );
 \end{lstlisting}
 
