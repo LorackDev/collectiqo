@@ -6,16 +6,23 @@ const url = 'mongodb://' +
     process.env.MONGO_DATABASE_HOST + ':' +         // HOST
     process.env.MONGO_DATABASE_PORT;                // PORT
 const dbName = 'clq_collections';
-const client = new MongoClient(url);
+let client;
 
 const connectToDb = async() => {
-    await client.connect();
-    console.log("Connected correctly to server");
+    if (!client) {
+        client = new MongoClient(url);
+        await client.connect();
+        console.log("Connected correctly to server");
+    }
     return client.db(dbName);
 }
 
+// Remove closeConnection or handle it at application shutdown
 const closeConnection = async() => {
-    await client.close();
+    if (client) {
+        await client.close();
+        client = null;
+    }
 }
 
 module.exports = { connectToDb, closeConnection };
