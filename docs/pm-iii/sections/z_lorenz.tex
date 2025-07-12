@@ -22,3 +22,84 @@ Lorenz ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
 At vero eos et accusam et justo duo dolores et ea rebum.
 Stet clita kasd gubergren, no sea takimata sanctus est Lorenz ipsum dolor sit amet.
 
+
+\subsection{Backend der Nutzereinstellungen}\label{subsec:backend-user-settings}
+
+Im Rahmen des dritten Praxismoduls wurden mehrere Backend-Funktionalitäten für die Nutzereinstellungen implementiert.
+Ziel war es, den Nutzern eine komfortable Möglichkeit zu bieten, ihre Kontoinformationen selbstständig zu verwalten.
+Es wurden vier zentrale Funktionen umgesetzt: die Änderung des Benutzernamens, des Passworts, der E-Mail-Adresse sowie ein Logout-Service.
+Diese Auswahl wurde mit dem Hintergrund der Zielsetzung für dieses Semester getroffen.
+Für alle diese Funktionen existierte bereits eine Frontend implementierung, nun sollte auch das Backend eingebaut werden.
+Die Implementierungen nutzt die etablierte MySQL für Benutzerdaten sowie MongoDB für sammlungsrelevante Daten.
+Strukturell nutzen alle Funktionen die im Praxismodul II eingeführte Aufteilung in Route, Controller und Service.
+
+\subsubsection{Ändern des Benutzernamens}\label{subsubsec:username-update}
+
+Die Funktion zur Änderung des Benutzernamens prüft zunächst, ob der alte Benutzername existiert und ob der neue Benutzername bereits vergeben ist.
+Anschließend wird der Name sowohl in der MySQL-Datenbank als auch in den relevanten MongoDB-Collections aktualisiert:
+
+\begin{lstlisting}[language=JavaScript, caption=Überprüfung und Update des Usernamens in MySQL]
+const results = await queryDatabase('SELECT * FROM clq_users WHERE username = ?', [oldUsername]);
+const user = handleResults(results);
+
+if (!user) {
+    throw new Error('User not found');
+}
+
+const results = await queryDatabase('SELECT * FROM clq_users WHERE username = ?', [newUsername]);
+if (handleResults(results)) {
+    throw new Error('Username already in use');
+}
+
+await queryDatabase('UPDATE clq_users SET username = ? WHERE username = ?', [newUsername, oldUsername]);
+\end{lstlisting}
+
+Zusätzlich wird der Benutzername in MongoDB aktualisiert, um Konsistenz über alle Datenbanken hinweg sicherzustellen.
+
+\subsubsection{Ändern des Passworts}\label{subsubsec:password-update}
+
+Zur Änderung des Passworts wird zunächst das bisherige Passwort mittels `bcrypt.compare` validiert.
+Anschließend wird das neue Passwort gehasht und in der Datenbank gespeichert:
+
+\begin{lstlisting}[language=JavaScript, caption=Passwortvalidierung und Update]
+const passwordMatches = await bcrypt.compare(oldPassword, user.password);
+if (!passwordMatches) {
+    throw new Error('Incorrect old password');
+}
+
+const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+await queryDatabase('UPDATE clq_users SET password = ? WHERE username = ?', [hashedNewPassword, username]);
+\end{lstlisting}
+
+Diese Sicherheitsmaßnahmen stellen sicher, dass nur authentifizierte Nutzer ihr Passwort ändern können.
+
+\subsubsection{Ändern der E-Mail-Adresse}\label{subsubsec:email-update}
+
+Die Änderung der E-Mail-Adresse erfolgt durch eine einfache Aktualisierung des entsprechenden Feldes in der MySQL-Datenbank.
+Vorab wird überprüft, ob der Benutzername existiert:
+
+\begin{lstlisting}[language=JavaScript, caption=Update der E-Mail-Adresse]
+const results = await queryDatabase('SELECT * FROM clq_users WHERE username = ?', [username]);
+const user = handleResults(results);
+
+if (!user) {
+    throw new Error('User not found');
+}
+
+await queryDatabase('UPDATE clq_users SET email = ? WHERE username = ?', [newEmail, username]);
+\end{lstlisting}
+
+\subsubsection{Logout-Funktionalität}\label{subsubsec:logout}
+
+Der Logout-Prozess basiert auf der Zerstörung der Session des Nutzers.
+Dies wurde durch die `req.session.destroy()` Methode realisiert.
+Bei erfolgreicher Durchführung wird die Session beendet, andernfalls ein Fehler zurückgegeben:
+
+\begin{lstlisting}[language=JavaScript, caption=Logout-Service über Session-Zerstörung]
+req.session.destroy(err => {
+    if (err) {
+        return reject(new Error('Failed to logout'));
+    }
+    resolve();
+});
+\end{lstlisting}
