@@ -47,6 +47,7 @@ const result = await collection.updateOne(
 \end{lstlisting}
 
 Dieser Ansatz erlaubt das vollständige Überschreiben aller vorhandenen Einträge mit einer neuen, vom Client gelieferten Struktur.
+Zwar entsteht dadurch theoretisch ein Overhead an gelieferten Informationen, zeitlich bedingt war dies jedoch die geeignetste Lösung, da potenzielle Probleme wie doppelte Einträge nicht behandelt werden mussten.
 
 \subsubsection{Laden bestehender Einträge}
 
