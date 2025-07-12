@@ -66,7 +66,7 @@ Das Bild wird in der MongoDB als Binärdaten, die Farbe als Textwert abgelegt.
 Die so gespeicherte Sammlung erscheint anschließend in der Übersicht.
 Leider wird im Frontend die Auswahl der Farbe und des Bilds nicht weiter verwertet.
 
-Der Endpunkt \texttt{/create-new-collection} wird durch den \texttt{createNewCollectionController} verarbeitet, der intern den \texttt{createNewCollectionService} aufruft.
+Der Endpunkt \texttt{/create-new-collection} ruft intern über den Controller den \texttt{createNewCollectionService} auf.
 Dieser wurde im aktuellen Praxismodul dahingehend erweitert, dass neben dem Namen, den Spalten und dem Benutzername nun auch ein Bild (als Binärdaten) sowie ein Farbwähler-Wert verarbeitet und in der Datenbank gespeichert werden können.
 
 \begin{lstlisting}[language=JavaScript, caption=Service-Aufruf im Controller]
@@ -193,7 +193,7 @@ populateFieldsFromTemplate(templateData);
 setColorPickerValue(templateData.color);
 \end{lstlisting}
 
-Der Endpunkt \texttt{/get-preset-data} ruft im Hintergrund den \texttt{getPresetDataService(preset)} auf.
+Der Endpunkt \texttt{/get-preset-data} ruft im Hintergrund den \texttt{getPresetDataService()} auf.
 Dieser Service wurde erweitert, um ein vollständiges Template-Objekt mit allen gespeicherten Werten zurückzugeben – einschließlich der dynamisch definierten Felder, der ausgewählten Farbe sowie optional des hinterlegten Bilds und dessen MIME-Type.
 
 \begin{lstlisting}[language=JavaScript, caption=Service zum Laden eines Templates]

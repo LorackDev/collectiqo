@@ -35,7 +35,7 @@ const res = await fetch('/create-collection-entry', {
 \end{lstlisting}
 
 Der POST-Request wird auf Serverseite vom Endpunkt \texttt{/create-collection-entry} entgegengenommen.
-Dieser ruft den Service \texttt{createCollectionEntryService(collectionName, entry, username)} auf, welcher die Daten in der Datenbank aktualisiert:
+Dieser ruft den Service \texttt{createCollectionEntryService()} auf, welcher die Daten in der Datenbank aktualisiert:
 
 \begin{lstlisting}[language=JavaScript, caption=Service-Logik zum Überschreiben von Einträgen]
 const result = await collection.updateOne(
