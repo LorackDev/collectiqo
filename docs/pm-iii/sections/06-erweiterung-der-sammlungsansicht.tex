@@ -4,9 +4,26 @@ In diesem Kapitel wird die Weiterentwicklung der Sammlungsansicht dokumentiert.
 Ziel war es, diese zentrale Komponente der Plattform funktional zu erweitern, sodass Nutzer nun nicht nur Sammlungsstrukturen definieren, sondern auch konkrete Inhalte direkt bearbeiten und speichern können.
 Neben funktionalen Anpassungen im Frontend wurden insbesondere die serverseitigen Prozesse ergänzt, um eine persistente Verwaltung der Sammlungsdaten zu ermöglichen.
 
-\subsection{Frontend}
+\subsection{Frontend}\label{subsec:sammlungsansicht-frontend}
+Im Frontend wurde die Sammlungsansicht um eine dynamisch bearbeitbare Tabellenkomponente erweitert.
+Nutzer haben nun die Möglichkeit, direkt innerhalb der Tabelle neue Zeilen hinzuzufügen, bestehende Inhalte zu verändern oder Einträge zu entfernen.
+Dabei erfolgt die Interaktion vollständig clientseitig, wodurch Änderungen unmittelbar sichtbar sind, ohne die Seite neu laden zu müssen.
+Die Eingaben werden in Echtzeit im Browser verarbeitet und können anschließend per Klick auf den „Save“-Button an den Server übermittelt werden.
+Die visuelle Gestaltung der Tabelle orientiert sich am bestehenden Design und wurde durch gezielte Abstände und Hover-Effekte benutzerfreundlicher gestaltet.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{tabelle_dyn_1}
+    \caption{Anzeigemodus der Tabelle}
+    \label{fig:tabelle-dyn-1}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{tabelle_dyn_2}
+    \caption{Bearbeitungsmodus der Tabelle}
+    \label{fig:tabelle-dyn-2}
+\end{figure}
 
-\subsection{Backend}
+\subsection{Backend}\label{subsec:sammlungsansicht-backend}
 
 Im Backend wurden die notwendigen Funktionalitäten geschaffen, um die Bearbeitung und Speicherung von Einträgen in einer Sammlung zu ermöglichen.
 Neben der Verarbeitung neuer Daten aus der Tabellenansicht umfasst dies auch die strukturierte Ablage der Informationen in der Datenbank.
