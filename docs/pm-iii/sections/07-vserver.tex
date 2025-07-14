@@ -1,72 +1,208 @@
 \section{vServer}\label{subsec:vserver}
 
-Lorenz ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum.
-Stet clita kasd gubergren, no sea takimata sanctus est Lorenz ipsum dolor sit amet.
+In diesem Kapitel wird auf die Fortentwicklung des vServer eingegangen, auf dem die Collectiqo Sammlungsplattform seit Ende des zweiten Praxismoduls öffentlich zugänglich gemacht wird.
+Neben strukturellen Anpassungen der Bereitstellung enthält dieses Kapitel auch Abschnitte zu den getroffenen Netzwerkanpassungen und der Weiterentwicklung der Docker-Umgebung.
 
-\subsection{SubthemaRobin1}\label{subsubsec:robin1}
+\subsection{Bereitstellung}\label{subsubsec:vserver-bereitstellung}
 
-Lorenz ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum.
-Stet clita kasd gubergren, no sea takimata sanctus est Lorenz ipsum dolor sit amet.
+Die Bereitstellung des vServer enthält Konfiguration zur Außenanbindung wie ein NGINX-Reverse-Proxy und Zertifikatsverwaltung mittels Certbot, was für die lokale Instanz nicht notwendig und störend ist.
+Im Zuge der neuen Arbeitsweise mit git-Branches wurde die Struktur der Bereitstellung im Repository angepasst.
+Die aktive Fortentwicklung des vServers erfolgt nun über einen separaten Branch \textit{deployment}, hier werden alle Änderungen vorgenommen und getestet, die für die Bereitstellung auf dem vServer notwendig sind.
+Sowohl im main-Branch als auch im deployment-Branch wurde die Struktur der Bereitstellung angepasst, um eine klare Trennung zwischen der lokalen Entwicklung und der Bereitstellung auf dem vServer zu ermöglichen.
+Für eine lokale Ausführung der Anwendung wurde ein separater Ordner \textit{deploy/local} angelegt, der die notwendige docker-compose.yaml für die lokale Entwicklung enthält.
+Die Bereitstellung auf dem vServer erfolgt über den Ordner \textit{deploy/vServer}, hier enthalten ist die Docker-Compose-Datei inklusive Reverse-Proxy und Certbot-Zertifikatsverwaltung.
 
-\subsection{SubthemaRobin2}\label{subsubsec:robin2}
+\subsection{Netzwerkanpassungen}\label{subsubsec:vserver-netzwerk}
 
-Lorenz ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum.
-Stet clita kasd gubergren, no sea takimata sanctus est Lorenz ipsum dolor sit amet.
+Die Netzwerkanpassungen am vServer sind ein wichtiger Bestandteil des sicheren Betriebs der Collectiqo-Plattform.
+Im Folgenden wird auf die Netzwerkseparierung, die automatische Zertifikatserneuerung und das Aktivieren von IPv6 eingegangen.
 
-\subsection{SubthemaRobin3}\label{subsubsec:robin3}
+\subsubsection{Netzwerkseparierung}\label{subsubsec:vserver-netzwerk-separation}
 
-Lorenz ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum.
-Stet clita kasd gubergren, no sea takimata sanctus est Lorenz ipsum dolor sit amet.
+Am Ende des zweiten Praxismoduls stellte sich mittels der Überprüfung der offenen Ports (Portscanning) des vServers heraus, dass mehr Ports offen waren als notwendig beziehungsweise gewünscht.
+Neben den Ports 80 und 443 (http- und https-Übertragungsprotokoll), die für den NGINX-Reverse-Proxy genutzt werden, waren auch die Ports der Datenbank-Container (MySQL und MongoDB) offen erreichbar.
+Dies stellt ein Sicherheitsrisiko dar, da unbefugte Zugriffe auf die Datenbanken möglich wären.
+Die Datenbanken sollten nur über den Docker-Container, der das Front- und Backend der Collectiqo-Plattform bereitstellt, und nicht direkt über das Internet erreichbar sein.
+Die Netzwerkanpassungen beinhalten die Trennung zwischen öffentlichem und privatem Netzwerk, um die Sicherheit des vServers zu erhöhen.
 
-Die Konfiguration des Nginx-Revers-Proxys erfolgte in der Datei \textit{nginx/nginx.conf} und sieht wie folgt aus:
+Es wurde ein öffentliches Netzwerk \textit{public-network} und ein privates Netzwerk \textit{private-network} in der Docker-Compose-Datei definiert.
+Das \textit{public-network} ist ein Standard-Bridge-Netzwerk, das für die Kommunikation zwischen Containern und nach außen genutzt wird.
+Das \textit{private-network} ist ebenfalls ein Bridge-Netzwerk, aber mit der Option \textit{"internal: true"}, wodurch der Zugriff von außen blockiert wird und nur interne Container-Kommunikation möglich ist.
+So werden Dienste voneinander und vom externen Netzwerk gezielt abgeschottet.
+
+Die node.js-Anwendung, die das Front- und Backend der Collectiqo-Plattform bereitstellt, ist im privaten Netzwerk angebunden, ebenso die Datenbank-Container (MySQL und MongoDB).
+Der NGINX-Reverse-Proxy ist sowohl im öffentlichen Netzwerk als auch im privaten Netzwerk angebunden um Anfragen aus dem Internet entgegenzunehmen und an die node.js-Anwendung weiterzuleiten.
+Der Certbot-Container ist rein im öffentlichen Netzwerk angebunden, da er nur für die Zertifikatsverwaltung zuständig ist und keine direkte Kommunikation mit der node.js-Anwendung benötigt.
+Der Container läuft nur temporär, wenn ein neues Zertifikat ausgestellt oder ein bestehendes Zertifikat erneuert werden muss.
+
+
+\subsubsection{Zertifikatserneuerung \& IPv6}\label{subsubsec:vserver-zertifikat-ipv6}
+
+SSL-Zertifikate von Let's Encrypt haben eine Gültigkeit von 90 Tagen und müssen regelmäßig erneuert werden.
+Die automatische Erneuerung der Zertifikate erfolgt mithilfe des Certbot-Containers, der in der Docker-Compose-Datei konfiguriert ist.
+Es wurde ein CronJob eingerichtet, der jeden Sonntag gegen 8 Uhr morgens den Certbot-Container startet, um die Zertifikate zu erneuern.
+Die Ausführung des Containers erfolgt mit dem Befehl \textit{docker compose --env-file .env.docker run --rm certbot renew --force-renewal}.
+Der Befehlsparameter \textit{--force-renewal} sorgt dafür, dass die Zertifikate auch dann erneuert werden, wenn sie noch gültig sind.
+Damit wird eine kontinuierliche Verfügbarkeit der SSL-Zertifikate sichergestellt, ohne dass manuelle Eingriffe erforderlich sind.
+Die Rate-Limits von Let'S Encrypt erlauben fünf Zertifikatserneuerungen pro Woche, was ausreichend ist, um die automatische Erneuerung zu gewährleisten.
+Der CronJob wurde so konfiguriert, dass ebenfalls eine E-Mail-Benachrichtigung an den Administrator gesendet wird.
+Sollte die Erneuerung fehlschlagen, wird dies also rechtzeitig bemerkt und kann behoben werden.
+
+Bislang war die Collectiqo-Plattform nur über IPv4-Adressen erreichbar.
+Die Unterstützung für IPv6 wurde nun aktiviert, um die Erreichbarkeit der Plattform über das Internet zu verbessern und die Nutzung von IPv6-Adressen zu ermöglichen.
+Hierzu wurde beim Provider ein AAAA-Record für die Domain collectiqo.de und collectiqo.com eingerichtet, der auf die IPv6-Adresse des vServers verweist.
+Die Konfiguration des NGINX-Reverse-Proxys wurde entsprechend in der nginx.conf angepasst, um Anfragen über IPv6 zu unterstützen.
+Diese wurde so erweitert, dass sie sowohl IPv4- als auch IPv6-Anfragen über beide Protokolle (http und https), also über die Ports 80 und 443, entgegennehmen kann.
+
+Die Konfiguration des Nginx-Revers-Proxys basierend der Datei \textit{nginx/nginx.conf} sieht an den besagten Stellen (gekürzte Darstellung) wie folgt aus:
 \vspace{1em}
 \begin{lstlisting}[label={lst:lst-nginx-config}]
-events {
-    worker_connections  1024;
-}
-
-http {
-    server_tokens off;
-    charset utf-8;
     server {
-        listen 80 default_server;
+        listen 80 default_server; #IPv4 HTTP
+        listen [::]:80 default_server; #IPv6 HTTP
         server_name collectiqo.de www.collectiqo.de collectiqo.com www.collectiqo.com;
-
-        location ~ /.well-known/acme-challenge/ {
-            root /var/www/certbot;
-        }
-
-        location / {
-            return 301 https://collectiqo.com$request_uri;
-        }
     }
+
     server {
-        listen 443 ssl;
+        listen 443 ssl; #IPv4 HTTPS
+        listen [::]:443 ssl; #IPv6 HTTPS
         server_name collectiqo.de www.collectiqo.de collectiqo.com www.collectiqo.com;
-
-        ssl_certificate /etc/letsencrypt/live/collectiqo.com/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/collectiqo.com/privkey.pem;
-
-        location ~ /.well-known/acme-challenge/ {
-            root /var/www/certbot;
-        }
-        location / {
-            #proxy_pass http://test-webserver;
-            proxy_pass https://collectiqo-web-1:3000;
-            proxy_http_version 1.1;
-            proxy_set_header Host $host;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Proto $scheme;
-            proxy_cache_bypass $http_upgrade;
-        }
     }
-}
 \end{lstlisting}
 \vspace{1em}
+
+\subsection{Weiterentwicklung Docker}\label{subsubsec:vserver-docker}
+
+Healthchecks in Docker Compose (delayed start for node.js ehen DBs are ready and healthy)
+Die Docker-Umgebung wurde weiterentwickelt, um die Stabilität und Zuverlässigkeit der Collectiqo-Plattform zu verbessern.
+Die wichtigste Änderungen war die Implementierung von Healthchecks für die Docker-Container.
+Zusätzlich wurde ein automatischer Start und Shutdown der Container in Abhängigkeit vom Host-System implementiert und eine E-Mail-Funktion für Benachrichtigungen hinzugefügt.
+
+\subsubsection{Healthchecks}\label{subsubsec:vserver-docker-healthchecks}
+
+Im Nachgang an die Abgabe des zweiten Praxismoduls wurde bemerkt, dass die node.js-Anwendung nicht immer ordnungsgemäß funktionierte.
+Nach Sichtung der Logs stellte sich heraus, dass die Anwendung manchmal startete, bevor die Datenbank-Container (MySQL und MongoDB) bereit waren.
+Dies führte dazu, dass die node.js-Anwendung nicht auf die Datenbanken zugreifen konnte und somit beispielsweise kein Login möglich war, welcher von der MySQL-Datenbank abhängig ist.
+Manuelle Tests zeigten im Anschluss, dass die node.js-Anwendung ordnungsgemäß funktionierte, wenn die Datenbanken mit 30 Sekunden Vorlauf gestartet wurden.
+Eine dauerhafte Lösung für dieses Problem, möglichst automatisiert, wurde gesucht.
+Die Lösung bestand darin, Healthchecks für die Docker-Container zu implementieren.
+Die Healthchecks ermöglichen es, den Zustand der Container zu überwachen und sicherzustellen, dass sie ordnungsgemäß basierend auf einer hinterlegten Testfunktion funktionieren.
+
+Es wurden entsprechende Healthchecks für beide Datenbank-Container (MySQL und MongoDB) sowie für die node.js-Anwendung und den NGINX-Reverse-Proxy in der Docker-Compose-Datei \textit{docker-compose.yaml} (gekürzte Darstellung) definiert:
+implementiert.
+\vspace{1em}
+\begin{lstlisting}[label={lst:lst-dockercompose-config1}]
+services:
+  mysql:
+    image: lorackdev/clq-mysql-multiarch
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p${MYSQL_DATABASE_PASSWORD}"]
+      start_interval: 30s
+      start_period: 45s
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  mongodb:
+    image: mongo:latest
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "mongosh --host localhost --port 27017 -u ${MONGO_DATABASE_USER} -p ${MONGO_DATABASE_PASSWORD} --eval 'db.runCommand(\"ping\").ok' --quiet"]
+
+  web:
+    image: clq-app
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "ps aux | grep node | grep -v grep || exit 1"]
+    depends_on:
+      mysql:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+
+  nginx-reverse-proxy:
+    image: nginx:latest
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost/health || exit 1"]
+    depends_on:
+      web:
+        condition: service_healthy
+\end{lstlisting}
+\vspace{1em}
+
+Dabei wird bei der \textbf{MySQL} Datenbank mit dem Befehl \textit{mysqladmin ping} geprüft, ob der MySQL-Server auf localhost mit dem Benutzer root und dem Passwort aus der Umgebungsvariable MYSQL\_DATABASE\_PASSWORD erreichbar ist.
+Liefert der Befehl keine erfolgreiche Antwort, gilt der Container als nicht gesund.
+
+Für die \textbf{MongoDB} Datenbank wird mit dem Befehl \textit{mongosh} abgefragt, ob eine Verbindung zur lokalen MongoDB-Instanz auf Port 27017 möglich ist und ob der Datenbankbefehl \textit{db.runCommand("ping").ok} erfolgreich ausgeführt werden kann.
+Ist das der Fall, gilt der Container als „healthy“, andernfalls wird ein Fehlerstatus zurückgegeben.
+Die Zugangsdaten werden dabei ebenfalls aus den Umgebungsvariablen entnommen.
+
+Ob ein \textbf{Node.js}-Prozess im Container läuft wird mit dem Kommando \textit{ps aux | grep node | grep -v grep || exit 1} überprüft.
+Wird keiner gefunden, liefert der Healthcheck einen Fehlerstatus zurück.
+So erkennt Docker, ob der Service noch funktionsfähig ist.
+
+Für den \textbf{NGINX} Container wird per curl erprobt, ob der HTTP-Endpunkt http://localhost/health erreichbar ist.
+Schlägt der Aufruf fehl, liefert der Healthcheck einen Fehlerstatus zurück.
+So kann Docker erkennen, ob der NGINX-Container ordnungsgemäß läuft.
+
+Die Healthchecks in Docker Compose ermöglichen es, den Zustand der Container zu überwachen und sicherzustellen, dass sie ordnungsgemäß funktionieren.
+Dabei kommen verschiedene Parameter zum Einsatz, welche bei allen Container gleich gewählt wurden.
+\begin{itemize}
+    \item start\_interval: Zeit zwischen den ersten Healthcheck-Versuchen nach Containerstart.
+    \item start\_period: Zeitraum nach Start, in dem Fehler beim Healthcheck ignoriert werden (Wartezeit bis zur ersten Bewertung).
+    \item interval: Zeit zwischen den einzelnen Healthcheck-Versuchen im Normalbetrieb.
+    \item timeout: Maximale Zeit, die ein Healthcheck-Befehl laufen darf, bevor er als fehlgeschlagen gilt.
+    \item retries: Anzahl der erlaubten Fehlschläge, bevor der Container als „unhealthy“ markiert wird.
+\end{itemize}
+
+Mit der Option \textit{depends\_on} wird sichergestellt, dass die node.js-Anwendung erst gestartet wird, wenn beide Datenbank-Container als „healthy“ markiert sind.
+NGINX wiederum startet erst, wenn die node.js-Anwendung als „healthy“ markiert ist.
+Da Certbot ebenfalls eine Abhängigkeit zum NGINX-Reverse-Proxy hat, wird dieser ebenfalls erst gestartet, wenn der NGINX-Container als „healthy“ markiert ist.
+Somit erfolgt eine verzögerte Startreihenfolge der Container, die sicherstellt, dass die Container in der richtigen Reihenfolge und Abhängigkeiten gestartet werden.
+
+\subsubsection{Automatischer Start und Shutdown}\label{subsubsec:vserver-docker-auto-start}
+
+Eine weitere Verbesserung der Docker-Umgebung ist die Implementierung eines automatischen Starts und Shutdowns der Container in Abhängigkeit vom Host-System.
+Nach einem Neustart des Host-Systems war auffällig geworden, dass grade der NGINX-Reverse-Proxy in einem Restart-Zustand hängen blieb und nicht ordnungsgemäß startete.
+Es wurde ein Systemd-Service  namens \textit{docker-compose-app.service} unter \textit{/etc/systemd/system/} erstellt, der die Docker-Container beim Hochfahren des Host-Systems automatisch startet und beim Herunterfahren des Host-Systems automatisch stoppt.
+Die Systemd-Service-Datei sieht wie folgt aus:
+\vspace{1em}
+\begin{lstlisting}[label={lst:lst-systemd-service}]
+[Unit]
+Description=Docker Compose Application
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/home/collectiqo/git/collectiqo/deploy/vServer
+ExecStart=/usr/bin/docker compose --env-file .env.docker up -d
+ExecStop=/usr/bin/docker compose --env-file .env.docker down --timeout 15
+TimeoutStopSec=90
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
+\end{lstlisting}
+\vspace{1em}
+
+Innerhalb der Service-Datei wird das WorkingDirectory auf den Ordner gesetzt, in dem sich die Docker-Compose-Datei samt env-Datei befindet.
+Die Befehle \textit{ExecStart} und \textit{ExecStop} starten und stoppen die Docker-Container in Kombination mit dem Host-System.
+Ein \textit{TimeoutStopSec} von 90 Sekunden wurde gesetzt, um sicherzustellen, dass die Container genügend Zeit haben, um ordnungsgemäß herunterzufahren, bevor der Host-Computer heruntergefahren wird.
+Die Option \textit{RemainAfterExit=yes} sorgt dafür, dass der Service als aktiv bleibt, auch wenn die Docker-Container gestoppt wurden.
+Die Systemd-Service-Datei wurde abschließend aktiviert, sodass sie beim Booten des Host-Systems automatisch gestartet wird.
+
+
+\subsubsection{E-Mail-Funktion}\label{subsubsec:vserver-docker-email}
+
+In diesem Praxismodul wurde ein weiterer Container hinzugefügt, der eine Funktionalität für E-Mail bereitstellt.
+Dieser Container fungiert als SendOnly-SMTP Mail Transport Agent (MTA) und ermöglicht es, E-Mails rein zu versenden, der Empfang von E-Mails ist bewusst nicht vorgesehen.
+Der E-Mail-Container ist in der Docker-Compose-Datei \textit{docker-compose.yaml} definiert und nutzt das Image \textit{boky/postfix}, welches einen leichtgewichtigen Postfix-Mailserver bereitstellt.
+
+Wie der NGINX-Reverse-Proxy ist der Mail-Container sowohl im öffentlichen Netzwerk als auch im privaten Netzwerk angebunden, andere Container beziehungsweise das Host-System können somit über den definierten Port 2525 E-Mails versenden.
+Er stellt die Grundlage für eine mögliche Implementierung von E-Mail-Funktionen in der Collectiqo-Plattform dar, beispielsweise um ein Passwort-Zurücksetzung oder eine Authentifizierung über einen zweiten Faktor zu ermöglichen.
+
+
