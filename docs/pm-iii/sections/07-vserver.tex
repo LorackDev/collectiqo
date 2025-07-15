@@ -20,15 +20,26 @@ Im Folgenden wird auf die Netzwerkseparierung, die automatische Zertifikatserneu
 \subsubsection{Netzwerkseparierung}\label{subsubsec:vserver-netzwerk-separation}
 
 Am Ende des zweiten Praxismoduls stellte sich mittels der Überprüfung der offenen Ports (Portscanning) des vServers heraus, dass mehr Ports offen waren als notwendig beziehungsweise gewünscht.
-Neben den Ports 80 und 443 (http- und https-Übertragungsprotokoll), die für den NGINX-Reverse-Proxy genutzt werden, waren auch die Ports der Datenbank-Container (MySQL und MongoDB) offen erreichbar.
+Neben den Ports 80 und 443 (Übertragungsprotokolle http und https), die für den NGINX-Reverse-Proxy genutzt werden, waren auch die Ports der Datenbank-Container (MySQL und MongoDB) offen erreichbar.
 Dies stellt ein Sicherheitsrisiko dar, da unbefugte Zugriffe auf die Datenbanken möglich wären.
 Die Datenbanken sollten nur über den Docker-Container, der das Front- und Backend der Collectiqo-Plattform bereitstellt, und nicht direkt über das Internet erreichbar sein.
 Die Netzwerkanpassungen beinhalten die Trennung zwischen öffentlichem und privatem Netzwerk, um die Sicherheit des vServers zu erhöhen.
 
 Es wurde ein öffentliches Netzwerk \textit{public-network} und ein privates Netzwerk \textit{private-network} in der Docker-Compose-Datei definiert.
 Das \textit{public-network} ist ein Standard-Bridge-Netzwerk, das für die Kommunikation zwischen Containern und nach außen genutzt wird.
-Das \textit{private-network} ist ebenfalls ein Bridge-Netzwerk, aber mit der Option \textit{"internal: true"}, wodurch der Zugriff von außen blockiert wird und nur interne Container-Kommunikation möglich ist.
+Das \textit{private-network} ist ebenfalls ein Bridge-Netzwerk, aber mit der Option \textit{internal: true}, wodurch der Zugriff von außen blockiert wird und nur interne Container-Kommunikation möglich ist.
 So werden Dienste voneinander und vom externen Netzwerk gezielt abgeschottet.
+
+\vspace{1em}
+\begin{lstlisting}[label={lst:lst-dockercompose-networks}, caption=Netzwerke in der Docker-Compose-Datei]
+networks:
+  public-network:
+    driver: bridge
+  private-network:
+    driver: bridge
+    internal: true
+\end{lstlisting}
+\vspace{1em}
 
 Die node.js-Anwendung, die das Front- und Backend der Collectiqo-Plattform bereitstellt, ist im privaten Netzwerk angebunden, ebenso die Datenbank-Container (MySQL und MongoDB).
 Der NGINX-Reverse-Proxy ist sowohl im öffentlichen Netzwerk als auch im privaten Netzwerk angebunden um Anfragen aus dem Internet entgegenzunehmen und an die node.js-Anwendung weiterzuleiten.
@@ -42,21 +53,22 @@ SSL-Zertifikate von Let's Encrypt haben eine Gültigkeit von 90 Tagen und müsse
 Die automatische Erneuerung der Zertifikate erfolgt mithilfe des Certbot-Containers, der in der Docker-Compose-Datei konfiguriert ist.
 Es wurde ein CronJob eingerichtet, der jeden Sonntag gegen 8 Uhr morgens den Certbot-Container startet, um die Zertifikate zu erneuern.
 Die Ausführung des Containers erfolgt mit dem Befehl \textit{docker compose --env-file .env.docker run --rm certbot renew --force-renewal}.
-Der Befehlsparameter \textit{--force-renewal} sorgt dafür, dass die Zertifikate auch dann erneuert werden, wenn sie noch gültig sind.
+Der Befehlsparameter \textit{--force-renewal} sorgt dafür, dass die Zertifikate auch dann erneuert werden, wenn sie noch länger als 30 Tage gültig sind.
 Damit wird eine kontinuierliche Verfügbarkeit der SSL-Zertifikate sichergestellt, ohne dass manuelle Eingriffe erforderlich sind.
-Die Rate-Limits von Let'S Encrypt erlauben fünf Zertifikatserneuerungen pro Woche, was ausreichend ist, um die automatische Erneuerung zu gewährleisten.
+Die Rate-Limits von Let's Encrypt erlauben fünf Zertifikatserneuerungen pro Woche, was ausreichend ist, um die automatische Erneuerung zu gewährleisten.
 Der CronJob wurde so konfiguriert, dass ebenfalls eine E-Mail-Benachrichtigung an den Administrator gesendet wird.
 Sollte die Erneuerung fehlschlagen, wird dies also rechtzeitig bemerkt und kann behoben werden.
+\newline
 
 Bislang war die Collectiqo-Plattform nur über IPv4-Adressen erreichbar.
 Die Unterstützung für IPv6 wurde nun aktiviert, um die Erreichbarkeit der Plattform über das Internet zu verbessern und die Nutzung von IPv6-Adressen zu ermöglichen.
 Hierzu wurde beim Provider ein AAAA-Record für die Domain collectiqo.de und collectiqo.com eingerichtet, der auf die IPv6-Adresse des vServers verweist.
-Die Konfiguration des NGINX-Reverse-Proxys wurde entsprechend in der nginx.conf angepasst, um Anfragen über IPv6 zu unterstützen.
+Die Konfiguration des NGINX-Reverse-Proxys wurde entsprechend in der \textit{nginx.conf} angepasst, um Anfragen über IPv6 zu unterstützen.
 Diese wurde so erweitert, dass sie sowohl IPv4- als auch IPv6-Anfragen über beide Protokolle (http und https), also über die Ports 80 und 443, entgegennehmen kann.
 
 Die Konfiguration des Nginx-Revers-Proxys basierend der Datei \textit{nginx/nginx.conf} sieht an den besagten Stellen (gekürzte Darstellung) wie folgt aus:
 \vspace{1em}
-\begin{lstlisting}[label={lst:lst-nginx-config}]
+\begin{lstlisting}[label={lst:lst-nginx-config}, caption=NGINX-Konfiguration für IPv4 und IPv6]
     server {
         listen 80 default_server; #IPv4 HTTP
         listen [::]:80 default_server; #IPv6 HTTP
@@ -73,9 +85,8 @@ Die Konfiguration des Nginx-Revers-Proxys basierend der Datei \textit{nginx/ngin
 
 \subsection{Weiterentwicklung Docker}\label{subsubsec:vserver-docker}
 
-Healthchecks in Docker Compose (delayed start for node.js ehen DBs are ready and healthy)
 Die Docker-Umgebung wurde weiterentwickelt, um die Stabilität und Zuverlässigkeit der Collectiqo-Plattform zu verbessern.
-Die wichtigste Änderungen war die Implementierung von Healthchecks für die Docker-Container.
+Weitreichendste Änderung war die Implementierung von Healthchecks für die Docker-Container.
 Zusätzlich wurde ein automatischer Start und Shutdown der Container in Abhängigkeit vom Host-System implementiert und eine E-Mail-Funktion für Benachrichtigungen hinzugefügt.
 
 \subsubsection{Healthchecks}\label{subsubsec:vserver-docker-healthchecks}
@@ -89,9 +100,8 @@ Die Lösung bestand darin, Healthchecks für die Docker-Container zu implementie
 Die Healthchecks ermöglichen es, den Zustand der Container zu überwachen und sicherzustellen, dass sie ordnungsgemäß basierend auf einer hinterlegten Testfunktion funktionieren.
 
 Es wurden entsprechende Healthchecks für beide Datenbank-Container (MySQL und MongoDB) sowie für die node.js-Anwendung und den NGINX-Reverse-Proxy in der Docker-Compose-Datei \textit{docker-compose.yaml} (gekürzte Darstellung) definiert:
-implementiert.
 \vspace{1em}
-\begin{lstlisting}[label={lst:lst-dockercompose-config1}]
+\begin{lstlisting}[label={lst:lst-dockercompose-container-healthchecks}, caption=Healthchecks in der Docker-Compose-Datei]
 services:
   mysql:
     image: lorackdev/clq-mysql-multiarch
@@ -143,21 +153,22 @@ Ob ein \textbf{Node.js}-Prozess im Container läuft wird mit dem Kommando \texti
 Wird keiner gefunden, liefert der Healthcheck einen Fehlerstatus zurück.
 So erkennt Docker, ob der Service noch funktionsfähig ist.
 
-Für den \textbf{NGINX} Container wird per curl erprobt, ob der HTTP-Endpunkt http://localhost/health erreichbar ist.
+Für den \textbf{NGINX} Container wird per curl erprobt, ob der HTTP-Endpunkt erreichbar ist (http://localhost/health).
 Schlägt der Aufruf fehl, liefert der Healthcheck einen Fehlerstatus zurück.
 So kann Docker erkennen, ob der NGINX-Container ordnungsgemäß läuft.
 
 Die Healthchecks in Docker Compose ermöglichen es, den Zustand der Container zu überwachen und sicherzustellen, dass sie ordnungsgemäß funktionieren.
 Dabei kommen verschiedene Parameter zum Einsatz, welche bei allen Container gleich gewählt wurden.
 \begin{itemize}
-    \item start\_interval: Zeit zwischen den ersten Healthcheck-Versuchen nach Containerstart.
-    \item start\_period: Zeitraum nach Start, in dem Fehler beim Healthcheck ignoriert werden (Wartezeit bis zur ersten Bewertung).
-    \item interval: Zeit zwischen den einzelnen Healthcheck-Versuchen im Normalbetrieb.
-    \item timeout: Maximale Zeit, die ein Healthcheck-Befehl laufen darf, bevor er als fehlgeschlagen gilt.
-    \item retries: Anzahl der erlaubten Fehlschläge, bevor der Container als „unhealthy“ markiert wird.
+    \item start\_interval: Zeit zwischen den ersten Healthcheck-Versuchen nach Containerstart
+    \item start\_period: Zeitraum nach Start, in dem Fehler beim Healthcheck ignoriert werden (Wartezeit bis zur ersten Bewertung)
+    \item interval: Zeit zwischen den einzelnen Healthcheck-Versuchen im Normalbetrieb
+    \item timeout: Maximale Zeit, die ein Healthcheck-Befehl laufen darf, bevor er als fehlgeschlagen gilt
+    \item retries: Anzahl der erlaubten Fehlschläge, bevor der Container als „unhealthy“ markiert wird
 \end{itemize}
 
 Mit der Option \textit{depends\_on} wird sichergestellt, dass die node.js-Anwendung erst gestartet wird, wenn beide Datenbank-Container als „healthy“ markiert sind.
+Container, die von anderen Containern abhängig sind, werden also erst gestartet, wenn die abhängigen Container als „healthy“ markiert sind.
 NGINX wiederum startet erst, wenn die node.js-Anwendung als „healthy“ markiert ist.
 Da Certbot ebenfalls eine Abhängigkeit zum NGINX-Reverse-Proxy hat, wird dieser ebenfalls erst gestartet, wenn der NGINX-Container als „healthy“ markiert ist.
 Somit erfolgt eine verzögerte Startreihenfolge der Container, die sicherstellt, dass die Container in der richtigen Reihenfolge und Abhängigkeiten gestartet werden.
@@ -169,7 +180,7 @@ Nach einem Neustart des Host-Systems war auffällig geworden, dass grade der NGI
 Es wurde ein Systemd-Service  namens \textit{docker-compose-app.service} unter \textit{/etc/systemd/system/} erstellt, der die Docker-Container beim Hochfahren des Host-Systems automatisch startet und beim Herunterfahren des Host-Systems automatisch stoppt.
 Die Systemd-Service-Datei sieht wie folgt aus:
 \vspace{1em}
-\begin{lstlisting}[label={lst:lst-systemd-service}]
+\begin{lstlisting}[label={lst:lst-systemd-service}, caption=Systemd-Service-Datei für Docker-Compose]
 [Unit]
 Description=Docker Compose Application
 Requires=docker.service
