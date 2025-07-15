@@ -1,50 +1,62 @@
 \section{Fazit und Ausblick}\label{sec:fazit-ausblick}
 
-Lorenz ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum.
-Stet clita kasd gubergren, no sea takimata sanctus est Lorenz ipsum dolor sit amet.
+Dieses Kapitel fasst die wichtigsten Erkenntnisse zusammen, beleuchtet Abweichungen von den ursprünglichen Zielen und reflektiert die Fortschritte des Projekts.
+Gleichzeitig wird ein Ausblick auf zukünftige Schritte gegeben, um das Projekt weiterzuentwickeln und an neue Herausforderungen anzupassen.
 
 \subsection{Abweichungen der geplanten Ziele}\label{subsec:abweichungen-der-geplanten-ziele}
 
-Lorenz ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum.
-Stet clita kasd gubergren, no sea takimata sanctus est Lorenz ipsum dolor sit amet.
+Im Rahmen des dritten Praxismoduls stand die Fertigstellung und Optimierung der Plattform Collectiqo im Mittelpunkt.
+Ziel war es, die im vorherigen Praxismodul definierten Kernfunktionen vollständig zu implementieren und die Plattform in einen nutzbaren, stabilen Zustand zu überführen.
+Im Ausblick des zweiten Praxismoduls wurde festgelegt, dass insbesondere die abschließende Umsetzung der Funktionen zur Erstellung, Bearbeitung und Löschung von Sammlungen, die vollständige Bereitstellung aller Account-Einstellungen sowie eine einheitliche Benutzeroberfläche im Fokus stehen sollten.
+Ergänzend dazu war die vollumfängliche Inbetriebnahme der Plattform auf einem vServer, die Prüfung einer möglichen Markenanmeldung, die Implementierung von E-Mail-Bestätigungen und einer „Passwort vergessen“-Funktion, die Einführung von Auto-Deployment-Pipelines sowie die konsequente Nutzung von dedizierten Branches und Pull Requests im Entwicklungsprozess vorgesehen.
 
-\begin{itemize}[noitemsep]
-    \item \textbf{Restrukturierung der GitHub-Struktur}: Dieses Ziel wurde vollständig erreicht, wodurch eine klarere Organisation und Nachvollziehbarkeit des Projekts gewährleistet ist.
-    \item \textbf{Auslagerung von redundanten Code-Snippets in HTML, CSS und JavaScript}: Die Reduktion von Redundanzen wurde erfolgreich umgesetzt, was die Wartbarkeit und Skalierbarkeit des Projekts deutlich verbessert hat.
-    \item \textbf{Designanpassung mit richtigem Branding}: Das Branding wurde erfolgreich implementiert, was zu einem professionelleren und kohärenten Auftritt beiträgt.
-    \item \textbf{Projektmanagement-Tool}: Der Wechsel auf ein neues Projektmanagement-Tool konnte zu Beginn des Praxismoduls II erfolgreich umgesetzt werden, was die Organisation und Kommunikation im Team verbessert hat.
-    \item \textbf{Docker-Erweiterung}: Die Docker-Umgebung konnte erfolgreich um zwei Container (Reverse Proxy und Certbot Zertifikatsverwaltung) erweitert werden.
-    \item \textbf{Bugs im Front- und Backend}: Die Behebung von Bugs wurde erfolgreich durchgeführt, was die Stabilität und Zuverlässigkeit der Plattform erhöht hat.
-    \item \textbf{vServer-Hosting}: Die Plattform konnte erfolgreich auf einem vServer gehostet werden, was die Verfügbarkeit verbessert und die Grundlage für zukünftige Erweiterungen schafft.
-    \item \textbf{DB-Constrains}: Die Absicherung der Datenbank durch Constraints konnte aus Zeitgründen nicht umgesetzt werden, bleibt aber ein Ziel für zukünftige Entwicklungen.
-    \item \textbf{Integrationstests}: Die Implementierung von Integrationstests konnte ebenfalls nicht umgesetzt werden und verbleibt im Backlog.
-    \item \textbf{Erweiterung der Funktionen für die Anpassung von Collections}: Dieses Ziel konnte nicht erreicht werden, da die notwendigen Umstrukturierungen und die Vereinheitlichung anderer Komponenten mehr Zeit in Anspruch nahmen als ursprünglich geplant.
-\end{itemize}
+Im SOLL-Zustand wurde somit ein klar umrissener Funktionsumfang und ein professioneller Entwicklungsworkflow angestrebt.
+Die Plattform sollte nach Abschluss des Moduls nicht nur technisch ausgereift, sondern auch für Endnutzer intuitiv bedienbar und sicher sein.
 
-\newpage
+Im IST-Zustand konnten die wesentlichen Ziele weitgehend erreicht werden.
+Die Grundfunktionen zur Verwaltung von Sammlungen sowie die Account-Einstellungen wurden erfolgreich implementiert und stehen den Nutzern in vollem Umfang zur Verfügung.
+Auch die Vereinheitlichung der Benutzeroberfläche wurde konsequent umgesetzt, sodass die Plattform nun ein durchgängiges und ansprechendes Design aufweist.
+Das Hosting auf dem vServer ist grundsätzlich funktionsfähig, wenngleich die Anbindung der MongoDB noch kleinere Herausforderungen bereitet, die aktuell im Review sind.
+Die Überlegung zur Anmeldung einer Wortmarke wurde im Verlauf des Moduls nicht weiterverfolgt und bleibt ein mögliches Thema für die Zukunft.
+
+Die Implementierung der E-Mail-Bestätigung und der „Passwort vergessen“-Funktion ist bislang nur teilweise abgeschlossen: Zwar wurde ein dedizierter Mailing-Container eingerichtet, die vollständige Integration in Front- und Backend steht jedoch noch aus.
+Auch die Automatisierung des Deployments ist noch nicht vollständig realisiert; aktuell erfolgt das Update der Plattform halbautomatisch über einen regelmäßig ausgeführten CronJob.
+Positiv hervorzuheben ist die konsequente Einführung von Pull Requests, Reviews und Branch-Restrictions, wodurch die Codequalität und die Zusammenarbeit im Team weiter verbessert werden konnten.
+
+Insgesamt zeigt der Vergleich zwischen SOLL- und IST-Zustand, dass die zentralen Ziele des Praxismoduls III erreicht wurden und die Plattform Collectiqo nun auf einer soliden technischen und organisatorischen Basis steht.
+Einzelne, noch offene Punkte wurden identifiziert und können in zukünftigen Entwicklungsschritten gezielt adressiert werden.
+Die im Team etablierte strukturierte Arbeitsweise und die kontinuierliche Verbesserung der Entwicklungsprozesse bilden eine gute Grundlage für die weitere erfolgreiche Entwicklung der Plattform.
+
+%\newpage
 
 \subsection{Retrospektive}\label{subsec:retrospektive}
 
-Lorenz ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum.
-Stet clita kasd gubergren, no sea takimata sanctus est \textbf{Lorenz ipsum} dolor sit amet.
+Im Verlauf des dritten Praxismoduls konnten wertvolle Erfahrungen gesammelt und wichtige Erkenntnisse für die zukünftige Projektarbeit gewonnen werden.
+Besonders im Umgang mit git und der kollaborativen Entwicklung haben sich einige zentrale Learnings herauskristallisiert.
+Die konsequente Durchführung und ernsthafte Prüfung von Pull Requests vor dem Merge in den main branch erwies sich als essenziell, um Fehler frühzeitig zu erkennen und aufwendige Nachbesserungen zu vermeiden.
+Rückblickend hätten zwei größere Korrekturrunden durch sorgfältigere Reviews vermieden werden können.
+
+Auch der strukturierte Umgang mit Branches und das richtige Vorgehen beim Pullen von Änderungen sind entscheidend, um Datenverluste oder unbeabsichtigte Überschreibungen zu verhindern.
+Im Projektverlauf zeigte sich, dass Warnhinweise nicht immer zuverlässig erscheinen, weshalb ein umsichtiges und bewusstes Arbeiten mit den Versionskontrollwerkzeugen unerlässlich ist.
+
+Die technische Umsetzung der geplanten Funktionen gestaltete sich teilweise sehr herausfordernd und erforderte intensive Recherche.
+Viele Lösungen mussten individuell an die spezifische Projektumgebung angepasst werden, um einen reibungslosen und vollfunktionsfähigen Betrieb sicherzustellen.
+Diese Erfahrungen haben das technische Verständnis vertieft und die Fähigkeit gestärkt, sich eigenständig in neue Themengebiete einzuarbeiten.
+
+Die Teammitglieder konnten ihre Kompetenzen in den Bereichen Frontend- und Backend-Entwicklung, Datenbankintegration sowie Deployment weiter ausbauen.
+Durch den Verzicht auf ein Content-Management-System (CMS) sowie jegliche Templates und die Entscheidung, die Plattform von Grund auf zu entwickeln, wurde ein tiefes Verständnis für die zugrunde liegenden Technologien und deren Zusammenwirken gefördert.
+Der Entwicklungsfortschritt des schlussendlich gebotenen Funktionsumfangs war hier zwar nicht so hoch wie ursprünglich erhofft, jedoch wurde eine solide Basis geschaffen, die für zukünftige Erweiterungen und Anpassungen genutzt werden kann.
+Die Erfahrungen aus diesem drei Praxismodulen haben gezeigt, dass eine klare Planung und Strukturierung der Entwicklungsprozesse sowie eine offene Kommunikation im Team entscheidend für den Projekterfolg sind.
 
 \subsection{Ausblick}\label{subsec:ausblick-zukuenftige-ziele-und-funktionen}
 
-Lorenz ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum.
-Stet clita kasd gubergren, no sea takimata sanctus est Lorenz ipsum dolor sit amet:
+Um die Plattform Collectiqo vollständig lauffähig zu machen, stehen nur noch wenige abschließende technische Schritte aus.
+Vorrangig ist die Implementierung der Passwort-Reset-Funktion sowie einer Zwei-Faktor-Authentifizierung (2FA), wobei der dafür notwendige Mailcontainer bereits vorbereitet wurde.
+Zudem gilt es, die Funktionalität zur Auswahl und Nutzung von Bildern und Farben bei der Erstellung einer Collection im Frontend final zu integrieren, sodass Nutzer diese Gestaltungsmöglichkeiten vollumfänglich nutzen können.
 
-\begin{itemize}[noitemsep]
-    \item Vollständige Collectionansicht mit Bearbeitung der Collections.
-    \item Änderbare Einstellungen der Benutzerdaten durch User selbst.
-    \item Ausbau der vServer-Infrastruktur, Optimierung und Fortentwicklung von Funktionalitäten.
-    \item Betrachtung der Anmeldung einer Wortmarke für rechtlichen Schutz.
-    \item Implementierung eines E-Mail-Bestätigungscodes für die Registrierung sowie eine „Passwort vergessen“-Funktion.
-    \item Verteiltes Arbeiten an der Plattform in dedizierten branches.
-    \item Pipelines für Auto-Deployment auf dem vServer.
-\end{itemize}
+Für die Zukunft bietet die geschaffene technische Basis zahlreiche Erweiterungsmöglichkeiten.
+Besonders im Fokus stehen dabei die Entwicklung von Community-Features, wie etwa die Option, Sammlungen mit anderen Nutzern zu teilen.
+Darüber hinaus ist geplant, gezielt Feature Requests von Anwendern einzuholen, um die Weiterentwicklung der Plattform an den tatsächlichen Bedürfnissen der Nutzer auszurichten und so den Funktionsumfang kontinuierlich zu erweitern.
+
 
 
